@@ -21,18 +21,25 @@ public class EditorGroundEdge : Editor
     {
         base.OnInspectorGUI();
         serializedObject.Update();
-        renderBounds.boolValue = EditorGUILayout.Toggle(renderBounds.boolValue, "Show bounds");
+        renderBounds.boolValue = EditorGUILayout.Toggle("show bounds", renderBounds.boolValue);
         //renderBounds = EditorGUILayout.Toggle(renderBounds, "Show bounds");
 
-
+        serializedObject.ApplyModifiedProperties();
     }
 
-    
-    //private void OnSceneGUI()
-    //{
-    //    Bounds b = serializedObject.FindProperty("showBounds").boundsValue;
-    //    DrawBox(serializedObject.)
-    //}
+
+    private void OnSceneGUI()
+    {
+        serializedObject.Update();
+        //serializedObject.Update();
+        Bounds b = serializedObject.FindProperty("bounds").boundsValue;
+        //DrawBox(serializedObject.)
+        if(renderBounds.boolValue)
+        {
+            Debug.DrawLine(b.min, b.max);
+        }
+        serializedObject.ApplyModifiedProperties();
+    }
 
     //private void DrawBox(Vector2 origin, Bounds b)
     //{
