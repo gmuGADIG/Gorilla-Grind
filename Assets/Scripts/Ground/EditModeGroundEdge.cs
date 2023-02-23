@@ -18,22 +18,33 @@ public class EditModeGroundEdge : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         groundEdge.edgeCollider.useAdjacentStartPoint = groundEdge.previous != null;
         groundEdge.edgeCollider.useAdjacentEndPoint = groundEdge.next != null;
 
         if (groundEdge.previous != null)
         {
-            groundEdge.edgeCollider.adjacentStartPoint = transform.InverseTransformPoint( groundEdge.previous.endPoint ) - groundEdge.transform.position;
+            groundEdge.edgeCollider.adjacentStartPoint = groundEdge.edgeCollider.transform.worldToLocalMatrix.MultiplyPoint(groundEdge.previous.endPoint);
             
-            Debug.DrawLine(groundEdge.edgeCollider.adjacentStartPoint, groundEdge.previous.endPoint, Color.blue);
             
         }
 
         if (groundEdge.next != null)
         {
 
-            groundEdge.edgeCollider.adjacentEndPoint = groundEdge.next.startPoint;// - (Vector2)groundEdge.transform.position;
+            groundEdge.edgeCollider.adjacentEndPoint = groundEdge.edgeCollider.transform.worldToLocalMatrix.MultiplyPoint(groundEdge.next.startPoint);
         }
 
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (groundEdge.showBounds)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawCube(groundEdge.startPoint, Vector3.one/10);
+            Gizmos.DrawCube(groundEdge.endPoint, Vector3.one/10);
+
+        }
     }
 }
