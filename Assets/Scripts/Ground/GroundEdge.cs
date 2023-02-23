@@ -18,8 +18,14 @@ public class GroundEdge : MonoBehaviour
     public EdgeCollider2D edgeCollider;
 
     
-    public Vector2 startPoint { get { return edgeCollider.points[0]; } }
-    public Vector2 endPoint { get { return edgeCollider.points[edgeCollider.pointCount - 1];  } }
+    public Vector2 startPoint { 
+        get {
+            return edgeCollider.transform.localToWorldMatrix.MultiplyPoint(edgeCollider.points[0]);
+            //return edgeCollider.points[0]; 
+
+        } 
+    }
+    public Vector2 endPoint { get { return edgeCollider.transform.localToWorldMatrix.MultiplyPoint(edgeCollider.points[edgeCollider.pointCount - 1]);  } }
     public GroundEdge previous;
     public GroundEdge next;
 

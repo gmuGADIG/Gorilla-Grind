@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 
@@ -25,7 +26,7 @@ public class EditModeGroundEdge : MonoBehaviour
             groundEdge.edgeCollider.adjacentStartPoint = transform.InverseTransformPoint( groundEdge.previous.endPoint ) - groundEdge.transform.position;
             
             Debug.DrawLine(groundEdge.edgeCollider.adjacentStartPoint, groundEdge.previous.endPoint, Color.blue);
-
+            
         }
 
         if (groundEdge.next != null)

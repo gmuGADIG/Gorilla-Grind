@@ -38,7 +38,9 @@ public class EditorGroundEdge : Editor
         //    Debug.DrawLine(b.min, b.max);
         //}
         GroundEdge groundEdge = (GroundEdge)serializedObject.targetObject;
-        DrawBox(groundEdge.transform.position, groundEdge.boundSize);
+        //DrawBox(groundEdge.transform.position, groundEdge.boundSize);
+        Handles.color = Color.red;
+        Handles.DrawLine(groundEdge.startPoint, groundEdge.endPoint);
         serializedObject.ApplyModifiedProperties();
     }
 
