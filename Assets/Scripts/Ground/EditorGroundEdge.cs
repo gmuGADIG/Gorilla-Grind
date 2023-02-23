@@ -10,10 +10,10 @@ using UnityEditor;
 public class EditorGroundEdge : Editor
 {
     //private bool renderBounds;
-    private SerializedProperty renderBounds;
+    //private SerializedProperty renderBounds;
     private void OnEnable()
     {
-        renderBounds = serializedObject.FindProperty("showBounds");
+        //renderBounds = serializedObject.FindProperty("showBounds");
         //renderBounds = false;
     }
 
@@ -21,9 +21,9 @@ public class EditorGroundEdge : Editor
     {
         base.OnInspectorGUI();
         serializedObject.Update();
-        renderBounds.boolValue = EditorGUILayout.Toggle("show bounds", renderBounds.boolValue);
+        //renderBounds.boolValue = EditorGUILayout.Toggle("show bounds", renderBounds.boolValue);
         //renderBounds = EditorGUILayout.Toggle(renderBounds, "Show bounds");
-
+        //Nothing to do here currently. Can change later.
         serializedObject.ApplyModifiedProperties();
     }
 
@@ -38,15 +38,9 @@ public class EditorGroundEdge : Editor
         //    Debug.DrawLine(b.min, b.max);
         //}
         GroundEdge groundEdge = (GroundEdge)serializedObject.targetObject;
-        //DrawBox(groundEdge.transform.position, groundEdge.boundSize);
         Handles.color = Color.red;
         Handles.DrawLine(groundEdge.startPoint, groundEdge.endPoint);
         serializedObject.ApplyModifiedProperties();
     }
 
-    private void DrawBox(Vector2 origin, Vector2 b)
-    {
-            
-        Debug.DrawLine(origin - b / 2, origin +b.x*Vector2.right/2);
-    }
 }
