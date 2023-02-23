@@ -6,9 +6,13 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rigidBody;
     [SerializeField] float jumpForce = 400;
-    [SerializeField] float radius = 1f;
-    [SerializeField] float distance = 0f;
+    [SerializeField] float groundCheckRadius = 1;
+    [SerializeField] float groundCheckDistance = 0;
     [SerializeField] LayerMask groundLayer;
+    [SerializeField] float moveAccel = 1;
+
+    [SerializeField] float maxMoveSpeed = 5;
+    [SerializeField] float minMoveSpeed = 0.5f;
 
     void Start() {
         rigidBody = GetComponent<Rigidbody2D>();
@@ -19,6 +23,14 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded()) {
             Jump();
         }
+        if (Input.GetKey(KeyCode.A) && IsGrounded()) {
+            ScrollObject.currentScrollMult -= moveAccel * Time.deltaTime;
+            ScrollObject.currentScrollMult = Mathf.Clamp(ScrollObject.currentScrollMult, minMoveSpeed, maxMoveSpeed);
+        }
+        if (Input.GetKey(KeyCode.D) && IsGrounded()) {
+            ScrollObject.currentScrollMult += moveAccel * Time.deltaTime;
+            ScrollObject.currentScrollMult = Mathf.Clamp(ScrollObject.currentScrollMult, minMoveSpeed, maxMoveSpeed);
+        }
     }
 
     void Jump() {
@@ -27,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
 
     bool IsGrounded()
     {
-        if (Physics2D.CircleCast(transform.position, radius, -transform.up, distance, groundLayer))
+        if (Physics2D.CircleCast(transform.position, groundCheckRadius, -transform.up, groundCheckDistance, groundLayer))
         {
             return true;
         }

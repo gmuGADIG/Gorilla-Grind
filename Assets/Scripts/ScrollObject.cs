@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ScrollObject : MonoBehaviour
 {
-    private static float currentScrollMult = 1;
+    public static float currentScrollMult = 1;
     private const float baseScrollSpeed = 1;
-    public float scrollRate;
+    private float scrollRate = 1f;
 
     void Update() {
         this.transform.position += Vector3.left * (baseScrollSpeed * currentScrollMult * this.scrollRate * Time.deltaTime);
