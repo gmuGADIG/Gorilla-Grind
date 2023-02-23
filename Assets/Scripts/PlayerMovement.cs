@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     // death
     public UnityEvent OnDeath;
     public bool IsDead { get; private set; }
+    [SerializeField] Collider2D headCollider;
 
     void Start() {
         IsDead = false;
@@ -66,17 +67,15 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision) {
-            // death on not standing straight
-            if (transform.eulerAngles.z is > deathDegrees and < (360 - deathDegrees)) {
-                if (IsDead) {
-                    OnDeath.Invoke();
-                    IsDead = true;
-                }
-            } else {
-                transform.Rotate(new Vector3());
+    void OnTriggerEnter2D(Collider2D collider) {
+        // death on blunt force head trauma
+        // the head collider is the only collider rn
+        //if (collider == headCollider) {
+            if (!IsDead) {
+                OnDeath.Invoke();
+                IsDead = true;
             }
-
+        //}
     }
 
     void Jump() {
