@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4867607394678265288}
   - component: {fileID: 3537308934302372613}
   - component: {fileID: 6014169438690177550}
+  - component: {fileID: 2115947982998142510}
   m_Layer: 0
   m_Name: GroundEdge
   m_TagString: Untagged
@@ -106,8 +107,8 @@ EdgeCollider2D:
   - {x: 0.8342248, y: 0.5508674}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
+  m_UseAdjacentStartPoint: 1
+  m_UseAdjacentEndPoint: 1
 --- !u!114 &6014169438690177550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,8 +121,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d284a620c6050eb4a8dcf228c324aba8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
-  groundEdge: {fileID: 3537308934302372613}
+  boundSize: {x: 0, y: 0}
+  edgeCollider: {fileID: 3537308934302372613}
+  previous: {fileID: 0}
+  next: {fileID: 0}
   showBounds: 0
+--- !u!114 &2115947982998142510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7738892087182637362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32c69ca21dd4ceb4b84d03be7a0547b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

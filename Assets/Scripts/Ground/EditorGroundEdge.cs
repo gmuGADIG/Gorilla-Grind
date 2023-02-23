@@ -32,20 +32,19 @@ public class EditorGroundEdge : Editor
     {
         serializedObject.Update();
         //serializedObject.Update();
-        Bounds b = serializedObject.FindProperty("bounds").boundsValue;
         //DrawBox(serializedObject.)
-        if(renderBounds.boolValue)
-        {
-            Debug.DrawLine(b.min, b.max);
-        }
+        //if(renderBounds.boolValue)
+        //{
+        //    Debug.DrawLine(b.min, b.max);
+        //}
+        GroundEdge groundEdge = (GroundEdge)serializedObject.targetObject;
+        DrawBox(groundEdge.transform.position, groundEdge.boundSize);
         serializedObject.ApplyModifiedProperties();
     }
 
-    //private void DrawBox(Vector2 origin, Bounds b)
-    //{
-    //    Debug.DrawLine(origin, Vector2.up * b.size.y);
-    //    Debug.DrawLine(origin, Vector2.right * b.size.x);
-    //    //Debug.DrawLine(origin, Vector2.up * b.size.y);
-    //    //Debug.DrawLine(origin, Vector2.up * b.size.y);
-    //}
+    private void DrawBox(Vector2 origin, Vector2 b)
+    {
+            
+        Debug.DrawLine(origin - b / 2, origin +b.x*Vector2.right/2);
+    }
 }
