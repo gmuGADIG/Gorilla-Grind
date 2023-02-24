@@ -5,8 +5,6 @@ using UnityEngine.Events;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public static float CurrentSpeed { get; private set; }
-
     private Rigidbody2D rigidBody;
 
     [Header("Ground Check Variables")]
@@ -17,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] LayerMask groundLayer;
 
     // move adjust vars
+    public static float CurrentSpeed { get; private set; }
     [Header("Player Movment Variables")]
     [SerializeField] float jumpForce = 400;
     [Tooltip("How quickly the player speeds up and slows down.")]
@@ -35,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start() {
         IsDead = false;
+        CurrentSpeed = minMoveSpeed;
         rigidBody = GetComponent<Rigidbody2D>();
 
         // sample death listener
