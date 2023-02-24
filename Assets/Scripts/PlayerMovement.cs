@@ -5,23 +5,28 @@ using UnityEngine.Events;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static float CurrentSpeed { get; private set; }
+
     private Rigidbody2D rigidBody;
 
-    // ground check variables
-    [SerializeField] float jumpForce = 400;
+    [Header("Ground Check Variables")]
+    [Tooltip("How far horizontally ground checks will be performed. Should be set to a width equal to the bottom of the character.")]
     [SerializeField] float groundCheckRadius = 1;
+    [Tooltip("How far vertically the ground check will be performed. Too large values allow mid-air jumping, while too small values prevent jumping completely.")]
     [SerializeField] float groundCheckDistance = 0;
     [SerializeField] LayerMask groundLayer;
 
-    // move adjust vars 
-    [SerializeField] float moveAccel = 1;
+    // move adjust vars
+    [Header("Player Movment Variables")]
+    [SerializeField] float jumpForce = 400;
+    [Tooltip("How quickly the player speeds up and slows down.")]
+    [SerializeField] float movementAcceleration = 1;
+    [Tooltip("The player's maximum move speed.")]
     [SerializeField] float maxMoveSpeed = 5;
+    [Tooltip("The player's minimum move speed.")]
     [SerializeField] float minMoveSpeed = 0.5f;
-
-    // rotate vars
-    [SerializeField] float degreesPerSecond = 90;
-    const float deathDegrees = 45;
-
+    [Tooltip("Mid-air rotation speed in degrees per second.")]
+    [SerializeField] float rotationSpeed = 90;
 
     // death
     public UnityEvent OnDeath;
@@ -40,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        Debug.Log($"rotation: {transform.eulerAngles.z}");
+        //Debug.Log($"rotation: {transform.eulerAngles.z}");
 
         if (IsGrounded()) {
             // jump
@@ -49,20 +54,20 @@ public class PlayerMovement : MonoBehaviour
             }
             // move speed adjust
             if (Input.GetKey(KeyCode.A)) {
-                ScrollObject.currentScrollMult -= moveAccel * Time.deltaTime;
-                ScrollObject.currentScrollMult = Mathf.Clamp(ScrollObject.currentScrollMult, minMoveSpeed, maxMoveSpeed);
+                CurrentSpeed -= movementAcceleration * Time.deltaTime;
+                CurrentSpeed = Mathf.Clamp(CurrentSpeed, minMoveSpeed, maxMoveSpeed);
             }
             if (Input.GetKey(KeyCode.D)) {
-                ScrollObject.currentScrollMult += moveAccel * Time.deltaTime;
-                ScrollObject.currentScrollMult = Mathf.Clamp(ScrollObject.currentScrollMult, minMoveSpeed, maxMoveSpeed);
+                CurrentSpeed += movementAcceleration * Time.deltaTime;
+                CurrentSpeed = Mathf.Clamp(CurrentSpeed, minMoveSpeed, maxMoveSpeed);
             }
         } else {
-            // rotation
+            // rotation in midair
             if (Input.GetKey(KeyCode.A)) {
-                transform.Rotate(new Vector3(0, 0, degreesPerSecond*Time.deltaTime));
+                transform.Rotate(new Vector3(0, 0, rotationSpeed*Time.deltaTime));
             }
             if (Input.GetKey(KeyCode.D)) {
-                transform.Rotate(new Vector3(0, 0, -degreesPerSecond*Time.deltaTime));
+                transform.Rotate(new Vector3(0, 0, -rotationSpeed*Time.deltaTime));
             }
         }
     }

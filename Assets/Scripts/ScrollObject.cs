@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class ScrollObject : MonoBehaviour
 {
-    public static float currentScrollMult = 1;
     private const float baseScrollSpeed = 1;
-    private float scrollRate = 1f;
+
+    [Tooltip("Change based on which distance layer the object is on.Further away moves slower, closer moves faster.")]
+    [SerializeField] float scrollRate = 1f;
 
     void Update() {
-        this.transform.position += Vector3.left * (baseScrollSpeed * currentScrollMult * this.scrollRate * Time.deltaTime);
+        transform.position += Vector3.left * (PlayerMovement.CurrentSpeed * baseScrollSpeed * scrollRate * Time.deltaTime);
     }
 
     void OnBecameInvisible() {
-        Destroy(this.gameObject);
+        gameObject.SetActive(false);
     }
+
 }
