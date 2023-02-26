@@ -5,17 +5,16 @@ using UnityEngine.Events;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private Rigidbody2D rigidBody;
-
     [Header("Ground Check Variables")]
     [Tooltip("How far horizontally ground checks will be performed. Should be set to a width equal to the bottom of the character.")]
     [SerializeField] float groundCheckRadius = 1;
-    [Tooltip("How far vertically the ground check will be performed. Too large values allow mid-air jumping, while too small values prevent jumping completely.")]
+    [Tooltip("How far vertically the ground check will be performed. Too large values allow mid-air jumping, too small values prevent jumping.")]
     [SerializeField] float groundCheckDistance = 0;
     [SerializeField] LayerMask groundLayer;
 
     // move adjust vars
     public static float CurrentSpeed { get; private set; }
+
     [Header("Player Movment Variables")]
     [SerializeField] float jumpForce = 400;
     [Tooltip("How quickly the player speeds up and slows down.")]
@@ -32,6 +31,9 @@ public class PlayerMovement : MonoBehaviour
     public bool IsDead { get; private set; }
     [SerializeField] Collider2D headCollider;
 
+    private Rigidbody2D rigidBody;
+    private RaycastHit rayHit;
+
     void Start() {
         IsDead = false;
         CurrentSpeed = minMoveSpeed;
@@ -46,7 +48,6 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         //Debug.Log($"rotation: {transform.eulerAngles.z}");
-
         if (IsGrounded()) {
             // jump
             if (Input.GetKeyDown(KeyCode.Space)) {
@@ -61,6 +62,7 @@ public class PlayerMovement : MonoBehaviour
                 CurrentSpeed += movementAcceleration * Time.deltaTime;
                 CurrentSpeed = Mathf.Clamp(CurrentSpeed, minMoveSpeed, maxMoveSpeed);
             }
+
         } else {
             // rotation in midair
             if (Input.GetKey(KeyCode.A)) {
@@ -70,6 +72,8 @@ public class PlayerMovement : MonoBehaviour
                 transform.Rotate(new Vector3(0, 0, -rotationSpeed*Time.deltaTime));
             }
         }
+        // set constant x position. This allows the player to go up inclines without slipping back down.
+        transform.position = new Vector3(0, transform.position.y, 0);
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
@@ -95,4 +99,5 @@ public class PlayerMovement : MonoBehaviour
         }
         return false;
     }
+
 }
