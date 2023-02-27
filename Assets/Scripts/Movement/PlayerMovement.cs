@@ -12,8 +12,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float groundCheckDistance = 0;
     [SerializeField] LayerMask groundLayer;
 
-    // move adjust vars
+    /// <summary>
+    /// Player's current speed. Read by scroll objects to create illusion of movement.
+    /// </summary>
     public static float CurrentSpeed { get; private set; }
+    public bool IsDead { get; private set; }
+
 
     [Header("Player Movment Variables")]
     [SerializeField] float jumpForce = 400;
@@ -28,11 +32,9 @@ public class PlayerMovement : MonoBehaviour
 
     // death
     public UnityEvent OnDeath;
-    public bool IsDead { get; private set; }
     [SerializeField] Collider2D headCollider;
 
     private Rigidbody2D rigidBody;
-    private RaycastHit rayHit;
 
     void Start() {
         IsDead = false;
@@ -41,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
 
         // sample death listener
         OnDeath.AddListener(() => {
-            GetComponent<SpriteRenderer>().color = Color.red;
+            GetComponentInChildren<SpriteRenderer>().color = Color.red;
         });
     }
 
@@ -66,10 +68,12 @@ public class PlayerMovement : MonoBehaviour
         } else {
             // rotation in midair
             if (Input.GetKey(KeyCode.A)) {
-                transform.Rotate(new Vector3(0, 0, rotationSpeed*Time.deltaTime));
+                transform.Rotate(new Vector3(0, 0, rotationSpeed * Time.deltaTime));
+                rigidBody.angularVelocity = 0f;
             }
             if (Input.GetKey(KeyCode.D)) {
-                transform.Rotate(new Vector3(0, 0, -rotationSpeed*Time.deltaTime));
+                transform.Rotate(new Vector3(0, 0, -rotationSpeed * Time.deltaTime));
+                rigidBody.angularVelocity = 0f;
             }
         }
         // set constant x position. This allows the player to go up inclines without slipping back down.
@@ -87,7 +91,8 @@ public class PlayerMovement : MonoBehaviour
         //}
     }
 
-    void Jump() {
+    void Jump() 
+    {
         rigidBody.AddForce(Vector3.up * jumpForce);
     }
 
