@@ -6,7 +6,7 @@ public class ScrollObject : MonoBehaviour
 {
     private const float baseScrollSpeed = 1;
 
-    [Tooltip("Change based on which distance layer the object is on.Further away moves slower, closer moves faster.")]
+    [Tooltip("Change based on which distance layer the object is on. Further away moves slower, closer moves faster.")]
     [SerializeField] float scrollRate = 1f;
 
     void FixedUpdate()
@@ -15,7 +15,7 @@ public class ScrollObject : MonoBehaviour
     }
 
     void OnBecameInvisible() {
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 
 }

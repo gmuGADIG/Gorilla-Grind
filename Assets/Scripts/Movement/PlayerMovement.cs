@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] LayerMask groundLayer;
     [Tooltip("How long the player will be able to jump after leaving the ground")]
     [SerializeField] float coyoteTimeSeconds = 0.5f;
-    [Tooltip("How long jump input will be blocked for after performing a jump.")]
+    [Tooltip("How long jump input will be blocked for after performing a jump. Should be >= coyoteTimeSeconds")]
     [SerializeField] float jumpResetTimeSeconds = 1f;
     private float coyoteTimer;
     private float jumpResetTimer;
@@ -74,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
             }
             // reset coyoteTimer
             coyoteTimer = coyoteTimeSeconds;
-            rigidBody.velocity = Vector3.zero;
+            rigidBody.velocity = rigidBody.velocity * Vector3.up;
         } else {
             // rotation in midair
             if (Input.GetKey(KeyCode.A)) {
