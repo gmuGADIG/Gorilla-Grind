@@ -80,8 +80,8 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && coyoteTimer > 0) {
-                Jump();
-                coyoteTimer = 0;
+            Jump();
+            coyoteTimer = 0;
         }
         // set constant x position. This allows the player to go up inclines without slipping back down.
         transform.position = new Vector3(0, transform.position.y, 0);
