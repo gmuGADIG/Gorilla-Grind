@@ -13,13 +13,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] LayerMask groundLayer;
     [Tooltip("How long the player will be able to jump after leaving the ground")]
     [SerializeField] float coyoteTimeSeconds = 0.5f;
+    [Tooltip("How long jump input will be blocked for after performing a jump.")]
+    [SerializeField] float jumpResetTimeSeconds = 1f;
     private float coyoteTimer;
+    private float jumpResetTimer;
 
     /// <summary>
     /// Player's current speed. Read by scroll objects to create illusion of movement.
     /// </summary>
     public static float CurrentSpeed { get; private set; }
-    public bool IsDead { get; private set; }
+    public bool IsDead { get; private set; } = false;
 
 
     [Header("Player Movment Variables")]
@@ -43,9 +46,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Collider2D headCollider;
 
     private Rigidbody2D rigidBody;
+    private bool jumpBlocked = false;
 
     void Start() {
-        IsDead = false;
         CurrentSpeed = defaultMoveSpeed;
         rigidBody = GetComponent<Rigidbody2D>();
         coyoteTimer = coyoteTimeSeconds; // initalize coyoteTimer
@@ -71,6 +74,7 @@ public class PlayerMovement : MonoBehaviour
             }
             // reset coyoteTimer
             coyoteTimer = coyoteTimeSeconds;
+            rigidBody.velocity = Vector3.zero;
         } else {
             // rotation in midair
             if (Input.GetKey(KeyCode.A)) {
@@ -85,7 +89,16 @@ public class PlayerMovement : MonoBehaviour
             coyoteTimer -= Time.deltaTime;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && coyoteTimer > 0 && IsGrounded()) {
+        if (jumpBlocked)
+        {
+            jumpResetTimer -= Time.deltaTime;
+            if (jumpResetTimer <= 0)
+            {
+                jumpBlocked = false;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && coyoteTimer > 0 && !jumpBlocked) {
             Jump();
             coyoteTimer = 0;
         }
@@ -110,6 +123,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Jump() 
     {
+        jumpBlocked = true;
+        jumpResetTimer = jumpResetTimeSeconds;
         rigidBody.AddForce(Vector3.up * jumpForce);
     }
 
