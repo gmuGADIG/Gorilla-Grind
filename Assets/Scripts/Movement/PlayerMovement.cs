@@ -83,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collider) {
         // death on blunt force head trauma
         // the head collider is the only collider rn
-        //if (collider == headCollider) {
+        //if (collider == headCollider) { // this check doesnt work
             if (!IsDead) {
                 OnDeath.Invoke();
                 IsDead = true;
