@@ -11,6 +11,9 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("How far vertically the ground check will be performed. Too large values allow mid-air jumping, too small values prevent jumping.")]
     [SerializeField] float groundCheckDistance = 0;
     [SerializeField] LayerMask groundLayer;
+    [Tooltip("How long the player will be able to jump after leaving the ground")]
+    [SerializeField] float coyoteTimeSeconds = 0.5f;
+    private float coyoteTimer;
 
     // move adjust vars
     public static float CurrentSpeed { get; private set; }
@@ -20,10 +23,13 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("How quickly the player speeds up and slows down.")]
     [SerializeField] float movementAcceleration = 1;
     [Tooltip("The player's maximum move speed.")]
+    [SerializeField] float defaultMoveSpeed = 1;
+    [Tooltip("The speed the player has when they spawn.")]
     [SerializeField] float maxMoveSpeed = 5;
     [Tooltip("The player's minimum move speed.")]
     [SerializeField] float minMoveSpeed = 0.5f;
     [Tooltip("Mid-air rotation speed in degrees per second.")]
+    
     [SerializeField] float rotationSpeed = 90;
 
     // death
@@ -36,8 +42,9 @@ public class PlayerMovement : MonoBehaviour
 
     void Start() {
         IsDead = false;
-        CurrentSpeed = minMoveSpeed;
+        CurrentSpeed = defaultMoveSpeed;
         rigidBody = GetComponent<Rigidbody2D>();
+        coyoteTimer = coyoteTimeSeconds; // initalize coyoteTimer
 
         // sample death listener
         OnDeath.AddListener(() => {
@@ -49,10 +56,6 @@ public class PlayerMovement : MonoBehaviour
     {
         //Debug.Log($"rotation: {transform.eulerAngles.z}");
         if (IsGrounded()) {
-            // jump
-            if (Input.GetKeyDown(KeyCode.Space)) {
-                Jump();
-            }
             // move speed adjust
             if (Input.GetKey(KeyCode.A)) {
                 CurrentSpeed -= movementAcceleration * Time.deltaTime;
@@ -62,7 +65,8 @@ public class PlayerMovement : MonoBehaviour
                 CurrentSpeed += movementAcceleration * Time.deltaTime;
                 CurrentSpeed = Mathf.Clamp(CurrentSpeed, minMoveSpeed, maxMoveSpeed);
             }
-
+            // reset coyoteTimer
+            coyoteTimer = coyoteTimeSeconds;
         } else {
             // rotation in midair
             if (Input.GetKey(KeyCode.A)) {
@@ -71,6 +75,13 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKey(KeyCode.D)) {
                 transform.Rotate(new Vector3(0, 0, -rotationSpeed*Time.deltaTime));
             }
+            // decrement coyoteTimer
+            coyoteTimer -= Time.deltaTime;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && coyoteTimer > 0) {
+                Jump();
+                coyoteTimer = 0;
         }
         // set constant x position. This allows the player to go up inclines without slipping back down.
         transform.position = new Vector3(0, transform.position.y, 0);
