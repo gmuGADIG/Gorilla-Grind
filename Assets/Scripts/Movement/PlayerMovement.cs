@@ -24,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Player Movment Variables")]
     [SerializeField] float jumpForce = 400;
+    [Tooltip("Controls how much the player's jump height is reduced when space bar is lifted.")]
+    [Range(0f, 1f)] [SerializeField] float jumpCutMultiplier = .5f;
     [Tooltip("How quickly the player speeds up and slows down.")]
     [SerializeField] float movementAcceleration = 1;
     [Tooltip("The player's maximum move speed.")]
@@ -83,9 +85,13 @@ public class PlayerMovement : MonoBehaviour
             coyoteTimer -= Time.deltaTime;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && coyoteTimer > 0) {
+        if (Input.GetKeyDown(KeyCode.Space) && coyoteTimer > 0 && IsGrounded()) {
             Jump();
             coyoteTimer = 0;
+        }
+        if (Input.GetKeyUp(KeyCode.Space) && !IsGrounded())
+        {
+            JumpCut();
         }
         // set constant x position. This allows the player to go up inclines without slipping back down.
         transform.position = new Vector3(0, transform.position.y, 0);
@@ -105,6 +111,14 @@ public class PlayerMovement : MonoBehaviour
     void Jump() 
     {
         rigidBody.AddForce(Vector3.up * jumpForce);
+    }
+
+    void JumpCut()
+    {
+        if (rigidBody.velocity.y > 0)
+        {
+            rigidBody.AddForce((1 - jumpCutMultiplier) * rigidBody.velocity.y * Vector2.down, ForceMode2D.Impulse);
+        }
     }
 
     bool IsGrounded()
