@@ -10,15 +10,24 @@ public class GroundEdge : MonoBehaviour
     /**
      * Represents the full bounds of the edge tile (length and height)
      */
-    public Bounds bounds;
+    public Vector2 boundSize;
 
     /**
      * Holds the edge collider
      */
-    public EdgeCollider2D groundEdge;
+    public EdgeCollider2D edgeCollider;
 
     
-    public Vector2 startPoint { get { return groundEdge.points[0]; } }
+    public Vector2 startPoint { 
+        get {
+            return edgeCollider.transform.localToWorldMatrix.MultiplyPoint(edgeCollider.points[0]);
+            //return edgeCollider.points[0]; 
+
+        } 
+    }
+    public Vector2 endPoint { get { return edgeCollider.transform.localToWorldMatrix.MultiplyPoint(edgeCollider.points[edgeCollider.pointCount - 1]);  } }
+    public GroundEdge previous;
+    public GroundEdge next;
 
     /** Whether to diplay the full bounds of this chunk */
     public bool showBounds;
