@@ -52,7 +52,8 @@ public class EditModeGroundEdge : MonoBehaviour
             for(int i = 0; i < groundEdge.edgeCollider.pointCount-1; i++)
             {
                 Debug.DrawLine(groundEdge.edgeCollider.transform.localToWorldMatrix.MultiplyPoint(groundEdge.edgeCollider.points[i]),
-                    groundEdge.edgeCollider.transform.localToWorldMatrix.MultiplyPoint(groundEdge.edgeCollider.points[i + 1]));
+                    groundEdge.edgeCollider.transform.localToWorldMatrix.MultiplyPoint(groundEdge.edgeCollider.points[i + 1]),
+                    groundEdge.noCollision ? GroundEdge.gapColor : GroundEdge.solidColor);
             }
         }
     }

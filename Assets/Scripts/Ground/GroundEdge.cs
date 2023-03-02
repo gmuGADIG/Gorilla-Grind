@@ -20,6 +20,9 @@ public class GroundEdge : MonoBehaviour
 
     public static bool shouldRenderEdge;
 
+    [SerializeField]
+    [Header("Check box to designate a edge as a 'gap' in the world")]
+    public bool noCollision;
 
     public Vector2 startPoint { 
         get {
@@ -34,14 +37,15 @@ public class GroundEdge : MonoBehaviour
     public GroundEdge previous;
     public GroundEdge next;
 
-    /** Whether to diplay the full bounds of this chunk */
+    public static Color solidColor = Color.yellow;
+    public static Color gapColor = Color.blue;
 
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        edgeCollider.enabled = !noCollision;
     }
 
     // Update is called once per frame
@@ -52,7 +56,7 @@ public class GroundEdge : MonoBehaviour
             for (int i = 0; i < edgeCollider.pointCount - 1; i++)
             {
                 Debug.DrawLine(edgeCollider.transform.localToWorldMatrix.MultiplyPoint(edgeCollider.points[i]),
-                    edgeCollider.transform.localToWorldMatrix.MultiplyPoint(edgeCollider.points[i + 1]));
+                    edgeCollider.transform.localToWorldMatrix.MultiplyPoint(edgeCollider.points[i + 1]), noCollision ? gapColor : solidColor);
             }
         }
     }
