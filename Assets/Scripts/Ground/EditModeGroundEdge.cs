@@ -10,6 +10,7 @@ public class EditModeGroundEdge : MonoBehaviour
 {
     GroundEdge groundEdge;
 
+    public bool snapToPrevious;
     
     // Start is called before the first frame update
     void Awake()
@@ -21,27 +22,32 @@ public class EditModeGroundEdge : MonoBehaviour
     void Update()
     {
         EdgeCollider2D edgeCollider = groundEdge.edgeCollider;
-        edgeCollider.useAdjacentStartPoint = groundEdge.previous != null;
-        edgeCollider.useAdjacentEndPoint = groundEdge.next != null;
-
-        if (groundEdge.next != null)
+        //edgeCollider.useAdjacentStartPoint = groundEdge.previous != null;
+        //edgeCollider.useAdjacentEndPoint = groundEdge.next != null;
+        if (snapToPrevious)
         {
-            groundEdge.next.previous = groundEdge;
-            edgeCollider.adjacentEndPoint = edgeCollider.transform.worldToLocalMatrix.MultiplyPoint(groundEdge.next.startPoint);
-        }
-
-        if (groundEdge.previous != null)
-        {
-
-            groundEdge.transform.position += (Vector3)(groundEdge.previous.endPoint - groundEdge.startPoint);
-
-            edgeCollider.adjacentStartPoint = edgeCollider.transform.worldToLocalMatrix.MultiplyPoint(groundEdge.previous.endPoint);
-            
-            //Plan on creating a visual tool to automatically connect and disconnect edges
-            if(groundEdge.previous.next == null)
+            if (groundEdge.next != null)
             {
-                groundEdge.previous = null;
+                groundEdge.next.previous = groundEdge;
+                //edgeCollider.adjacentEndPoint = edgeCollider.transform.worldToLocalMatrix.MultiplyPoint(groundEdge.next.startPoint);
             }
+
+            if (groundEdge.previous != null)
+            {
+
+                groundEdge.transform.position += (Vector3)(groundEdge.previous.endPoint - groundEdge.startPoint);
+
+                //edgeCollider.adjacentStartPoint = edgeCollider.transform.worldToLocalMatrix.MultiplyPoint(groundEdge.previous.endPoint);
+
+                //Plan on creating a visual tool to automatically connect and disconnect edges
+                if (groundEdge.previous.next == null)
+                {
+                    groundEdge.previous = null;
+                }
+            }
+        } else
+        {
+
         }
         
 

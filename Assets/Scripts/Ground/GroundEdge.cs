@@ -18,7 +18,7 @@ public class GroundEdge : MonoBehaviour
      */
     public EdgeCollider2D edgeCollider;
 
-    public static bool shouldRenderEdge;
+    public static bool shouldRenderEdge = true;
 
     [SerializeField]
     [Header("Check box to designate a edge as a 'gap' in the world")]
