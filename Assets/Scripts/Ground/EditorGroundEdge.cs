@@ -10,20 +10,20 @@ using UnityEditor;
 public class EditorGroundEdge : Editor
 {
     //private bool renderBounds;
-    private SerializedProperty renderBounds;
+    //private SerializedProperty renderBounds;
     private void OnEnable()
     {
-        renderBounds = serializedObject.FindProperty("showBounds");
+        //renderBounds = serializedObject.FindProperty("showBounds");
         //renderBounds = false;
     }
-
+   
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
         serializedObject.Update();
-        renderBounds.boolValue = EditorGUILayout.Toggle("show bounds", renderBounds.boolValue);
+        //renderBounds.boolValue = EditorGUILayout.Toggle("show bounds", renderBounds.boolValue);
         //renderBounds = EditorGUILayout.Toggle(renderBounds, "Show bounds");
-
+        //Nothing to do here currently. Can change later.
         serializedObject.ApplyModifiedProperties();
     }
 
@@ -32,20 +32,15 @@ public class EditorGroundEdge : Editor
     {
         serializedObject.Update();
         //serializedObject.Update();
-        Bounds b = serializedObject.FindProperty("bounds").boundsValue;
         //DrawBox(serializedObject.)
-        if(renderBounds.boolValue)
-        {
-            Debug.DrawLine(b.min, b.max);
-        }
+        //if(renderBounds.boolValue)
+        //{
+        //    Debug.DrawLine(b.min, b.max);
+        //}
+        GroundEdge groundEdge = (GroundEdge)serializedObject.targetObject;
+        //Handles.color = Color.red;
+        //Handles.DrawLine(groundEdge.startPoint, groundEdge.endPoint);
         serializedObject.ApplyModifiedProperties();
     }
 
-    //private void DrawBox(Vector2 origin, Bounds b)
-    //{
-    //    Debug.DrawLine(origin, Vector2.up * b.size.y);
-    //    Debug.DrawLine(origin, Vector2.right * b.size.x);
-    //    //Debug.DrawLine(origin, Vector2.up * b.size.y);
-    //    //Debug.DrawLine(origin, Vector2.up * b.size.y);
-    //}
 }
