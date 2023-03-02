@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     /// Player's current speed. Read by scroll objects to create illusion of movement.
     /// </summary>
     public static float CurrentSpeed { get; private set; }
+    public static Vector3 CurrentDirection; 
     public bool IsDead { get; private set; } = false;
 
 
@@ -59,9 +60,20 @@ public class PlayerMovement : MonoBehaviour
         });
     }
 
+    // void Update() {
+    //     if (Input.GetKeyDown(KeyCode.Space) && coyoteTimer > 0 && !jumpBlocked) {
+    //         Jump();
+    //         coyoteTimer = 0;
+    //     }
+
+    //     if (Input.GetKeyUp(KeyCode.Space) && !IsGrounded())
+    //     {
+    //         JumpCut();
+    //     }
+    // }
+
     void Update()
     {
-        //Debug.Log($"rotation: {transform.eulerAngles.z}");
         if (IsGrounded()) {
             // move speed adjust
             if (Input.GetKey(KeyCode.A)) {
@@ -75,6 +87,7 @@ public class PlayerMovement : MonoBehaviour
             // reset coyoteTimer
             coyoteTimer = coyoteTimeSeconds;
             rigidBody.velocity = rigidBody.velocity * Vector3.up;
+            CurrentDirection = transform.right;
         } else {
             // rotation in midair
             if (Input.GetKey(KeyCode.A)) {
@@ -87,6 +100,8 @@ public class PlayerMovement : MonoBehaviour
             }
             // decrement coyoteTimer
             coyoteTimer -= Time.deltaTime;
+
+            //CurrentDirection = Vector3.right;
         }
 
         if (jumpBlocked)
@@ -102,10 +117,12 @@ public class PlayerMovement : MonoBehaviour
             Jump();
             coyoteTimer = 0;
         }
+
         if (Input.GetKeyUp(KeyCode.Space) && !IsGrounded())
         {
             JumpCut();
         }
+
         // set constant x position. This allows the player to go up inclines without slipping back down.
         transform.position = new Vector3(0, transform.position.y, 0);
     }
