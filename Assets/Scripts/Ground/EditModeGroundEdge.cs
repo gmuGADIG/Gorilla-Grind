@@ -9,42 +9,48 @@ using UnityEngine;
 public class EditModeGroundEdge : MonoBehaviour
 {
     GroundEdge groundEdge;
+
+    
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         groundEdge = GetComponent<GroundEdge>();
     }
-
+    
     // Update is called once per frame
     void Update()
     {
-        
-        groundEdge.edgeCollider.useAdjacentStartPoint = groundEdge.previous != null;
-        groundEdge.edgeCollider.useAdjacentEndPoint = groundEdge.next != null;
+        EdgeCollider2D edgeCollider = groundEdge.edgeCollider;
+        edgeCollider.useAdjacentStartPoint = groundEdge.previous != null;
+        edgeCollider.useAdjacentEndPoint = groundEdge.next != null;
 
         if (groundEdge.previous != null)
         {
-            groundEdge.edgeCollider.adjacentStartPoint = groundEdge.edgeCollider.transform.worldToLocalMatrix.MultiplyPoint(groundEdge.previous.endPoint);
-            
-            
+            edgeCollider.adjacentStartPoint = edgeCollider.transform.worldToLocalMatrix.MultiplyPoint(groundEdge.previous.endPoint);
+
+            groundEdge.transform.position += (Vector3)(groundEdge.previous.endPoint - groundEdge.startPoint);
         }
 
         if (groundEdge.next != null)
         {
 
-            groundEdge.edgeCollider.adjacentEndPoint = groundEdge.edgeCollider.transform.worldToLocalMatrix.MultiplyPoint(groundEdge.next.startPoint);
+            edgeCollider.adjacentEndPoint = edgeCollider.transform.worldToLocalMatrix.MultiplyPoint(groundEdge.next.startPoint);
         }
 
+        if(GroundEdge.shouldRenderEdge)
+        {
+            for(int i = 0; i < groundEdge.edgeCollider.pointCount-1; i++)
+            {
+                Debug.DrawLine(groundEdge.edgeCollider.transform.localToWorldMatrix.MultiplyPoint(groundEdge.edgeCollider.points[i]),
+                    groundEdge.edgeCollider.transform.localToWorldMatrix.MultiplyPoint(groundEdge.edgeCollider.points[i + 1]));
+            }
+        }
     }
+
+    
 
     private void OnDrawGizmos()
     {
-        if (groundEdge.showBounds)
-        {
-            Gizmos.color = Color.green;
-            Gizmos.DrawCube(groundEdge.startPoint, Vector3.one/10);
-            Gizmos.DrawCube(groundEdge.endPoint, Vector3.one/10);
-
-        }
+        
     }
 }
