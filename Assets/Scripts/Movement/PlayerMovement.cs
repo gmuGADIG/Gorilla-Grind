@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("The player's minimum move speed.")]
     [SerializeField] float minMoveSpeed = 0.5f;
     [Tooltip("Mid-air rotation speed in degrees per second.")]
-    
+    [SerializeField] float groundStickiness = 7f;
     [SerializeField] float rotationSpeed = 90;
 
     // death
@@ -60,18 +60,6 @@ public class PlayerMovement : MonoBehaviour
         });
     }
 
-    // void Update() {
-    //     if (Input.GetKeyDown(KeyCode.Space) && coyoteTimer > 0 && !jumpBlocked) {
-    //         Jump();
-    //         coyoteTimer = 0;
-    //     }
-
-    //     if (Input.GetKeyUp(KeyCode.Space) && !IsGrounded())
-    //     {
-    //         JumpCut();
-    //     }
-    // }
-
     void Update()
     {
         if (IsGrounded()) {
@@ -88,6 +76,7 @@ public class PlayerMovement : MonoBehaviour
             coyoteTimer = coyoteTimeSeconds;
             rigidBody.velocity = rigidBody.velocity * Vector3.up;
             CurrentDirection = transform.right;
+            RotateWithRamp();
         } else {
             // rotation in midair
             if (Input.GetKey(KeyCode.A)) {
@@ -101,7 +90,6 @@ public class PlayerMovement : MonoBehaviour
             // decrement coyoteTimer
             coyoteTimer -= Time.deltaTime;
 
-            //CurrentDirection = Vector3.right;
         }
 
         if (jumpBlocked)
@@ -160,6 +148,13 @@ public class PlayerMovement : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    void RotateWithRamp()
+    {
+        RaycastHit2D rayHit = Physics2D.Raycast(transform.position, -transform.up, 2f, groundLayer);
+		Quaternion goalRotation = Quaternion.FromToRotation(Vector3.up, rayHit.normal);
+        transform.rotation = Quaternion.Lerp(transform.rotation, goalRotation, Time.deltaTime * groundStickiness);
     }
 
 }
