@@ -6,7 +6,7 @@ using System.Collections;
 public class DialogueSystem : MonoBehaviour
 {
     public Text dialogueText;
-    public List<DialogueLines> dialogueLinesPrefabs;
+    public DialogueLines dialogueLinesPrefab;
     public int currentDialogueIndex = 0;
     public float textSpeed = 0.1f; // The time delay between each letter appearing
     public AudioSource typingSound; // Add a public variable for the typing sound effect
@@ -14,38 +14,35 @@ public class DialogueSystem : MonoBehaviour
     private string[] currentDialogueLines;
     private int currentLineIndex;
     private string currentLineText;
-    private bool isTextAppearing;
+    private bool isTextAppearing = false;
 
     // Start is called before the first frame update
     void Start()
     {
         dialogueText.text = "";
         currentLineIndex = 0;
-
-        if (dialogueLinesPrefabs.Count > 0)
-        {
-            LoadDialogueLines();
-        }
+        LoadDialogueLines();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && isTextAppearing == false)
         {
             currentLineIndex++;
+            LoadDialogueLines();
 
-            if (currentLineIndex >= currentDialogueLines.Length)
+            /*if (currentLineIndex >= currentDialogueLines.Length)
             {
                 currentLineIndex = 0;
 
                 currentDialogueIndex++;
-                if (currentDialogueIndex >= dialogueLinesPrefabs.Count)
+                if (currentDialogueIndex >= dialogueLinesPrefab.Count)
                 {
                     currentDialogueIndex = 0;
                 }
                 LoadDialogueLines();
-            }
+            }*/
 
             StopAllCoroutines(); // Stop any previous text animation coroutine
             StartCoroutine(AnimateText(currentDialogueLines[currentLineIndex]));
@@ -55,8 +52,10 @@ public class DialogueSystem : MonoBehaviour
     // Load the dialogue lines from the current DialogueLines prefab
     private void LoadDialogueLines()
     {
-        currentDialogueLines = dialogueLinesPrefabs[currentDialogueIndex].dialogueLines;
+        currentDialogueLines = dialogueLinesPrefab.currentTalk[currentDialogueIndex].dialogueLines;
+        Debug.Log(currentDialogueLines);
         currentLineIndex = 0;
+        Debug.Log(currentDialogueLines[currentLineIndex]);
 
         StopAllCoroutines(); // Stop any previous text animation coroutine
         StartCoroutine(AnimateText(currentDialogueLines[currentLineIndex]));
@@ -68,12 +67,22 @@ public class DialogueSystem : MonoBehaviour
         currentLineText = "";
         isTextAppearing = true;
 
+        yield return new WaitForEndOfFrame();
+
         typingSound.Play(); // enable the audio source and play the typing sound
         for (int i = 0; i < line.Length; i++)
         {
+            if (Input.GetKeyDown(KeyCode.Space) && isTextAppearing == true) 
+            {
+                dialogueText.text = currentDialogueLines[currentLineIndex];
+                Debug.Log(dialogueText.text);
+                break;
+            }
+
             currentLineText += line[i];
             dialogueText.text = currentLineText;
             yield return new WaitForSeconds(textSpeed);
+
         }
         typingSound.Stop(); // stop the typing sound and disable the audio source
 
