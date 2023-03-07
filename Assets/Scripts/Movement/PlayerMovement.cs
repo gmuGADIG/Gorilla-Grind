@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     public bool IsDead { get; private set; } = false;
 
 
-    [Header("Player Movment Variables")]
+    [Header("Player Movement Variables")]
     [SerializeField] float jumpForce = 400;
     [Tooltip("Controls how much the player's jump height is reduced when space bar is lifted.")]
     [Range(0f, 1f)] [SerializeField] float jumpCutMultiplier = .5f;
@@ -39,8 +39,9 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("The player's minimum move speed.")]
     [SerializeField] float minMoveSpeed = 0.5f;
     [Tooltip("Mid-air rotation speed in degrees per second.")]
-    [SerializeField] float groundStickiness = 7f;
     [SerializeField] float rotationSpeed = 90;
+    [Tooltip("How quickly the player will adjust to the slope of the ground.")]
+    [SerializeField] float groundStickiness = 7f;
 
     // death
     public UnityEvent OnDeath;
@@ -66,15 +67,20 @@ public class PlayerMovement : MonoBehaviour
             // move speed adjust
             if (Input.GetKey(KeyCode.A)) {
                 CurrentSpeed -= movementAcceleration * Time.deltaTime;
-                CurrentSpeed = Mathf.Clamp(CurrentSpeed, minMoveSpeed, maxMoveSpeed);
             }
             if (Input.GetKey(KeyCode.D)) {
                 CurrentSpeed += movementAcceleration * Time.deltaTime;
-                CurrentSpeed = Mathf.Clamp(CurrentSpeed, minMoveSpeed, maxMoveSpeed);
             }
+            // calculate acceleration due to slope
+            float angle = transform.eulerAngles.z;
+            angle = angle > 90 ? angle - 360 : angle;
+            float slopeAcceleration = Mathf.Sin(angle * Mathf.Deg2Rad) * -9.8f * Time.deltaTime;
+            CurrentSpeed += slopeAcceleration;
+            CurrentSpeed = Mathf.Clamp(CurrentSpeed, minMoveSpeed, maxMoveSpeed);
+
             // reset coyoteTimer
             coyoteTimer = coyoteTimeSeconds;
-            rigidBody.velocity = rigidBody.velocity * Vector3.up;
+            rigidBody.velocity *= Vector3.up;
             CurrentDirection = transform.right;
             RotateWithRamp();
         } else {
