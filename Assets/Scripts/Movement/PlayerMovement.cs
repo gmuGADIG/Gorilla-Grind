@@ -22,10 +22,11 @@ public class PlayerMovement : MonoBehaviour
     /// Player's current speed. Read by scroll objects to create illusion of movement.
     /// </summary>
     public static float CurrentSpeed { get; private set; }
+    public static Vector3 CurrentDirection; 
     public bool IsDead { get; private set; } = false;
 
 
-    [Header("Player Movment Variables")]
+    [Header("Player Movement Variables")]
     [SerializeField] float jumpForce = 400;
     [Tooltip("Controls how much the player's jump height is reduced when space bar is lifted.")]
     [Range(0f, 1f)] [SerializeField] float jumpCutMultiplier = .5f;
@@ -38,8 +39,9 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("The player's minimum move speed.")]
     [SerializeField] float minMoveSpeed = 0.5f;
     [Tooltip("Mid-air rotation speed in degrees per second.")]
-    
     [SerializeField] float rotationSpeed = 90;
+    [Tooltip("How quickly the player will adjust to the slope of the ground.")]
+    [SerializeField] float groundStickiness = 7f;
 
     // death
     public UnityEvent OnDeath;
@@ -61,20 +63,26 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        //Debug.Log($"rotation: {transform.eulerAngles.z}");
         if (IsGrounded()) {
             // move speed adjust
             if (Input.GetKey(KeyCode.A)) {
                 CurrentSpeed -= movementAcceleration * Time.deltaTime;
-                CurrentSpeed = Mathf.Clamp(CurrentSpeed, minMoveSpeed, maxMoveSpeed);
             }
             if (Input.GetKey(KeyCode.D)) {
                 CurrentSpeed += movementAcceleration * Time.deltaTime;
-                CurrentSpeed = Mathf.Clamp(CurrentSpeed, minMoveSpeed, maxMoveSpeed);
             }
+            // calculate acceleration due to slope
+            float angle = transform.eulerAngles.z;
+            angle = angle > 90 ? angle - 360 : angle;
+            float slopeAcceleration = Mathf.Sin(angle * Mathf.Deg2Rad) * -9.8f * Time.deltaTime;
+            CurrentSpeed += slopeAcceleration;
+            CurrentSpeed = Mathf.Clamp(CurrentSpeed, minMoveSpeed, maxMoveSpeed);
+
             // reset coyoteTimer
             coyoteTimer = coyoteTimeSeconds;
-            rigidBody.velocity = rigidBody.velocity * Vector3.up;
+            rigidBody.velocity *= Vector3.up;
+            CurrentDirection = transform.right;
+            RotateWithRamp();
         } else {
             // rotation in midair
             if (Input.GetKey(KeyCode.A)) {
@@ -87,6 +95,7 @@ public class PlayerMovement : MonoBehaviour
             }
             // decrement coyoteTimer
             coyoteTimer -= Time.deltaTime;
+
         }
 
         if (jumpBlocked)
@@ -102,10 +111,12 @@ public class PlayerMovement : MonoBehaviour
             Jump();
             coyoteTimer = 0;
         }
+
         if (Input.GetKeyUp(KeyCode.Space) && !IsGrounded())
         {
             JumpCut();
         }
+
         // set constant x position. This allows the player to go up inclines without slipping back down.
         transform.position = new Vector3(0, transform.position.y, 0);
     }
@@ -143,6 +154,13 @@ public class PlayerMovement : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    void RotateWithRamp()
+    {
+        RaycastHit2D rayHit = Physics2D.Raycast(transform.position, -transform.up, 2f, groundLayer);
+		Quaternion goalRotation = Quaternion.FromToRotation(Vector3.up, rayHit.normal);
+        transform.rotation = Quaternion.Lerp(transform.rotation, goalRotation, Time.deltaTime * groundStickiness);
     }
 
 }

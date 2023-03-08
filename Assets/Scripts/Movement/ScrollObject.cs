@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ScrollObject : MonoBehaviour
 {
+    public static Quaternion MoveAngle;
     private const float baseScrollSpeed = 1;
 
     [Tooltip("Change based on which distance layer the object is on. Further away moves slower, closer moves faster.")]
@@ -11,7 +12,7 @@ public class ScrollObject : MonoBehaviour
 
     void FixedUpdate()
     {
-        transform.position += Vector3.left * (PlayerMovement.CurrentSpeed * baseScrollSpeed * scrollRate * Time.deltaTime);
+        transform.position -= PlayerMovement.CurrentDirection * (PlayerMovement.CurrentSpeed * baseScrollSpeed * scrollRate * Time.deltaTime);
     }
 
     void OnBecameInvisible() {
