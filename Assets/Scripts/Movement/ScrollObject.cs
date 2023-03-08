@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Attaching this script to an object causes it to move left based on the player's speed, simulating the player moving right.
+/// Allows for different rates for a parallax effect.
+/// </summary>
 public class ScrollObject : MonoBehaviour
 {
     private const float baseScrollSpeed = 1;
@@ -11,7 +15,7 @@ public class ScrollObject : MonoBehaviour
 
     void FixedUpdate()
     {
-        transform.position += Vector3.left * (PlayerMovement.CurrentSpeed * baseScrollSpeed * scrollRate * Time.deltaTime);
+        transform.position += Vector3.left * (PlayerMovement.CurrentHorizontalSpeed * baseScrollSpeed * scrollRate * Time.deltaTime);
     }
 
     void OnBecameInvisible() {
