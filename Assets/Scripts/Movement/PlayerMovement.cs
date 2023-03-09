@@ -8,43 +8,54 @@ using UnityEngine.Events;
 /// </summary>
 public class PlayerMovement : MonoBehaviour
 {
-    #region Constants
     [Tooltip("The center-point of the skateboard")]
     [SerializeField] Transform skateboard;
 
+    #region GroundCheckVariables
     [Header("Ground Check Variables")]
-    [SerializeField] LayerMask defaultGroundLayer;
+    [Tooltip("LayerMask for ground objects (not including grindable objects).")]
+    [SerializeField] LayerMask groundLayer;
     
-    [Tooltip("The layer on which the player normally falls through but can grind on")]
+    [Tooltip("LayerMask for all grindable objects. Player will fall through these objects if not actively grinding.")]
     [SerializeField] LayerMask grindLayer;
-    
-    [SerializeField] float landingAngleThreshold = 30;
-
-    [Header("Grounded Movement Variables")]
-    [SerializeField] float jumpForce = 9;
 
     [Tooltip("How far ahead of the skateboard to look when seeing if the ground has ended")]
     [SerializeField] float groundCheckXOffset;
-    
+
     [Tooltip("How far ahead of the skateboard to look when calculating the ground's tangent")]
     [SerializeField] float slopeCheckXOffset;
 
-    [Header("Mid-Air Movement Variables")]
-    [SerializeField] float gravity = 9.8f;
+    [Tooltip("Midpoint of the skateboard, used for calculating ground tangent.")]
+    [SerializeField] float midPointOffset = 0;
+
+    [Tooltip("If the player lands at an angle above this threshold, they will die.")]
+    [SerializeField] float deathLandingAngleThreshold = 30;
+    #endregion
+
+    #region GroundedMovementVariables
+    [Header("Grounded Movement Variables")]
+    [Tooltip("Velocity change when jumping. Measured in meters / sec.")]
+    [SerializeField] float jumpVelocity = 9;
 
     [Tooltip("How quickly the player speeds up and slows down (meters / sec^2).")]
     [SerializeField] float movementAcceleration = 3;
 
-    [Tooltip("The fastest speed the player can reach with basic movement.")]
+    [Tooltip("The fastest speed the player can reach with basic ground movement. Does not account for movement from slopes/gravity.")]
     [SerializeField] float maxMoveSpeed = 20;
-    
+
+    [Tooltip("The minimum speed the player can move. Set to 0 to allow the player to stand still.")]
     [SerializeField] float minMoveSpeed = 0.5f;
+    #endregion
+
+    #region MidAirMovementVariables
+    [Header("Mid-Air Movement Variables")]
+    [SerializeField] float gravity = 9.8f;
     
     [Tooltip("Mid-air rotation speed in degrees per second.")]
     [SerializeField] float rotationSpeed = 90;
     #endregion
-    
-    LayerMask currentGroundLayer;
+
+    LayerMask currentSkateableLayer;
     Vector2 velocity;
     PlayerMovementState currentMoveState = PlayerMovementState.Grounded;
     float lastJumpTime = 0f;
@@ -61,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
     
     void Start()
     {
-        currentGroundLayer = defaultGroundLayer;
+        currentSkateableLayer = groundLayer;
 
         // sample death listener
         OnDeath.AddListener(() => {
@@ -72,76 +83,14 @@ public class PlayerMovement : MonoBehaviour
     // Movement uses physics so it must be in FixedUpdate
     void FixedUpdate()
     { 
-        if (currentMoveState == PlayerMovementState.Grounded) {
-            // find the ground below the board, at 3 different offsets
-            var (midHit, midPoint) = GroundCast(0);
-            var (slopeCheckHit, slopeCheckPoint)  = GroundCast(slopeCheckXOffset);
-            var (groundCheckHit, _) = GroundCast(groundCheckXOffset);
-
-            // if any casts fail to find the ground, exit grounded state
-            if (!midHit || !slopeCheckHit || !groundCheckHit)
-            {
-                ExitGroundedState();
-                return;
-            }
-            
-            Vector2 groundTangent = (slopeCheckPoint - midPoint).normalized;
-
-            // adjust velocity based on input. accelerating this way can only go so fast, but speed is never hard capped
-            if (velocity == Vector2.zero) 
-            {
-                velocity = groundTangent * minMoveSpeed; // correct for normalized zero vector still being zero
-            }
-            if (Input.GetKey(KeyCode.A))
-            {
-                float newSpeed = velocity.magnitude - movementAcceleration * Time.deltaTime;
-                newSpeed = Mathf.Clamp(newSpeed, minMoveSpeed, 10000); // 10000 is an arbitrary high number
-                velocity = velocity.normalized * newSpeed;
-            }
-            if (Input.GetKey(KeyCode.D)) {
-                float newSpeed = velocity.magnitude + movementAcceleration * Time.deltaTime;
-                newSpeed = Mathf.Clamp(newSpeed, minMoveSpeed, maxMoveSpeed);
-                if (newSpeed > velocity.magnitude)
-                {
-                    // ignore if it would slow player down
-                    velocity = velocity.normalized * newSpeed;
-                }
-            }
-
-            // redirect magnitude to be parallel to the ground
-            velocity = velocity.magnitude * groundTangent;
-            
-            // apply gravity (speed up when going down a slope)
-            float gravityStrength = -groundTangent.normalized.y;
-            if (gravityStrength > 0) velocity += Vector2.down * (gravityStrength * gravity * Time.deltaTime);
-
-            // move player such that skateboard is exactly on ground
-            // (only change height here. horizontal position is handled in ScrollObject) 
-            transform.position = new Vector3(transform.position.x, midPoint.y - skateboard.localPosition.y, transform.position.z);
+        if (currentMoveState == PlayerMovementState.Grounded)
+        {
+            DuringGrounded();
         }
         else if (currentMoveState == PlayerMovementState.InAir)
         {
-            // check for landing. TODO: check for landing better. what if player jumps and immediately hits the ground again?
-            float timeSinceLastJump = Time.time - lastJumpTime;
-            if (timeSinceLastJump > 0.5f && LandingCheck())
-                EnterGroundedState();
-            
-            // rotate based on inputs
-            if (Input.GetKey(KeyCode.A))
-            {
-                transform.Rotate(new Vector3(0, 0, 1), rotationSpeed * Time.deltaTime);
-            }
-            
-            if (Input.GetKey(KeyCode.D))
-            {
-                transform.Rotate(new Vector3(0, 0, 1), -rotationSpeed * Time.deltaTime);
-            }
-            
-            // add gravity and adjust position
-            velocity += Vector2.down * (gravity * Time.deltaTime);
-            transform.position += Vector3.up * (velocity.y * Time.deltaTime); // again, horizontal position is handled in Scrollobject
+            DuringInAir();
         }
-        
         
         CurrentHorizontalSpeed = velocity.x;
     }
@@ -149,30 +98,107 @@ public class PlayerMovement : MonoBehaviour
     // Events that trigger on key down must be handled in Update
     void Update()
     {
-        if (currentMoveState == PlayerMovementState.Grounded)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             // on space, jump (leave grounded state and apply upward force)
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (currentMoveState == PlayerMovementState.Grounded)
             {
-                if (velocity.y < 0)
-                {
-                    velocity.y = 0; // if moving down, reset speed or jumps will feel weird. might change how this is handled in the future
-                }
-                velocity += Vector2.up * jumpForce;
-                ExitGroundedState();
+                Jump();
             }
-        }
-        else if (currentMoveState == PlayerMovementState.InAir)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
+            else if (currentMoveState == PlayerMovementState.InAir)
             {
                 AttemptStartGrind();
             }
         }
         
-        UpdateSpriteRotation();
+        if (currentMoveState == PlayerMovementState.Grounded)
+        {
+            AdjustRotationToSlope();
+        }
     }
 
+    void Jump()
+    {
+        if (velocity.y < 0)
+        {
+            velocity.y = 0; // if moving down, reset speed or jumps will feel weird. might change how this is handled in the future
+        }
+        velocity += Vector2.up * jumpVelocity;
+        ExitGroundedState();
+    }
+
+    void DuringGrounded()
+    {
+        // find the ground below the board, at 3 different offsets
+        (bool midHit, Vector2 midPoint) = GroundCast(midPointOffset);
+        (bool slopeCheckHit, Vector2 slopeCheckPoint) = GroundCast(slopeCheckXOffset);
+        (bool groundCheckHit, Vector2 _) = GroundCast(groundCheckXOffset);
+
+        // if any casts fail to find the ground, exit grounded state
+        if (!midHit || !slopeCheckHit || !groundCheckHit)
+        {
+            ExitGroundedState();
+            return;
+        }
+
+        Vector2 groundTangent = (slopeCheckPoint - midPoint).normalized;
+
+        // adjust velocity based on input. accelerating this way can only go so fast, but speed is never hard capped
+        if (velocity == Vector2.zero)
+        {
+            velocity = groundTangent * minMoveSpeed; // correct for normalized zero vector still being zero
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            float newSpeed = velocity.magnitude - movementAcceleration * Time.deltaTime;
+            newSpeed = Mathf.Clamp(newSpeed, minMoveSpeed, 10000); // 10000 is an arbitrary high number
+            velocity = velocity.normalized * newSpeed;
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            float newSpeed = velocity.magnitude + movementAcceleration * Time.deltaTime;
+            newSpeed = Mathf.Clamp(newSpeed, minMoveSpeed, maxMoveSpeed);
+            if (newSpeed > velocity.magnitude)
+            {
+                // ignore if it would slow player down
+                velocity = velocity.normalized * newSpeed;
+            }
+        }
+
+        // redirect magnitude to be parallel to the ground
+        velocity = velocity.magnitude * groundTangent;
+
+        // apply gravity (speed up when going down a slope)
+        float gravityStrength = -groundTangent.normalized.y;
+        if (gravityStrength > 0) velocity += Vector2.down * (gravityStrength * gravity * Time.deltaTime);
+
+        // move player such that skateboard is exactly on ground
+        // (only change height here. horizontal position is handled in ScrollObject) 
+        transform.position = new Vector3(transform.position.x, midPoint.y - skateboard.localPosition.y, transform.position.z);
+    }
+
+    void DuringInAir()
+    {
+        // check for landing. TODO: check for landing better. what if player jumps and immediately hits the ground again?
+        float timeSinceLastJump = Time.time - lastJumpTime;
+        if (timeSinceLastJump > 0.5f && LandingCheck())
+            EnterGroundedState();
+
+        // rotate based on inputs
+        if (Input.GetKey(KeyCode.A))
+        {
+            transform.Rotate(new Vector3(0, 0, 1), rotationSpeed * Time.deltaTime);
+        }
+
+        if (Input.GetKey(KeyCode.D))
+        {
+            transform.Rotate(new Vector3(0, 0, 1), -rotationSpeed * Time.deltaTime);
+        }
+
+        // add gravity and adjust position
+        velocity += Vector2.down * (gravity * Time.deltaTime);
+        transform.position += Vector3.up * (velocity.y * Time.deltaTime); // again, horizontal position is handled in Scrollobject
+    }
 
     /// <summary>
     /// Casts a vertical line from the player (plus the given offset) and returns the highest hit.
@@ -181,7 +207,7 @@ public class PlayerMovement : MonoBehaviour
     (bool hit, Vector2 point) GroundCast(float xOffset)
     {
         Vector3 origin = skateboard.position + new Vector3(xOffset, 10);
-        RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.down, 20, currentGroundLayer);
+        RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.down, 20, currentSkateableLayer);
         if (hit.collider is null)
         {
             return (false, Vector2.zero);
@@ -194,31 +220,31 @@ public class PlayerMovement : MonoBehaviour
 
     bool LandingCheck()
     {
-        return Physics2D.CircleCast(skateboard.position, .1f, Vector2.up, 0.5f, currentGroundLayer);
+        return Physics2D.CircleCast(skateboard.position, .1f, Vector2.up, 0.5f, currentSkateableLayer);
     }
 
     void ExitGroundedState()
     {
         lastJumpTime = Time.time;
         currentMoveState = PlayerMovementState.InAir;
-        currentGroundLayer = defaultGroundLayer;
+        currentSkateableLayer = groundLayer;
         Debug.Log("Exiting grounded state");
     }
 
     void EnterGroundedState()
     {
-        this.currentMoveState = PlayerMovementState.Grounded;
+        currentMoveState = PlayerMovementState.Grounded;
         Debug.Log("Entering grounded state");
         
         // Get ground's tangent
-        var (midHit, midPoint) = GroundCast(0);
-        var (slopeCheckHit, slopeCheckPoint)  = GroundCast(slopeCheckXOffset);
+        (bool midHit, Vector2 midPoint) = GroundCast(midPointOffset);
+        (bool slopeCheckHit, Vector2 slopeCheckPoint)  = GroundCast(slopeCheckXOffset);
         Vector2 groundTangent = (slopeCheckPoint - midPoint).normalized;
         float groundAngle = Vector2.SignedAngle(Vector2.right, groundTangent);
         
         // If tangent is too far from current rotation, the player loses
         float deltaAngle = Mathf.Abs(Mathf.DeltaAngle(groundAngle, transform.eulerAngles.z));
-        if (deltaAngle > landingAngleThreshold)
+        if (deltaAngle > deathLandingAngleThreshold)
         {
             if (IsDead) return;
             OnDeath.Invoke();
@@ -233,21 +259,18 @@ public class PlayerMovement : MonoBehaviour
 
     void AttemptStartGrind()
     {
-        if (Physics2D.CircleCast(this.skateboard.position, 1f, Vector2.down, 0f, grindLayer))
+        if (Physics2D.CircleCast(skateboard.position, 1f, Vector2.down, 0f, grindLayer))
         {
-            this.currentGroundLayer = grindLayer;
+            currentSkateableLayer = grindLayer;
             EnterGroundedState();
         }
     }
 
-    void UpdateSpriteRotation()
+    void AdjustRotationToSlope()
     {
-        if (currentMoveState == PlayerMovementState.Grounded)
-        {
-            float angle = Vector2.SignedAngle(Vector2.right, this.velocity);
-            Quaternion targetRotation = Quaternion.Euler(new Vector3(0, 0, angle));
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 15);
-        }
+        float angle = Vector2.SignedAngle(Vector2.right, velocity);
+        Quaternion targetRotation = Quaternion.Euler(new Vector3(0, 0, angle));
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 15);
     }
 }
 
