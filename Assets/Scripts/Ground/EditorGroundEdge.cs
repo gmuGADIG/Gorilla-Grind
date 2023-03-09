@@ -7,6 +7,7 @@ using UnityEditor;
 /**
  * This class is used to provide gui features to make edge creation simpler.
  */
+[CanEditMultipleObjects]
 [CustomEditor(typeof(GroundEdge))]
 public class EditorGroundEdge : Editor
 {

@@ -6,8 +6,7 @@ using UnityEditor.AnimatedValues;
 [CustomEditor(typeof(GroundSection))]
 public class EditorGroundSection : Editor
 {
-    //I referenced https://github.com/Unity-Technologies/UnityCsReference/blob/master/Modules/Physics2DEditor/Managed/Colliders/Collider2DEditorBase.cs
-    private AnimBool m_ShowCompositeRedundants = new AnimBool();
+
     private SerializedProperty groundEdges;
 
     private void OnEnable()

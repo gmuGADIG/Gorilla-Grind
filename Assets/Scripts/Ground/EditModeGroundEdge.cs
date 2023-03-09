@@ -26,6 +26,16 @@ public class EditModeGroundEdge : MonoBehaviour
         //edgeCollider.useAdjacentEndPoint = groundEdge.next != null;
         if (snapToPrevious)
         {
+            //Dont want cyclical links
+            if (groundEdge.previous == groundEdge)
+            {
+                groundEdge.previous = null;
+            }
+            if (groundEdge.next == groundEdge)
+            {
+                groundEdge.next = null;
+            }
+
             if (groundEdge.next != null)
             {
                 groundEdge.next.previous = groundEdge;
