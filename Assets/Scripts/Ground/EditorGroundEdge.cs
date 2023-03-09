@@ -12,6 +12,7 @@ public class EditorGroundEdge : Editor
 {
     //private bool renderBounds;
     //private SerializedProperty renderBounds;
+
     private void OnEnable()
     {
         //renderBounds = serializedObject.FindProperty("showBounds");
@@ -25,6 +26,7 @@ public class EditorGroundEdge : Editor
         //renderBounds.boolValue = EditorGUILayout.Toggle("show bounds", renderBounds.boolValue);
         //renderBounds = EditorGUILayout.Toggle(renderBounds, "Show bounds");
         //Nothing to do here currently. Can change later.
+        GroundEdge.shouldRenderEdge = EditorGUILayout.Toggle("Show Edge", GroundEdge.shouldRenderEdge);
         serializedObject.ApplyModifiedProperties();
     }
 
