@@ -85,56 +85,65 @@ public class PlayerMovement : MonoBehaviour
                 return;
             }
             
-            var groundTangent = (slopeCheckPoint - midPoint).normalized;
+            Vector2 groundTangent = (slopeCheckPoint - midPoint).normalized;
 
             // adjust velocity based on input. accelerating this way can only go so fast, but speed is never hard capped
-            if (this.velocity == Vector2.zero) this.velocity = groundTangent * minMoveSpeed; // correct for normalized zero vector still being zero
+            if (velocity == Vector2.zero) 
+            {
+                velocity = groundTangent * minMoveSpeed; // correct for normalized zero vector still being zero
+            }
             if (Input.GetKey(KeyCode.A))
             {
-                var newSpeed = velocity.magnitude - movementAcceleration * Time.deltaTime;
+                float newSpeed = velocity.magnitude - movementAcceleration * Time.deltaTime;
                 newSpeed = Mathf.Clamp(newSpeed, minMoveSpeed, 10000); // 10000 is an arbitrary high number
-                this.velocity = this.velocity.normalized * newSpeed;
+                velocity = velocity.normalized * newSpeed;
             }
             if (Input.GetKey(KeyCode.D)) {
-                var newSpeed = velocity.magnitude + movementAcceleration * Time.deltaTime;
+                float newSpeed = velocity.magnitude + movementAcceleration * Time.deltaTime;
                 newSpeed = Mathf.Clamp(newSpeed, minMoveSpeed, maxMoveSpeed);
-                if (newSpeed > this.velocity.magnitude) // ignore if it would slow player down
-                    this.velocity = this.velocity.normalized * newSpeed;
+                if (newSpeed > velocity.magnitude)
+                {
+                    // ignore if it would slow player down
+                    velocity = velocity.normalized * newSpeed;
+                }
             }
 
             // redirect magnitude to be parallel to the ground
-            this.velocity = this.velocity.magnitude * groundTangent;
+            velocity = velocity.magnitude * groundTangent;
             
             // apply gravity (speed up when going down a slope)
-            var gravityStrength = -groundTangent.normalized.y;
+            float gravityStrength = -groundTangent.normalized.y;
             if (gravityStrength > 0) velocity += Vector2.down * (gravityStrength * gravity * Time.deltaTime);
 
             // move player such that skateboard is exactly on ground
             // (only change height here. horizontal position is handled in ScrollObject) 
-            var pos = this.transform.position;
-            this.transform.position = new Vector3(pos.x, midPoint.y - skateboard.localPosition.y, pos.z);
+            transform.position = new Vector3(transform.position.x, midPoint.y - skateboard.localPosition.y, transform.position.z);
         }
         else if (currentMoveState == PlayerMovementState.InAir)
         {
             // check for landing. TODO: check for landing better. what if player jumps and immediately hits the ground again?
-            var timeSinceLastJump = Time.time - lastJumpTime;
+            float timeSinceLastJump = Time.time - lastJumpTime;
             if (timeSinceLastJump > 0.5f && LandingCheck())
                 EnterGroundedState();
             
             // rotate based on inputs
             if (Input.GetKey(KeyCode.A))
-                this.transform.Rotate(new Vector3(0, 0, 1), rotationSpeed * Time.deltaTime);
+            {
+                transform.Rotate(new Vector3(0, 0, 1), rotationSpeed * Time.deltaTime);
+            }
             
             if (Input.GetKey(KeyCode.D))
-                this.transform.Rotate(new Vector3(0, 0, 1), -rotationSpeed * Time.deltaTime);
+            {
+                transform.Rotate(new Vector3(0, 0, 1), -rotationSpeed * Time.deltaTime);
+            }
             
             // add gravity and adjust position
-            this.velocity += Vector2.down * (gravity * Time.deltaTime);
-            this.transform.position += Vector3.up * (this.velocity.y * Time.deltaTime); // again, horizontal position is handled in Scrollobject
+            velocity += Vector2.down * (gravity * Time.deltaTime);
+            transform.position += Vector3.up * (velocity.y * Time.deltaTime); // again, horizontal position is handled in Scrollobject
         }
         
         
-        CurrentHorizontalSpeed = this.velocity.x;
+        CurrentHorizontalSpeed = velocity.x;
     }
 
     // Events that trigger on key down must be handled in Update
@@ -145,8 +154,11 @@ public class PlayerMovement : MonoBehaviour
             // on space, jump (leave grounded state and apply upward force)
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                if (velocity.y < 0) velocity.y = 0; // if moving down, reset speed or jumps will feel weird. might change how this is handled in the future
-                this.velocity += Vector2.up * jumpForce;
+                if (velocity.y < 0)
+                {
+                    velocity.y = 0; // if moving down, reset speed or jumps will feel weird. might change how this is handled in the future
+                }
+                velocity += Vector2.up * jumpForce;
                 ExitGroundedState();
             }
         }
@@ -168,22 +180,28 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     (bool hit, Vector2 point) GroundCast(float xOffset)
     {
-        var origin = this.skateboard.position + new Vector3(xOffset, 10);
-        var hit = Physics2D.Raycast(origin, Vector2.down, 20, currentGroundLayer);
-        if (hit.collider is null) return (false, Vector2.zero);
-        else return (true, hit.point);
+        Vector3 origin = skateboard.position + new Vector3(xOffset, 10);
+        RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.down, 20, currentGroundLayer);
+        if (hit.collider is null)
+        {
+            return (false, Vector2.zero);
+        }
+        else
+        {
+            return (true, hit.point);
+        }
     }
 
     bool LandingCheck()
     {
-        return Physics2D.CircleCast(this.skateboard.position, .1f, Vector2.up, 0.5f, currentGroundLayer);
+        return Physics2D.CircleCast(skateboard.position, .1f, Vector2.up, 0.5f, currentGroundLayer);
     }
 
     void ExitGroundedState()
     {
-        this.lastJumpTime = Time.time;
-        this.currentMoveState = PlayerMovementState.InAir;
-        this.currentGroundLayer = defaultGroundLayer;
+        lastJumpTime = Time.time;
+        currentMoveState = PlayerMovementState.InAir;
+        currentGroundLayer = defaultGroundLayer;
         Debug.Log("Exiting grounded state");
     }
 
@@ -195,11 +213,11 @@ public class PlayerMovement : MonoBehaviour
         // Get ground's tangent
         var (midHit, midPoint) = GroundCast(0);
         var (slopeCheckHit, slopeCheckPoint)  = GroundCast(slopeCheckXOffset);
-        var groundTangent = (slopeCheckPoint - midPoint).normalized;
-        var groundAngle = Vector2.SignedAngle(Vector2.right, groundTangent);
+        Vector2 groundTangent = (slopeCheckPoint - midPoint).normalized;
+        float groundAngle = Vector2.SignedAngle(Vector2.right, groundTangent);
         
         // If tangent is too far from current rotation, the player loses
-        var deltaAngle = Mathf.Abs(Mathf.DeltaAngle(groundAngle, this.transform.eulerAngles.z));
+        float deltaAngle = Mathf.Abs(Mathf.DeltaAngle(groundAngle, transform.eulerAngles.z));
         if (deltaAngle > landingAngleThreshold)
         {
             if (IsDead) return;
@@ -208,7 +226,7 @@ public class PlayerMovement : MonoBehaviour
         }
         
         // Calculate new speed. faster if velocity is parallel to ground. lose some speed otherwise
-        this.velocity = Vector2.Lerp(Vector3.Project(this.velocity, groundTangent), this.velocity, 0.5f);
+        velocity = Vector2.Lerp(Vector3.Project(velocity, groundTangent), velocity, 0.5f);
         
         Debug.Log($"deltaAngle = {deltaAngle}");
     }
@@ -226,9 +244,9 @@ public class PlayerMovement : MonoBehaviour
     {
         if (currentMoveState == PlayerMovementState.Grounded)
         {
-            var angle = Vector2.SignedAngle(Vector2.right, this.velocity);
-            var targetRotation = Quaternion.Euler(new Vector3(0, 0, angle));
-            this.transform.rotation = Quaternion.Lerp(this.transform.rotation, targetRotation, Time.deltaTime * 15);
+            float angle = Vector2.SignedAngle(Vector2.right, this.velocity);
+            Quaternion targetRotation = Quaternion.Euler(new Vector3(0, 0, angle));
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 15);
         }
     }
 }
