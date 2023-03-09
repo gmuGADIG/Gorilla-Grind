@@ -8,14 +8,15 @@ using System;
 
 public class Goals_Tracker : MonoBehaviour
 {
-    int scoreGoal = 1000;
-    int score = 0;
+    float distanceGoal = 10f;
+    float distance = 0f;
     public int level = 0;
     public Slider goalProgress;
-    public GameObject levelDisplay;
-    public TMP_Text levelText;
+    public GameObject distanceDisplay;
+    public TMP_Text distanceText;
     public GameObject mission1Display;
     public TMP_Text mission1Text;
+    private Dictionary<String, GameObject> hazards;
     bool goalMet = false;
     float styleCounter = 1.0f;
     //int distance = 0;
@@ -23,7 +24,7 @@ public class Goals_Tracker : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        levelText = levelDisplay.GetComponent<TMP_Text>();
+        distanceText = distanceDisplay.GetComponent<TMP_Text>();
         mission1Text = mission1Display.GetComponent<TMP_Text>();
         goalStart();
     }
@@ -31,32 +32,32 @@ public class Goals_Tracker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //int velocity = 0;
-        //distance += volocity;
-        if (score >= scoreGoal)
+        distance += PlayerMovement.CurrentSpeed * Time.deltaTime;
+        if (distance >= distanceGoal)
         {
             monkeyMeeting(level);
         }
         else
         {
             //score++;
-            goalProgress.value = score;
-            levelText.text = "Level: " + this.level;
+            goalProgress.value = distance;
         }
-        if (Input.GetKey(KeyCode.RightArrow))
+        distanceText.text = "Distance: " + this.distance.ToString("#.##") + " / " + this.distanceGoal.ToString("#.##");
+        checkForHazards();
+        /*if (Input.GetKey(KeyCode.RightArrow))
         {
             score++;
         }
         if (Input.GetKey(KeyCode.LeftArrow) && score>0)
         {
             score--;
-        }
+        }*/
     }
 
     void goalStart()
     {
+        distance = 0f;
         goalMet = false;
-        score = 0;
         //distance = 0;
         styleCounter = 1.0f;
         System.Random rnd = new System.Random();
@@ -92,7 +93,20 @@ public class Goals_Tracker : MonoBehaviour
     {
         //Do whatever visuals
         this.level++;
-        this.score = 0;
         goalMet = true;
+    }
+
+    void objectDetected(GameObject hazard)
+    {
+        if (!hazards[hazard.name])
+        {
+            hazards.Add(hazard.name, hazard);
+            // increment the hazard value by 1
+        }
+    }
+
+    void checkForHazards()
+    {
+        //Raycast downwards, if it hits an object, call object detected with detected object
     }
 }
