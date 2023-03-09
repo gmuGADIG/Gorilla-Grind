@@ -5,8 +5,13 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class GroundSection : MonoBehaviour
 {
-
+    [HideInInspector]
     public GroundEdge[] groundEdges;
+
+    public Vector2 startPoint { get { return groundEdges[0].startPoint; } }
+
+    public Vector2 endPoint { get { return groundEdges[groundEdges.Length - 1].endPoint; } }
+
 
     /**
      * Reconnects every ground edge to the next one
@@ -36,9 +41,10 @@ public class GroundSection : MonoBehaviour
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        groundEdges = GetComponentsInChildren<GroundEdge>();
     }
+
+
 }
