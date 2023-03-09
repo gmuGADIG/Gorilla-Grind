@@ -32,20 +32,21 @@ public class EditorGroundEdge : Editor
     }
 
 
-    private void OnSceneGUI()
-    {
-        serializedObject.Update();
-        //serializedObject.Update();
-        //DrawBox(serializedObject.)
-        //if(renderBounds.boolValue)
-        //{
-        //    Debug.DrawLine(b.min, b.max);
-        //}
-        GroundEdge groundEdge = (GroundEdge)serializedObject.targetObject;
-        //Handles.color = Color.red;
-        //Handles.DrawLine(groundEdge.startPoint, groundEdge.endPoint);
-        serializedObject.ApplyModifiedProperties();
-    }
+    //private void OnSceneGUI()
+    //{
+    //    //i could ues this??
+    //    return;
+    //    //serializedObject.Update();
+    //    //serializedObject.Update();
+    //    //DrawBox(serializedObject.)
+    //    //if(renderBounds.boolValue)
+    //    //{
+    //    //    Debug.DrawLine(b.min, b.max);
+    //    //}
+    //    //GroundEdge groundEdge = (GroundEdge)serializedObject.targetObject;
+    //    //Handles.color = Color.red;
+    //    //Handles.DrawLine(groundEdge.startPoint, groundEdge.endPoint);
+    //}
 
 }
 #endif

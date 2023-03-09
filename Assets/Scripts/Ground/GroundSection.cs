@@ -29,6 +29,7 @@ public class GroundSection : MonoBehaviour
         {
             groundEdges[i].previous = groundEdges[i - 1];
             groundEdges[i].next = groundEdges[i + 1];
+            groundEdges[i].SnapEdge();
         }
         groundEdges[groundEdges.Length - 1].previous = groundEdges[groundEdges.Length - 2];
         groundEdges[groundEdges.Length - 1].next = null;

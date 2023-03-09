@@ -61,4 +61,36 @@ public class GroundEdge : MonoBehaviour
         }
     }
 
+    public void SnapEdge()
+    {
+        //Dont want cyclical links
+        if (previous == this)
+        {
+            previous = null;
+        }
+        if (next == this)
+        {
+            next = null;
+        }
+
+        if (next != null)
+        {
+            next.previous = this;
+            //edgeCollider.adjacentEndPoint = edgeCollider.transform.worldToLocalMatrix.MultiplyPoint(groundEdge.next.startPoint);
+        }
+
+        if (previous != null)
+        {
+
+            transform.position += (Vector3)(previous.endPoint - startPoint);
+
+            //edgeCollider.adjacentStartPoint = edgeCollider.transform.worldToLocalMatrix.MultiplyPoint(groundEdge.previous.endPoint);
+
+            //Plan on creating a visual tool to automatically connect and disconnect edges
+            if (previous.next == null)
+            {
+                previous = null;
+            }
+        }
+    }
 }
