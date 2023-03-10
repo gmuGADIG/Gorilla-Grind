@@ -18,16 +18,19 @@ public class EditorGroundSection : Editor
     {
         base.OnInspectorGUI();
         serializedObject.Update();
+        if (GUILayout.Button("Connect Edges"))
+        {
+            ((GroundSection)serializedObject.targetObject).VerifyConnections();
+        }
+        GUILayout.Space(15);
+        GUILayout.Label("The order here is set by the order in the Hierarchy");
         EditorGUI.BeginDisabledGroup(true);
 
         EditorGUILayout.PropertyField(groundEdges);
 
         EditorGUI.EndDisabledGroup();
 
-        if(GUILayout.Button("Connect Edges"))
-        {
-            ((GroundSection)serializedObject.targetObject).VerifyConnections();
-        }
+        
         serializedObject.ApplyModifiedProperties();
     }
 }
