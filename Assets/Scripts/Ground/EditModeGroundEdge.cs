@@ -26,7 +26,7 @@ public class EditModeGroundEdge : MonoBehaviour
         //edgeCollider.useAdjacentEndPoint = groundEdge.next != null;
         if (snapToPrevious)
         {
-            groundEdge.SnapEdge();
+            //groundEdge.SnapEdge();
         } else
         {
 

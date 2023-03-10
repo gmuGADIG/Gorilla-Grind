@@ -40,6 +40,14 @@ public class EditorGroundEdge : Editor
     }
 
 
+    private void OnSceneGUI()
+    {
+        if(Event.current.type == EventType.MouseDrag || Event.current.type == EventType.ExecuteCommand)
+            (target as GroundEdge).SnapSurroundingEdges();
+        
+        //Debug.Log(Event.current);
+    }
+
     // T$$anonymous$$s function is called for each instance of "spawnPoint" in the scene. 
     // Make sure to pass the correct class in the first argument. In t$$anonymous$$s case ItemSpawnPoint
     // Make sure it is a "static" function
@@ -69,6 +77,7 @@ public class EditorGroundEdge : Editor
     [MenuItem("Tools/EnterEditMode %#e")]
     static void EnterEditMode()
     {
+
         var assemblies = AppDomain.CurrentDomain.GetAssemblies();
         foreach (var assembly in assemblies)
         {

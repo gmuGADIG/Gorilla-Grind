@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 /**
  * Holds data about a ground edge. Edges themselves are prefabs that will get combined into chunks of the level.
  */
@@ -53,7 +53,8 @@ public class GroundEdge : MonoBehaviour
     {
         
     }
-
+    
+    [Obsolete("Trying to replace this with a more modular set of methods")]
     public void SnapEdge()
     {
         //Dont want cyclical links
@@ -85,6 +86,29 @@ public class GroundEdge : MonoBehaviour
                 previous = null;
             }
         }
+    }
+    //Moves previous edges to connect to startPoint
+    public void SnapPreviousEdges()
+    {
+        if (previous == this) previous = null;
+        if (previous == null) return;
+        previous.transform.position += (Vector3)(startPoint - previous.endPoint);
+        previous.SnapPreviousEdges();//propogate changes
+    }
+
+    public void SnapNextEdges()
+    {
+        if (next == this) next = null;
+        if (next == null) return;
+        next.transform.position += (Vector3)(endPoint - next.startPoint);
+        next.SnapNextEdges();//propogate changes
+    }
+
+    public void SnapSurroundingEdges()
+    {
+        //Debug.Log(gameObject.name);
+        SnapPreviousEdges();
+        SnapNextEdges();
     }
     //void OnDrawGizmos()
     //{
