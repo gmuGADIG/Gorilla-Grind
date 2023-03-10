@@ -51,14 +51,7 @@ public class GroundEdge : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (shouldRenderEdge)
-        {
-            for (int i = 0; i < edgeCollider.pointCount - 1; i++)
-            {
-                Debug.DrawLine(edgeCollider.transform.localToWorldMatrix.MultiplyPoint(edgeCollider.points[i]),
-                    edgeCollider.transform.localToWorldMatrix.MultiplyPoint(edgeCollider.points[i + 1]), noCollision ? gapColor : solidColor);
-            }
-        }
+        
     }
 
     public void SnapEdge()
@@ -90,6 +83,19 @@ public class GroundEdge : MonoBehaviour
             if (previous.next == null)
             {
                 previous = null;
+            }
+        }
+    }
+    void OnDrawGizmos()
+    {
+
+        if (shouldRenderEdge)
+        {
+            Gizmos.color = noCollision ? gapColor : solidColor;
+            for (int i = 0; i < edgeCollider.pointCount - 1; i++)
+            {
+                Gizmos.DrawLine(edgeCollider.transform.localToWorldMatrix.MultiplyPoint(edgeCollider.points[i]),
+                    edgeCollider.transform.localToWorldMatrix.MultiplyPoint(edgeCollider.points[i + 1]));
             }
         }
     }

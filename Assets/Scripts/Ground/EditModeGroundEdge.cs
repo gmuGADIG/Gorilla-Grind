@@ -35,21 +35,22 @@ public class EditModeGroundEdge : MonoBehaviour
 
         
 
-        if(GroundEdge.shouldRenderEdge)
-        {
-            for(int i = 0; i < groundEdge.edgeCollider.pointCount-1; i++)
-            {
-                Debug.DrawLine(groundEdge.edgeCollider.transform.localToWorldMatrix.MultiplyPoint(groundEdge.edgeCollider.points[i]),
-                    groundEdge.edgeCollider.transform.localToWorldMatrix.MultiplyPoint(groundEdge.edgeCollider.points[i + 1]),
-                    groundEdge.noCollision ? GroundEdge.gapColor : GroundEdge.solidColor);
-            }
-        }
+        
     }
 
-    
-    
-    private void OnDrawGizmos()
+
+
+    void OnDrawGizmos()
     {
-        
+
+        if (GroundEdge.shouldRenderEdge)
+        {
+            Gizmos.color = groundEdge.noCollision ? GroundEdge.gapColor : GroundEdge.solidColor;
+            for (int i = 0; i < groundEdge.edgeCollider.pointCount - 1; i++)
+            {
+                Gizmos.DrawLine(groundEdge.edgeCollider.transform.localToWorldMatrix.MultiplyPoint(groundEdge.edgeCollider.points[i]),
+                    groundEdge.edgeCollider.transform.localToWorldMatrix.MultiplyPoint(groundEdge.edgeCollider.points[i + 1]));
+            }
+        }
     }
 }

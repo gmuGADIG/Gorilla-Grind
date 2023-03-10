@@ -32,21 +32,31 @@ public class EditorGroundEdge : Editor
     }
 
 
-    //private void OnSceneGUI()
-    //{
-    //    //i could ues this??
-    //    return;
-    //    //serializedObject.Update();
-    //    //serializedObject.Update();
-    //    //DrawBox(serializedObject.)
-    //    //if(renderBounds.boolValue)
-    //    //{
-    //    //    Debug.DrawLine(b.min, b.max);
-    //    //}
-    //    //GroundEdge groundEdge = (GroundEdge)serializedObject.targetObject;
-    //    //Handles.color = Color.red;
-    //    //Handles.DrawLine(groundEdge.startPoint, groundEdge.endPoint);
-    //}
+    private void OnSceneGUI()
+    {
+        //Im making code i don't fully know how to utilize
+        //Handles.color = Color.red;
+        //GroundEdge ground = target as GroundEdge;
+        
+        //Handles.DrawPolyLine(
+        //    Utils.GetWorldPoints(
+        //        Utils.Vec2ArrToVec3Arr(ground.edgeCollider.points), 
+        //        ground.edgeCollider.gameObject
+        //        )
+        //    );
+        return;
+        //serializedObject.Update();
+        //serializedObject.Update();
+        //DrawBox(serializedObject.)
+        //if(renderBounds.boolValue)
+        //{
+        //    Debug.DrawLine(b.min, b.max);
+        //}
+        //GroundEdge groundEdge = (GroundEdge)serializedObject.targetObject;
+        //Handles.color = Color.red;
+        //Handles.DrawLine(groundEdge.startPoint, groundEdge.endPoint);
+    }
 
+    
 }
 #endif
