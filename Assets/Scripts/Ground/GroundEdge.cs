@@ -86,17 +86,17 @@ public class GroundEdge : MonoBehaviour
             }
         }
     }
-    void OnDrawGizmos()
-    {
+    //void OnDrawGizmos()
+    //{
 
-        if (shouldRenderEdge)
-        {
-            Gizmos.color = noCollision ? gapColor : solidColor;
-            for (int i = 0; i < edgeCollider.pointCount - 1; i++)
-            {
-                Gizmos.DrawLine(edgeCollider.transform.localToWorldMatrix.MultiplyPoint(edgeCollider.points[i]),
-                    edgeCollider.transform.localToWorldMatrix.MultiplyPoint(edgeCollider.points[i + 1]));
-            }
-        }
-    }
+    //    if (shouldRenderEdge)
+    //    {
+    //        Gizmos.color = noCollision ? gapColor : solidColor;
+    //        for (int i = 0; i < edgeCollider.pointCount - 1; i++)
+    //        {
+    //            Gizmos.DrawLine(edgeCollider.transform.localToWorldMatrix.MultiplyPoint(edgeCollider.points[i]),
+    //                edgeCollider.transform.localToWorldMatrix.MultiplyPoint(edgeCollider.points[i + 1]));
+    //        }
+    //    }
+    //}
 }

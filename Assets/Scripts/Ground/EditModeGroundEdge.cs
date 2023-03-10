@@ -40,17 +40,17 @@ public class EditModeGroundEdge : MonoBehaviour
 
 
 
-    void OnDrawGizmos()
-    {
+    //void OnDrawGizmos()
+    //{
 
-        if (GroundEdge.shouldRenderEdge)
-        {
-            Gizmos.color = groundEdge.noCollision ? GroundEdge.gapColor : GroundEdge.solidColor;
-            for (int i = 0; i < groundEdge.edgeCollider.pointCount - 1; i++)
-            {
-                Gizmos.DrawLine(groundEdge.edgeCollider.transform.localToWorldMatrix.MultiplyPoint(groundEdge.edgeCollider.points[i]),
-                    groundEdge.edgeCollider.transform.localToWorldMatrix.MultiplyPoint(groundEdge.edgeCollider.points[i + 1]));
-            }
-        }
-    }
+    //    if (GroundEdge.shouldRenderEdge)
+    //    {
+    //        Gizmos.color = groundEdge.noCollision ? GroundEdge.gapColor : GroundEdge.solidColor;
+    //        for (int i = 0; i < groundEdge.edgeCollider.pointCount - 1; i++)
+    //        {
+    //            Gizmos.DrawLine(groundEdge.edgeCollider.transform.localToWorldMatrix.MultiplyPoint(groundEdge.edgeCollider.points[i]),
+    //                groundEdge.edgeCollider.transform.localToWorldMatrix.MultiplyPoint(groundEdge.edgeCollider.points[i + 1]));
+    //        }
+    //    }
+    //}
 }

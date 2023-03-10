@@ -20,7 +20,10 @@ public class EditorGroundEdge : Editor
     private void OnEnable()
     {
         //renderBounds = serializedObject.FindProperty("showBounds");
+
         //renderBounds = false;
+        //SceneView.duringSceneGui -= OnScene;
+        //SceneView.duringSceneGui += OnScene;
     }
    
     public override void OnInspectorGUI()
@@ -35,33 +38,31 @@ public class EditorGroundEdge : Editor
 
         lastSelected = this;
     }
-    
 
-    private void OnSceneGUI()
+
+    // T$$anonymous$$s function is called for each instance of "spawnPoint" in the scene. 
+    // Make sure to pass the correct class in the first argument. In t$$anonymous$$s case ItemSpawnPoint
+    // Make sure it is a "static" function
+    // name it whatever you want
+    //https://answers.unity.com/questions/654423/keep-my-custom-handle-visible-even-if-object-is-no.html
+    [DrawGizmo(GizmoType.InSelectionHierarchy | GizmoType.NotInSelectionHierarchy)]
+    static void DrawHandles(GroundEdge edge, GizmoType gizmoType)
     {
-        //Im making code i don't fully know how to utilize
-        //Handles.color = Color.red;
-        //GroundEdge ground = target as GroundEdge;
-        
-        //Handles.DrawPolyLine(
-        //    Utils.GetWorldPoints(
-        //        Utils.Vec2ArrToVec3Arr(ground.edgeCollider.points), 
-        //        ground.edgeCollider.gameObject
-        //        )
-        //    );
-        return;
-        //serializedObject.Update();
-        //serializedObject.Update();
-        //DrawBox(serializedObject.)
-        //if(renderBounds.boolValue)
-        //{
-        //    Debug.DrawLine(b.min, b.max);
-        //}
-        //GroundEdge groundEdge = (GroundEdge)serializedObject.targetObject;
-        //Handles.color = Color.red;
-        //Handles.DrawLine(groundEdge.startPoint, groundEdge.endPoint);
+        RenderGroundEdge(edge);
     }
 
+    private static void RenderGroundEdge(GroundEdge ground )
+    {
+        Handles.color = ground.noCollision ? GroundEdge.gapColor : GroundEdge.solidColor;
+        
+        if (GroundEdge.shouldRenderEdge)
+            Handles.DrawPolyLine(
+                Utils.GetWorldPoints(
+                    Utils.Vec2ArrToVec3Arr(ground.edgeCollider.points),
+                    ground.edgeCollider.gameObject
+                    )
+                );
+    }
 
     //https://forum.unity.com/threads/creating-a-hotkey-to-get-into-edit-collider-mode.474706/#:~:text=I%20think%20you%20can%20hook%20into%20the%20Event,Mode%20%23_e%22%29%5D%20%2F%2F%20This%20is%20Shift%20%2B%20e
     //This feels very evil probably avoid copying too much
