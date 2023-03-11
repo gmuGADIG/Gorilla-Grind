@@ -56,12 +56,18 @@ public class PlayerMovement : MonoBehaviour
     
     [Tooltip("Mid-air rotation speed in degrees per second.")]
     [SerializeField] float rotationSpeed = 90;
+    [Tooltip("How much the player's gravity should change when performing tricks. g_trick = g_default + trickGravityOffset.")]
+    [SerializeField] float trickGravityOffset = -10f;
     #endregion
 
     LayerMask currentSkateableLayer;
     Vector2 velocity;
     PlayerMovementState currentMoveState = PlayerMovementState.Grounded;
+
+    // the current trick the player is performing.
     Trick currentPlayerTrick = null;
+
+    // list of tricks available to the player. Stored/accessed using the Trick's class type.
     Dictionary<Type, Trick> availableTricks = new Dictionary<Type, Trick>();
     float lastJumpTime = 0f;
     
@@ -126,18 +132,38 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 //AttemptStartGrind();
-                currentMoveState = PlayerMovementState.TrickStance;
+                EnterTrickState();
             }
         }
         else if (currentMoveState == PlayerMovementState.TrickStance)
         {
             DuringTrickStance();
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                ExitTrickState();
+            }
         }
         if (currentMoveState != PlayerMovementState.TrickStance && currentPlayerTrick != null)
+        {
+            ExitTrickState();
+        }
+    }
+
+    void EnterTrickState()
+    {
+        gravity += trickGravityOffset;
+        currentMoveState = PlayerMovementState.TrickStance;
+    }
+
+    void ExitTrickState()
+    {
+        gravity -= trickGravityOffset;
+        if (currentPlayerTrick != null)
         {
             currentPlayerTrick.EndTrick();
             currentPlayerTrick = null;
         }
+        currentMoveState = PlayerMovementState.InAir;
     }
 
     void Jump()
@@ -264,6 +290,7 @@ public class PlayerMovement : MonoBehaviour
         {
             currentPlayerTrick.EndTrick();
             currentPlayerTrick = null;
+            gravity -= trickGravityOffset;
         }
         if (trickType != null)
         {
