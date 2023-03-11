@@ -295,8 +295,10 @@ MonoBehaviour:
   movementAcceleration: 3
   maxMoveSpeed: 20
   minMoveSpeed: 0.5
-  gravity: 18
+  baseGravity: 18
   rotationSpeed: 180
+  trickGravityOffset: -10
+  fastFallGravityIncrease: 40
   OnDeath:
     m_PersistentCalls:
       m_Calls: []

@@ -52,16 +52,18 @@ public class PlayerMovement : MonoBehaviour
 
     #region MidAirMovementVariables
     [Header("Mid-Air Movement Variables")]
-    [SerializeField] float gravity = 9.8f;
+    [SerializeField] float baseGravity = 9.8f;
     
     [Tooltip("Mid-air rotation speed in degrees per second.")]
     [SerializeField] float rotationSpeed = 90;
     [Tooltip("How much the player's gravity should change when performing tricks. g_trick = g_default + trickGravityOffset.")]
     [SerializeField] float trickGravityOffset = -10f;
+    [SerializeField] float fastFallGravityIncrease = 10f;
     #endregion
 
     LayerMask currentSkateableLayer;
     Vector2 velocity;
+    float currentGravity;
     PlayerMovementState currentMoveState = PlayerMovementState.Grounded;
 
     // the current trick the player is performing.
@@ -84,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         currentSkateableLayer = groundLayer;
-
+        currentGravity = baseGravity;
         // sample death listener
         OnDeath.AddListener(() => {
             GetComponentInChildren<SpriteRenderer>().color = Color.red;
@@ -134,6 +136,16 @@ public class PlayerMovement : MonoBehaviour
                 //AttemptStartGrind();
                 EnterTrickState();
             }
+            
+            // fast fall
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                currentGravity = baseGravity + fastFallGravityIncrease;
+            }
+            if (Input.GetKeyUp(KeyCode.S))
+            {
+                currentGravity = baseGravity;
+            }
         }
         else if (currentMoveState == PlayerMovementState.TrickStance)
         {
@@ -151,13 +163,13 @@ public class PlayerMovement : MonoBehaviour
 
     void EnterTrickState()
     {
-        gravity += trickGravityOffset;
+        currentGravity = baseGravity + trickGravityOffset;
         currentMoveState = PlayerMovementState.TrickStance;
     }
 
     void ExitTrickState()
     {
-        gravity -= trickGravityOffset;
+        currentGravity = baseGravity;
         if (currentPlayerTrick != null)
         {
             currentPlayerTrick.EndTrick();
@@ -219,7 +231,7 @@ public class PlayerMovement : MonoBehaviour
 
         // apply gravity (speed up when going down a slope)
         float gravityStrength = -groundTangent.normalized.y;
-        if (gravityStrength > 0) velocity += Vector2.down * (gravityStrength * gravity * Time.deltaTime);
+        if (gravityStrength > 0) velocity += Vector2.down * (gravityStrength * currentGravity * Time.deltaTime);
 
         // move player such that skateboard is exactly on ground
         // (only change height here. horizontal position is handled in ScrollObject) 
@@ -245,7 +257,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // add gravity and adjust position
-        velocity += Vector2.down * (gravity * Time.deltaTime);
+        velocity += Vector2.down * (currentGravity * Time.deltaTime);
         transform.position += Vector3.up * (velocity.y * Time.deltaTime); // again, horizontal position is handled in Scrollobject
     }
 
@@ -290,7 +302,7 @@ public class PlayerMovement : MonoBehaviour
         {
             currentPlayerTrick.EndTrick();
             currentPlayerTrick = null;
-            gravity -= trickGravityOffset;
+            currentGravity = baseGravity;
         }
         if (trickType != null)
         {
@@ -333,6 +345,7 @@ public class PlayerMovement : MonoBehaviour
     void EnterGroundedState()
     {
         currentMoveState = PlayerMovementState.Grounded;
+        currentGravity = baseGravity;
         Debug.Log("Entering grounded state");
         
         // Get ground's tangent
