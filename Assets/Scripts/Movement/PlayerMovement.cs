@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("The center-point of the skateboard")]
     [SerializeField] Transform skateboardCenter;
     [SerializeField] Transform skateboardSprite;
+    [SerializeField] Sprite gottem;
 
     #region GroundCheckVariables
     [Header("Ground Check Variables")]
@@ -83,6 +84,9 @@ public class PlayerMovement : MonoBehaviour
             GetComponentInChildren<SpriteRenderer>().color = Color.red;
         });
         availableTricks.Add(typeof(UpTrick), new UpTrick(skateboardSprite));
+        availableTricks.Add(typeof(LeftTrick), new LeftTrick(skateboardSprite));
+        availableTricks.Add(typeof(RightTrick), new RightTrick(skateboardSprite));
+        availableTricks.Add(typeof(DownTrick), new DownTrick(GetComponentInChildren<SpriteRenderer>(), gottem));
     }
     
     // Movement uses physics so it must be in FixedUpdate
@@ -228,7 +232,19 @@ public class PlayerMovement : MonoBehaviour
         {
             ChangeTrickType(typeof(UpTrick));
         }
-        if (Input.GetKeyUp(KeyCode.W))
+        else if (Input.GetKeyDown(KeyCode.A))
+        {
+            ChangeTrickType(typeof(LeftTrick));
+        }
+        else if (Input.GetKeyDown(KeyCode.D))
+        {
+            ChangeTrickType(typeof(RightTrick));
+        }
+        else if (Input.GetKeyDown(KeyCode.S))
+        {
+            ChangeTrickType(typeof(DownTrick));
+        }
+        if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.S))
         {
             ChangeTrickType(null);
         }
