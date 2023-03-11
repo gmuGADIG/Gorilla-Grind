@@ -1,5 +1,6 @@
 using System;
 using Unity.VisualScripting;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,7 +10,8 @@ using UnityEngine.Events;
 public class PlayerMovement : MonoBehaviour
 {
     [Tooltip("The center-point of the skateboard")]
-    [SerializeField] Transform skateboard;
+    [SerializeField] Transform skateboardCenter;
+    [SerializeField] Transform skateboardSprite;
 
     #region GroundCheckVariables
     [Header("Ground Check Variables")]
@@ -58,6 +60,8 @@ public class PlayerMovement : MonoBehaviour
     LayerMask currentSkateableLayer;
     Vector2 velocity;
     PlayerMovementState currentMoveState = PlayerMovementState.Grounded;
+    Trick currentPlayerTrick = null;
+    Dictionary<Type, Trick> availableTricks = new Dictionary<Type, Trick>();
     float lastJumpTime = 0f;
     
     /// <summary>
@@ -78,6 +82,7 @@ public class PlayerMovement : MonoBehaviour
         OnDeath.AddListener(() => {
             GetComponentInChildren<SpriteRenderer>().color = Color.red;
         });
+        availableTricks.Add(typeof(UpTrick), new UpTrick(skateboardSprite));
     }
     
     // Movement uses physics so it must be in FixedUpdate
@@ -91,6 +96,11 @@ public class PlayerMovement : MonoBehaviour
         {
             DuringInAir();
         }
+        else if (currentMoveState == PlayerMovementState.TrickStance)
+        {
+            DuringInAir();
+            DuringTrickStance();
+        }
         
         CurrentHorizontalSpeed = velocity.x;
     }
@@ -98,22 +108,31 @@ public class PlayerMovement : MonoBehaviour
     // Events that trigger on key down must be handled in Update
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        // on space, jump (leave grounded state and apply upward force)
+        if (currentMoveState == PlayerMovementState.Grounded)
         {
-            // on space, jump (leave grounded state and apply upward force)
-            if (currentMoveState == PlayerMovementState.Grounded)
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 Jump();
             }
-            else if (currentMoveState == PlayerMovementState.InAir)
+            AdjustRotationToSlope();
+        }
+        else if (currentMoveState == PlayerMovementState.InAir)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                AttemptStartGrind();
+                //AttemptStartGrind();
+                currentMoveState = PlayerMovementState.TrickStance;
             }
         }
-        
-        if (currentMoveState == PlayerMovementState.Grounded)
+        else if (currentMoveState == PlayerMovementState.TrickStance)
         {
-            AdjustRotationToSlope();
+            DuringTrickStance();
+        }
+        if (currentMoveState != PlayerMovementState.TrickStance && currentPlayerTrick != null)
+        {
+            currentPlayerTrick.EndTrick();
+            currentPlayerTrick = null;
         }
     }
 
@@ -174,7 +193,7 @@ public class PlayerMovement : MonoBehaviour
 
         // move player such that skateboard is exactly on ground
         // (only change height here. horizontal position is handled in ScrollObject) 
-        transform.position = new Vector3(transform.position.x, midPoint.y - skateboard.localPosition.y, transform.position.z);
+        transform.position = new Vector3(transform.position.x, midPoint.y - skateboardCenter.localPosition.y, transform.position.z);
     }
 
     void DuringInAir()
@@ -200,13 +219,44 @@ public class PlayerMovement : MonoBehaviour
         transform.position += Vector3.up * (velocity.y * Time.deltaTime); // again, horizontal position is handled in Scrollobject
     }
 
+    void DuringTrickStance()
+    {
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            ChangeTrickType(typeof(UpTrick));
+        }
+        else if (Input.GetKeyUp(KeyCode.W))
+        {
+            ChangeTrickType(null);
+        }
+        if (currentPlayerTrick != null)
+        {
+            currentPlayerTrick.DuringTrick();
+        }
+    }
+
+    void ChangeTrickType(Type trickType)
+    {
+        if (currentPlayerTrick != null)
+        {
+            print("End Trick");
+            currentPlayerTrick.EndTrick();
+            currentPlayerTrick = null;
+        }
+        if (trickType != null)
+        {
+            currentPlayerTrick = availableTricks[trickType];
+            currentPlayerTrick.StartTrick();
+        }
+    }
+
     /// <summary>
     /// Casts a vertical line from the player (plus the given offset) and returns the highest hit.
     /// if no hit is found, `hit` will be false, and `point` Should Not be Read!
     /// </summary>
     (bool hit, Vector2 point) GroundCast(float xOffset)
     {
-        Vector3 origin = skateboard.position + new Vector3(xOffset, 10);
+        Vector3 origin = skateboardCenter.position + new Vector3(xOffset, 10);
         RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.down, 20, currentSkateableLayer);
         if (hit.collider is null)
         {
@@ -220,7 +270,7 @@ public class PlayerMovement : MonoBehaviour
 
     bool LandingCheck()
     {
-        return Physics2D.CircleCast(skateboard.position, .1f, Vector2.up, 0.5f, currentSkateableLayer);
+        return Physics2D.CircleCast(skateboardCenter.position, .1f, Vector2.up, 0.5f, currentSkateableLayer);
     }
 
     void ExitGroundedState()
@@ -259,7 +309,7 @@ public class PlayerMovement : MonoBehaviour
 
     void AttemptStartGrind()
     {
-        if (Physics2D.CircleCast(skateboard.position, 1f, Vector2.down, 0f, grindLayer))
+        if (Physics2D.CircleCast(skateboardCenter.position, 1f, Vector2.down, 0f, grindLayer))
         {
             currentSkateableLayer = grindLayer;
             EnterGroundedState();
@@ -276,5 +326,5 @@ public class PlayerMovement : MonoBehaviour
 
 enum PlayerMovementState
 {
-    Grounded, InAir
+    Grounded, InAir, TrickStance
 }
