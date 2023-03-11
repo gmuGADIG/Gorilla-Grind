@@ -219,13 +219,16 @@ public class PlayerMovement : MonoBehaviour
         transform.position += Vector3.up * (velocity.y * Time.deltaTime); // again, horizontal position is handled in Scrollobject
     }
 
+    /// <summary>
+    /// Executed while the player is in trick stance. Trick stance means the player is performing a trick or is ready to start one.
+    /// </summary>
     void DuringTrickStance()
     {
         if (Input.GetKeyDown(KeyCode.W))
         {
             ChangeTrickType(typeof(UpTrick));
         }
-        else if (Input.GetKeyUp(KeyCode.W))
+        if (Input.GetKeyUp(KeyCode.W))
         {
             ChangeTrickType(null);
         }
@@ -235,11 +238,14 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// switches the player's current trick to a new trick.
+    /// </summary>
+    /// <param name="trickType">The class type of the new trick.</param>
     void ChangeTrickType(Type trickType)
     {
         if (currentPlayerTrick != null)
         {
-            print("End Trick");
             currentPlayerTrick.EndTrick();
             currentPlayerTrick = null;
         }
