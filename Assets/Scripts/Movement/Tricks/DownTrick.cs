@@ -4,29 +4,30 @@ using UnityEngine;
 
 public class DownTrick : Trick
 {
-    SpriteRenderer spriteRenderer;
-    Sprite gottemSprite;
-    Sprite playerSprite;
+    Transform skateboard;
+    Transform gorilla;
+    float boardRotationSpeed = 300f;
+    Vector3 startingPosition;
 
-    public DownTrick(SpriteRenderer spriteRenderer, Sprite gottemSprite)
+    public DownTrick(Transform skateboard, Transform player)
     {
-        this.spriteRenderer = spriteRenderer;
-        this.gottemSprite = gottemSprite;
+        this.skateboard = skateboard;
+        this.gorilla = player;
     }
 
     public override void DuringTrick()
     {
-
+        skateboard.RotateAround(gorilla.position, Vector3.forward, boardRotationSpeed * Time.deltaTime);
     }
 
     public override void EndTrick()
     {
-        spriteRenderer.sprite = playerSprite;
+        skateboard.localRotation = Quaternion.identity;
+        skateboard.localPosition = startingPosition;
     }
 
     public override void StartTrick()
     {
-        playerSprite = spriteRenderer.sprite;
-        spriteRenderer.sprite = gottemSprite;
+        startingPosition = skateboard.localPosition;
     }
 }

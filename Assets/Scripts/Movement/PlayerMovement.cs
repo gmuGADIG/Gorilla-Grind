@@ -11,8 +11,8 @@ public class PlayerMovement : MonoBehaviour
 {
     [Tooltip("The center-point of the skateboard")]
     [SerializeField] Transform skateboardCenter;
-    [SerializeField] Transform skateboardSprite;
-    [SerializeField] Sprite gottem;
+    [SerializeField] Transform skateboardTransform;
+    [SerializeField] Transform gorillaTransform;
 
     #region GroundCheckVariables
     [Header("Ground Check Variables")]
@@ -83,10 +83,10 @@ public class PlayerMovement : MonoBehaviour
         OnDeath.AddListener(() => {
             GetComponentInChildren<SpriteRenderer>().color = Color.red;
         });
-        availableTricks.Add(typeof(UpTrick), new UpTrick(skateboardSprite));
-        availableTricks.Add(typeof(LeftTrick), new LeftTrick(skateboardSprite));
-        availableTricks.Add(typeof(RightTrick), new RightTrick(skateboardSprite));
-        availableTricks.Add(typeof(DownTrick), new DownTrick(GetComponentInChildren<SpriteRenderer>(), gottem));
+        availableTricks.Add(typeof(UpTrick), new UpTrick(skateboardTransform));
+        availableTricks.Add(typeof(LeftTrick), new LeftTrick(skateboardTransform));
+        availableTricks.Add(typeof(RightTrick), new RightTrick(skateboardTransform));
+        availableTricks.Add(typeof(DownTrick), new DownTrick(skateboardTransform, gorillaTransform));
     }
     
     // Movement uses physics so it must be in FixedUpdate
