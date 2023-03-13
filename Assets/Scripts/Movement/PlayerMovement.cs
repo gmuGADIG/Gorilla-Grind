@@ -37,10 +37,6 @@ public class PlayerMovement : MonoBehaviour
 
     #region GroundedMovementVariables
     [Header("Grounded Movement Variables")]
-    [Tooltip("Max velocity change when jumping. Measured in meters / sec.")]
-    [SerializeField] float maxJumpVelocity = 9;
-    [Tooltip("How quickly jump velocity charges when spacebar is held.")]
-    [SerializeField] float jumpChargeSpeed = 1f;
     [Tooltip("How quickly the player speeds up and slows down (meters / sec^2).")]
     [SerializeField] float movementAcceleration = 3;
 
@@ -49,6 +45,18 @@ public class PlayerMovement : MonoBehaviour
 
     [Tooltip("The minimum speed the player can move. Set to 0 to allow the player to stand still.")]
     [SerializeField] float minMoveSpeed = 0.5f;
+    #endregion
+
+    #region JumpVariables
+    [Header("Jump Variables")]
+    [Tooltip("Max velocity change when jumping. Measured in meters / sec.")]
+    [SerializeField] float maxJumpVelocity = 9;
+    [Tooltip("Min velocity change when jumping. Measured in meters / sec.")]
+    [SerializeField] float minJumpVelocity = 3;
+    [Tooltip("How quickly jump velocity charges when spacebar is held.")]
+    [SerializeField] float jumpChargeSpeed = 1f;
+    [Tooltip("How long after leaving the ground the player can jump for (seconds).")]
+    [SerializeField] float coyoteTime = 3f;
     #endregion
 
     #region MidAirMovementVariables
@@ -77,6 +85,8 @@ public class PlayerMovement : MonoBehaviour
     float currentGravity;
     PlayerMovementState currentMoveState = PlayerMovementState.Grounded;
     float groundCheckCooldownAfterJump = .2f;
+    float currentCoyoteTime;
+    bool jumping; // true = player is in the air due to a jump. false = in air from falling
 
     // the current trick the player is performing.
     Trick currentPlayerTrick = null;
@@ -93,6 +103,7 @@ public class PlayerMovement : MonoBehaviour
     {
         currentSkateableLayer = groundLayer;
         currentGravity = baseGravity;
+        currentCoyoteTime = coyoteTime;
         // sample death listener
         OnDeath.AddListener(() => {
             GetComponentInChildren<SpriteRenderer>().color = Color.red;
@@ -128,6 +139,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (currentMoveState == PlayerMovementState.Grounded)
         {
+            // set jump velocity to minimum on first frame spacebar is down.
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                currentJumpVelocity = minJumpVelocity;
+            }
             // charge jump velocity if spacebar is down
             if (Input.GetKey(KeyCode.Space))
             {
@@ -157,6 +173,11 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.S))
             {
                 currentGravity = baseGravity;
+            }
+            // jump with coyote time
+            if (Input.GetKeyUp(KeyCode.Space) && coyoteTime > 0 && !jumping)
+            {
+                Jump();
             }
         }
         else if (currentMoveState == PlayerMovementState.TrickStance)
@@ -199,6 +220,7 @@ public class PlayerMovement : MonoBehaviour
         velocity += Vector2.up * currentJumpVelocity;
         ExitGroundedState();
         currentJumpVelocity = 0f;
+        jumping = true;
     }
 
     void DuringGrounded()
@@ -267,6 +289,11 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             transform.Rotate(new Vector3(0, 0, 1), -rotationSpeed * Time.deltaTime);
+        }
+
+        if (currentCoyoteTime > 0)
+        {
+            currentCoyoteTime -= Time.deltaTime;
         }
 
         // add gravity and adjust position
@@ -360,6 +387,8 @@ public class PlayerMovement : MonoBehaviour
         currentMoveState = PlayerMovementState.Grounded;
         currentGravity = baseGravity;
         currentJumpVelocity = 0;
+        currentCoyoteTime = coyoteTime;
+        jumping = false;
         Debug.Log("Entering grounded state");
         
         // Get ground's tangent
