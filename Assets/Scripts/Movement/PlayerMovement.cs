@@ -38,8 +38,9 @@ public class PlayerMovement : MonoBehaviour
     #region GroundedMovementVariables
     [Header("Grounded Movement Variables")]
     [Tooltip("Velocity change when jumping. Measured in meters / sec.")]
-    [SerializeField] float jumpVelocity = 9;
-
+    [SerializeField] float maxJumpVelocity = 9;
+    [Tooltip("How quickly jump velocity charges when spacebar is held.")]
+    [SerializeField] float jumpChargeSpeed = 1f;
     [Tooltip("How quickly the player speeds up and slows down (meters / sec^2).")]
     [SerializeField] float movementAcceleration = 3;
 
@@ -52,17 +53,19 @@ public class PlayerMovement : MonoBehaviour
 
     #region MidAirMovementVariables
     [Header("Mid-Air Movement Variables")]
+    [Tooltip("The base/default gravity value.")]
     [SerializeField] float baseGravity = 9.8f;
-    
     [Tooltip("Mid-air rotation speed in degrees per second.")]
     [SerializeField] float rotationSpeed = 90;
-    [Tooltip("How much the player's gravity should change when performing tricks. g_trick = g_default + trickGravityOffset.")]
+    [Tooltip("Player's gravity change when performing tricks. g_trick = g_default + trickGravityOffset.")]
     [SerializeField] float trickGravityOffset = -10f;
+    [Tooltip("Player's gravity change when fast falling (holding S in midair).")]
     [SerializeField] float fastFallGravityIncrease = 10f;
     #endregion
 
     LayerMask currentSkateableLayer;
     Vector2 velocity;
+    float currentJumpVelocity;
     float currentGravity;
     PlayerMovementState currentMoveState = PlayerMovementState.Grounded;
 
@@ -78,6 +81,8 @@ public class PlayerMovement : MonoBehaviour
     /// (Internally, velocity should be used. Each frame this is set based on velocity)
     /// </summary>
     public static float CurrentHorizontalSpeed { get; private set; }
+    public float CurrentJumpVelocity => currentJumpVelocity;
+    public float MaxJumpVelocity => maxJumpVelocity;
 
     // death
     public UnityEvent OnDeath;
@@ -123,7 +128,12 @@ public class PlayerMovement : MonoBehaviour
         // on space, jump (leave grounded state and apply upward force)
         if (currentMoveState == PlayerMovementState.Grounded)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Space))
+            {
+                currentJumpVelocity += (maxJumpVelocity * jumpChargeSpeed) * Time.deltaTime;
+                currentJumpVelocity = Mathf.Clamp(currentJumpVelocity, 0, maxJumpVelocity);
+            }
+            if (Input.GetKeyUp(KeyCode.Space))
             {
                 Jump();
             }
@@ -184,8 +194,9 @@ public class PlayerMovement : MonoBehaviour
         {
             velocity.y = 0; // if moving down, reset speed or jumps will feel weird. might change how this is handled in the future
         }
-        velocity += Vector2.up * jumpVelocity;
+        velocity += Vector2.up * currentJumpVelocity;
         ExitGroundedState();
+        currentJumpVelocity = 0f;
     }
 
     void DuringGrounded()
