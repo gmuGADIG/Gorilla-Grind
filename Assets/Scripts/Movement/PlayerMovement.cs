@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
 
     #region GroundedMovementVariables
     [Header("Grounded Movement Variables")]
-    [Tooltip("Velocity change when jumping. Measured in meters / sec.")]
+    [Tooltip("Max velocity change when jumping. Measured in meters / sec.")]
     [SerializeField] float maxJumpVelocity = 9;
     [Tooltip("How quickly jump velocity charges when spacebar is held.")]
     [SerializeField] float jumpChargeSpeed = 1f;
@@ -63,19 +63,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float fastFallGravityIncrease = 10f;
     #endregion
 
-    LayerMask currentSkateableLayer;
-    Vector2 velocity;
-    float currentJumpVelocity;
-    float currentGravity;
-    PlayerMovementState currentMoveState = PlayerMovementState.Grounded;
-
-    // the current trick the player is performing.
-    Trick currentPlayerTrick = null;
-
-    // list of tricks available to the player. Stored/accessed using the Trick's class type.
-    Dictionary<Type, Trick> availableTricks = new Dictionary<Type, Trick>();
-    float lastJumpTime = 0f;
-    
     /// <summary>
     /// The horizontal component of the player's current velocity.
     /// (Internally, velocity should be used. Each frame this is set based on velocity)
@@ -84,6 +71,20 @@ public class PlayerMovement : MonoBehaviour
     public float CurrentJumpVelocity => currentJumpVelocity;
     public float MaxJumpVelocity => maxJumpVelocity;
 
+    LayerMask currentSkateableLayer;
+    Vector2 velocity;
+    float currentJumpVelocity;
+    float currentGravity;
+    PlayerMovementState currentMoveState = PlayerMovementState.Grounded;
+    float groundCheckCooldownAfterJump = .2f;
+
+    // the current trick the player is performing.
+    Trick currentPlayerTrick = null;
+
+    // list of tricks available to the player. Stored/accessed using the Trick's class type.
+    Dictionary<Type, Trick> availableTricks = new Dictionary<Type, Trick>();
+    float lastJumpTime = 0f;
+    
     // death
     public UnityEvent OnDeath;
     public bool IsDead { get; private set; } = false;
@@ -125,14 +126,15 @@ public class PlayerMovement : MonoBehaviour
     // Events that trigger on key down must be handled in Update
     void Update()
     {
-        // on space, jump (leave grounded state and apply upward force)
         if (currentMoveState == PlayerMovementState.Grounded)
         {
+            // charge jump velocity if spacebar is down
             if (Input.GetKey(KeyCode.Space))
             {
                 currentJumpVelocity += (maxJumpVelocity * jumpChargeSpeed) * Time.deltaTime;
                 currentJumpVelocity = Mathf.Clamp(currentJumpVelocity, 0, maxJumpVelocity);
             }
+            // jump when spacebar is released
             if (Input.GetKeyUp(KeyCode.Space))
             {
                 Jump();
@@ -253,7 +255,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // check for landing. TODO: check for landing better. what if player jumps and immediately hits the ground again?
         float timeSinceLastJump = Time.time - lastJumpTime;
-        if (timeSinceLastJump > 0.5f && LandingCheck())
+        if (timeSinceLastJump > groundCheckCooldownAfterJump && LandingCheck())
             EnterGroundedState();
 
         // rotate based on inputs
@@ -357,6 +359,7 @@ public class PlayerMovement : MonoBehaviour
     {
         currentMoveState = PlayerMovementState.Grounded;
         currentGravity = baseGravity;
+        currentJumpVelocity = 0;
         Debug.Log("Entering grounded state");
         
         // Get ground's tangent
