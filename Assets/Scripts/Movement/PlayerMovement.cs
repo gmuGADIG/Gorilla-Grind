@@ -67,6 +67,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float rotationSpeed = 90;
     [Tooltip("Player's gravity change when performing tricks. g_trick = g_default + trickGravityOffset.")]
     [SerializeField] float trickGravityOffset = -10f;
+    [Tooltip("Time speed multiplier while the player is in trick mode")]
+    [SerializeField] float trickTimeSlowModifier = .75f;
     [Tooltip("Player's gravity change when fast falling (holding S in midair).")]
     [SerializeField] float fastFallGravityIncrease = 10f;
     #endregion
@@ -198,6 +200,7 @@ public class PlayerMovement : MonoBehaviour
     {
         currentGravity = baseGravity + trickGravityOffset;
         currentMoveState = PlayerMovementState.TrickStance;
+        Time.timeScale = trickTimeSlowModifier;
     }
 
     void ExitTrickState()
@@ -208,6 +211,7 @@ public class PlayerMovement : MonoBehaviour
             currentPlayerTrick.EndTrick();
             currentPlayerTrick = null;
         }
+        Time.timeScale = 1;
         currentMoveState = PlayerMovementState.InAir;
     }
 
@@ -392,8 +396,8 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Entering grounded state");
         
         // Get ground's tangent
-        (bool midHit, Vector2 midPoint) = GroundCast(midPointOffset);
-        (bool slopeCheckHit, Vector2 slopeCheckPoint)  = GroundCast(slopeCheckXOffset);
+        (bool _, Vector2 midPoint) = GroundCast(midPointOffset);
+        (bool _, Vector2 slopeCheckPoint)  = GroundCast(slopeCheckXOffset);
         Vector2 groundTangent = (slopeCheckPoint - midPoint).normalized;
         float groundAngle = Vector2.SignedAngle(Vector2.right, groundTangent);
         
