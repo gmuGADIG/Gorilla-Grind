@@ -9,6 +9,8 @@ using UnityEngine.Events;
 /// </summary>
 public class PlayerMovement : MonoBehaviour
 {
+    [Tooltip("Debug setting. If set to false, the player will still be controllable \"after death\". Should be on for final game.")]
+    [SerializeField] bool isMortal = true;
     [Tooltip("The center-point of the skateboard")]
     [SerializeField] Transform skateboardCenter;
     [SerializeField] Transform skateboardTransform;
@@ -141,6 +143,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (currentMoveState == PlayerMovementState.Grounded)
         {
+            AdjustRotationToSlope();
             // set jump velocity to minimum on first frame spacebar is down.
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -157,7 +160,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 Jump();
             }
-            AdjustRotationToSlope();
         }
         else if (currentMoveState == PlayerMovementState.InAir)
         {
@@ -167,11 +169,12 @@ public class PlayerMovement : MonoBehaviour
                 EnterTrickState();
             }
             
-            // fast fall
+            // start fast fall
             if (Input.GetKeyDown(KeyCode.S))
             {
                 currentGravity = baseGravity + fastFallGravityIncrease;
             }
+            // end fast fall
             if (Input.GetKeyUp(KeyCode.S))
             {
                 currentGravity = baseGravity;
@@ -180,6 +183,17 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.Space) && coyoteTime > 0 && !jumping)
             {
                 Jump();
+            }
+
+            // rotate based on inputs
+            if (Input.GetKey(KeyCode.A))
+            {
+                transform.Rotate(new Vector3(0, 0, 1), rotationSpeed * Time.deltaTime);
+            }
+
+            if (Input.GetKey(KeyCode.D))
+            {
+                transform.Rotate(new Vector3(0, 0, 1), -rotationSpeed * Time.deltaTime);
             }
         }
         else if (currentMoveState == PlayerMovementState.TrickStance)
@@ -287,17 +301,6 @@ public class PlayerMovement : MonoBehaviour
         float timeSinceLastJump = Time.time - lastJumpTime;
         if (timeSinceLastJump > groundCheckCooldownAfterJump && LandingCheck())
             EnterGroundedState();
-
-        // rotate based on inputs
-        if (Input.GetKey(KeyCode.A))
-        {
-            transform.Rotate(new Vector3(0, 0, 1), rotationSpeed * Time.deltaTime);
-        }
-
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.Rotate(new Vector3(0, 0, 1), -rotationSpeed * Time.deltaTime);
-        }
 
         if (currentCoyoteTime > 0)
         {

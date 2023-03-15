@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 
+/// <summary>
+/// Script for runtime control of post-processing effects.
+/// </summary>
 public class PostProcessingController : MonoBehaviour
 {
     public static PostProcessingController Instance;
@@ -21,11 +24,15 @@ public class PostProcessingController : MonoBehaviour
         {
             Destroy(this);
         }
-        postProcessVolume = FindObjectOfType<PostProcessVolume>();
+        postProcessVolume = GetComponent<PostProcessVolume>();
         postProcessVolume.profile.TryGetSettings(out chromaticAbberation);
         postProcessVolume.profile.TryGetSettings(out colorGrading);
     }
 
+    /// <summary>
+    /// Turn on/off the preset chromatic aberration effect.
+    /// </summary>
+    /// <param name="on"></param>
     public static void ChromaticAberration(bool on)
     {
         if (on)
@@ -38,6 +45,10 @@ public class PostProcessingController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Turn on/off the preset color grading effect.
+    /// </summary>
+    /// <param name="on"></param>
     public static void ColorGrading(bool on)
     {
         if (on)
