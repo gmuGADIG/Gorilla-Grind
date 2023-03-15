@@ -201,6 +201,8 @@ public class PlayerMovement : MonoBehaviour
         currentGravity = baseGravity + trickGravityOffset;
         currentMoveState = PlayerMovementState.TrickStance;
         Time.timeScale = trickTimeSlowModifier;
+        PostProcessingController.ChromaticAberration(true);
+        PostProcessingController.ColorGrading(true);
     }
 
     void ExitTrickState()
@@ -213,6 +215,8 @@ public class PlayerMovement : MonoBehaviour
         }
         Time.timeScale = 1;
         currentMoveState = PlayerMovementState.InAir;
+        PostProcessingController.ChromaticAberration(false);
+        PostProcessingController.ColorGrading(false);
     }
 
     void Jump()
