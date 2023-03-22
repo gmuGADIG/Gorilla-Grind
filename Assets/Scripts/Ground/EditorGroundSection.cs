@@ -6,8 +6,7 @@ using UnityEditor.AnimatedValues;
 [CustomEditor(typeof(GroundSection))]
 public class EditorGroundSection : Editor
 {
-    //I referenced https://github.com/Unity-Technologies/UnityCsReference/blob/master/Modules/Physics2DEditor/Managed/Colliders/Collider2DEditorBase.cs
-    private AnimBool m_ShowCompositeRedundants = new AnimBool();
+
     private SerializedProperty groundEdges;
 
     private void OnEnable()
@@ -19,16 +18,19 @@ public class EditorGroundSection : Editor
     {
         base.OnInspectorGUI();
         serializedObject.Update();
+        if (GUILayout.Button("Connect Edges"))
+        {
+            ((GroundSection)serializedObject.targetObject).VerifyConnections();
+        }
+        GUILayout.Space(15);
+        GUILayout.Label("The order here is set by the order in the Hierarchy");
         EditorGUI.BeginDisabledGroup(true);
 
         EditorGUILayout.PropertyField(groundEdges);
 
         EditorGUI.EndDisabledGroup();
 
-        if(GUILayout.Button("Connect Edges"))
-        {
-            ((GroundSection)serializedObject.targetObject).VerifyConnections();
-        }
+        
         serializedObject.ApplyModifiedProperties();
     }
 }
