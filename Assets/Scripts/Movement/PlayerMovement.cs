@@ -1,166 +1,446 @@
-using System.Collections;
+using System;
+using Unity.VisualScripting;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>
+/// Script for handling player movement, including left/right inputs, jump inputs, gravity, projectile motion, and collision
+/// </summary>
 public class PlayerMovement : MonoBehaviour
 {
+    [Tooltip("Debug setting. If set to false, the player will still be controllable \"after death\". Should be on for final game.")]
+    [SerializeField] bool isMortal = true;
+    [Tooltip("The center-point of the skateboard")]
+    [SerializeField] Transform skateboardCenter;
+    [SerializeField] Transform skateboardTransform;
+    [SerializeField] Transform gorillaTransform;
+
+    #region GroundCheckVariables
     [Header("Ground Check Variables")]
-    [Tooltip("How far horizontally ground checks will be performed. Should be set to a width equal to the bottom of the character.")]
-    [SerializeField] float groundCheckRadius = 1;
-    [Tooltip("How far vertically the ground check will be performed. Too large values allow mid-air jumping, too small values prevent jumping.")]
-    [SerializeField] float groundCheckDistance = 0;
+    [Tooltip("LayerMask for ground objects (not including grindable objects).")]
     [SerializeField] LayerMask groundLayer;
-    [Tooltip("How long the player will be able to jump after leaving the ground")]
-    [SerializeField] float coyoteTimeSeconds = 0.5f;
-    [Tooltip("How long jump input will be blocked for after performing a jump. Should be >= coyoteTimeSeconds")]
-    [SerializeField] float jumpResetTimeSeconds = 1f;
-    private float coyoteTimer;
-    private float jumpResetTimer;
+    
+    [Tooltip("LayerMask for all grindable objects. Player will fall through these objects if not actively grinding.")]
+    [SerializeField] LayerMask grindLayer;
 
-    /// <summary>
-    /// Player's current speed. Read by scroll objects to create illusion of movement.
-    /// </summary>
-    public static float CurrentSpeed { get; private set; }
-    public static Vector3 CurrentDirection; 
-    public bool IsDead { get; private set; } = false;
+    [Tooltip("How far ahead of the skateboard to look when seeing if the ground has ended")]
+    [SerializeField] float groundCheckXOffset;
 
+    [Tooltip("How far ahead of the skateboard to look when calculating the ground's tangent")]
+    [SerializeField] float slopeCheckXOffset;
 
-    [Header("Player Movement Variables")]
-    [SerializeField] float jumpForce = 400;
-    [Tooltip("Controls how much the player's jump height is reduced when space bar is lifted.")]
-    [Range(0f, 1f)] [SerializeField] float jumpCutMultiplier = .5f;
-    [Tooltip("How quickly the player speeds up and slows down.")]
-    [SerializeField] float movementAcceleration = 1;
-    [Tooltip("The player's maximum move speed.")]
-    [SerializeField] float defaultMoveSpeed = 1;
-    [Tooltip("The speed the player has when they spawn.")]
-    [SerializeField] float maxMoveSpeed = 5;
-    [Tooltip("The player's minimum move speed.")]
+    [Tooltip("Midpoint of the skateboard, used for calculating ground tangent.")]
+    [SerializeField] float midPointOffset = 0;
+
+    [Tooltip("If the player lands at an angle above this threshold, they will die.")]
+    [SerializeField] float deathLandingAngleThreshold = 30;
+    #endregion
+
+    #region GroundedMovementVariables
+    [Header("Grounded Movement Variables")]
+    [Tooltip("How quickly the player speeds up and slows down (meters / sec^2).")]
+    [SerializeField] float movementAcceleration = 3;
+
+    [Tooltip("The fastest speed the player can reach with basic ground movement. Does not account for movement from slopes/gravity.")]
+    [SerializeField] float maxMoveSpeed = 20;
+
+    [Tooltip("The minimum speed the player can move. Set to 0 to allow the player to stand still.")]
     [SerializeField] float minMoveSpeed = 0.5f;
+    #endregion
+
+    #region JumpVariables
+    [Header("Jump Variables")]
+    [Tooltip("Max velocity change when jumping. Measured in meters / sec.")]
+    [SerializeField] float maxJumpVelocity = 9;
+    [Tooltip("Min velocity change when jumping. Measured in meters / sec.")]
+    [SerializeField] float minJumpVelocity = 3;
+    [Tooltip("How quickly jump velocity charges when spacebar is held.")]
+    [SerializeField] float jumpChargeSpeed = 1f;
+    [Tooltip("How long after leaving the ground the player can jump for (seconds).")]
+    [SerializeField] float coyoteTime = 3f;
+    #endregion
+
+    #region MidAirMovementVariables
+    [Header("Mid-Air Movement Variables")]
+    [Tooltip("The base/default gravity value.")]
+    [SerializeField] float baseGravity = 9.8f;
     [Tooltip("Mid-air rotation speed in degrees per second.")]
     [SerializeField] float rotationSpeed = 90;
-    [Tooltip("How quickly the player will adjust to the slope of the ground.")]
-    [SerializeField] float groundStickiness = 7f;
+    [Tooltip("Player's gravity change when performing tricks. g_trick = g_default + trickGravityOffset.")]
+    [SerializeField] float trickGravityOffset = -10f;
+    [Tooltip("Time speed multiplier while the player is in trick mode")]
+    [SerializeField] float trickTimeSlowModifier = .75f;
+    [Tooltip("Player's gravity change when fast falling (holding S in midair).")]
+    [SerializeField] float fastFallGravityIncrease = 10f;
+    #endregion
 
+    /// <summary>
+    /// The horizontal component of the player's current velocity.
+    /// (Internally, velocity should be used. Each frame this is set based on velocity)
+    /// </summary>
+    public static float CurrentHorizontalSpeed { get; private set; }
+    public float CurrentJumpVelocity => currentJumpVelocity;
+    public float MaxJumpVelocity => maxJumpVelocity;
+
+    LayerMask currentSkateableLayer;
+    Vector2 velocity;
+    float currentJumpVelocity;
+    float currentGravity;
+    PlayerMovementState currentMoveState = PlayerMovementState.Grounded;
+    float groundCheckCooldownAfterJump = .2f;
+    float currentCoyoteTime;
+    bool jumping; // true = player is in the air due to a jump. false = in air from falling
+
+    // the current trick the player is performing.
+    Trick currentPlayerTrick = null;
+
+    // list of tricks available to the player. Stored/accessed using the Trick's class type.
+    Dictionary<Type, Trick> availableTricks = new Dictionary<Type, Trick>();
+    float lastJumpTime = 0f;
+    
     // death
     public UnityEvent OnDeath;
-    [SerializeField] Collider2D headCollider;
-
-    private Rigidbody2D rigidBody;
-    private bool jumpBlocked = false;
-
-    void Start() {
-        CurrentSpeed = defaultMoveSpeed;
-        rigidBody = GetComponent<Rigidbody2D>();
-        coyoteTimer = coyoteTimeSeconds; // initalize coyoteTimer
-
+    public bool IsDead { get; private set; } = false;
+    
+    void Start()
+    {
+        currentSkateableLayer = groundLayer;
+        currentGravity = baseGravity;
+        currentCoyoteTime = coyoteTime;
         // sample death listener
         OnDeath.AddListener(() => {
             GetComponentInChildren<SpriteRenderer>().color = Color.red;
         });
+        availableTricks.Add(typeof(UpTrick), new UpTrick(skateboardTransform));
+        availableTricks.Add(typeof(LeftTrick), new LeftTrick(skateboardTransform));
+        availableTricks.Add(typeof(RightTrick), new RightTrick(skateboardTransform));
+        availableTricks.Add(typeof(DownTrick), new DownTrick(skateboardTransform, gorillaTransform));
+    }
+    
+    // Movement uses physics so it must be in FixedUpdate
+    void FixedUpdate()
+    { 
+        if (currentMoveState == PlayerMovementState.Grounded)
+        {
+            DuringGrounded();
+        }
+        else if (currentMoveState == PlayerMovementState.InAir)
+        {
+            DuringInAir();
+        }
+        else if (currentMoveState == PlayerMovementState.TrickStance)
+        {
+            DuringInAir();
+            DuringTrickStance();
+        }
+        
+        CurrentHorizontalSpeed = velocity.x;
     }
 
+    // Events that trigger on key down must be handled in Update
     void Update()
     {
-        if (IsGrounded()) {
-            // move speed adjust
-            if (Input.GetKey(KeyCode.A)) {
-                CurrentSpeed -= movementAcceleration * Time.deltaTime;
-            }
-            if (Input.GetKey(KeyCode.D)) {
-                CurrentSpeed += movementAcceleration * Time.deltaTime;
-            }
-            // calculate acceleration due to slope
-            float angle = transform.eulerAngles.z;
-            angle = angle > 90 ? angle - 360 : angle;
-            float slopeAcceleration = Mathf.Sin(angle * Mathf.Deg2Rad) * -9.8f * Time.deltaTime;
-            CurrentSpeed += slopeAcceleration;
-            CurrentSpeed = Mathf.Clamp(CurrentSpeed, minMoveSpeed, maxMoveSpeed);
-
-            // reset coyoteTimer
-            coyoteTimer = coyoteTimeSeconds;
-            rigidBody.velocity *= Vector3.up;
-            CurrentDirection = transform.right;
-            RotateWithRamp();
-        } else {
-            // rotation in midair
-            if (Input.GetKey(KeyCode.A)) {
-                transform.Rotate(new Vector3(0, 0, rotationSpeed * Time.deltaTime));
-                rigidBody.angularVelocity = 0f;
-            }
-            if (Input.GetKey(KeyCode.D)) {
-                transform.Rotate(new Vector3(0, 0, -rotationSpeed * Time.deltaTime));
-                rigidBody.angularVelocity = 0f;
-            }
-            // decrement coyoteTimer
-            coyoteTimer -= Time.deltaTime;
-
-        }
-
-        if (jumpBlocked)
+        if (currentMoveState == PlayerMovementState.Grounded)
         {
-            jumpResetTimer -= Time.deltaTime;
-            if (jumpResetTimer <= 0)
+            AdjustRotationToSlope();
+            // set jump velocity to minimum on first frame spacebar is down.
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                jumpBlocked = false;
+                currentJumpVelocity = minJumpVelocity;
+            }
+            // charge jump velocity if spacebar is down
+            if (Input.GetKey(KeyCode.Space))
+            {
+                currentJumpVelocity += (maxJumpVelocity * jumpChargeSpeed) * Time.deltaTime;
+                currentJumpVelocity = Mathf.Clamp(currentJumpVelocity, 0, maxJumpVelocity);
+            }
+            // jump when spacebar is released
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                Jump();
+            }
+        }
+        else if (currentMoveState == PlayerMovementState.InAir)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                //AttemptStartGrind();
+                EnterTrickState();
+            }
+            
+            // start fast fall
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                currentGravity = baseGravity + fastFallGravityIncrease;
+            }
+            // end fast fall
+            if (Input.GetKeyUp(KeyCode.S))
+            {
+                currentGravity = baseGravity;
+            }
+            // jump with coyote time
+            if (Input.GetKeyUp(KeyCode.Space) && coyoteTime > 0 && !jumping)
+            {
+                Jump();
+            }
+
+            // rotate based on inputs
+            if (Input.GetKey(KeyCode.A))
+            {
+                transform.Rotate(new Vector3(0, 0, 1), rotationSpeed * Time.deltaTime);
+            }
+
+            if (Input.GetKey(KeyCode.D))
+            {
+                transform.Rotate(new Vector3(0, 0, 1), -rotationSpeed * Time.deltaTime);
+            }
+        }
+        else if (currentMoveState == PlayerMovementState.TrickStance)
+        {
+            DuringTrickStance();
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                ExitTrickState();
+            }
+        }
+        if (currentMoveState != PlayerMovementState.TrickStance && currentPlayerTrick != null)
+        {
+            ExitTrickState();
+        }
+    }
+
+    void EnterTrickState()
+    {
+        currentGravity = baseGravity + trickGravityOffset;
+        currentMoveState = PlayerMovementState.TrickStance;
+        Time.timeScale = trickTimeSlowModifier;
+        PostProcessingController.ChromaticAberration(true);
+        PostProcessingController.ColorGrading(true);
+    }
+
+    void ExitTrickState()
+    {
+        currentGravity = baseGravity;
+        if (currentPlayerTrick != null)
+        {
+            currentPlayerTrick.EndTrick();
+            currentPlayerTrick = null;
+        }
+        Time.timeScale = 1;
+        currentMoveState = PlayerMovementState.InAir;
+        PostProcessingController.ChromaticAberration(false);
+        PostProcessingController.ColorGrading(false);
+    }
+
+    void Jump()
+    {
+        if (velocity.y < 0)
+        {
+            velocity.y = 0; // if moving down, reset speed or jumps will feel weird. might change how this is handled in the future
+        }
+        velocity += Vector2.up * currentJumpVelocity;
+        ExitGroundedState();
+        currentJumpVelocity = 0f;
+        jumping = true;
+    }
+
+    void DuringGrounded()
+    {
+        // find the ground below the board, at 3 different offsets
+        (bool midHit, Vector2 midPoint) = GroundCast(midPointOffset);
+        (bool slopeCheckHit, Vector2 slopeCheckPoint) = GroundCast(slopeCheckXOffset);
+        (bool groundCheckHit, Vector2 _) = GroundCast(groundCheckXOffset);
+
+        // if any casts fail to find the ground, exit grounded state
+        if (!midHit || !slopeCheckHit || !groundCheckHit)
+        {
+            ExitGroundedState();
+            return;
+        }
+
+        Vector2 groundTangent = (slopeCheckPoint - midPoint).normalized;
+
+        // adjust velocity based on input. accelerating this way can only go so fast, but speed is never hard capped
+        if (velocity == Vector2.zero)
+        {
+            velocity = groundTangent * minMoveSpeed; // correct for normalized zero vector still being zero
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            float newSpeed = velocity.magnitude - movementAcceleration * Time.deltaTime;
+            newSpeed = Mathf.Clamp(newSpeed, minMoveSpeed, 10000); // 10000 is an arbitrary high number
+            velocity = velocity.normalized * newSpeed;
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            float newSpeed = velocity.magnitude + movementAcceleration * Time.deltaTime;
+            newSpeed = Mathf.Clamp(newSpeed, minMoveSpeed, maxMoveSpeed);
+            if (newSpeed > velocity.magnitude)
+            {
+                // ignore if it would slow player down
+                velocity = velocity.normalized * newSpeed;
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && coyoteTimer > 0 && !jumpBlocked) {
-            Jump();
-            coyoteTimer = 0;
-        }
+        // redirect magnitude to be parallel to the ground
+        velocity = velocity.magnitude * groundTangent;
 
-        if (Input.GetKeyUp(KeyCode.Space) && !IsGrounded())
+        // apply gravity (speed up when going down a slope)
+        float gravityStrength = -groundTangent.normalized.y;
+        if (gravityStrength > 0) velocity += Vector2.down * (gravityStrength * currentGravity * Time.deltaTime);
+
+        // move player such that skateboard is exactly on ground
+        // (only change height here. horizontal position is handled in ScrollObject) 
+        transform.position = new Vector3(transform.position.x, midPoint.y - skateboardCenter.localPosition.y, transform.position.z);
+    }
+
+    void DuringInAir()
+    {
+        // check for landing. TODO: check for landing better. what if player jumps and immediately hits the ground again?
+        float timeSinceLastJump = Time.time - lastJumpTime;
+        if (timeSinceLastJump > groundCheckCooldownAfterJump && LandingCheck())
+            EnterGroundedState();
+
+        if (currentCoyoteTime > 0)
         {
-            JumpCut();
+            currentCoyoteTime -= Time.deltaTime;
         }
 
-        // set constant x position. This allows the player to go up inclines without slipping back down.
-        transform.position = new Vector3(0, transform.position.y, 0);
+        // add gravity and adjust position
+        velocity += Vector2.down * (currentGravity * Time.deltaTime);
+        transform.position += Vector3.up * (velocity.y * Time.deltaTime); // again, horizontal position is handled in Scrollobject
     }
 
-    void OnTriggerEnter2D(Collider2D collider) {
-        // death on blunt force head trauma
-        // the head collider is the only collider rn
-        //if (collider == headCollider) { // this check doesnt work
-            if (!IsDead) {
-                OnDeath.Invoke();
-                IsDead = true;
-            }
-        //}
-    }
-
-    void Jump() 
+    /// <summary>
+    /// Executed while the player is in trick stance. Trick stance means the player is performing a trick or is ready to start one.
+    /// </summary>
+    void DuringTrickStance()
     {
-        jumpBlocked = true;
-        jumpResetTimer = jumpResetTimeSeconds;
-        rigidBody.AddForce(Vector3.up * jumpForce);
-    }
-
-    void JumpCut()
-    {
-        if (rigidBody.velocity.y > 0)
+        if (Input.GetKeyDown(KeyCode.W))
         {
-            rigidBody.AddForce((1 - jumpCutMultiplier) * rigidBody.velocity.y * Vector2.down, ForceMode2D.Impulse);
+            ChangeTrickType(typeof(UpTrick));
         }
-    }
-
-    bool IsGrounded()
-    {
-        if (Physics2D.CircleCast(transform.position, groundCheckRadius, -transform.up, groundCheckDistance, groundLayer))
+        else if (Input.GetKeyDown(KeyCode.A))
         {
-            return true;
+            ChangeTrickType(typeof(LeftTrick));
         }
-        return false;
+        else if (Input.GetKeyDown(KeyCode.D))
+        {
+            ChangeTrickType(typeof(RightTrick));
+        }
+        else if (Input.GetKeyDown(KeyCode.S))
+        {
+            ChangeTrickType(typeof(DownTrick));
+        }
+        if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.S))
+        {
+            ChangeTrickType(null);
+        }
+        if (currentPlayerTrick != null)
+        {
+            currentPlayerTrick.DuringTrick();
+        }
     }
 
-    void RotateWithRamp()
+    /// <summary>
+    /// switches the player's current trick to a new trick.
+    /// </summary>
+    /// <param name="trickType">The class type of the new trick.</param>
+    void ChangeTrickType(Type trickType)
     {
-        RaycastHit2D rayHit = Physics2D.Raycast(transform.position, -transform.up, 2f, groundLayer);
-		Quaternion goalRotation = Quaternion.FromToRotation(Vector3.up, rayHit.normal);
-        transform.rotation = Quaternion.Lerp(transform.rotation, goalRotation, Time.deltaTime * groundStickiness);
+        if (currentPlayerTrick != null)
+        {
+            currentPlayerTrick.EndTrick();
+            currentPlayerTrick = null;
+            currentGravity = baseGravity;
+        }
+        if (trickType != null)
+        {
+            currentPlayerTrick = availableTricks[trickType];
+            currentPlayerTrick.StartTrick();
+        }
     }
 
+    /// <summary>
+    /// Casts a vertical line from the player (plus the given offset) and returns the highest hit.
+    /// if no hit is found, `hit` will be false, and `point` Should Not be Read!
+    /// </summary>
+    (bool hit, Vector2 point) GroundCast(float xOffset)
+    {
+        Vector3 origin = skateboardCenter.position + new Vector3(xOffset, 10);
+        RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.down, 20, currentSkateableLayer);
+        if (hit.collider is null)
+        {
+            return (false, Vector2.zero);
+        }
+        else
+        {
+            return (true, hit.point);
+        }
+    }
+
+    bool LandingCheck()
+    {
+        return Physics2D.CircleCast(skateboardCenter.position, .1f, Vector2.up, 0.5f, currentSkateableLayer);
+    }
+
+    void ExitGroundedState()
+    {
+        lastJumpTime = Time.time;
+        currentMoveState = PlayerMovementState.InAir;
+        currentSkateableLayer = groundLayer;
+        Debug.Log("Exiting grounded state");
+    }
+
+    void EnterGroundedState()
+    {
+        currentMoveState = PlayerMovementState.Grounded;
+        currentGravity = baseGravity;
+        currentJumpVelocity = 0;
+        currentCoyoteTime = coyoteTime;
+        jumping = false;
+        Debug.Log("Entering grounded state");
+        
+        // Get ground's tangent
+        (bool _, Vector2 midPoint) = GroundCast(midPointOffset);
+        (bool _, Vector2 slopeCheckPoint)  = GroundCast(slopeCheckXOffset);
+        Vector2 groundTangent = (slopeCheckPoint - midPoint).normalized;
+        float groundAngle = Vector2.SignedAngle(Vector2.right, groundTangent);
+        
+        // If tangent is too far from current rotation, the player loses
+        float deltaAngle = Mathf.Abs(Mathf.DeltaAngle(groundAngle, transform.eulerAngles.z));
+        if (deltaAngle > deathLandingAngleThreshold)
+        {
+            if (IsDead) return;
+            OnDeath.Invoke();
+            IsDead = true;
+        }
+        
+        // Calculate new speed. faster if velocity is parallel to ground. lose some speed otherwise
+        velocity = Vector2.Lerp(Vector3.Project(velocity, groundTangent), velocity, 0.5f);
+        
+        Debug.Log($"deltaAngle = {deltaAngle}");
+    }
+
+    void AttemptStartGrind()
+    {
+        if (Physics2D.CircleCast(skateboardCenter.position, 1f, Vector2.down, 0f, grindLayer))
+        {
+            currentSkateableLayer = grindLayer;
+            EnterGroundedState();
+        }
+    }
+
+    void AdjustRotationToSlope()
+    {
+        float angle = Vector2.SignedAngle(Vector2.right, velocity);
+        Quaternion targetRotation = Quaternion.Euler(new Vector3(0, 0, angle));
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 15);
+    }
+}
+
+enum PlayerMovementState
+{
+    Grounded, InAir, TrickStance
 }
