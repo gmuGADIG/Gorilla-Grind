@@ -534,7 +534,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -160, y: 150}
-  m_SizeDelta: {x: 235.2, y: 77.1915}
+  m_SizeDelta: {x: 230, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &408786780
 MonoBehaviour:
@@ -692,6 +692,7 @@ MonoBehaviour:
   distanceText: {fileID: 0}
   mission1Display: {fileID: 713392767}
   mission1Text: {fileID: 0}
+  player: {fileID: 773973415}
 --- !u!114 &472586279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -979,7 +980,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 59.399963, y: 163.6}
+  m_AnchoredPosition: {x: 60, y: 160}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &713392769
@@ -1162,6 +1163,7 @@ MonoBehaviour:
   maxMoveSpeed: 5
   minMoveSpeed: 0.5
   rotationSpeed: 90
+  groundStickiness: 7
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
