@@ -24,6 +24,7 @@ public class DialogueSystem : MonoBehaviour {
     void Start() {
         dialogueText.text = "";
         currentLineIndex = 0;
+        currentCharacterLineIndex = 0;
         LoadDialogueLines();
     }
 
@@ -32,12 +33,15 @@ public class DialogueSystem : MonoBehaviour {
         // Check if the space key is pressed
         if (Input.GetKeyDown(KeyCode.Space)) {
             // Check if the current character is not speaking
-            if (isCurrentCharacterSpeaking == false) {
+            if (isCurrentCharacterSpeaking == true) {
+                Debug.Log("The length of the current speaking guy is, " + currentDialogueLines.Length);
+                Debug.Log("Index for current speaking guy is: " + currentCharacterLineIndex);
                 // Check if there are more lines in the current character's dialogue
                 if (currentCharacterLineIndex < currentDialogueLines.Length - 1) {
                     // If there are more lines, start the text animation coroutine with the next line of dialogue
                     currentCharacterLineIndex++;
                     StopAllCoroutines(); // Stop any previous text animation coroutine
+                    Debug.Log(currentDialogueLines[currentCharacterLineIndex] + " and the index is " + currentCharacterLineIndex);
                     StartCoroutine(AnimateText(currentDialogueLines[currentCharacterLineIndex]));
                     isCurrentCharacterSpeaking = true; // Set the flag to indicate that the current character is still speaking
                 }
@@ -82,6 +86,7 @@ public class DialogueSystem : MonoBehaviour {
         // Update the UI elements for the current character
         headshotImage.sprite = currentCharacter.headshot;
         nameText.text = currentCharacter.monkeyName;
+        Debug.Log("Headshot = " + headshotImage.sprite.name + " and the name = " + nameText.text);
 
         StopAllCoroutines(); // Stop any previous text animation coroutine
         StartCoroutine(AnimateText(currentDialogueLines[currentCharacterLineIndex]));
@@ -102,6 +107,7 @@ public class DialogueSystem : MonoBehaviour {
             yield return new WaitForSeconds(textSpeed);
         }
 
+        typingSound.Stop(); // stop the typing sound and disable the audio source
         isTextAppearing = false;
 
         // Check if the current character is still speaking
@@ -113,8 +119,17 @@ public class DialogueSystem : MonoBehaviour {
         else {
             // If the character has finished speaking, set the flag to indicate that the current character is no longer speaking
             isCurrentCharacterSpeaking = false;
-            typingSound.Stop(); // stop the typing sound and disable the audio source
+
+            // Check if this is the last character's dialogue
+            if (currentDialogueIndex == dialogueLinesPrefab.currentTalk.Length - 1) {
+                // If it is, reset the dialogue index to the first character's dialogue
+                currentDialogueIndex = 0;
+            }
+            else {
+                // If it is not, move on to the next character's dialogue
+                currentDialogueIndex++;
+            }
+            LoadDialogueLines();
         }
     }
-
 }
