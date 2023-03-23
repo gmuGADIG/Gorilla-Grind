@@ -134,7 +134,7 @@ public class PlayerMovement : MonoBehaviour
             DuringInAir();
             DuringTrickStance();
         }
-        
+
         CurrentHorizontalSpeed = velocity.x;
     }
 

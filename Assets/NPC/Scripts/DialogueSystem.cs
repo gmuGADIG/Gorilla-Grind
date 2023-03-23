@@ -19,12 +19,14 @@ public class DialogueSystem : MonoBehaviour {
     private string currentLineText;
     private bool isTextAppearing = false;
     private bool isCurrentCharacterSpeaking = false; // Boolean to keep track of whether the current character is still speaking
+    private int monkeySoundID;
 
     // Start is called before the first frame update
     void Start() {
         dialogueText.text = "";
         currentLineIndex = 0;
         LoadDialogueLines();
+        monkeySoundID = SoundManager.Instance.GetSoundID("Monkey_Noise");
     }
 
     // Update is called once per frame
@@ -55,7 +57,8 @@ public class DialogueSystem : MonoBehaviour {
                 // If the current line is being animated, immediately display the rest of the text and stop the typing sound
                 currentLineText += currentDialogueLines[currentCharacterLineIndex].Substring(currentLineText.Length);
                 dialogueText.text = currentLineText;
-                typingSound.Stop();
+                //typingSound.Stop();
+                SoundManager.Instance.StopPlayingGlobal(monkeySoundID);
                 isTextAppearing = false;
             }
             // If the current character is still speaking, move on to the next character's dialogue
@@ -95,7 +98,8 @@ public class DialogueSystem : MonoBehaviour {
 
         yield return new WaitForEndOfFrame();
 
-        typingSound.Play(); // enable the audio source and play the typing sound
+        //typingSound.Play(); // enable the audio source and play the typing sound
+        SoundManager.Instance.PlaySoundGlobal(monkeySoundID);
         for (int i = 0; i < line.Length; i++) {
             currentLineText += line[i];
             dialogueText.text = currentLineText;
@@ -113,7 +117,8 @@ public class DialogueSystem : MonoBehaviour {
         else {
             // If the character has finished speaking, set the flag to indicate that the current character is no longer speaking
             isCurrentCharacterSpeaking = false;
-            typingSound.Stop(); // stop the typing sound and disable the audio source
+            //typingSound.Stop(); // stop the typing sound and disable the audio source
+            SoundManager.Instance.StopPlayingGlobal(monkeySoundID);
         }
     }
 
