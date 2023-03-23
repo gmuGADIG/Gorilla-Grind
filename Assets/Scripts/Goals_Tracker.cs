@@ -51,7 +51,7 @@ public class Goals_Tracker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        distance += PlayerMovement.CurrentSpeed * Time.deltaTime;
+        distance += PlayerMovement.CurrentHorizontalSpeed * Time.deltaTime;
         if (distance >= distanceGoal)
         {
             monkeyMeeting(level);
@@ -105,7 +105,6 @@ public class Goals_Tracker : MonoBehaviour
             case 2:
                 mission1 = "Perform trick " + " times.";
                 break;
-            case 3:
                 mission1 = "Reach a distance of " + " in one run.";
                 break;
             case 4:
