@@ -106,6 +106,9 @@ public class PlayerMovement : MonoBehaviour
     // death
     public UnityEvent OnDeath;
     public bool IsDead { get; private set; } = false;
+
+    // Sound IDs
+    int jumpSoundID;
     
     void Start()
     {
@@ -132,6 +135,8 @@ public class PlayerMovement : MonoBehaviour
         availableTricks.Add(typeof(LeftTrick), new LeftTrick(skateboardTransform));
         availableTricks.Add(typeof(RightTrick), new RightTrick(skateboardTransform));
         availableTricks.Add(typeof(DownTrick), new DownTrick(skateboardTransform, gorillaTransform));
+
+        jumpSoundID = SoundManager.Instance.GetSoundID("Player_Jump");
     }
     
     // Movement uses physics so it must be in FixedUpdate
@@ -166,6 +171,7 @@ public class PlayerMovement : MonoBehaviour
         velocity += Vector2.up * currentJumpVelocity;
         currentJumpVelocity = 0f;
         jumping = true;
+        SoundManager.Instance.PlaySoundGlobal(jumpSoundID);
     }
 
     /// <summary>
