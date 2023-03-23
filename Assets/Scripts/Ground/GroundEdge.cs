@@ -46,14 +46,30 @@ public class GroundEdge : MonoBehaviour
     void Start()
     {
         edgeCollider.enabled = !noCollision;
+#if DEBUG
+        if (shouldRenderEdge)
+        {
+            gameObject.AddComponent<LineRenderer>();
+        }
+
+#endif
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+#if DEBUG
+        if (shouldRenderEdge)
+        {
+            LineRenderer lrender = GetComponent<LineRenderer>();
+            lrender.positionCount = edgeCollider.points.Length;
+            lrender.material.color = lrender.startColor = lrender.endColor = noCollision ? GroundEdge.gapColor : GroundEdge.solidColor;
+            lrender.startWidth = lrender.endWidth = .25f;
+            lrender.SetPositions(Utils.GetWorldPoints(Utils.Vec2ArrToVec3Arr(edgeCollider.points), edgeCollider.gameObject));
+        }
+#endif
     }
-    
+
     [Obsolete("Trying to replace this with a more modular set of methods")]
     public void SnapEdge()
     {
