@@ -193,16 +193,15 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     (bool hit, Vector2 point) GroundCast(float xOffset)
     {
-        Vector3 origin = skateboardCenter.position + new Vector3(xOffset, 10);
-        RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.down, 20, currentSkateableLayer);
-        if (hit.collider is null)
-        {
-            return (false, Vector2.zero);
-        }
-        else
-        {
-            return (true, hit.point);
-        }
+        Vector3 origin = skateboardCenter.position + new Vector3(xOffset, 0);
+        RaycastHit2D upCast   = Physics2D.Raycast(origin, Vector2.up,   3, currentSkateableLayer);
+        RaycastHit2D downCast = Physics2D.Raycast(origin, Vector2.down, 3, currentSkateableLayer);
+
+        if (downCast.collider != null)
+            return (true, downCast.point);
+        else if (upCast.collider != null)
+            return (true, upCast.point);
+        else return (false, Vector2.zero);
     }
 
     bool LandingCheck()
