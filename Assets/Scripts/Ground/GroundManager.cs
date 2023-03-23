@@ -14,6 +14,7 @@ public class GroundManager : MonoBehaviour
         {
             groundManager = this;
         }
+        activeSections = new LinkedList<GroundSection>();
     }
 
     // Update is called once per frame
