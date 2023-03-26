@@ -24,52 +24,42 @@ public class DialogueSystem : MonoBehaviour {
     void Start() {
         dialogueText.text = "";
         currentLineIndex = 0;
+        currentCharacterLineIndex = 0;
         LoadDialogueLines();
     }
 
     // Update is called once per frame
-    void Update() {
+    void Update()
+    {
         // Check if the space key is pressed
         if (Input.GetKeyDown(KeyCode.Space)) {
             // Check if the current character is not speaking
-            if (isCurrentCharacterSpeaking == false) {
+            if (isCurrentCharacterSpeaking == true) {
+                Debug.Log("The length of the current speaking guy is, " + currentDialogueLines.Length);
+                Debug.Log("Index for current speaking guy is: " + currentCharacterLineIndex);
                 // Check if there are more lines in the current character's dialogue
-                if (currentCharacterLineIndex < currentDialogueLines.Length - 1) {
+                if (currentCharacterLineIndex < currentDialogueLines.Length - 1)
+                {
                     // If there are more lines, start the text animation coroutine with the next line of dialogue
                     currentCharacterLineIndex++;
                     StopAllCoroutines(); // Stop any previous text animation coroutine
+                    Debug.Log(currentDialogueLines[currentCharacterLineIndex] + " and the index is " + currentCharacterLineIndex);
                     StartCoroutine(AnimateText(currentDialogueLines[currentCharacterLineIndex]));
-                    isCurrentCharacterSpeaking = true; // Set the flag to indicate that the current character is still speaking
                 }
-                else {
+                else
+                {
                     // If there are no more lines, move on to the next character's dialogue
                     currentDialogueIndex++;
-                    if (currentDialogueIndex >= dialogueLinesPrefab.currentTalk.Length) {
+                    if (currentDialogueIndex >= dialogueLinesPrefab.currentTalk.Length)
+                    {
                         currentDialogueIndex = 0;
                     }
+                    currentCharacterLineIndex = 0; // Reset currentCharacterLineIndex
                     LoadDialogueLines();
                 }
             }
-            // Check if the current line of the current talking monkey is being animated
-            else if (isTextAppearing == true) {
-                // If the current line is being animated, immediately display the rest of the text and stop the typing sound
-                currentLineText += currentDialogueLines[currentCharacterLineIndex].Substring(currentLineText.Length);
-                dialogueText.text = currentLineText;
-                typingSound.Stop();
-                isTextAppearing = false;
-            }
-            // If the current character is still speaking, move on to the next character's dialogue
-            else {
-                currentDialogueIndex++;
-                if (currentDialogueIndex >= dialogueLinesPrefab.currentTalk.Length) {
-                    currentDialogueIndex = 0;
-                }
-                LoadDialogueLines();
-            }
         }
     }
-
-
 
 
     // Load the dialogue lines from the current DialogueLines prefab
@@ -82,6 +72,7 @@ public class DialogueSystem : MonoBehaviour {
         // Update the UI elements for the current character
         headshotImage.sprite = currentCharacter.headshot;
         nameText.text = currentCharacter.monkeyName;
+        Debug.Log("Headshot = " + headshotImage.sprite.name + " and the name = " + nameText.text);
 
         StopAllCoroutines(); // Stop any previous text animation coroutine
         StartCoroutine(AnimateText(currentDialogueLines[currentCharacterLineIndex]));
@@ -89,19 +80,22 @@ public class DialogueSystem : MonoBehaviour {
     }
 
     // Coroutine to animate the text to appear letter by letter
-    private IEnumerator AnimateText(string line) {
+    private IEnumerator AnimateText(string line)
+    {
         currentLineText = "";
         isTextAppearing = true;
 
         yield return new WaitForEndOfFrame();
 
-        typingSound.Play(); // enable the audio source and play the typing sound
-        for (int i = 0; i < line.Length; i++) {
+        typingSound.Play(); // Enable the audio source and play the typing sound
+        for (int i = 0; i < line.Length; i++)
+        {
             currentLineText += line[i];
             dialogueText.text = currentLineText;
             yield return new WaitForSeconds(textSpeed);
         }
 
+        typingSound.Stop(); // stop the typing sound and disable the audio source
         isTextAppearing = false;
 
         // Check if the current character is still speaking
@@ -113,8 +107,17 @@ public class DialogueSystem : MonoBehaviour {
         else {
             // If the character has finished speaking, set the flag to indicate that the current character is no longer speaking
             isCurrentCharacterSpeaking = false;
-            typingSound.Stop(); // stop the typing sound and disable the audio source
+
+            // Check if this is the last character's dialogue
+            if (currentDialogueIndex == dialogueLinesPrefab.currentTalk.Length - 1) {
+                // If it is, reset the dialogue index to the first character's dialogue
+                currentDialogueIndex = 0;
+            }
+            else {
+                // If it is not, move on to the next character's dialogue
+                currentDialogueIndex++;
+            }
+            LoadDialogueLines();
         }
     }
-
 }
