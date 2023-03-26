@@ -105,6 +105,7 @@ public class Goals_Tracker : MonoBehaviour
             case 2:
                 mission1 = "Perform trick " + " times.";
                 break;
+            case 3:
                 mission1 = "Reach a distance of " + " in one run.";
                 break;
             case 4:
@@ -132,7 +133,7 @@ public class Goals_Tracker : MonoBehaviour
 
     void objectDetected(GameObject hazard)
     {
-        if (!lastHazard == hazard)
+        if (lastHazard != hazard)
         {
             lastHazard = hazard;
             hazardsJumped++;

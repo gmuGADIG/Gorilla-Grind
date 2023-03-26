@@ -19,7 +19,7 @@ public class BananaScript : MonoBehaviour
         
     }
 
-    public void collect()
+    public void Collect()
     {
         GameObject.Destroy(gameObject);
     }
