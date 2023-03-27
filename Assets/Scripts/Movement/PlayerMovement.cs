@@ -150,6 +150,13 @@ public class PlayerMovement : MonoBehaviour
     // Events that trigger on key down must be handled in Update
     void Update()
     {
+        //Temp measures for death from falling shoould probably make something better -Diana
+        if(transform.position.y < -20 && ! IsDead){
+            Debug.Log("Dead");
+            IsDead = true;
+        }
+        Debug.Log(IsDead);
+
         currentState.UpdateState();
         // check transitions
         Type nextState = currentState.CheckForTransitions();
@@ -171,7 +178,7 @@ public class PlayerMovement : MonoBehaviour
         velocity += Vector2.up * currentJumpVelocity;
         currentJumpVelocity = 0f;
         jumping = true;
-        SoundManager.Instance.PlaySoundGlobal(jumpSoundID);
+         SoundManager.Instance.PlaySoundGlobal(jumpSoundID);
     }
 
     /// <summary>
@@ -450,6 +457,12 @@ public class PlayerMovement : MonoBehaviour
 
         public override Type CheckForTransitions()
         {
+            //Added for temp death check -Diana
+            if (move.IsDead)
+            {
+                return typeof(DeadState);
+            }
+
             // check for landing. TODO: check for landing better. what if player jumps and immediately hits the ground again?
             float timeSinceLastJump = Time.time - move.lastJumpTime;
             if (timeSinceLastJump > move.groundCheckCooldownAfterJump && move.LandingCheck())
@@ -530,6 +543,12 @@ public class PlayerMovement : MonoBehaviour
         
         public override Type CheckForTransitions()
         {
+            //Added for temp death check -Diana
+            if (move.IsDead)
+            {
+                return typeof(DeadState);
+            }
+
             if (Input.GetKeyUp(KeyCode.Space))
             {
                 return typeof(InAirState);

@@ -5,6 +5,7 @@ using UnityEngine;
 public class GroundManager : MonoBehaviour
 {
     public static GroundManager groundManager;
+    public GameObject startSection;
     public GameObject[] sectionPrefabs;
     public LinkedList<GroundSection> activeSections;
     public float spawnOffset;
@@ -20,6 +21,7 @@ public class GroundManager : MonoBehaviour
         {
             Debug.LogError("No prefabs loaded in GroundManager");
         }
+        CreateFirstSection();
     }
 
     // Update is called once per frame
@@ -75,13 +77,18 @@ public class GroundManager : MonoBehaviour
     void CreateNextSection(GameObject sectionPrefab) 
     { 
     
-        GameObject instance = Instantiate(sectionPrefab);
+        GameObject instance = Instantiate(sectionPrefab,Vector3.zero,Quaternion.identity);
         if(activeSections.Count != 0)   
         {
-            instance.transform.position += (Vector3)(activeSections.Last.Value.endPoint - instance.GetComponent<GroundSection>().startPoint);
+            instance.transform.position = ((Vector3)activeSections.Last.Value.endPoint - ((Vector3)instance.GetComponent<GroundSection>().startPoint- instance.transform.position));
             //Aligning height for now since there is lack of specs for mismatches
-            instance.transform.position += Vector3.up * (activeSections.Last.Value.startPoint.y - instance.GetComponent<GroundSection>().startPoint.y);
+            //instance.transform.position += Vector3.up * (activeSections.Last.Value.startPoint.y - instance.GetComponent<GroundSection>().startPoint.y);
         }
+        activeSections.AddLast(instance.GetComponent<GroundSection>());
+    }
+
+    void CreateFirstSection(){
+        GameObject instance = Instantiate(startSection);
         activeSections.AddLast(instance.GetComponent<GroundSection>());
     }
 }

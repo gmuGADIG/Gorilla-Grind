@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 using System;
 
 public class Goals_Tracker : MonoBehaviour
 {
     public static Goals_Tracker instance;
-    float distanceGoal = 10f;
+    float distanceGoal = 100f;
     float distance = 0f;
     public int level = 0;
     public Slider goalProgress;
@@ -39,6 +40,7 @@ public class Goals_Tracker : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        SceneManager.sceneLoaded += SceneLoaded;
     }
     // Start is called before the first frame update
     void Start()
@@ -157,5 +159,18 @@ public class Goals_Tracker : MonoBehaviour
             gapBelow = false;
         }
         //Raycast downwards, if it hits an object, call object detected with detected object
+    }
+
+    void SceneLoaded(Scene scene, LoadSceneMode mode){
+        if(scene.name == "RunScene"){
+            goalProgress.gameObject.SetActive(true);
+            distanceDisplay.SetActive(true);
+            mission1Display.SetActive(true);
+            distance = 0;
+        }else{
+            goalProgress.gameObject.SetActive(false);
+            distanceDisplay.SetActive(false);
+            mission1Display.SetActive(false);
+        }
     }
 }
