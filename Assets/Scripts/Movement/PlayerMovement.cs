@@ -109,6 +109,8 @@ public class PlayerMovement : MonoBehaviour
 
     // Sound IDs
     int jumpSoundID;
+    int landSoundID;
+    int deathSoundID;
     
     void Start()
     {
@@ -137,6 +139,8 @@ public class PlayerMovement : MonoBehaviour
         availableTricks.Add(typeof(DownTrick), new DownTrick(skateboardTransform, gorillaTransform));
 
         jumpSoundID = SoundManager.Instance.GetSoundID("Player_Jump");
+        landSoundID = SoundManager.Instance.GetSoundID("Player_Land");
+        deathSoundID = SoundManager.Instance.GetSoundID("Player_Death");
     }
     
     // Movement uses physics so it must be in FixedUpdate
@@ -299,6 +303,7 @@ public class PlayerMovement : MonoBehaviour
             move.velocity = Vector2.Lerp(Vector3.Project(move.velocity, groundTangent), move.velocity, 0.5f);
 
             Debug.Log($"deltaAngle = {deltaAngle}");
+            SoundManager.Instance.PlaySoundGlobal(move.landSoundID);
         }
 
         public override void UpdateState()
@@ -557,6 +562,7 @@ public class PlayerMovement : MonoBehaviour
             print("Entering dead state");
             move.IsDead = true;
             move.OnDeath.Invoke();
+            SoundManager.Instance.PlaySoundGlobal(move.deathSoundID);
         }
 
         public override Type CheckForTransitions()
