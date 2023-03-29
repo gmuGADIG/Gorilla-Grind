@@ -11,7 +11,7 @@ public class GroundSection : MonoBehaviour
 
     public Vector2 startPoint { get { return groundEdges[0].startPoint; } }
 
-    public Vector2 endPoint { get { return groundEdges[groundEdges.Length - 1].endPoint; } }
+    public Vector2 endPoint { get { Debug.Log(groundEdges[groundEdges.Length - 1]); return groundEdges[groundEdges.Length - 1].endPoint; } }
 
 
     /**

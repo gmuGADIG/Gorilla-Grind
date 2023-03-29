@@ -28,6 +28,6 @@ public class BackgroundMaker : MonoBehaviour
         }else{
             obj = ForegroundObj[Random.Range(0,ForegroundObj.Length)];
         }
-        Instantiate(obj,new Vector3(80,1,0),Quaternion.identity);
+        Instantiate(obj,new Vector3(80,1,10),Quaternion.identity);
     }
 }
