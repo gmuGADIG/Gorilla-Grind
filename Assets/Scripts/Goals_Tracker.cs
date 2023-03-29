@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 using System;
 
 public class Goals_Tracker : MonoBehaviour
 {
-    float distanceGoal = 10f;
+    public static Goals_Tracker instance;
+    float distanceGoal = 100f;
     float distance = 0f;
     public int level = 0;
     public Slider goalProgress;
@@ -16,11 +18,30 @@ public class Goals_Tracker : MonoBehaviour
     public TMP_Text distanceText;
     public GameObject mission1Display;
     public TMP_Text mission1Text;
-    private Dictionary<String, GameObject> hazards;
+    private GameObject lastHazard = null;
     bool goalMet = false;
     float styleCounter = 1.0f;
+    public GameObject player;
+    int hazardCount;
+    int hazardsJumped;
+    bool gapBelow;
+    private float maxSpeed = 0;
+    private float speedGoal = 1;
     //int distance = 0;
-    string mission1;    
+    string mission1;
+    private void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        SceneManager.sceneLoaded += SceneLoaded;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +53,7 @@ public class Goals_Tracker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        distance += PlayerMovement.CurrentSpeed * Time.deltaTime;
+        distance += PlayerMovement.CurrentHorizontalSpeed * Time.deltaTime;
         if (distance >= distanceGoal)
         {
             monkeyMeeting(level);
@@ -43,7 +64,21 @@ public class Goals_Tracker : MonoBehaviour
             goalProgress.value = distance;
         }
         distanceText.text = "Distance: " + this.distance.ToString("#.##") + " / " + this.distanceGoal.ToString("#.##");
-        checkForHazards();
+        
+        /*if (PlayerMovement.IsGrounded() && hazardsJumped>0)
+        {
+            hazardCount += hazardsJumped;
+            hazardsJumped = 0;
+        }
+        else if (!PlayerMovement.IsGrounded())
+        {
+            checkForHazards();
+        }
+        if (maxSpeed < PlayerMovement.CurrentSpeed)
+        {
+            maxSpeed = PlayerMovement.CurrentSpeed;
+        }*/
+
         /*if (Input.GetKey(KeyCode.RightArrow))
         {
             score++;
@@ -58,7 +93,6 @@ public class Goals_Tracker : MonoBehaviour
     {
         distance = 0f;
         goalMet = false;
-        //distance = 0;
         styleCounter = 1.0f;
         System.Random rnd = new System.Random();
         int num = rnd.Next(0, 6);
@@ -87,6 +121,9 @@ public class Goals_Tracker : MonoBehaviour
                 break;
         }
         mission1Text.text = mission1;
+        hazardCount = 0;
+        hazardsJumped = 0;
+        gapBelow = false;
     }
 
     void monkeyMeeting(int level)
@@ -98,15 +135,42 @@ public class Goals_Tracker : MonoBehaviour
 
     void objectDetected(GameObject hazard)
     {
-        if (!hazards[hazard.name])
+        if (lastHazard != hazard)
         {
-            hazards.Add(hazard.name, hazard);
-            // increment the hazard value by 1
+            lastHazard = hazard;
+            hazardsJumped++;
         }
     }
 
     void checkForHazards()
     {
+        RaycastHit2D rc = Physics2D.Raycast(player.transform.position, Vector2.down);
+        if (rc.collider.gameObject.CompareTag("Hazards"))
+        {
+            objectDetected(rc.collider.gameObject);
+        }
+        else if (rc.collider == null)
+        {
+            gapBelow = true;
+        }
+        else if (rc.collider.gameObject.CompareTag("Terrain") && gapBelow)
+        {
+            hazardsJumped++;
+            gapBelow = false;
+        }
         //Raycast downwards, if it hits an object, call object detected with detected object
+    }
+
+    void SceneLoaded(Scene scene, LoadSceneMode mode){
+        if(scene.name == "RunScene"){
+            goalProgress.gameObject.SetActive(true);
+            distanceDisplay.SetActive(true);
+            mission1Display.SetActive(true);
+            distance = 0;
+        }else{
+            goalProgress.gameObject.SetActive(false);
+            distanceDisplay.SetActive(false);
+            mission1Display.SetActive(false);
+        }
     }
 }
