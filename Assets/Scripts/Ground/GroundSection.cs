@@ -53,6 +53,7 @@ public class GroundSection : MonoBehaviour
         
     }
 
+#if UNITY_EDITOR
     private void OnEnable()
     {
         EditorApplication.hierarchyChanged += VerifyConnections;
@@ -62,7 +63,7 @@ public class GroundSection : MonoBehaviour
     {
         EditorApplication.hierarchyChanged -= VerifyConnections;
     }
-
+#endif
 
 
     void Update()
