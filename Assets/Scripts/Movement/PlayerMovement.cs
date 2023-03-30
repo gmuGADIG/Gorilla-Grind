@@ -91,6 +91,7 @@ public class PlayerMovement : MonoBehaviour
     float currentCoyoteTime;
     bool jumping; // true = player is in the air due to a jump. false = in air from falling
 
+    public bool IsGrounded => currentState.GetType() == typeof(GroundedState);
     // Dictionary used to store and retrieve states.
     Dictionary<Type, State> availableStates;
     // The current state the player is in.
