@@ -20,7 +20,8 @@ public class BackgroundObjectScript : MonoBehaviour
     {
         if(transform.position.x<=-40){
             newBackground.Invoke(Background);
-            Destroy(this);
+            transform.position= new Vector3(100,-10,0);
+            Destroy(gameObject);
         } 
     }
 }
