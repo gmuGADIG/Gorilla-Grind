@@ -27,6 +27,8 @@ public class BananaScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            Goals_Tracker tracker = collision.gameObject.GetComponent<Goals_Tracker>();
+            tracker.AddBananas(1);
             Destroy(gameObject);
         }
     }
