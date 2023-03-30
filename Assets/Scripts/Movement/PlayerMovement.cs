@@ -136,8 +136,6 @@ public class PlayerMovement : MonoBehaviour
         availableTricks.Add(typeof(LeftTrick), new LeftTrick(skateboardTransform));
         availableTricks.Add(typeof(RightTrick), new RightTrick(skateboardTransform));
         availableTricks.Add(typeof(DownTrick), new DownTrick(skateboardTransform, gorillaTransform));
-
-        jumpSoundID = SoundManager.Instance.GetSoundID("Player_Jump");
     }
     
     // Movement uses physics so it must be in FixedUpdate
@@ -153,10 +151,8 @@ public class PlayerMovement : MonoBehaviour
     {
         //Temp measures for death from falling shoould probably make something better -Diana
         if(transform.position.y < -20 && ! IsDead){
-            Debug.Log("Dead");
             IsDead = true;
         }
-        Debug.Log(IsDead);
 
         currentState.UpdateState();
         // check transitions
@@ -179,7 +175,6 @@ public class PlayerMovement : MonoBehaviour
         velocity += Vector2.up * currentJumpVelocity;
         currentJumpVelocity = 0f;
         jumping = true;
-         SoundManager.Instance.PlaySoundGlobal(jumpSoundID);
     }
 
     /// <summary>
@@ -220,7 +215,7 @@ public class PlayerMovement : MonoBehaviour
 
     bool LandingCheck()
     {
-        return Physics2D.CircleCast(skateboardCenter.position, .1f, Vector2.up, 0.5f, currentSkateableLayer);
+        return Physics2D.CircleCast(skateboardCenter.position, .1f, velocity.normalized, velocity.magnitude * Time.deltaTime, currentSkateableLayer);
     }
 
     void AdjustRotationToSlope()
