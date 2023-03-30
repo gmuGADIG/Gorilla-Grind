@@ -17,9 +17,6 @@ public class SoundManager : MonoBehaviour
 
 	private Queue<PositionalAudioSource> positionalSources = new Queue<PositionalAudioSource>();
 
-	private static bool keepFadingIn;
-	private static bool keepFadingOut;
-
 	void Awake()
 	{
 		if (Instance != null)
@@ -158,42 +155,54 @@ public class SoundManager : MonoBehaviour
 		return id;
     }
 
-	public static void FadeInCaller(AudioSource track, float speed, float maxVolume)
-    {
-		Instance.StartCoroutine(Instance.FadeIn(track, speed, maxVolume));
-    }
-	public static void FadeOutCaller(AudioSource track, float speed)
+	public void PlayGlobalFadeIn(int soundID, float fadeTime)
 	{
-		Instance.StartCoroutine(Instance.FadeOut(track, speed));
+		StartCoroutine(FadeIn(soundID, fadeTime));
 	}
-	IEnumerator FadeIn(AudioSource track, float speed, float maxVolume)
+
+	public void StopPlayGlobalFadeOut(int soundID, float fadeTime)
+	{
+		StartCoroutine(FadeOut(soundID, fadeTime));
+	}
+
+	IEnumerator FadeIn(int soundID, float fadeTime)
     {
-		keepFadingIn = true;
-		keepFadingOut = false;
+		if (soundID < 0 || soundID >= sounds.Length)
+		{
+			Debug.LogWarning("Invalid Sound ID: " + soundID);
+		}
+		Sound sound = sounds[soundID];
 
-		track.volume = 0;
-		float audioVolume = track.volume;
+		sound.source.clip = sound.GetRandomAudioClip();
+		sound.source.volume = 0;
+		sound.source.Play();
 
-		while(track.volume < maxVolume && keepFadingIn)
+		float currentTime = 0f;
+		while(currentTime < fadeTime)
         {
-			audioVolume += speed;
-			track.volume = audioVolume;
-			yield return new WaitForSeconds(0.1f);
+			currentTime += Time.deltaTime;
+			sound.source.volume = Mathf.Lerp(0, sound.volume, currentTime / fadeTime);
+			yield return null;
         }
     }
-	IEnumerator FadeOut(AudioSource track, float speed)
+
+	IEnumerator FadeOut(int soundID, float fadeTime)
 	{
-		keepFadingIn = false;
-		keepFadingOut = true;
-
-		
-		float audioVolume = track.volume;
-
-		while (track.volume >= speed && keepFadingOut)
+		if (soundID < 0 || soundID >= sounds.Length)
 		{
-			audioVolume -= speed;
-			track.volume = audioVolume;
-			yield return new WaitForSeconds(0.1f);
+			Debug.LogWarning("Invalid Sound ID: " + soundID);
 		}
+		Sound sound = sounds[soundID];
+
+		sound.source.clip = sound.GetRandomAudioClip();
+		
+		float currentTime = 0;
+		while (currentTime < fadeTime)
+		{
+			currentTime += Time.deltaTime;
+			sound.source.volume = Mathf.Lerp(0, sound.volume, 1 - (currentTime / fadeTime));
+			yield return null;
+		}
+		sound.source.Stop();
 	}
 }

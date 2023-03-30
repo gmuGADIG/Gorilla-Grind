@@ -2993,6 +2993,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1112966923}
   - component: {fileID: 1112966924}
+  - component: {fileID: 1112966925}
   m_Layer: 0
   m_Name: Sound Manager
   m_TagString: Untagged
@@ -3030,6 +3031,21 @@ MonoBehaviour:
   numOfPositionalSources: 100
   mixerGroup: {fileID: 0}
   soundPath: 
+--- !u!114 &1112966925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1112966921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccc0c6ffc8435e74abc5f98991f221bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  introMusicName: Test_Music
+  levelMusicName: 
+  resultsMusicName: 
 --- !u!1 &1196832488
 GameObject:
   m_ObjectHideFlags: 0
