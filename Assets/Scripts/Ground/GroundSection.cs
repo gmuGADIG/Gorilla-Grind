@@ -9,9 +9,9 @@ public class GroundSection : MonoBehaviour
     [HideInInspector]
     public Subsection[] subsections;
 
-    public Vector2 startPoint { get; private set; }
+    public Vector2 startPoint { get => subsections[0].startPoint; }
 
-    public Vector2 endPoint { get; private set; }
+    public Vector2 endPoint { get => subsections[0].endPoint; }
 
 
     /**
@@ -20,10 +20,6 @@ public class GroundSection : MonoBehaviour
     public void VerifySubsections()
     {
         subsections = GetComponentsInChildren<Subsection>();
-        if (subsections.Length == 0) return;
-
-        startPoint = subsections[0].startPoint;
-        endPoint = subsections[0].endPoint;
 
 
 
