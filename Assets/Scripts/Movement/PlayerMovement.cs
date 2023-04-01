@@ -93,6 +93,8 @@ public class PlayerMovement : MonoBehaviour
 
     // Dictionary used to store and retrieve states.
     Dictionary<Type, State> availableStates;
+    // The default starting state the player will start in.
+    Type defaultState;
     // The current state the player is in.
     State currentState;
 
@@ -111,6 +113,7 @@ public class PlayerMovement : MonoBehaviour
     int jumpSoundID;
     int landSoundID;
     int deathSoundID;
+    int skateboardLoopSoundID;
     
     void Start()
     {
@@ -129,9 +132,7 @@ public class PlayerMovement : MonoBehaviour
             { typeof(TrickState), new TrickState(this) },
             { typeof(DeadState), new DeadState(this) },
         };
-
-        currentState = availableStates[typeof(GroundedState)];
-        currentState.BeforeExecution();
+        defaultState = typeof(GroundedState);
 
         availableTricks.Add(typeof(UpTrick), new UpTrick(skateboardTransform));
         availableTricks.Add(typeof(LeftTrick), new LeftTrick(skateboardTransform));
@@ -141,6 +142,7 @@ public class PlayerMovement : MonoBehaviour
         jumpSoundID = SoundManager.Instance.GetSoundID("Player_Jump");
         landSoundID = SoundManager.Instance.GetSoundID("Player_Land");
         deathSoundID = SoundManager.Instance.GetSoundID("Player_Death");
+        skateboardLoopSoundID = SoundManager.Instance.GetSoundID("Player_Skateboard_Loop");
     }
     
     // Movement uses physics so it must be in FixedUpdate
@@ -154,6 +156,11 @@ public class PlayerMovement : MonoBehaviour
     // Events that trigger on key down must be handled in Update
     void Update()
     {
+        if (currentState == null)
+        {
+            currentState = availableStates[defaultState];
+            currentState.BeforeExecution();
+        }
         currentState.UpdateState();
         // check transitions
         Type nextState = currentState.CheckForTransitions();
@@ -273,6 +280,7 @@ public class PlayerMovement : MonoBehaviour
         {
             move.lastJumpTime = Time.time;
             move.currentSkateableLayer = move.groundLayer;
+            SoundManager.Instance.StopPlayingGlobal(move.skateboardLoopSoundID);
             Debug.Log("Exiting grounded state");
         }
 
@@ -283,6 +291,8 @@ public class PlayerMovement : MonoBehaviour
             move.currentJumpVelocity = 0;
             move.currentCoyoteTime = move.coyoteTime;
             move.jumping = false;
+
+            SoundManager.Instance.PlaySoundGlobal(move.skateboardLoopSoundID);
 
             // Get ground's tangent
             (bool _, Vector2 midPoint) = move.GroundCast(move.midPointOffset);

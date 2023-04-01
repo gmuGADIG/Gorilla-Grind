@@ -171,19 +171,22 @@ public class SoundManager : MonoBehaviour
 		{
 			Debug.LogWarning("Invalid Sound ID: " + soundID);
 		}
-		Sound sound = sounds[soundID];
-
-		sound.source.clip = sound.GetRandomAudioClip();
-		sound.source.volume = 0;
-		sound.source.Play();
-
-		float currentTime = 0f;
-		while(currentTime < fadeTime)
+		else
         {
-			currentTime += Time.deltaTime;
-			sound.source.volume = Mathf.Lerp(0, sound.volume, currentTime / fadeTime);
-			yield return null;
-        }
+			Sound sound = sounds[soundID];
+
+			sound.source.clip = sound.GetRandomAudioClip();
+			sound.source.volume = 0;
+			sound.source.Play();
+
+			float currentTime = 0f;
+			while (currentTime < fadeTime)
+			{
+				currentTime += Time.deltaTime;
+				sound.source.volume = Mathf.Lerp(0, sound.volume, currentTime / fadeTime);
+				yield return null;
+			}
+		}
     }
 
 	IEnumerator FadeOut(int soundID, float fadeTime)
@@ -192,17 +195,21 @@ public class SoundManager : MonoBehaviour
 		{
 			Debug.LogWarning("Invalid Sound ID: " + soundID);
 		}
-		Sound sound = sounds[soundID];
+		else
+        {
+			Sound sound = sounds[soundID];
 
-		sound.source.clip = sound.GetRandomAudioClip();
-		
-		float currentTime = 0;
-		while (currentTime < fadeTime)
-		{
-			currentTime += Time.deltaTime;
-			sound.source.volume = Mathf.Lerp(0, sound.volume, 1 - (currentTime / fadeTime));
-			yield return null;
+			sound.source.clip = sound.GetRandomAudioClip();
+
+			float currentTime = 0;
+			while (currentTime < fadeTime)
+			{
+				currentTime += Time.deltaTime;
+				sound.source.volume = Mathf.Lerp(0, sound.volume, 1 - (currentTime / fadeTime));
+				yield return null;
+			}
+			sound.source.Stop();
 		}
-		sound.source.Stop();
+
 	}
 }
