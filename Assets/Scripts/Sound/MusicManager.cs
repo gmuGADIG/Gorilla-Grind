@@ -17,15 +17,13 @@ public class MusicManager : MonoBehaviour
         introMusicID = SoundManager.Instance.GetSoundID(introMusicName);
         //levelMusicID = SoundManager.Instance.GetSoundID(levelMusicName);
         //resultsMusicID = SoundManager.Instance.GetSoundID(resultsMusicName);
-        //SoundManager.Instance.PlaySoundGlobal(introMusicID);
-        SoundManager.Instance.PlayGlobalFadeIn(introMusicID, 3f);
-        StartCoroutine(TestFadeOut());
+        PlayLevelMusic();
     }
 
-    IEnumerator TestFadeOut()
+    void PlayLevelMusic()
     {
-        yield return new WaitForSeconds(10f);
-        SoundManager.Instance.StopPlayGlobalFadeOut(introMusicID, 3f);
+        AudioSource usedAudioSource = SoundManager.Instance.PlaySoundGlobal(introMusicID);
+        Invoke(nameof(PlayLevelMusic), usedAudioSource.clip.length);
     }
 
 }
