@@ -148,7 +148,7 @@ public class PlayerMovement : MonoBehaviour
     // Movement uses physics so it must be in FixedUpdate
     void FixedUpdate()
     {
-        currentState.PhysicsUpdate();
+        currentState?.PhysicsUpdate();
 
         CurrentHorizontalSpeed = velocity.x;
     }

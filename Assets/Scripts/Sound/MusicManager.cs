@@ -4,25 +4,51 @@ using UnityEngine;
 
 public class MusicManager : MonoBehaviour
 {
-    [SerializeField] string introMusicName = "";
-    [SerializeField] string levelMusicName = "";
-    [SerializeField] string resultsMusicName = "";
+    [SerializeField] Sound introSong;
+    [SerializeField] Sound[] levelSongs;
+    [SerializeField] Sound resultsSong;
 
     int introMusicID;
-    int levelMusicID;
-    int resultsMusicID;
+    int[] levelSongIDs;
+    int resultsMusicIDs;
+
+    List<int> unplayed = new List<int>();
 
     void Start()
     {
-        introMusicID = SoundManager.Instance.GetSoundID(introMusicName);
-        //levelMusicID = SoundManager.Instance.GetSoundID(levelMusicName);
-        //resultsMusicID = SoundManager.Instance.GetSoundID(resultsMusicName);
+        levelSongIDs = new int[levelSongs.Length];
+        for (int i = 0; i < levelSongIDs.Length; i++)
+        {
+            levelSongIDs[i] = SoundManager.Instance.GetSoundID(levelSongs[i].name);
+        }
+        //ResetUnplayed();
         PlayLevelMusic();
+    }
+
+    void ResetUnplayed()
+    {
+        for (int i = 0; i < levelSongIDs.Length; i++)
+        {
+            unplayed.Add(levelSongIDs[i]);
+        }
+    }
+
+    int PickSong()
+    {
+        if (unplayed.Count == 0)
+        {
+            ResetUnplayed();
+        }
+        int randSongID = unplayed[Random.Range(0, unplayed.Count)];
+        unplayed.Remove(randSongID);
+        return randSongID;
     }
 
     void PlayLevelMusic()
     {
-        AudioSource usedAudioSource = SoundManager.Instance.PlaySoundGlobal(introMusicID);
+        int songID = PickSong();
+        print(songID);
+        AudioSource usedAudioSource = SoundManager.Instance.PlaySoundGlobal(songID);
         Invoke(nameof(PlayLevelMusic), usedAudioSource.clip.length);
     }
 
