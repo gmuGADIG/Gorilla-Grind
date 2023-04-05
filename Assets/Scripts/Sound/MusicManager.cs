@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MusicManager : MonoBehaviour
 {
     [SerializeField] Sound introSong;
     [SerializeField] Sound[] levelSongs;
     [SerializeField] Sound resultsSong;
+
+    [SerializeField] string introSceneName;
+    [SerializeField] string levelSceneName;
 
     int introMusicID;
     int[] levelSongIDs;
@@ -19,7 +21,7 @@ public class MusicManager : MonoBehaviour
 
     public static MusicManager Instance { get; private set; }
 
-    private void Awake()
+    void Awake()
     {
         if (Instance == null)
         {
@@ -43,18 +45,27 @@ public class MusicManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Plays intro/main menu music.
+    /// </summary>
     public void PlayIntroMusic()
     {
         AudioSource audioSource = SoundManager.Instance.PlaySoundGlobal(introMusicID);
         Invoke(nameof(PlayIntroMusic), audioSource.clip.length);
     }
 
+    /// <summary>
+    /// Plays results screen music.
+    /// </summary>
     public void PlayResultsMusic()
     {
         AudioSource audioSource = SoundManager.Instance.PlaySoundGlobal(resultsMusicID);
         Invoke(nameof(PlayResultsMusic), audioSource.clip.length);
     }
 
+    /// <summary>
+    /// Plays level music at random without repeats.
+    /// </summary>
     public void PlayLevelMusic()
     {
         int songID = PickSong();
@@ -63,6 +74,9 @@ public class MusicManager : MonoBehaviour
         Invoke(nameof(PlayLevelMusic), usedAudioSource.clip.length);
     }
 
+    /// <summary>
+    /// Stops all songs currently playing.
+    /// </summary>
     public void StopAllSongs()
     {
         CancelInvoke();
@@ -75,6 +89,9 @@ public class MusicManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Re-adds all level songs to the list of unplayed songs. Automatically used when there are no more unplayed songs in the list.
+    /// </summary>
     void ResetUnplayed()
     {
         for (int i = 0; i < levelSongIDs.Length; i++)
@@ -83,6 +100,10 @@ public class MusicManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Picks a level song randomly from the list of unplayed songs.
+    /// </summary>
+    /// <returns>The sound ID of the chosen song.</returns>
     int PickSong()
     {
         if (unplayed.Count == 0)
