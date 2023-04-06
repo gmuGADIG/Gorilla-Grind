@@ -3993,7 +3993,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1, y: 2}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -4485,7 +4485,7 @@ GameObject:
   - component: {fileID: 1644975655}
   - component: {fileID: 1644975658}
   - component: {fileID: 1644975657}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: temp3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5572,6 +5572,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1939586957}
   - component: {fileID: 1939586958}
+  - component: {fileID: 1939586962}
   - component: {fileID: 1939586956}
   - component: {fileID: 1939586955}
   - component: {fileID: 1939586961}
@@ -5756,6 +5757,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4f42a92dc1c31246bcbd8239e6d084a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1939586962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939586954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdc3c4e618e6bd34e98e6b3d31fac7c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoomSpeed: 0.5
+  maxZoom: 35
 --- !u!1 &1989504776
 GameObject:
   m_ObjectHideFlags: 0
@@ -6118,7 +6133,7 @@ GameObject:
   - component: {fileID: 2085921210}
   - component: {fileID: 2085921209}
   - component: {fileID: 2085921208}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: temp6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
