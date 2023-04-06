@@ -89,6 +89,7 @@ public class PlayerMovement : MonoBehaviour
     public float MaxJumpVelocity => maxJumpVelocity;
     public float RotationMultiplier { get; set; } = 1f;
     public float AccelerationMultiplier { get; set; } = 1f;
+    public event Action<StateType> OnStateChange;
 
     LayerMask currentSkateableLayer;
     Vector2 velocity;
@@ -184,6 +185,7 @@ public class PlayerMovement : MonoBehaviour
             currentState.AfterExecution();
             currentState = availableStates[nextState];
             currentState.BeforeExecution();
+            OnStateChange?.Invoke(nextState);
         }
     }
 
