@@ -237,7 +237,7 @@ public class PlayerMovement : MonoBehaviour
 
     bool LandingCheck()
     {
-        return Physics2D.CircleCast(skateboardCenter.position, .1f, velocity.normalized, velocity.magnitude * Time.deltaTime, currentSkateableLayer);
+        return Physics2D.CircleCast(skateboardCenter.position, .5f, velocity.normalized, velocity.magnitude * Time.deltaTime, currentSkateableLayer);
     }
 
     void AdjustRotationToSlope()
