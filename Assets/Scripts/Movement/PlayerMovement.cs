@@ -82,6 +82,8 @@ public class PlayerMovement : MonoBehaviour
     public static float CurrentHorizontalSpeed { get; private set; }
     public float CurrentJumpVelocity => currentJumpVelocity;
     public float MaxJumpVelocity => maxJumpVelocity;
+    public float RotationMultiplier { get; set; } = 1f;
+    public float AccelerationMultiplier { get; set; } = 1f;
 
     LayerMask currentSkateableLayer;
     Vector2 velocity;
@@ -358,13 +360,13 @@ public class PlayerMovement : MonoBehaviour
             }
             if (Input.GetKey(KeyCode.A))
             {
-                float newSpeed = move.velocity.magnitude - move.movementAcceleration * Time.deltaTime;
+                float newSpeed = move.velocity.magnitude - move.movementAcceleration * Time.deltaTime * move.AccelerationMultiplier;
                 newSpeed = Mathf.Clamp(newSpeed, move.minMoveSpeed, 10000); // 10000 is an arbitrary high number
                 move.velocity = move.velocity.normalized * newSpeed;
             }
             if (Input.GetKey(KeyCode.D))
             {
-                float newSpeed = move.velocity.magnitude + move.movementAcceleration * Time.deltaTime;
+                float newSpeed = move.velocity.magnitude + move.movementAcceleration * Time.deltaTime * move.AccelerationMultiplier;
                 newSpeed = Mathf.Clamp(newSpeed, move.minMoveSpeed, move.maxMoveSpeed);
                 if (newSpeed > move.velocity.magnitude)
                 {
@@ -460,11 +462,11 @@ public class PlayerMovement : MonoBehaviour
             // rotate based on inputs
             if (Input.GetKey(KeyCode.A))
             {
-                transform.Rotate(new Vector3(0, 0, 1), move.rotationSpeed * Time.deltaTime);
+                transform.Rotate(new Vector3(0, 0, 1), move.rotationSpeed * Time.deltaTime * move.RotationMultiplier);
             }
             if (Input.GetKey(KeyCode.D))
             {
-                transform.Rotate(new Vector3(0, 0, 1), -move.rotationSpeed * Time.deltaTime);
+                transform.Rotate(new Vector3(0, 0, 1), -move.rotationSpeed * Time.deltaTime * move.RotationMultiplier);
             }
         }
 
