@@ -24,10 +24,12 @@ public class Goals_Tracker : MonoBehaviour
     public GameObject player;
     int hazardCount;
     int hazardsJumped;
+    int bananas = 0;
     bool gapBelow;
     private float maxSpeed = 0;
     private float speedGoal = 1;
     //int distance = 0;
+    Dictionary<string, int> trickTracker = new Dictionary<string, int>();
     string mission1;
     private void Awake()
     {
@@ -64,8 +66,8 @@ public class Goals_Tracker : MonoBehaviour
             goalProgress.value = distance;
         }
         distanceText.text = "Distance: " + this.distance.ToString("#.##") + " / " + this.distanceGoal.ToString("#.##");
-        
-        /*if (PlayerMovement.IsGrounded() && hazardsJumped>0)
+        /*
+        if (PlayerMovement.IsGrounded() && hazardsJumped>0)
         {
             hazardCount += hazardsJumped;
             hazardsJumped = 0;
@@ -73,11 +75,11 @@ public class Goals_Tracker : MonoBehaviour
         else if (!PlayerMovement.IsGrounded())
         {
             checkForHazards();
-        }
-        if (maxSpeed < PlayerMovement.CurrentSpeed)
-        {
-            maxSpeed = PlayerMovement.CurrentSpeed;
         }*/
+        if (maxSpeed < PlayerMovement.CurrentHorizontalSpeed)
+        {
+            maxSpeed = PlayerMovement.CurrentHorizontalSpeed;
+        }
 
         /*if (Input.GetKey(KeyCode.RightArrow))
         {
@@ -161,13 +163,43 @@ public class Goals_Tracker : MonoBehaviour
         //Raycast downwards, if it hits an object, call object detected with detected object
     }
 
+    public void AddBananas(int bananaCount)
+    {
+        bananas += bananaCount;
+    }
+
+    public void trickTypeExecuted (Type trickType)
+    {
+        if (trickType == typeof(LeftTrick))
+        {
+            styleCounter += 200;
+            trickTracker["Left"] += 1;
+        }
+        else if (trickType == typeof(RightTrick))
+        {
+            styleCounter += 200;
+            trickTracker["Right"] += 1;
+        }
+        else if (trickType == typeof(UpTrick))
+        {
+            styleCounter += 100;
+            trickTracker["Up"] += 1;
+        }
+        else if (trickType == typeof(DownTrick))
+        {
+            styleCounter += 100;
+            trickTracker["Down"] += 1;
+        }
+    }
+
     void SceneLoaded(Scene scene, LoadSceneMode mode){
         if(scene.name == "RunScene"){
             goalProgress.gameObject.SetActive(true);
             distanceDisplay.SetActive(true);
             mission1Display.SetActive(true);
             distance = 0;
-        }else{
+        }
+        else{
             goalProgress.gameObject.SetActive(false);
             distanceDisplay.SetActive(false);
             mission1Display.SetActive(false);
