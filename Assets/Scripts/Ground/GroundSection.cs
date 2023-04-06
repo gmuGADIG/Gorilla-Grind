@@ -24,6 +24,23 @@ public class GroundSection : MonoBehaviour
     {
         subsections = GetComponentsInChildren<Subsection>();
 
+        if(subsections.Length == 0)
+        {
+            Debug.Log(name + " doesn't have any subsections.");
+
+            //This code doesn't work because prefabs or smth.
+            
+            //GameObject temp = new GameObject("Main subsection");
+            //temp.AddComponent<Subsection>();
+            //foreach (GroundEdge i in transform.GetComponentsInChildren<GroundEdge>())
+            //{
+            //    i.transform.SetParent(temp.transform);
+            //}
+            //temp.transform.SetParent(transform);
+
+            //subsections = new Subsection[] { temp.GetComponent<Subsection>() };
+
+        }
 
 
     }

@@ -78,6 +78,7 @@ public class GroundManager : MonoBehaviour
     { 
     
         GameObject instance = Instantiate(sectionPrefab,Vector3.zero,Quaternion.identity);
+        NoSubsectionCheck(instance.GetComponent<GroundSection>());
         if(activeSections.Count != 0)   
         {
             instance.transform.position = ((Vector3)activeSections.Last.Value.endPoint - ((Vector3)instance.GetComponent<GroundSection>().startPoint));
@@ -90,5 +91,23 @@ public class GroundManager : MonoBehaviour
     void CreateFirstSection(){
         GameObject instance = Instantiate(startSection);
         activeSections.AddLast(instance.GetComponent<GroundSection>());
+    }
+
+    void NoSubsectionCheck(GroundSection toCheck)
+    {
+        if(toCheck.subsections.Length == 0)
+        {
+            GameObject temp = new GameObject("Main subsection");
+            toCheck.mainsection = temp.AddComponent<Subsection>();
+
+            toCheck.subsections = new Subsection[] { toCheck.mainsection };
+            toCheck.mainsection.groundEdges = toCheck.transform.GetComponentsInChildren<GroundEdge>();
+            foreach (GroundEdge i in toCheck.mainsection.groundEdges)
+            {
+                i.transform.SetParent(temp.transform);
+            }
+            temp.transform.SetParent(toCheck.transform);
+
+        }
     }
 }
