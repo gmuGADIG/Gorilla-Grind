@@ -90,12 +90,14 @@ public class GroundManager : MonoBehaviour
 
     void CreateFirstSection(){
         GameObject instance = Instantiate(startSection);
+        NoSubsectionCheck(instance.GetComponent<GroundSection>());
         activeSections.AddLast(instance.GetComponent<GroundSection>());
+        //CreateNextSection(startSection);
     }
 
     void NoSubsectionCheck(GroundSection toCheck)
     {
-        if(toCheck.subsections.Length == 0)
+        if(toCheck.subsections.Length == 0 || toCheck.mainsection == null)
         {
             GameObject temp = new GameObject("Main subsection");
             toCheck.mainsection = temp.AddComponent<Subsection>();
@@ -107,7 +109,7 @@ public class GroundManager : MonoBehaviour
                 i.transform.SetParent(temp.transform);
             }
             temp.transform.SetParent(toCheck.transform);
-
+            Debug.Log("Initialized temp subsection");
         }
     }
 }
