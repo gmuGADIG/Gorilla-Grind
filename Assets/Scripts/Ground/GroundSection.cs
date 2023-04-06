@@ -9,9 +9,12 @@ public class GroundSection : MonoBehaviour
     [HideInInspector]
     public Subsection[] subsections;
 
-    public Vector2 startPoint { get => subsections[0].startPoint; }
+    
+    public Subsection mainsection;
 
-    public Vector2 endPoint { get => subsections[0].endPoint; }
+    public Vector2 startPoint { get => mainsection.startPoint; }
+
+    public Vector2 endPoint { get => mainsection.endPoint; }
 
 
     /**
@@ -32,17 +35,16 @@ public class GroundSection : MonoBehaviour
         
     }
 
-#if UNITY_EDITOR
     private void OnEnable()
     {
         EditorApplication.hierarchyChanged += VerifySubsections;
+        if (mainsection == null) mainsection = GetComponentInChildren<Subsection>();
     }
 
     private void OnDisable()
     {
         EditorApplication.hierarchyChanged -= VerifySubsections;
     }
-#endif
 
 
     void Update()

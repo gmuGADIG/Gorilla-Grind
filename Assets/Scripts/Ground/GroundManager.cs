@@ -80,7 +80,7 @@ public class GroundManager : MonoBehaviour
         GameObject instance = Instantiate(sectionPrefab,Vector3.zero,Quaternion.identity);
         if(activeSections.Count != 0)   
         {
-            instance.transform.position = ((Vector3)activeSections.Last.Value.endPoint - ((Vector3)instance.GetComponent<GroundSection>().startPoint- instance.transform.position));
+            instance.transform.position = ((Vector3)activeSections.Last.Value.endPoint - ((Vector3)instance.GetComponent<GroundSection>().startPoint));
             //Aligning height for now since there is lack of specs for mismatches
             //instance.transform.position += Vector3.up * (activeSections.Last.Value.startPoint.y - instance.GetComponent<GroundSection>().startPoint.y);
         }
