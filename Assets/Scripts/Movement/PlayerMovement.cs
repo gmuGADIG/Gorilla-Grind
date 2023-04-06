@@ -4,6 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+public enum StateType
+{
+    Grounded, InAir, InTrick, Dead
+}
+
 /// <summary>
 /// Script for handling player movement, including left/right inputs, jump inputs, gravity, projectile motion, and collision
 /// </summary>
@@ -95,9 +100,9 @@ public class PlayerMovement : MonoBehaviour
 
     public bool IsGrounded => currentState.GetType() == typeof(GroundedState);
     // Dictionary used to store and retrieve states.
-    Dictionary<Type, State> availableStates;
+    Dictionary<StateType, State> availableStates;
     // The default starting state the player will start in.
-    Type defaultState;
+    StateType defaultState;
     // The current state the player is in.
     State currentState;
 
@@ -128,14 +133,14 @@ public class PlayerMovement : MonoBehaviour
             GetComponentInChildren<SpriteRenderer>().color = Color.red;
         });
 
-        availableStates = new Dictionary<Type, State>()
+        availableStates = new Dictionary<StateType, State>()
         {
-            { typeof(GroundedState), new GroundedState(this) },
-            { typeof(InAirState), new InAirState(this) },
-            { typeof(TrickState), new TrickState(this) },
-            { typeof(DeadState), new DeadState(this) },
+            { StateType.Grounded, new GroundedState(this) },
+            { StateType.InAir, new InAirState(this) },
+            { StateType.InTrick, new TrickState(this) },
+            { StateType.Dead, new DeadState(this) },
         };
-        defaultState = typeof(GroundedState);
+        defaultState = StateType.Grounded;
 
         availableTricks.Add(typeof(UpTrick), new UpTrick(skateboardTransform));
         availableTricks.Add(typeof(LeftTrick), new LeftTrick(skateboardTransform));
@@ -171,10 +176,11 @@ public class PlayerMovement : MonoBehaviour
         }
         currentState.UpdateState();
         // check transitions
-        Type nextState = currentState.CheckForTransitions();
+        StateType? returnedState = currentState.CheckForTransitions();
         // transition if needed
-        if (nextState != null)
+        if (returnedState != null)
         {
+            StateType nextState = (StateType)returnedState;
             currentState.AfterExecution();
             currentState = availableStates[nextState];
             currentState.BeforeExecution();
@@ -276,7 +282,7 @@ public class PlayerMovement : MonoBehaviour
         /// Checks if the player needs to transition to another state.
         /// </summary>
         /// <returns>The class type of the state to transition to. ex: typeof(GroundedState). null if no transition.</returns>
-        public abstract Type CheckForTransitions();
+        public abstract StateType? CheckForTransitions();
     }
 
     class GroundedState : State
@@ -387,11 +393,11 @@ public class PlayerMovement : MonoBehaviour
             transform.position = new Vector3(transform.position.x, midPoint.y - move.skateboardCenter.localPosition.y, transform.position.z);
         }
 
-        public override Type CheckForTransitions()
+        public override StateType? CheckForTransitions()
         {
             if (move.IsDead)
             {
-                return typeof(DeadState);
+                return StateType.Dead;
             }
             // find the ground below the board, at 3 different offsets
             (bool midHit, Vector2 _) = move.GroundCast(move.midPointOffset);
@@ -401,13 +407,13 @@ public class PlayerMovement : MonoBehaviour
             // if any casts fail to find the ground, exit grounded state
             if (!midHit || !slopeCheckHit || !groundCheckHit)
             {
-                return typeof(InAirState);
+                return StateType.InAir;
             }
 
             // enter in air state when jumping
             if (Input.GetKeyUp(KeyCode.Space))
             {
-                return typeof(InAirState);
+                return StateType.InAir ;
             }
 
             return null;
@@ -470,26 +476,26 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        public override Type CheckForTransitions()
+        public override StateType? CheckForTransitions()
         {
             //Added for temp death check -Diana
             if (move.IsDead)
             {
-                return typeof(DeadState);
+                return StateType.Dead;
             }
 
             // check for landing. TODO: check for landing better. what if player jumps and immediately hits the ground again?
             float timeSinceLastJump = Time.time - move.lastJumpTime;
             if (timeSinceLastJump > move.groundCheckCooldownAfterJump && move.LandingCheck())
             {
-                return typeof(GroundedState);
+                return StateType.Grounded;
             }
 
             // enter trick state
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 //AttemptStartGrind();
-                return typeof(TrickState);
+                return StateType.InTrick;
             }
             return null;
         }
@@ -556,22 +562,22 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         
-        public override Type CheckForTransitions()
+        public override StateType? CheckForTransitions()
         {
             //Added for temp death check -Diana
             if (move.IsDead)
             {
-                return typeof(DeadState);
+                return StateType.Dead;
             }
 
             if (Input.GetKeyUp(KeyCode.Space))
             {
-                return typeof(InAirState);
+                return StateType.InAir;
             }
             float timeSinceLastJump = Time.time - move.lastJumpTime;
             if (timeSinceLastJump > move.groundCheckCooldownAfterJump && move.LandingCheck())
             {
-                return typeof(GroundedState);
+                return StateType.Grounded;
             }
             return null;
         }
@@ -594,7 +600,7 @@ public class PlayerMovement : MonoBehaviour
             SoundManager.Instance.PlaySoundGlobal(move.deathSoundID);
         }
 
-        public override Type CheckForTransitions()
+        public override StateType? CheckForTransitions()
         {
             return null;
         }
