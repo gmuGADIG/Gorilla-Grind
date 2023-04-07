@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 public enum StateType
 {
-    Grounded, InAir, InTrick, Dead
+    Grounded, InAir, InTrick, Dead, Jump
 }
 
 /// <summary>
@@ -138,6 +138,7 @@ public class PlayerMovement : MonoBehaviour
         {
             { StateType.Grounded, new GroundedState(this) },
             { StateType.InAir, new InAirState(this) },
+            { StateType.Jump, new JumpState(this) },
             { StateType.InTrick, new TrickState(this) },
             { StateType.Dead, new DeadState(this) },
         };
@@ -238,7 +239,7 @@ public class PlayerMovement : MonoBehaviour
 
     bool LandingCheck()
     {
-        return Physics2D.CircleCast(skateboardCenter.position, .1f, velocity.normalized, velocity.magnitude * Time.deltaTime, currentSkateableLayer);
+        return Physics2D.CircleCast(skateboardCenter.position, .5f, velocity.normalized, velocity.magnitude * Time.deltaTime, currentSkateableLayer);
     }
 
     void AdjustRotationToSlope()
@@ -412,12 +413,69 @@ public class PlayerMovement : MonoBehaviour
                 return StateType.InAir;
             }
 
-            // enter in air state when jumping
+            // enter in jump state
             if (Input.GetKeyUp(KeyCode.Space))
             {
-                return StateType.InAir ;
+                return StateType.Jump;
             }
 
+            return null;
+        }
+    }
+
+    class JumpState : State
+    {
+        public JumpState(PlayerMovement move) : base(move) { }
+
+        public override void AfterExecution()
+        {
+
+        }
+
+        public override void BeforeExecution()
+        {
+
+        }
+
+        public override void PhysicsUpdate()
+        {
+            // add gravity and adjust position
+            move.velocity += Vector2.down * (move.currentGravity * Time.deltaTime);
+            transform.position += Vector3.up * (move.velocity.y * Time.deltaTime); // again, horizontal position is handled in Scrollobject
+        }
+
+        public override void UpdateState()
+        {
+            // rotate based on inputs
+            if (Input.GetKey(KeyCode.A))
+            {
+                transform.Rotate(new Vector3(0, 0, 1), move.rotationSpeed * Time.deltaTime * move.RotationMultiplier);
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                transform.Rotate(new Vector3(0, 0, 1), -move.rotationSpeed * Time.deltaTime * move.RotationMultiplier);
+            }
+        }
+
+        public override StateType? CheckForTransitions()
+        {
+            //Added for temp death check -Diana
+            if (move.IsDead)
+            {
+                return StateType.Dead;
+            }
+            // check for landing. TODO: check for landing better. what if player jumps and immediately hits the ground again?
+            float timeSinceLastJump = Time.time - move.lastJumpTime;
+            if (timeSinceLastJump > move.groundCheckCooldownAfterJump)
+            {
+                return StateType.InAir;
+            }
+            // enter trick state
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                //AttemptStartGrind();
+                return StateType.InTrick;
+            }
             return null;
         }
     }
@@ -486,13 +544,11 @@ public class PlayerMovement : MonoBehaviour
                 return StateType.Dead;
             }
 
-            // check for landing. TODO: check for landing better. what if player jumps and immediately hits the ground again?
             float timeSinceLastJump = Time.time - move.lastJumpTime;
             if (timeSinceLastJump > move.groundCheckCooldownAfterJump && move.LandingCheck())
             {
                 return StateType.Grounded;
             }
-
             // enter trick state
             if (Input.GetKeyDown(KeyCode.Space))
             {
