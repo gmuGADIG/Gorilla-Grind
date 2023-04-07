@@ -34,6 +34,7 @@ public class MultiTrackMusicManager : MonoBehaviour
         {
             songIDs[i] = SoundManager.Instance.GetSoundID(songs[i].name);
         }
+        PlayMusicOnShuffle();
     }
 
     /// <summary>
