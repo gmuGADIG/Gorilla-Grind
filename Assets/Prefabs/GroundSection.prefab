@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7801289567549107425}
   - component: {fileID: 5230716032857752000}
+  - component: {fileID: -4542421326607359937}
   m_Layer: 0
   m_Name: GroundSection
   m_TagString: Untagged
@@ -44,4 +45,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be356d096e2c9704a81dd81a5ab73e1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundEdges: []
+  subsections:
+  - {fileID: 0}
+--- !u!114 &-4542421326607359937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6640666750115933475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2aecaa02dba6a97687ceca6690648ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollRate: 1

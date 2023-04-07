@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 using System;
 
 public class Goals_Tracker : MonoBehaviour
 {
     public static Goals_Tracker instance;
-    float distanceGoal = 10f;
+    float distanceGoal = 100f;
     float distance = 0f;
     public int level = 0;
     public Slider goalProgress;
@@ -23,10 +24,12 @@ public class Goals_Tracker : MonoBehaviour
     public GameObject player;
     int hazardCount;
     int hazardsJumped;
+    int bananas = 0;
     bool gapBelow;
     private float maxSpeed = 0;
     private float speedGoal = 1;
     //int distance = 0;
+    Dictionary<string, int> trickTracker = new Dictionary<string, int>();
     string mission1;
     private void Awake()
     {
@@ -39,6 +42,7 @@ public class Goals_Tracker : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        SceneManager.sceneLoaded += SceneLoaded;
     }
     // Start is called before the first frame update
     void Start()
@@ -62,8 +66,8 @@ public class Goals_Tracker : MonoBehaviour
             goalProgress.value = distance;
         }
         distanceText.text = "Distance: " + this.distance.ToString("#.##") + " / " + this.distanceGoal.ToString("#.##");
-        
-        /*if (PlayerMovement.IsGrounded() && hazardsJumped>0)
+        /*
+        if (PlayerMovement.IsGrounded() && hazardsJumped>0)
         {
             hazardCount += hazardsJumped;
             hazardsJumped = 0;
@@ -71,11 +75,11 @@ public class Goals_Tracker : MonoBehaviour
         else if (!PlayerMovement.IsGrounded())
         {
             checkForHazards();
-        }
-        if (maxSpeed < PlayerMovement.CurrentSpeed)
-        {
-            maxSpeed = PlayerMovement.CurrentSpeed;
         }*/
+        if (maxSpeed < PlayerMovement.CurrentHorizontalSpeed)
+        {
+            maxSpeed = PlayerMovement.CurrentHorizontalSpeed;
+        }
 
         /*if (Input.GetKey(KeyCode.RightArrow))
         {
@@ -105,6 +109,7 @@ public class Goals_Tracker : MonoBehaviour
             case 2:
                 mission1 = "Perform trick " + " times.";
                 break;
+            case 3:
                 mission1 = "Reach a distance of " + " in one run.";
                 break;
             case 4:
@@ -132,7 +137,7 @@ public class Goals_Tracker : MonoBehaviour
 
     void objectDetected(GameObject hazard)
     {
-        if (!lastHazard == hazard)
+        if (lastHazard != hazard)
         {
             lastHazard = hazard;
             hazardsJumped++;
@@ -156,5 +161,48 @@ public class Goals_Tracker : MonoBehaviour
             gapBelow = false;
         }
         //Raycast downwards, if it hits an object, call object detected with detected object
+    }
+
+    public void AddBananas(int bananaCount)
+    {
+        bananas += bananaCount;
+    }
+
+    public void trickTypeExecuted (Type trickType)
+    {
+        if (trickType == typeof(LeftTrick))
+        {
+            styleCounter += 200;
+            trickTracker["Left"] += 1;
+        }
+        else if (trickType == typeof(RightTrick))
+        {
+            styleCounter += 200;
+            trickTracker["Right"] += 1;
+        }
+        else if (trickType == typeof(UpTrick))
+        {
+            styleCounter += 100;
+            trickTracker["Up"] += 1;
+        }
+        else if (trickType == typeof(DownTrick))
+        {
+            styleCounter += 100;
+            trickTracker["Down"] += 1;
+        }
+    }
+
+    void SceneLoaded(Scene scene, LoadSceneMode mode){
+        if(scene.name == "RunScene"){
+            goalProgress.gameObject.SetActive(true);
+            distanceDisplay.SetActive(true);
+            mission1Display.SetActive(true);
+            distance = 0;
+        }
+        else{
+            goalProgress.gameObject.SetActive(false);
+            distanceDisplay.SetActive(false);
+            mission1Display.SetActive(false);
+        }
     }
 }

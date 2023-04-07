@@ -31,7 +31,11 @@ public class GroundEdge : MonoBehaviour
 
         } 
     }
-    public Vector2 endPoint { get { return edgeCollider.transform.localToWorldMatrix.MultiplyPoint(edgeCollider.points[edgeCollider.pointCount - 1]);  } }
+    public Vector2 endPoint { 
+        get { 
+            return edgeCollider.transform.localToWorldMatrix.MultiplyPoint(edgeCollider.points[edgeCollider.pointCount - 1]);  
+        } 
+    }
     [Space]
     [Header("Edges will follow the first node in series")]
     public GroundEdge previous;
@@ -46,14 +50,30 @@ public class GroundEdge : MonoBehaviour
     void Start()
     {
         edgeCollider.enabled = !noCollision;
+// #if DEBUG
+        if (shouldRenderEdge && !noCollision)
+        {
+            gameObject.AddComponent<LineRenderer>();
+        }
+
+//  #endif
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+//#if DEBUG
+        if (shouldRenderEdge && !noCollision)
+        {
+            LineRenderer lrender = GetComponent<LineRenderer>();
+            lrender.positionCount = edgeCollider.points.Length;
+            lrender.material.color = lrender.startColor = lrender.endColor = noCollision ? new Color(1,1,1,0) : Color.yellow;
+            lrender.startWidth = lrender.endWidth = .25f;
+            lrender.SetPositions(Utils.GetWorldPoints(Utils.Vec2ArrToVec3Arr(edgeCollider.points), edgeCollider.gameObject));
+        }
+//#endif
     }
-    
+
     [Obsolete("Trying to replace this with a more modular set of methods")]
     public void SnapEdge()
     {
