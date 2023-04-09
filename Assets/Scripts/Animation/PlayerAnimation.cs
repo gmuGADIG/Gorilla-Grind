@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum AnimationType
 {
-    Idle, Jump, WipeOut, ChangingSpeed, GrabbingBoard, GrabbingVine
+    Idle, Jump, WipeOut, ChangingSpeed, GrabbingBoard, GrabbingVine, Fall
 }
 
 public class PlayerAnimation : MonoBehaviour
@@ -18,6 +18,7 @@ public class PlayerAnimation : MonoBehaviour
         { AnimationType.ChangingSpeed, Animator.StringToHash("Player_IncreaseSpeed") },
         { AnimationType.GrabbingBoard, Animator.StringToHash("Player_GrabBoard") },
         { AnimationType.GrabbingVine, Animator.StringToHash("Player_GrabVine") },
+        { AnimationType.Fall, Animator.StringToHash("Player_Fall") },
         
     };
     PlayerMovement movement;
@@ -46,9 +47,13 @@ public class PlayerAnimation : MonoBehaviour
                 PlayAnimation(AnimationType.Idle);
             }
         }
-        if (newState == StateType.InAir)
+        if (newState == StateType.Jump)
         {
             PlayAnimation(AnimationType.Jump);
+        }
+        if (newState == StateType.InAir)
+        {
+            PlayAnimation(AnimationType.Fall);
         }
     }
 
