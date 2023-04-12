@@ -78,9 +78,10 @@ public class GroundManager : MonoBehaviour
     { 
     
         GameObject instance = Instantiate(sectionPrefab,Vector3.zero,Quaternion.identity);
+        NoSubsectionCheck(instance.GetComponent<GroundSection>());
         if(activeSections.Count != 0)   
         {
-            instance.transform.position = ((Vector3)activeSections.Last.Value.endPoint - ((Vector3)instance.GetComponent<GroundSection>().startPoint- instance.transform.position));
+            instance.transform.position = ((Vector3)activeSections.Last.Value.endPoint - ((Vector3)instance.GetComponent<GroundSection>().startPoint));
             //Aligning height for now since there is lack of specs for mismatches
             //instance.transform.position += Vector3.up * (activeSections.Last.Value.startPoint.y - instance.GetComponent<GroundSection>().startPoint.y);
         }
@@ -89,6 +90,26 @@ public class GroundManager : MonoBehaviour
 
     void CreateFirstSection(){
         GameObject instance = Instantiate(startSection);
+        NoSubsectionCheck(instance.GetComponent<GroundSection>());
         activeSections.AddLast(instance.GetComponent<GroundSection>());
+        //CreateNextSection(startSection);
+    }
+
+    void NoSubsectionCheck(GroundSection toCheck)
+    {
+        if(toCheck.subsections.Length == 0 || toCheck.mainsection == null)
+        {
+            GameObject temp = new GameObject("Main subsection");
+            toCheck.mainsection = temp.AddComponent<Subsection>();
+
+            toCheck.subsections = new Subsection[] { toCheck.mainsection };
+            toCheck.mainsection.groundEdges = toCheck.transform.GetComponentsInChildren<GroundEdge>();
+            foreach (GroundEdge i in toCheck.mainsection.groundEdges)
+            {
+                i.transform.SetParent(temp.transform);
+            }
+            temp.transform.SetParent(toCheck.transform);
+            Debug.Log("Initialized temp subsection");
+        }
     }
 }

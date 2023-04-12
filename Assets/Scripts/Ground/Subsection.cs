@@ -59,7 +59,7 @@ public class Subsection : MonoBehaviour
 
     }
 
-#if UNITY_EDITOR
+
     private void OnEnable()
     {
         EditorApplication.hierarchyChanged += VerifyConnections;
@@ -69,5 +69,4 @@ public class Subsection : MonoBehaviour
     {
         EditorApplication.hierarchyChanged -= VerifyConnections;
     }
-#endif
 }

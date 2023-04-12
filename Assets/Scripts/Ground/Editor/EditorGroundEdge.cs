@@ -42,9 +42,12 @@ public class EditorGroundEdge : Editor
 
     private void OnSceneGUI()
     {
-        if(Event.current.type == EventType.MouseDrag || Event.current.type == EventType.ExecuteCommand)
+        if (Event.current.type == EventType.MouseDrag || Event.current.type == EventType.ExecuteCommand)
+        {
             (target as GroundEdge).SnapSurroundingEdges();
-        
+        }
+        (target as GroundEdge).RenderLine();
+
         //Debug.Log(Event.current);
     }
 
@@ -53,24 +56,24 @@ public class EditorGroundEdge : Editor
     // Make sure it is a "static" function
     // name it whatever you want
     //https://answers.unity.com/questions/654423/keep-my-custom-handle-visible-even-if-object-is-no.html
-    [DrawGizmo(GizmoType.InSelectionHierarchy | GizmoType.NotInSelectionHierarchy)]
-    static void DrawHandles(GroundEdge edge, GizmoType gizmoType)
-    {
-        RenderGroundEdge(edge);
-    }
+    //[DrawGizmo(GizmoType.InSelectionHierarchy | GizmoType.NotInSelectionHierarchy)]
+    //static void DrawHandles(GroundEdge edge, GizmoType gizmoType)
+    //{
+    //    RenderGroundEdge(edge);
+    //}
 
-    private static void RenderGroundEdge(GroundEdge ground )
-    {
-        Handles.color = ground.noCollision ? GroundEdge.gapColor : GroundEdge.solidColor;
-        
-        if (GroundEdge.shouldRenderEdge)
-            Handles.DrawPolyLine(
-                Utils.GetWorldPoints(
-                    Utils.Vec2ArrToVec3Arr(ground.edgeCollider.points),
-                    ground.edgeCollider.gameObject
-                    )
-                );
-    }
+    //private static void RenderGroundEdge(GroundEdge ground )
+    //{
+    //    Handles.color = ground.noCollision ? GroundEdge.gapColor : GroundEdge.solidColor;
+
+    //    if (GroundEdge.shouldRenderEdge)
+    //        Handles.DrawPolyLine(
+    //            Utils.GetWorldPoints(
+    //                Utils.Vec2ArrToVec3Arr(ground.edgeCollider.points),
+    //                ground.edgeCollider.gameObject
+    //                )
+    //            );
+    //}
 
     //https://forum.unity.com/threads/creating-a-hotkey-to-get-into-edit-collider-mode.474706/#:~:text=I%20think%20you%20can%20hook%20into%20the%20Event,Mode%20%23_e%22%29%5D%20%2F%2F%20This%20is%20Shift%20%2B%20e
     //This feels very evil probably avoid copying too much
@@ -87,5 +90,8 @@ public class EditorGroundEdge : Editor
             }
         }
     }
+
+    //[MenuItem("Tools/Fix GroundEdge Rendering")]
+      
 }
 #endif

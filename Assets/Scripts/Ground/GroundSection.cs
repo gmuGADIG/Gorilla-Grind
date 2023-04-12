@@ -9,9 +9,12 @@ public class GroundSection : MonoBehaviour
     [HideInInspector]
     public Subsection[] subsections;
 
-    public Vector2 startPoint { get => subsections[0].startPoint; }
+    
+    public Subsection mainsection;
 
-    public Vector2 endPoint { get => subsections[0].endPoint; }
+    public Vector2 startPoint { get => mainsection.startPoint; }
+
+    public Vector2 endPoint { get => mainsection.endPoint; }
 
 
     /**
@@ -21,6 +24,23 @@ public class GroundSection : MonoBehaviour
     {
         subsections = GetComponentsInChildren<Subsection>();
 
+        if(subsections.Length == 0)
+        {
+            Debug.Log(name + " doesn't have any subsections.");
+
+            //This code doesn't work because prefabs or smth.
+            
+            //GameObject temp = new GameObject("Main subsection");
+            //temp.AddComponent<Subsection>();
+            //foreach (GroundEdge i in transform.GetComponentsInChildren<GroundEdge>())
+            //{
+            //    i.transform.SetParent(temp.transform);
+            //}
+            //temp.transform.SetParent(transform);
+
+            //subsections = new Subsection[] { temp.GetComponent<Subsection>() };
+
+        }
 
 
     }
@@ -32,17 +52,16 @@ public class GroundSection : MonoBehaviour
         
     }
 
-#if UNITY_EDITOR
     private void OnEnable()
     {
         EditorApplication.hierarchyChanged += VerifySubsections;
+        if (mainsection == null) mainsection = GetComponentInChildren<Subsection>();
     }
 
     private void OnDisable()
     {
         EditorApplication.hierarchyChanged -= VerifySubsections;
     }
-#endif
 
 
     void Update()
