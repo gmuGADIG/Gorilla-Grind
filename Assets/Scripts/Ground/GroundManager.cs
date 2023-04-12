@@ -71,7 +71,7 @@ public class GroundManager : MonoBehaviour
     {
         if(sectionPrefabs.Length != 0)
         {
-            CreateNextSection(sectionPrefabs[Random.Range(0, sectionPrefabs.Length - 1)]);
+            CreateNextSection(sectionPrefabs[Random.Range(0, sectionPrefabs.Length)]);
         }
     }
     void CreateNextSection(GameObject sectionPrefab) 
