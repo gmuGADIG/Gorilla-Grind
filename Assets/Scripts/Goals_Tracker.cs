@@ -21,7 +21,6 @@ public class Goals_Tracker : MonoBehaviour
     private GameObject lastHazard = null;
     bool goalMet = false;
     float styleCounter = 1.0f;
-    public GameObject player;
     int hazardCount;
     int hazardsJumped;
     int bananas = 0;
@@ -31,6 +30,7 @@ public class Goals_Tracker : MonoBehaviour
     //int distance = 0;
     Dictionary<string, int> trickTracker = new Dictionary<string, int>();
     string mission1;
+    PlayerMovement pm;
     private void Awake()
     {
         if(instance == null)
@@ -47,6 +47,7 @@ public class Goals_Tracker : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        pm = GetComponent<PlayerMovement>();
         distanceText = distanceDisplay.GetComponent<TMP_Text>();
         mission1Text = mission1Display.GetComponent<TMP_Text>();
         goalStart();
@@ -66,16 +67,16 @@ public class Goals_Tracker : MonoBehaviour
             goalProgress.value = distance;
         }
         distanceText.text = "Distance: " + this.distance.ToString("#.##") + " / " + this.distanceGoal.ToString("#.##");
-        /*
-        if (PlayerMovement.IsGrounded() && hazardsJumped>0)
+        
+        if (pm.IsGrounded && hazardsJumped>0)
         {
             hazardCount += hazardsJumped;
             hazardsJumped = 0;
         }
-        else if (!PlayerMovement.IsGrounded())
+        else if (!pm.IsGrounded)
         {
             checkForHazards();
-        }*/
+        }
         if (maxSpeed < PlayerMovement.CurrentHorizontalSpeed)
         {
             maxSpeed = PlayerMovement.CurrentHorizontalSpeed;
@@ -146,7 +147,7 @@ public class Goals_Tracker : MonoBehaviour
 
     void checkForHazards()
     {
-        RaycastHit2D rc = Physics2D.Raycast(player.transform.position, Vector2.down);
+        RaycastHit2D rc = Physics2D.Raycast(transform.position, Vector2.down);
         if (rc.collider.gameObject.CompareTag("Hazards"))
         {
             objectDetected(rc.collider.gameObject);
