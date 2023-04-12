@@ -25,7 +25,7 @@ public class PlayerAnimation : MonoBehaviour
 
     private void Start()
     {
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
         movement = GetComponent<PlayerMovement>();
         movement.OnStateChange += CheckMovementState;
     }
@@ -54,6 +54,10 @@ public class PlayerAnimation : MonoBehaviour
         if (newState == StateType.InAir)
         {
             PlayAnimation(AnimationType.Fall);
+        }
+        if (newState == StateType.InTrick)
+        {
+            PlayAnimation(AnimationType.GrabbingBoard);
         }
     }
 
