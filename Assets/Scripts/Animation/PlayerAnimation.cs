@@ -20,7 +20,7 @@ public class PlayerAnimation : MonoBehaviour
         { AnimationType.GrabbingBoard, Animator.StringToHash("Player_GrabBoard") },
         { AnimationType.GrabbingVine, Animator.StringToHash("Player_GrabVine") },
         { AnimationType.Fall, Animator.StringToHash("Player_Fall") },
-        { AnimationType.GrabbingBoardEnd, Animator.StringToHash("Player_GrabBoardEnd")},
+        { AnimationType.GrabbingBoardEnd, Animator.StringToHash("Player_GrabBoardEnd") },
         
     };
     PlayerMovement movement;
@@ -45,8 +45,10 @@ public class PlayerAnimation : MonoBehaviour
             {
                 PlayAnimation(AnimationType.JumpEnd);
             }
-            PlayAnimation(AnimationType.Idle);
-
+            else
+            {
+                PlayAnimation(AnimationType.Idle);
+            }
         }
         if (newState == StateType.Jump)
         {
