@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Linq;
 public class GroundManager : MonoBehaviour
 {
     public static GroundManager groundManager;
@@ -9,6 +9,9 @@ public class GroundManager : MonoBehaviour
     public GameObject[] sectionPrefabs;
     public LinkedList<GroundSection> activeSections;
     public float spawnOffset;
+
+    
+    public Vector2 spawnBounds;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +20,14 @@ public class GroundManager : MonoBehaviour
             groundManager = this;
         }
         activeSections = new LinkedList<GroundSection>();
+
+        //Delete after one gadig meeting
+        if(spawnBounds.x == 0)
+        {
+            spawnBounds.x = spawnOffset;
+            spawnBounds.y = spawnOffset;
+        }
+
         if(sectionPrefabs.Length == 0)
         {
             Debug.LogError("No prefabs loaded in GroundManager");
@@ -52,7 +63,7 @@ public class GroundManager : MonoBehaviour
     {
         if (activeSections.First != null)
         {
-            if (activeSections.First.Value.endPoint.x + transform.position.x < -spawnOffset)
+            if (activeSections.First.Value.endPoint.x < transform.position.x -spawnBounds.x)
             {
                 Destroy(activeSections.First.Value.gameObject);
                 activeSections.RemoveFirst();
@@ -62,7 +73,7 @@ public class GroundManager : MonoBehaviour
     void SpawnCheck()
     {
         
-        if(activeSections.Last == null || activeSections.Last.Value.endPoint.x + transform.position.x < spawnOffset)
+        if(activeSections.Last == null || activeSections.Last.Value.endPoint.x  < transform.position.x  + spawnBounds.x)
         {
             GenerateRandomSection();
         }
@@ -71,8 +82,26 @@ public class GroundManager : MonoBehaviour
     {
         if(sectionPrefabs.Length != 0)
         {
-            CreateNextSection(sectionPrefabs[Random.Range(0, sectionPrefabs.Length)]);
+
+            List<GroundSection> spawnable = GetValidSections();
+            if (spawnable.Count == 0)
+            {
+                //uhh
+                Debug.Log("no chunks valid");
+            }
+            else
+            {
+                CreateNextSection(spawnable[Random.Range(0, spawnable.Count)].gameObject);
+            }
         }
+    }
+
+    List<GroundSection> GetValidSections()
+    {
+        //List of groundsections from prefabs
+        List<GroundSection> validSections = sectionPrefabs.ToList().Select(gs => gs.GetComponent<GroundSection>()).ToList();
+        //return sections where the height change + last.y is greater than pos - bound but less that pos+bound
+        return validSections.Where(gs => System.Math.Abs(activeSections.Last.Value.endPoint.y + gs.heightDiff - transform.position.y) < spawnBounds.y).ToList();
     }
     void CreateNextSection(GameObject sectionPrefab) 
     { 
@@ -91,6 +120,13 @@ public class GroundManager : MonoBehaviour
     void CreateFirstSection(){
         GameObject instance = Instantiate(startSection);
         NoSubsectionCheck(instance.GetComponent<GroundSection>());
+        //If there is a player, move the section so the player lands on it
+        PlayerMovement player = (PlayerMovement)FindObjectOfType(typeof(PlayerMovement));
+        if (player)
+        {
+            Vector3 dest = player.transform.position + new Vector3(-3, -3);
+            instance.transform.position += dest - (Vector3)instance.GetComponent<GroundSection>().startPoint;
+        }
         activeSections.AddLast(instance.GetComponent<GroundSection>());
         //CreateNextSection(startSection);
     }

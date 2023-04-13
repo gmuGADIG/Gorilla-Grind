@@ -16,6 +16,8 @@ public class GroundSection : MonoBehaviour
 
     public Vector2 endPoint { get => mainsection.endPoint; }
 
+    public float heightDiff => mainsection?.heightDiff ?? 0;
+
 
     /**
      * Reconnects every ground edge to the next one
