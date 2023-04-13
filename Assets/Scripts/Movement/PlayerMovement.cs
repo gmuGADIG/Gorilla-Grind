@@ -126,7 +126,6 @@ public class PlayerMovement : MonoBehaviour
     
     void Start()
     {
-        currentSkateableLayer = groundLayer;
         currentGravity = baseGravity;
         currentCoyoteTime = coyoteTime;
         // sample death listener

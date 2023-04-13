@@ -10,6 +10,7 @@ public class PlayerBoard : MonoBehaviour
     void Awake()
     {
         movement = GetComponent<PlayerMovement>();
+        movement.OnStateChange += UpdateBoardSprite;
     }
 
     void Start()
@@ -26,6 +27,18 @@ public class PlayerBoard : MonoBehaviour
         }
         currentBoard = newBoard;
         currentBoard.ApplyBonuses(movement);
+    }
+
+    void UpdateBoardSprite(StateType playerState)
+    {
+        if (playerState == StateType.InTrick)
+        {
+            currentBoard.ShowCosmeticView();
+        }
+        else
+        {
+            currentBoard.ShowSideView();
+        }
     }
 
 }
