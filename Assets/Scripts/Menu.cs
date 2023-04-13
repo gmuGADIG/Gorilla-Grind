@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
@@ -31,18 +32,35 @@ public class Menu : MonoBehaviour
         }
     }
     
-    void PauseGame(bool isPaused)
+    public void PauseGame(bool isPaused)
     {
-        pauseMenu.SetActive(isPaused);
-        gamePaused = isPaused;
-        player.enabled = !isPaused;
-        if (isPaused)
+        if (pauseMenu)
         {
-            Time.timeScale = 0.0f;
+            pauseMenu.SetActive(isPaused);
+            gamePaused = isPaused;
+            if (player) player.enabled = !isPaused;
+            if (isPaused)
+            {
+                Time.timeScale = 0.0f;
+            }
+            else
+            {
+                Time.timeScale = 1.0f;
+            }
         }
-        else
-        {
-            Time.timeScale = 1.0f;
-        }
+    }
+
+    public void OpenMenu(GameObject UIElement)
+    {
+        UIElement.SetActive(true);
+    }
+    public void CloseMenu(GameObject UIElement)
+    {
+        UIElement.SetActive(false);
+    }
+
+    public void LoadScene(string scene)
+    {
+        SceneManager.LoadScene(scene);
     }
 }
