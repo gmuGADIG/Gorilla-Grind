@@ -72,6 +72,7 @@ public class Goals_Tracker : MonoBehaviour
         {
             hazardCount += hazardsJumped;
             hazardsJumped = 0;
+            Debug.Log("Hazards: " + hazardCount);
         }
         else if (!pm.IsGrounded)
         {
@@ -127,6 +128,9 @@ public class Goals_Tracker : MonoBehaviour
         hazardCount = 0;
         hazardsJumped = 0;
         gapBelow = false;
+        goalProgress.gameObject.SetActive(true);
+        distanceDisplay.SetActive(true);
+        mission1Display.SetActive(true);
     }
 
     void monkeyMeeting(int level)
@@ -147,26 +151,36 @@ public class Goals_Tracker : MonoBehaviour
 
     void checkForHazards()
     {
+        Debug.Log("Test");
         RaycastHit2D rc = Physics2D.Raycast(transform.position, Vector2.down);
-        if (rc.collider.gameObject.CompareTag("Hazards"))
-        {
-            objectDetected(rc.collider.gameObject);
-        }
-        else if (rc.collider == null)
+        if (rc.collider == null)
         {
             gapBelow = true;
+            Debug.Log("No Collider");
+        }
+        else if (rc.collider.gameObject.CompareTag("Hazards"))
+        {
+            objectDetected(rc.collider.gameObject);
+            Debug.Log("HAZARD");
         }
         else if (rc.collider.gameObject.CompareTag("Terrain") && gapBelow)
         {
             hazardsJumped++;
+            Debug.Log("JUMPED OVER");
             gapBelow = false;
         }
+        Debug.Log(rc.collider.gameObject.name);
         //Raycast downwards, if it hits an object, call object detected with detected object
     }
 
     public void AddBananas(int bananaCount)
     {
         bananas += bananaCount;
+    }
+
+    public int getBananas()
+    {
+        return bananas;
     }
 
     public void trickTypeExecuted (Type trickType)
