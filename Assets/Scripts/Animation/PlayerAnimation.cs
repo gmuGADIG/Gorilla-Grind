@@ -74,9 +74,16 @@ public class PlayerAnimation : MonoBehaviour
 
     void Update()
     {
-        if (lastState == StateType.Grounded && Input.GetKey(KeyCode.D))
+        if (lastState == StateType.Grounded)
         {
-            PlayAnimation(AnimationType.ChangingSpeed);
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                PlayAnimation(AnimationType.ChangingSpeed);
+            }
+            if (Input.GetKeyUp(KeyCode.D))
+            {
+                PlayAnimation(AnimationType.Idle);
+            }
         }
     }
 
