@@ -19,6 +19,7 @@ public class UpTrick : Trick
     public override void DuringTrick()
     {
         skateboard.Rotate(Vector3.forward, 300 * Time.deltaTime);
+        Goals_Tracker.instance?.trickTypeExecuted(GetType());
     }
 
     public override void EndTrick()
