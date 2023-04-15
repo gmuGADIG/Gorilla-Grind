@@ -9,6 +9,7 @@ using System;
 
 public class Goals_Tracker : MonoBehaviour
 {
+    List<Mission.MissionType> missionTypes = new List<Mission.MissionType>();
     public static Goals_Tracker instance;
     float distanceGoal = 100f;
     float distance = 0f;
@@ -29,8 +30,11 @@ public class Goals_Tracker : MonoBehaviour
     private float speedGoal = 1;
     //int distance = 0;
     Dictionary<string, int> trickTracker = new Dictionary<string, int>();
-    string mission1;
     PlayerMovement pm;
+    Mission mission1;
+    Mission mission2;
+    Mission mission3;
+
     private void Awake()
     {
         if(instance == null)
@@ -68,13 +72,14 @@ public class Goals_Tracker : MonoBehaviour
         }
         distanceText.text = "Distance: " + this.distance.ToString("#.##") + " / " + this.distanceGoal.ToString("#.##");
         
-        if (pm.IsGrounded && hazardsJumped>0)
+        if (pm.IsGrounded)
         {
             hazardCount += hazardsJumped;
+            Debug.Log("Hazards: " + hazardsJumped);
+
             hazardsJumped = 0;
-            Debug.Log("Hazards: " + hazardCount);
         }
-        else if (!pm.IsGrounded)
+        else
         {
             checkForHazards();
         }
@@ -95,42 +100,61 @@ public class Goals_Tracker : MonoBehaviour
 
     void goalStart()
     {
+        missionTypes = new List<Mission.MissionType>() {
+            Mission.MissionType.Distance,
+            Mission.MissionType.BananaCount,
+            Mission.MissionType.Trick,
+            Mission.MissionType.HazardCount,
+            Mission.MissionType.MaxSpeed,
+            Mission.MissionType.StyleCount
+        };
         distance = 0f;
         goalMet = false;
         styleCounter = 1.0f;
         System.Random rnd = new System.Random();
-        int num = rnd.Next(0, 6);
-        switch (num)
-        {
-            case 0:
-                mission1 = "Achieve a speed of " + " in one run.";
-                break;
-            case 1:
-                mission1 = "Collect " + " bananas in one run.";
-                break;
-            case 2:
-                mission1 = "Perform trick " + " times.";
-                break;
-            case 3:
-                mission1 = "Reach a distance of " + " in one run.";
-                break;
-            case 4:
-                mission1 = "Jump over " + " hazards in one run.";
-                break;
-            case 5:
-                mission1 = "Get " + " style points in one run.";
-                break;
-            default:
-                mission1 = "";
-                break;
-        }
-        mission1Text.text = mission1;
+        int num1 = rnd.Next(0, 6);
+        int num2 = rnd.Next(0, 6);
+        int num3 = rnd.Next(0, 6);
+        mission1 = new Mission(missionTypes[num1], goalGenerator(missionTypes[num1]));
+        mission2 = new Mission(missionTypes[num2], goalGenerator(missionTypes[num2]));
+        mission3 = new Mission(missionTypes[num3], goalGenerator(missionTypes[num3]));
+        //mission1Text.text = mis1.
         hazardCount = 0;
         hazardsJumped = 0;
         gapBelow = false;
         goalProgress.gameObject.SetActive(true);
         distanceDisplay.SetActive(true);
         mission1Display.SetActive(true);
+
+        
+    }
+
+    float goalGenerator(Mission.MissionType misType)
+    {
+        System.Random rnd = new System.Random();
+        switch (misType)
+        {
+            case Mission.MissionType.Distance:
+                return rnd.Next(1000, 10001);
+
+            case Mission.MissionType.BananaCount:
+                return rnd.Next(50, 101);
+
+            case Mission.MissionType.MaxSpeed:
+                return rnd.Next(50, 76);
+
+            case Mission.MissionType.HazardCount:
+                return rnd.Next(50, 101);
+
+            case Mission.MissionType.Trick:
+                return rnd.Next(4, 11);
+
+            case Mission.MissionType.StyleCount:
+                return rnd.Next(1000, 10000);
+
+            default:
+                return 0;
+        }
     }
 
     void monkeyMeeting(int level)
@@ -151,8 +175,10 @@ public class Goals_Tracker : MonoBehaviour
 
     void checkForHazards()
     {
-        Debug.Log("Test");
-        RaycastHit2D rc = Physics2D.Raycast(transform.position, Vector2.down);
+        int layerMask = 1 << 7;
+        layerMask = ~layerMask;
+        Debug.DrawRay(transform.position, Vector2.down * 35f, Color.red);
+        RaycastHit2D rc = Physics2D.Raycast(transform.position, Vector2.down, 35f, layerMask);
         if (rc.collider == null)
         {
             gapBelow = true;
@@ -169,7 +195,10 @@ public class Goals_Tracker : MonoBehaviour
             Debug.Log("JUMPED OVER");
             gapBelow = false;
         }
-        Debug.Log(rc.collider.gameObject.name);
+        else
+        {
+            Debug.Log(rc.transform.gameObject.name);
+        }
         //Raycast downwards, if it hits an object, call object detected with detected object
     }
 
