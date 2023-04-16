@@ -35,8 +35,6 @@ public class StinsonGoals_Tracker : MonoBehaviour
     void Update()
     {
         distanceTracker.AddDistance(PlayerMovement.CurrentHorizontalSpeed * Time.deltaTime);
-
-
     }
 
     public void OnTrickTypeExecuted(Type type)

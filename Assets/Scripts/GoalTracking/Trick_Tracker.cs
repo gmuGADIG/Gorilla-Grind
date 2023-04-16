@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Trick_Tracker
+public class Trick_Tracker : Tracker
 {
     Type type;
     int goal;
-    int count;
 
     Dictionary<string, int> tricks = new Dictionary<string, int>() {
             {"Left", 0},
@@ -21,13 +20,13 @@ public class Trick_Tracker
         tricks[type] += 1;
     }
 
-    public bool MetGoal()
+    public override float GetCount()
     {
-        return count >= goal;
+        return 0;
     }
 
-    public int GetCount()
+    public override int GetCount(string type)
     {
-        return count;
+        return tricks[type];
     }
 }

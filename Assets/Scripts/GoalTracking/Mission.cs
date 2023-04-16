@@ -7,10 +7,12 @@ public class Mission
 
     float goal;
     MissionType missionType;
+    Tracker tracker;
+    string trickType;
 
     public enum MissionType
     {
-        Distance, BananaCount, Trick, HazardCount, MaxSpeed, StyleCount
+        Distance, BananaCount, HazardCount, MaxSpeed, StyleCount, Trick
     };
     
     string description;
@@ -19,26 +21,55 @@ public class Mission
         switch (type)
         {
             case MissionType.Distance:
-                description = "Achieve " + goal + " distance in one run.";
+                description = "Travel a distance of " + goal + " in one run.";
+                tracker = new Distance_Tracker();
                 break;
             case MissionType.BananaCount:
                 description = "Collect " + goal + " bananas in one run.";
-                break;
-            case MissionType.Trick:
-                description = "Perform " + goal + " tricks in one run.";
+                tracker = new Banana_Tracker();
                 break;
             case MissionType.HazardCount:
-                description = "Collect " + goal + " distance in one run.";
+                description = "Jump over " + goal + " hazards in one run.";
+                tracker = new Hazards_Tracker();
                 break;
             case MissionType.MaxSpeed:
-                description = "Collect " + goal + " distance in one run.";
+                description = "Achieve a maximum speed of " + goal + " in one run.";
+                tracker = new Speed_Tracker();
                 break;
             case MissionType.StyleCount:
-                description = "Collect " + goal + " distance in one run.";
+                description = "Obtain " + goal + " style points in one run.";
+                tracker = new Style_Tracker();
                 break;
             default:
                 description = "";
                 break;
+        }
+    }
+    public Mission(MissionType type, float goal, string trickType)
+    {
+        description = "Perform " + goal + " " + trickType + " Tricks in one run.";
+        this.trickType = trickType;
+    }
+
+    public string getDescription()
+    {
+        return description;
+    }
+
+    public MissionType GetMissionType()
+    {
+        return missionType;
+    }
+
+    public bool MetGoal()
+    {
+        if (missionType == MissionType.Trick)
+        {
+            return tracker.GetCount(this.trickType) >= goal;
+        }
+        else
+        {
+            return tracker.GetCount() >= goal;
         }
     }
 }

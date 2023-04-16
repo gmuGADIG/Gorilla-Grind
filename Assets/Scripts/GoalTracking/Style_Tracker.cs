@@ -2,17 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Style_Tracker
+public class Style_Tracker : Tracker
 {
     float stylePoints;
     float styleGoal;
 
-    public bool MetGoal()
-    {
-        return stylePoints >= styleGoal;
-    }
-
-    public float GetStylePoints()
+    public override float GetCount()
     {
         return stylePoints;
     }
@@ -20,5 +15,10 @@ public class Style_Tracker
     public void AddStylePoints(float points)
     {
         stylePoints += points;
+    }
+
+    public override int GetCount(string type)
+    {
+        return 0;
     }
 }
