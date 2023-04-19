@@ -51,16 +51,19 @@ public class GroundSection : MonoBehaviour
     {
         
     }
-
     private void OnEnable()
     {
+        #if UNITY_EDITOR
         EditorApplication.hierarchyChanged += VerifySubsections;
+        #endif
         if (mainsection == null) mainsection = GetComponentInChildren<Subsection>();
     }
 
     private void OnDisable()
     {
+        #if UNITY_EDITOR
         EditorApplication.hierarchyChanged -= VerifySubsections;
+        #endif
     }
 
 
