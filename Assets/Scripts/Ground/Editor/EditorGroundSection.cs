@@ -8,7 +8,7 @@ public class EditorGroundSection : Editor
 {
     private readonly string SUBSECTION_PREFAB = "Assets/Prefabs/Subsection.prefab";
 
-    //private SerializedProperty groundEdges;
+    private SerializedProperty heightChangeProp;
 
     private void OnEnable()
     {
@@ -18,6 +18,7 @@ public class EditorGroundSection : Editor
     {
         base.OnInspectorGUI();
         serializedObject.Update();
+        heightChangeProp = serializedObject.FindProperty("heightChange");
         EditorGUILayout.LabelField("The first subsection in the hierarchy will be used for generation (It is considered the main section)");
         if(IsOldModel() && GUILayout.Button("Migrate to subsection model"))
         {
@@ -28,6 +29,7 @@ public class EditorGroundSection : Editor
 
         serializedObject.ApplyModifiedProperties();
     }
+
 
     bool IsOldModel()
     {
