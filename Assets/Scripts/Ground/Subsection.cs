@@ -18,6 +18,7 @@ public class Subsection : MonoBehaviour
 
     public Vector2 endPoint { get {  return groundEdges[groundEdges.Length - 1].endPoint; } }
 
+    public float heightDiff => groundEdges.Sum(g => g.heightDiff);
 
     /**
      * Reconnects every ground edge to the next one
@@ -62,11 +63,15 @@ public class Subsection : MonoBehaviour
 
     private void OnEnable()
     {
+        #if UNITY_EDITOR
         EditorApplication.hierarchyChanged += VerifyConnections;
+        #endif
     }
 
     private void OnDisable()
     {
+        #if UNITY_EDITOR
         EditorApplication.hierarchyChanged -= VerifyConnections;
+        #endif
     }
 }

@@ -10,7 +10,7 @@ public class BananaScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Debug.Log("Banana");
     }
 
     // Update is called once per frame
@@ -23,9 +23,9 @@ public class BananaScript : MonoBehaviour
     {
         GameObject.Destroy(gameObject);
     }
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision == playerCollider)
         {
             Goals_Tracker tracker = collision.gameObject.GetComponent<Goals_Tracker>();
             tracker.AddBananas(1);

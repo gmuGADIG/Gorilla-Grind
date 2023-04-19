@@ -37,6 +37,8 @@ public class GroundEdge : MonoBehaviour
         } 
     }
 
+    public float heightDiff => edgeCollider.points[edgeCollider.pointCount - 1].y - edgeCollider.points[0].y;
+
     public bool renderingSprite
     {
         get => GetComponent<SpriteRenderer>().sprite != null;

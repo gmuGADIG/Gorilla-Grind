@@ -16,6 +16,8 @@ public class GroundSection : MonoBehaviour
 
     public Vector2 endPoint { get => mainsection.endPoint; }
 
+    public float heightDiff => mainsection?.heightDiff ?? 0;
+
 
     /**
      * Reconnects every ground edge to the next one
@@ -51,16 +53,19 @@ public class GroundSection : MonoBehaviour
     {
         
     }
-
     private void OnEnable()
     {
+        #if UNITY_EDITOR
         EditorApplication.hierarchyChanged += VerifySubsections;
+        #endif
         if (mainsection == null) mainsection = GetComponentInChildren<Subsection>();
     }
 
     private void OnDisable()
     {
+        #if UNITY_EDITOR
         EditorApplication.hierarchyChanged -= VerifySubsections;
+        #endif
     }
 
 
