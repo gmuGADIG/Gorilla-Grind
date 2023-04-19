@@ -17,6 +17,10 @@ public class Banana_Tracker : Tracker
         bananaCount += bananaGoal;
     }
 
+    public int GetBananas(){
+        return bananaCount;
+    }
+
     public override int GetCount(string type)
     {
         return 0;

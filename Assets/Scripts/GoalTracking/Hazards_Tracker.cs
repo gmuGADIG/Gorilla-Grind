@@ -6,7 +6,7 @@ public class Hazards_Tracker : Tracker
 {
     public override float GetCount()
     {
-
+        return -1; // Not implemented;
     }
     public override int GetCount(string type)
     {

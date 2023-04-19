@@ -74,6 +74,6 @@ public class StinsonGoals_Tracker : MonoBehaviour
 
     public float GetDistanceCovered()
     {
-        return distanceTracker.GetDistanceCovered();
+        return distanceTracker.GetCount     ();
     }
 }
