@@ -665,9 +665,7 @@ public class PlayerMovement : MonoBehaviour
 
         public override void PhysicsUpdate()
         {
-            move.velocity = Vector2.zero;
-            (bool _, Vector2 midPoint) = move.GroundCast(move.midPointOffset);
-            transform.position = new Vector3(transform.position.x, midPoint.y - move.skateboardCenter.localPosition.y, transform.position.z);
+            
         }
 
         public override void UpdateState()
