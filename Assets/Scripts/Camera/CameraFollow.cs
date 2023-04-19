@@ -11,7 +11,7 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] float yOffset;
     
     [Tooltip("The y value which the camera prefers to be close to")]
-    [SerializeField] float yTarget;
+    public float yTarget;
     
     [Tooltip("Controls interpolation between target y and player y. 0 = ignore player, 1 = ignore target")]
     [SerializeField] float yTolerance;

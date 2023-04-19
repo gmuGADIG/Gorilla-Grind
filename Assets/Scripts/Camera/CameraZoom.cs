@@ -11,6 +11,7 @@ public class CameraZoom : MonoBehaviour
 
     PlayerMovement player;
     Camera mainCam;
+    CameraFollow mainCameraFollow;
     float startingY;
     float minZoom;
     bool recordYPosition = true;
@@ -19,6 +20,7 @@ public class CameraZoom : MonoBehaviour
     {
         player = FindObjectOfType<PlayerMovement>();
         mainCam = Camera.main;
+        mainCameraFollow = mainCam.GetComponent<CameraFollow>();
         minZoom = mainCam.orthographicSize;
     }
 
@@ -30,13 +32,18 @@ public class CameraZoom : MonoBehaviour
             {
                 startingY = player.transform.position.y;
                 recordYPosition = false;
+
+                
             }
+            // adjust zoom
             float zoom = minZoom + (player.transform.position.y - startingY) * zoomOutSpeed;
             zoom = Mathf.Clamp(zoom, mainCam.orthographicSize, maxZoom);
             mainCam.orthographicSize = zoom;
         }
         else
         {
+            mainCameraFollow.yTarget = player.transform.position.y;
+            
             recordYPosition = true;
             mainCam.orthographicSize = Mathf.Lerp(mainCam.orthographicSize, minZoom, zoomInSpeed * Time.deltaTime);
         }

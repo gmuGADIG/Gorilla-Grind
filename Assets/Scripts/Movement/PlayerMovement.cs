@@ -167,7 +167,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         //Temp measures for death from falling shoould probably make something better -Diana
-        if(transform.position.y < -20 && ! IsDead){
+        if(transform.position.y < -30 && ! IsDead){
             IsDead = true;
         }
 
@@ -239,7 +239,15 @@ public class PlayerMovement : MonoBehaviour
 
     bool LandingCheck()
     {
-        return Physics2D.CircleCast(skateboardCenter.position, .5f, velocity.normalized, velocity.magnitude * Time.deltaTime, currentSkateableLayer);
+        // landing check consists of: a circle around the skateboard (casted along the velocity for continuous detection between frames) ...
+        bool circleHits =
+            Physics2D.CircleCast(skateboardCenter.position, .5f, velocity.normalized, velocity.magnitude * Time.deltaTime, currentSkateableLayer);
+        
+        // and ensuring the condition for exiting grounded state isn't immediately false
+        (bool hit1, Vector2 _) = GroundCast(midPointOffset);
+        (bool hit2, Vector2 _) = GroundCast(slopeCheckXOffset);
+        (bool hit3, Vector2 _) = GroundCast(groundCheckXOffset);
+        return circleHits && (hit1 && hit2 && hit3);
     }
 
     void AdjustRotationToSlope()
@@ -509,8 +517,8 @@ public class PlayerMovement : MonoBehaviour
                 move.currentCoyoteTime -= Time.deltaTime;
             }
 
-            // start fast fall
-            if (Input.GetKeyDown(KeyCode.S))
+            // start fast fall (activate every frame in case S was pressed during other state)
+            if (Input.GetKey(KeyCode.S))
             {
                 move.currentGravity = move.baseGravity + move.fastFallGravityIncrease;
             }
@@ -520,8 +528,9 @@ public class PlayerMovement : MonoBehaviour
                 move.currentGravity = move.baseGravity;
             }
             // jump with coyote time
-            if (Input.GetKeyUp(KeyCode.Space) && move.coyoteTime > 0 && !move.jumping)
+            if (Input.GetKeyUp(KeyCode.Space) && move.currentCoyoteTime > 0 && !move.jumping)
             {
+                Debug.Log("Coyote jump");
                 move.Jump();
             }
 

@@ -47,7 +47,7 @@ public class Goals_Tracker : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pm = GetComponent<PlayerMovement>();
+        pm = FindObjectOfType<PlayerMovement>();
         distanceText = distanceDisplay.GetComponent<TMP_Text>();
         mission1Text = mission1Display.GetComponent<TMP_Text>();
         goalStart();
