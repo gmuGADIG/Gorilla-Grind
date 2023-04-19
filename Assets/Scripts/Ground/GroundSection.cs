@@ -28,7 +28,8 @@ public class GroundSection : MonoBehaviour
 
         if(subsections.Length == 0)
         {
-            Debug.Log(name + " doesn't have any subsections.");
+            //Having no subsections can cause weird errors when editing so logging this as an error
+            Debug.LogError(name + " doesn't have any subsections.");
 
             //This code doesn't work because prefabs or smth.
             
