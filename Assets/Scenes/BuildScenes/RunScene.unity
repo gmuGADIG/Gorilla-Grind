@@ -130,6 +130,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 169580231600981988, guid: 61248cb4b0675b54c8cb787e28a03217, type: 3}
+      propertyPath: maxZoom
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 169580231600981988, guid: 61248cb4b0675b54c8cb787e28a03217, type: 3}
+      propertyPath: zoomOutSpeed
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 169580231600982008, guid: 61248cb4b0675b54c8cb787e28a03217, type: 3}
+      propertyPath: yOffset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 169580231600982008, guid: 61248cb4b0675b54c8cb787e28a03217, type: 3}
+      propertyPath: yTolerance
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 169580231600982011, guid: 61248cb4b0675b54c8cb787e28a03217, type: 3}
       propertyPath: m_RootOrder
       value: 17
@@ -520,7 +536,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 256974204}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.1, y: -11, z: -0.056661278}
+  m_LocalPosition: {x: 10.1, y: -50, z: -0.056661278}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1525,6 +1541,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 583283535433455025, guid: 40cfbea24cf54a445a49df333392f736, type: 3}
+      propertyPath: coyoteTime
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 583283535433455025, guid: 40cfbea24cf54a445a49df333392f736, type: 3}
+      propertyPath: deathLandingAngleThreshold
+      value: 70
+      objectReference: {fileID: 0}
     - target: {fileID: 583283535433455025, guid: 40cfbea24cf54a445a49df333392f736, type: 3}
       propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.size
       value: 1
