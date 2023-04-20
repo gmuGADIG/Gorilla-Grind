@@ -14,36 +14,14 @@ public class ScrollObject : MonoBehaviour
     [Tooltip("Change based on which distance layer the object is on. Further away moves slower, closer moves faster.")]
     [SerializeField] float scrollRate = 1f;
 
-    bool playerDead = false;
-    PlayerMovement movement;
-
-    void Start()
-    {
-        movement = FindObjectOfType<PlayerMovement>();
-        movement.OnDeath.AddListener(StopOnDeath);
-    }
 
     void FixedUpdate()
     {
-        if (playerDead)
-        {
-            return;
-        }
         transform.position += Vector3.left * (PlayerMovement.CurrentHorizontalSpeed * baseScrollSpeed * scrollRate * Time.deltaTime);
     }
 
     void OnBecameInvisible() {
         //gameObject.SetActive(false);
-    }
-
-    void StopOnDeath()
-    {
-        playerDead = true;
-    }
-
-    void OnDestroy()
-    {
-        movement.OnDeath.RemoveListener(StopOnDeath);
     }
 
 }
