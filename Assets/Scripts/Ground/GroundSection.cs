@@ -14,7 +14,7 @@ public class GroundSection : MonoBehaviour
 
     public Vector2 startPoint { get => mainsection != null ? mainsection.startPoint : GetComponentInChildren<GroundEdge>().startPoint; }
 
-    public Vector2 endPoint { get => mainsection != null ? mainsection.startPoint : GetComponentInChildren<GroundEdge>().endPoint; }
+    public Vector2 endPoint { get => mainsection != null ? mainsection.endPoint : GetComponentInChildren<GroundEdge>().endPoint; }
 
     public float heightDiff => mainsection != null ? mainsection.heightDiff : 0;
 
