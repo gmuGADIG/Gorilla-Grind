@@ -45,8 +45,9 @@ public class EditorGroundEdge : Editor
         if (Event.current.type == EventType.MouseDrag || Event.current.type == EventType.ExecuteCommand)
         {
             (target as GroundEdge).SnapSurroundingEdges();
+            (target as GroundEdge).RenderLine();
+
         }
-        (target as GroundEdge).RenderLine();
 
         //Debug.Log(Event.current);
     }
@@ -69,6 +70,8 @@ public class EditorGroundEdge : Editor
         if(edge.noCollision)
             RenderGroundEdge(edge);
     }
+
+
 
     private static void RenderGroundEdge(GroundEdge ground)
     {

@@ -30,7 +30,20 @@ public class EditorGroundSection : Editor
         serializedObject.ApplyModifiedProperties();
     }
 
-
+    private void OnSceneGUI()
+    {
+        if (Event.current.type == EventType.MouseDrag || Event.current.type == EventType.ExecuteCommand)
+        {
+            GroundSection section = target as GroundSection;
+            foreach (Subsection subsection in section.subsections)
+            {
+                foreach (GroundEdge edge in subsection.groundEdges)
+                {
+                    edge.RenderLine();
+                }
+            }
+        }
+    }
     bool IsOldModel()
     {
         return ((target as GroundSection).transform.childCount == 0 || (target as GroundSection).transform.GetChild(0).GetComponent<Subsection>() == null);

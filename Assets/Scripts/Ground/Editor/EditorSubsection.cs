@@ -12,6 +12,17 @@ public class EditorSubsection : Editor
     {
         groundEdges = serializedObject.FindProperty("groundEdges");
     }
+    private void OnSceneGUI()
+    {
+        if (Event.current.type == EventType.MouseDrag || Event.current.type == EventType.ExecuteCommand)
+        {
+            Subsection subsection = target as Subsection;
+            foreach (GroundEdge edge in subsection.groundEdges)
+            {
+                edge.RenderLine();
+            }
+        }
+    }
 
     public override void OnInspectorGUI()
     {
