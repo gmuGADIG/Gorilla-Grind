@@ -74,5 +74,5 @@ public class GroundSection : MonoBehaviour
         
     }
 
-
+    public void adjustTransform(Vector2 v) { transform.position -= (Vector3)v; }
 }

@@ -116,6 +116,7 @@ public class PlayerMovement : MonoBehaviour
     
     // death
     public UnityEvent OnDeath;
+    public UnityEvent OnRessurection;
     public bool IsDead { get; private set; } = false;
 
     // Sound IDs
@@ -124,15 +125,53 @@ public class PlayerMovement : MonoBehaviour
     int deathSoundID;
     int skateboardLoopSoundID;
     
+    // 0 lives mean you dead
+    int lives = 1;
+    
+    void Murder() {
+        print("PlayerMovement.Murder: murdered");
+        lives -= 1;
+        if (lives <= 0)
+            IsDead = true;
+        else { // WARN: Ungraceful change of state!
+            GroundSection targetSection = null;
+            GroundManager groundManager = GroundManager.groundManager;
+            foreach (GroundSection section in groundManager.activeSections) {
+                Debug.Log(section.startPoint);
+                if (section.startPoint.x < transform.position.x && section.endPoint.x > transform.position.x) {
+                    targetSection = section;
+                    break;
+                }
+            }
+
+            // set the transform
+            foreach (GroundSection section in groundManager.activeSections) {
+                section.adjustTransform(targetSection.startPoint + new Vector2(0, 0));
+            }
+            transform.position = new Vector2(0, 10);
+            transform.rotation = Quaternion.identity;
+
+            // set the velocity
+            velocity = new Vector2();
+
+            // set the state
+            currentState = availableStates[StateType.InAir];
+
+            OnRessurection.Invoke();
+        }
+    }
+    
     void Start()
     {
         currentSkateableLayer = groundLayer;
         currentGravity = baseGravity;
         currentCoyoteTime = coyoteTime;
         // sample death listener
+        /*
         OnDeath.AddListener(() => {
             GetComponentInChildren<SpriteRenderer>().color = Color.red;
         });
+        */
 
         availableStates = new Dictionary<StateType, State>()
         {
@@ -153,6 +192,9 @@ public class PlayerMovement : MonoBehaviour
         landSoundID = SoundManager.Instance.GetSoundID("Player_Land");
         deathSoundID = SoundManager.Instance.GetSoundID("Player_Death");
         skateboardLoopSoundID = SoundManager.Instance.GetSoundID("Player_Skateboard_Loop");
+
+        currentState = availableStates[defaultState];
+        currentState.BeforeExecution();
     }
     
     // Movement uses physics so it must be in FixedUpdate
@@ -161,21 +203,17 @@ public class PlayerMovement : MonoBehaviour
         currentState?.PhysicsUpdate();
 
         CurrentHorizontalSpeed = velocity.x;
+
+        //Temp measures for death from falling shoould probably make something better -Diana
+        // Death from falling out of the world
+        if(transform.position.y < -20 && ! IsDead){
+            Murder();
+        }
     }
 
     // Events that trigger on key down must be handled in Update
     void Update()
     {
-        //Temp measures for death from falling shoould probably make something better -Diana
-        if(transform.position.y < -20 && ! IsDead){
-            IsDead = true;
-        }
-
-        if (currentState == null)
-        {
-            currentState = availableStates[defaultState];
-            currentState.BeforeExecution();
-        }
         currentState.UpdateState();
         // check transitions
         StateType? returnedState = currentState.CheckForTransitions();
@@ -321,8 +359,7 @@ public class PlayerMovement : MonoBehaviour
             if (deltaAngle > move.deathLandingAngleThreshold && move.isMortal)
             {
                 if (move.IsDead) return;
-                //move.OnDeath.Invoke();
-                move.IsDead = true;
+                move.Murder();
             }
 
             // Calculate new speed. faster if velocity is parallel to ground. lose some speed otherwise
@@ -653,7 +690,9 @@ public class PlayerMovement : MonoBehaviour
         public override void BeforeExecution()
         {
             print("Entering dead state");
-            move.IsDead = true;
+            if (!move.IsDead)
+                Debug.LogWarning("In DeadState when move.Dead is false");
+
             move.OnDeath.Invoke();
             SoundManager.Instance.PlaySoundGlobal(move.deathSoundID);
         }
