@@ -12,11 +12,11 @@ public class GroundSection : MonoBehaviour
     
     public Subsection mainsection;
 
-    public Vector2 startPoint { get => mainsection.startPoint; }
+    public Vector2 startPoint { get => mainsection != null ? mainsection.startPoint : GetComponentInChildren<GroundEdge>().startPoint; }
 
-    public Vector2 endPoint { get => mainsection.endPoint; }
+    public Vector2 endPoint { get => mainsection != null ? mainsection.startPoint : GetComponentInChildren<GroundEdge>().endPoint; }
 
-    public float heightDiff => mainsection?.heightDiff ?? 0;
+    public float heightDiff => mainsection != null ? mainsection.heightDiff : 0;
 
 
     /**
