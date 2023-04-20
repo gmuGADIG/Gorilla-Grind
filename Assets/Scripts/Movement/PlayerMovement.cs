@@ -143,6 +143,8 @@ public class PlayerMovement : MonoBehaviour
             { StateType.Dead, new DeadState(this) },
         };
         defaultState = StateType.Grounded;
+        currentState = availableStates[defaultState];
+        currentState.BeforeExecution();
 
         availableTricks.Add(typeof(UpTrick), new UpTrick(skateboardTransform));
         availableTricks.Add(typeof(LeftTrick), new LeftTrick(skateboardTransform));
