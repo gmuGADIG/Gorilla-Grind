@@ -4,18 +4,26 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public static Inventory GameInventory;
+    private static Inventory GameInventory;
     private static int BananasInInventory; //Number of bananas in player's inventory; should never go below 0
     // Start is called before the first frame update
-    void Start()
-    {
-        if (GameInventory) {
+    private static HashSet<string> PurchasedItems;
+    
+    void Awake() {
+            if (GameInventory) {
             Destroy(this);
             return;
         }
         GameInventory = this;
         DontDestroyOnLoad(this);
+
         BananasInInventory = 0;
+        PurchasedItems = new HashSet<string>(); 
+    }
+
+    void Start()
+    {
+
     }
 
     // Update is called once per frame
@@ -27,7 +35,7 @@ public class Inventory : MonoBehaviour
     ///<summary>
     ///Returns the number of bananas currently stored in the player's inventory.
     ///</summary>
-    public static int getBananaasInInventory() {
+    public static int getBananasInInventory() {
         return BananasInInventory;
     }
 
@@ -53,5 +61,17 @@ public class Inventory : MonoBehaviour
             //Cannot take away that many bananas
             return false;
         }
+    }
+
+    public static bool hasItem(string itemName) {
+        return PurchasedItems.Contains(itemName);
+    }
+
+    public static bool addItem(string itemName) {
+        if (hasItem(itemName)) {
+            return false;
+        }
+        PurchasedItems.Add(itemName);
+        return true;
     }
 }
