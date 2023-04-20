@@ -20,7 +20,7 @@ public class EditorGroundManager : Editor
     static void DrawSpawnBounds(GroundManager gm, GizmoType gizmoType)
     {
         //Represents the bounds for when new sections get generated or despawned
-        Gizmos.DrawWireCube(gm.transform.position, Vector3.right * gm.spawnOffset + Vector3.up * 50);
+        Gizmos.DrawWireCube(gm.transform.position, gm.spawnBounds * 2);
     }
 
     void LoadPrefabs()
