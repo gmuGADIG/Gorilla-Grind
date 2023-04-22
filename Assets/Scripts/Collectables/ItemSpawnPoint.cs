@@ -8,13 +8,20 @@ public class ItemSpawnPoint : MonoBehaviour
     public GameObject itemToSpawn;
 
     [SerializeField]
+    [Range(0, 10)]
     public float spawnDelta;
 
     [SerializeField]
-    [Range(1, 10)]
+    [Range(1, 20)]
     public int spawnAmount;
 
+    [SerializeField]
+    [Tooltip("Size of the circle rendered (Doesn't show up in game)")]
+    private float circleSize = .2f;
 
+    [SerializeField]
+    [Range(0, 1)]
+    public float spawnChance = 1f;
     //Gets the associated ground edge
     public GroundEdge groundEdge => transform.parent ? transform.parent.GetComponent<GroundEdge>() : null;
 
@@ -23,7 +30,8 @@ public class ItemSpawnPoint : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Spawn();
+        if(Random.value < spawnChance)
+            Spawn();
     }
 
     // Update is called once per frame
@@ -34,9 +42,13 @@ public class ItemSpawnPoint : MonoBehaviour
 
     public void Spawn()
     {
+        if (itemToSpawn == null) return;
         foreach (Vector2 point in GetSpawnPoints())
         {
-            Instantiate(itemToSpawn, point, Quaternion.identity, transform);
+            GameObject item= Instantiate(itemToSpawn, point, Quaternion.identity, transform);
+
+            //There's probably a better way to enforce this.
+            if (item.GetComponent<ScrollObject>()) Destroy(item.GetComponent<ScrollObject>());
         }
     }
     //gets the index of the point in the collider that is just before the given point. Returns -1 if out of range.
@@ -105,13 +117,20 @@ public class ItemSpawnPoint : MonoBehaviour
         {
             //find the subedge of the next target
             int ind = PrevPointIndex(targets[i - 1]);
+            if (ind == -1)
+            {
+                //shrink array and break
+                Vector2[] temp = new Vector2[i];
+                System.Array.Copy(targets, temp, i);
+                return temp;
+            }
             Vector2 subEdge = GetSubEdgeVector(ind);
             float dist = spawnDelta - (PositionOnLine(targets[i - 1]) - Utils.GetWorldPoint(groundEdge.edgeCollider.points[ind+1], groundEdge.gameObject)).magnitude;
-            Debug.DrawRay(transform.position, -(PositionOnLine(targets[i - 1]) - Utils.GetWorldPoint(groundEdge.edgeCollider.points[ind + 1], groundEdge.gameObject)));
+            //Debug.DrawRay(Utils.GetWorldPoint(groundEdge.edgeCollider.points[ind + 1], groundEdge.gameObject), -(PositionOnLine(targets[i - 1]) - Utils.GetWorldPoint(groundEdge.edgeCollider.points[ind + 1], groundEdge.gameObject)));
             while(dist > 0)
             {
                 ind++;
-                if (ind > groundEdge.edgeCollider.edgeCount)
+                if (ind >= groundEdge.edgeCollider.edgeCount)
                 {
                     //shrink array and break
                     Vector2[] temp = new Vector2[i];
@@ -123,7 +142,8 @@ public class ItemSpawnPoint : MonoBehaviour
             }
             //Debug.DrawRay()
             targets[i] = (GetSubEdgeVector(ind).magnitude + dist) * GetSubEdgeVector(ind).normalized +
-                Utils.PerpendicularCounterClockwise(GetSubEdgeVector(ind)).normalized * offset +
+                //Utils.PerpendicularCounterClockwise(GetSubEdgeVector(ind)).normalized * offset +
+                Vector2.up * offset +
                 Utils.GetWorldPoint(groundEdge.edgeCollider.points[ind], groundEdge.gameObject);
             //targets[i] = targets[i] + subEdge.normalized * (subEdge.magnitude + dist);
 
@@ -134,14 +154,18 @@ public class ItemSpawnPoint : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(transform.position, 0.5f);
-        Gizmos.DrawLine(transform.position, GetSubEdgeVector(PrevPointIndex(transform.position))*spawnDelta + (Vector2)transform.position);
         Gizmos.color = Color.red;
+        Gizmos.DrawSphere(transform.position, circleSize);
+        if (PrevPointIndex(transform.position) == -1) return;
+        Gizmos.color = Color.blue;
+        float total = GetSpawnPoints().Length;
         foreach (Vector2 item in GetSpawnPoints())
         {
-            Gizmos.DrawSphere(item, 0.5f);
-            Gizmos.DrawLine(item, PositionOnLine(item));
+
+            Gizmos.DrawSphere(item, circleSize);
+            //Gizmos.DrawLine(item, PositionOnLine(item));
+            Gizmos.color = new Color(Gizmos.color.r, Gizmos.color.g + 1/total, Gizmos.color.b);
         }
+        
     }
 }
