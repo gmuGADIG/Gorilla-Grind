@@ -182,6 +182,8 @@ public class PlayerMovement : MonoBehaviour
             { StateType.Dead, new DeadState(this) },
         };
         defaultState = StateType.Grounded;
+        currentState = availableStates[defaultState];
+        currentState.BeforeExecution();
 
         availableTricks.Add(typeof(UpTrick), new UpTrick(skateboardTransform));
         availableTricks.Add(typeof(LeftTrick), new LeftTrick(skateboardTransform));
@@ -713,14 +715,24 @@ public class PlayerMovement : MonoBehaviour
 
         public override void PhysicsUpdate()
         {
-            move.velocity = Vector2.zero;
+            // find the ground below the board, at 3 different offsets
+            (bool midHit, Vector2 _) = move.GroundCast(move.midPointOffset);
+            (bool slopeCheckHit, Vector2 _) = move.GroundCast(move.slopeCheckXOffset);
+            (bool groundCheckHit, Vector2 _) = move.GroundCast(move.groundCheckXOffset);
+
+            // if any casts fail to find the ground, exit grounded state
+            if (!midHit || !slopeCheckHit || !groundCheckHit)
+            {
+                return;
+            }
+            //move.velocity = Vector2.zero;
             (bool _, Vector2 midPoint) = move.GroundCast(move.midPointOffset);
             transform.position = new Vector3(transform.position.x, midPoint.y - move.skateboardCenter.localPosition.y, transform.position.z);
         }
 
         public override void UpdateState()
         {
-
+            move.velocity = Vector3.Lerp(move.velocity, Vector3.zero, Time.deltaTime * move.movementAcceleration);
         }
     }
 }

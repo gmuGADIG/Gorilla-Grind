@@ -14,6 +14,7 @@ public class ScrollObject : MonoBehaviour
     [Tooltip("Change based on which distance layer the object is on. Further away moves slower, closer moves faster.")]
     [SerializeField] float scrollRate = 1f;
 
+
     void FixedUpdate()
     {
         transform.position += Vector3.left * (PlayerMovement.CurrentHorizontalSpeed * baseScrollSpeed * scrollRate * Time.deltaTime);
