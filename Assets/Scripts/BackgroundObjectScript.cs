@@ -6,7 +6,7 @@ using System;
 public class BackgroundObjectScript : MonoBehaviour
 {
 
-    public static event Action<Boolean> newBackground; 
+    public static event Action<bool> newBackground; 
     public bool Background;
 
     // Start is called before the first frame update
