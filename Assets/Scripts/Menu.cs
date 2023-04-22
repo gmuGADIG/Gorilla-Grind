@@ -8,6 +8,7 @@ public class Menu : MonoBehaviour
 {
     private bool gamePaused = false;
     [SerializeField] private GameObject pauseMenu;
+    [SerializeField] List<GameObject> subMenus;
     [SerializeField] private PlayerMovement player;
 
     // Start is called before the first frame update
@@ -36,6 +37,13 @@ public class Menu : MonoBehaviour
     {
         if (pauseMenu)
         {
+            if (!isPaused)
+            {
+                foreach (GameObject menu in subMenus)
+                {
+                    menu.SetActive(isPaused);
+                }
+            }
             pauseMenu.SetActive(isPaused);
             gamePaused = isPaused;
             if (player) player.enabled = !isPaused;
