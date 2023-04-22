@@ -12,11 +12,11 @@ public class GroundSection : MonoBehaviour
     
     public Subsection mainsection;
 
-    public Vector2 startPoint { get => mainsection.startPoint; }
+    public Vector2 startPoint { get => mainsection != null ? mainsection.startPoint : GetComponentInChildren<GroundEdge>().startPoint; }
 
-    public Vector2 endPoint { get => mainsection.endPoint; }
+    public Vector2 endPoint { get => mainsection != null ? mainsection.endPoint : GetComponentInChildren<GroundEdge>().endPoint; }
 
-    public float heightDiff => mainsection?.heightDiff ?? 0;
+    public float heightDiff => mainsection != null ? mainsection.heightDiff : 0;
 
 
     /**
@@ -28,7 +28,8 @@ public class GroundSection : MonoBehaviour
 
         if(subsections.Length == 0)
         {
-            Debug.Log(name + " doesn't have any subsections.");
+            //Having no subsections can cause weird errors when editing so logging this as an error
+            Debug.LogError(name + " doesn't have any subsections.");
 
             //This code doesn't work because prefabs or smth.
             

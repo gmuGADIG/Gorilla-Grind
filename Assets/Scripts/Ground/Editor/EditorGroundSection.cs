@@ -30,7 +30,20 @@ public class EditorGroundSection : Editor
         serializedObject.ApplyModifiedProperties();
     }
 
-
+    private void OnSceneGUI()
+    {
+        if (Event.current.type == EventType.MouseDrag || Event.current.type == EventType.ExecuteCommand)
+        {
+            GroundSection section = target as GroundSection;
+            foreach (Subsection subsection in section.subsections)
+            {
+                foreach (GroundEdge edge in subsection.groundEdges)
+                {
+                    edge.RenderLine();
+                }
+            }
+        }
+    }
     bool IsOldModel()
     {
         return ((target as GroundSection).transform.childCount == 0 || (target as GroundSection).transform.GetChild(0).GetComponent<Subsection>() == null);
@@ -41,9 +54,11 @@ public class EditorGroundSection : Editor
         GroundSection gs = serializedObject.targetObject as GroundSection;
         GameObject subsectionPref = AssetDatabase.LoadAssetAtPath<GameObject>(SUBSECTION_PREFAB);
         GameObject subsection = Instantiate(subsectionPref,gs.transform);
-        subsection.transform.SetAsFirstSibling();
+        int count = gs.transform.childCount;
 
-        for (int i = 0; i < gs.transform.childCount; i++)
+        subsection.transform.SetAsFirstSibling();
+        int uhhh = 0;//i thought this code shouldn't loop forever but it does sometimes so this variable is to break it.
+        for (int i = 0; i < count; i++)
         {
             Transform child = gs.transform.GetChild(i);
             if(child.gameObject.GetComponent<GroundEdge>())
@@ -51,6 +66,7 @@ public class EditorGroundSection : Editor
                 child.SetParent(subsection.transform);
                 i--;//child count decrease when children are moved.
             }
+            if (uhhh++ > count * 2) break;
         }
 
         
