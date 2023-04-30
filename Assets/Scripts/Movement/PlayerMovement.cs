@@ -116,6 +116,7 @@ public class PlayerMovement : MonoBehaviour
     
     // death
     public UnityEvent OnDeath;
+    public UnityEvent OnRessurection;
     public bool IsDead { get; private set; } = false;
 
     // Sound IDs
@@ -124,15 +125,53 @@ public class PlayerMovement : MonoBehaviour
     int deathSoundID;
     int skateboardLoopSoundID;
     
+    // 0 lives mean you dead
+    int lives = 1;
+    
+    void Murder() {
+        print("PlayerMovement.Murder: murdered");
+        lives -= 1;
+        if (lives <= 0)
+            IsDead = true;
+        else { // WARN: Ungraceful change of state!
+            GroundSection targetSection = null;
+            GroundManager groundManager = GroundManager.groundManager;
+            foreach (GroundSection section in groundManager.activeSections) {
+                Debug.Log(section.startPoint);
+                if (section.startPoint.x < transform.position.x && section.endPoint.x > transform.position.x) {
+                    targetSection = section;
+                    break;
+                }
+            }
+
+            // set the transform
+            foreach (GroundSection section in groundManager.activeSections) {
+                section.adjustTransform(targetSection.startPoint + new Vector2(0, 0));
+            }
+            transform.position = new Vector2(0, 10);
+            transform.rotation = Quaternion.identity;
+
+            // set the velocity
+            velocity = new Vector2();
+
+            // set the state
+            currentState = availableStates[StateType.InAir];
+
+            OnRessurection.Invoke();
+        }
+    }
+    
     void Start()
     {
         currentSkateableLayer = groundLayer;
         currentGravity = baseGravity;
         currentCoyoteTime = coyoteTime;
         // sample death listener
+        /*
         OnDeath.AddListener(() => {
             GetComponentInChildren<SpriteRenderer>().color = Color.red;
         });
+        */
 
         availableStates = new Dictionary<StateType, State>()
         {
@@ -143,6 +182,8 @@ public class PlayerMovement : MonoBehaviour
             { StateType.Dead, new DeadState(this) },
         };
         defaultState = StateType.Grounded;
+        currentState = availableStates[defaultState];
+        currentState.BeforeExecution();
 
         availableTricks.Add(typeof(UpTrick), new UpTrick(skateboardTransform));
         availableTricks.Add(typeof(LeftTrick), new LeftTrick(skateboardTransform));
@@ -153,6 +194,9 @@ public class PlayerMovement : MonoBehaviour
         landSoundID = SoundManager.Instance.GetSoundID("Player_Land");
         deathSoundID = SoundManager.Instance.GetSoundID("Player_Death");
         skateboardLoopSoundID = SoundManager.Instance.GetSoundID("Player_Skateboard_Loop");
+
+        currentState = availableStates[defaultState];
+        currentState.BeforeExecution();
     }
     
     // Movement uses physics so it must be in FixedUpdate
@@ -161,21 +205,17 @@ public class PlayerMovement : MonoBehaviour
         currentState?.PhysicsUpdate();
 
         CurrentHorizontalSpeed = velocity.x;
+
+        //Temp measures for death from falling shoould probably make something better -Diana
+        // Death from falling out of the world
+        if(transform.position.y < -20 && ! IsDead){
+            Murder();
+        }
     }
 
     // Events that trigger on key down must be handled in Update
     void Update()
     {
-        //Temp measures for death from falling shoould probably make something better -Diana
-        if(transform.position.y < -20 && ! IsDead){
-            IsDead = true;
-        }
-
-        if (currentState == null)
-        {
-            currentState = availableStates[defaultState];
-            currentState.BeforeExecution();
-        }
         currentState.UpdateState();
         // check transitions
         StateType? returnedState = currentState.CheckForTransitions();
@@ -239,7 +279,15 @@ public class PlayerMovement : MonoBehaviour
 
     bool LandingCheck()
     {
-        return Physics2D.CircleCast(skateboardCenter.position, .5f, velocity.normalized, velocity.magnitude * Time.deltaTime, currentSkateableLayer);
+        // landing check consists of: a circle around the skateboard (casted along the velocity for continuous detection between frames) ...
+        bool circleHits =
+            Physics2D.CircleCast(skateboardCenter.position, .5f, velocity.normalized, velocity.magnitude * Time.deltaTime, currentSkateableLayer);
+        
+        // and ensuring the condition for exiting grounded state isn't immediately false
+        (bool hit1, Vector2 _) = GroundCast(midPointOffset);
+        (bool hit2, Vector2 _) = GroundCast(slopeCheckXOffset);
+        (bool hit3, Vector2 _) = GroundCast(groundCheckXOffset);
+        return circleHits && (hit1 && hit2 && hit3);
     }
 
     void AdjustRotationToSlope()
@@ -321,8 +369,7 @@ public class PlayerMovement : MonoBehaviour
             if (deltaAngle > move.deathLandingAngleThreshold && move.isMortal)
             {
                 if (move.IsDead) return;
-                //move.OnDeath.Invoke();
-                move.IsDead = true;
+                move.Murder();
             }
 
             // Calculate new speed. faster if velocity is parallel to ground. lose some speed otherwise
@@ -509,8 +556,8 @@ public class PlayerMovement : MonoBehaviour
                 move.currentCoyoteTime -= Time.deltaTime;
             }
 
-            // start fast fall
-            if (Input.GetKeyDown(KeyCode.S))
+            // start fast fall (activate every frame in case S was pressed during other state)
+            if (Input.GetKey(KeyCode.S))
             {
                 move.currentGravity = move.baseGravity + move.fastFallGravityIncrease;
             }
@@ -520,8 +567,9 @@ public class PlayerMovement : MonoBehaviour
                 move.currentGravity = move.baseGravity;
             }
             // jump with coyote time
-            if (Input.GetKeyUp(KeyCode.Space) && move.coyoteTime > 0 && !move.jumping)
+            if (Input.GetKeyUp(KeyCode.Space) && move.currentCoyoteTime > 0 && !move.jumping)
             {
+                Debug.Log("Coyote jump");
                 move.Jump();
             }
 
@@ -653,7 +701,9 @@ public class PlayerMovement : MonoBehaviour
         public override void BeforeExecution()
         {
             print("Entering dead state");
-            move.IsDead = true;
+            if (!move.IsDead)
+                Debug.LogWarning("In DeadState when move.Dead is false");
+
             move.OnDeath.Invoke();
             SoundManager.Instance.PlaySoundGlobal(move.deathSoundID);
         }
@@ -665,14 +715,24 @@ public class PlayerMovement : MonoBehaviour
 
         public override void PhysicsUpdate()
         {
-            move.velocity = Vector2.zero;
+            // find the ground below the board, at 3 different offsets
+            (bool midHit, Vector2 _) = move.GroundCast(move.midPointOffset);
+            (bool slopeCheckHit, Vector2 _) = move.GroundCast(move.slopeCheckXOffset);
+            (bool groundCheckHit, Vector2 _) = move.GroundCast(move.groundCheckXOffset);
+
+            // if any casts fail to find the ground, exit grounded state
+            if (!midHit || !slopeCheckHit || !groundCheckHit)
+            {
+                return;
+            }
+            //move.velocity = Vector2.zero;
             (bool _, Vector2 midPoint) = move.GroundCast(move.midPointOffset);
             transform.position = new Vector3(transform.position.x, midPoint.y - move.skateboardCenter.localPosition.y, transform.position.z);
         }
 
         public override void UpdateState()
         {
-
+            move.velocity = Vector3.Lerp(move.velocity, Vector3.zero, Time.deltaTime * move.movementAcceleration);
         }
     }
 }
