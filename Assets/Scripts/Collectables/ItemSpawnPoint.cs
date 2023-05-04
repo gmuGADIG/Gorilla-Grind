@@ -8,7 +8,7 @@ public class ItemSpawnPoint : MonoBehaviour
     public GameObject itemToSpawn;
 
     [SerializeField]
-    [Range(0, 10)]
+    [Range(0, 20)]
     public float spawnDelta;
 
     [SerializeField]
@@ -43,6 +43,8 @@ public class ItemSpawnPoint : MonoBehaviour
     public void Spawn()
     {
         if (itemToSpawn == null) return;
+            Debug.Log("Spawned " + GetSpawnPoints().Length);
+
         foreach (Vector2 point in GetSpawnPoints())
         {
             GameObject item= Instantiate(itemToSpawn, point, Quaternion.identity, transform);
