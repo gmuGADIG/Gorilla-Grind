@@ -8,11 +8,13 @@ public class DownTrick : Trick
     Transform gorilla;
     float boardRotationSpeed = 300f;
     Vector3 startingPosition;
+    int announcerSFXID;
 
     public DownTrick(Transform skateboard, Transform player)
     {
         this.skateboard = skateboard;
         this.gorilla = player;
+        announcerSFXID = SoundManager.Instance.GetSoundID("Announcer_Trick");
     }
 
     public override void DuringTrick()
@@ -30,5 +32,6 @@ public class DownTrick : Trick
     public override void StartTrick()
     {
         startingPosition = skateboard.localPosition;
+        SoundManager.Instance.PlaySoundGlobal(announcerSFXID);
     }
 }

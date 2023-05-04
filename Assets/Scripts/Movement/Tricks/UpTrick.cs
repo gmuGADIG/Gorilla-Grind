@@ -5,10 +5,12 @@ using UnityEngine;
 public class UpTrick : Trick
 {
     Transform skateboard;
+    int announcerSFXID;
 
     public UpTrick(Transform skateboard)
     {
         this.skateboard = skateboard;
+        announcerSFXID = SoundManager.Instance.GetSoundID("Announcer_Trick");
     }
 
     public override void StartTrick()
@@ -25,5 +27,6 @@ public class UpTrick : Trick
     public override void EndTrick()
     {
         skateboard.localRotation = Quaternion.identity;
+        SoundManager.Instance.PlaySoundGlobal(announcerSFXID);
     }
 }
