@@ -16,6 +16,8 @@ public class ShopItemScript : MonoBehaviour
     private Button buyButton;
     private TMP_Text buttonText;
 
+    int itemBoughtSoundID;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +34,8 @@ public class ShopItemScript : MonoBehaviour
         if (itemName.Length == 0) {
             itemName = gameObject.name;
         }
+
+        SoundManager.Instance.GetSoundID("Shop_Purchase_Item");
     }
 
     // Update is called once per frame
@@ -44,6 +48,7 @@ public class ShopItemScript : MonoBehaviour
         if (!(Inventory.hasItem(itemName))) {
             Inventory.addItem(itemName);
             setButtonToPurchased();
+            SoundManager.Instance.PlaySoundGlobal(itemBoughtSoundID);
         }
     }
 
