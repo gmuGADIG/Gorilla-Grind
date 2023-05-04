@@ -101,6 +101,11 @@ public class DialogueSystem : MonoBehaviour
         currentCharacter = dialogueLinesPrefab.currentTalk[currentDialogueIndex];
         currentDialogueLines = currentCharacter.dialogueLines;
         currentCharacterLineIndex = 0;
+        if (currentCharacter.isMission == true)
+        {
+            Debug.Log(currentDialogueLines[currentDialogueLines.Length - 1]);
+            AddMissionToListFromDescription(currentDialogueLines[currentDialogueLines.Length-1]);
+        }
 
         // Set each monkey's GameObject to active and update their starting sprite
         for (int i = 0; i < dialogueLinesPrefab.currentTalk.Length; i++)

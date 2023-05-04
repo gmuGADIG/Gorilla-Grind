@@ -20,6 +20,7 @@ public class DialogueLines : ScriptableObject
         public List<Emotions> emotions;
         public Emotions emotion;
         public string[] dialogueLines;
+        public bool isMission;
         public bool isNarrator; // Add this line
     }
 }
