@@ -81,7 +81,8 @@ public class ItemSpawnPoint : MonoBehaviour
         if (ind < 0) return WRONG_HIT;
         Vector2 f = Utils.GetWorldPoint(groundEdge.edgeCollider.points[ind], groundEdge.gameObject);
         Vector2 vf = point - f;
-        return (Vector2)Vector3.Project(vf, GetSubEdgeVector(ind)) + f;
+        //return (Vector2)Vector3.Project(vf, GetSubEdgeVector(ind)) + f;
+        return vf.x * GetSubEdgeVector(ind).normalized + f;
         ////TODO change this from a raycast to vector math
         //RaycastHit2D temp = Physics2D.Raycast(point, Vector2.down);
         //if (!temp) return WRONG_HIT;
