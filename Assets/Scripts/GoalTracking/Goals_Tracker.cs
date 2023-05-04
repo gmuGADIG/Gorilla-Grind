@@ -14,18 +14,19 @@ public class Goals_Tracker : MonoBehaviour
     float distanceGoal = 100f;
     float distance = 0f;
     public int level = 0;
-    public Slider goalProgress;
-    public GameObject mission1Display;
-    public TMP_Text mission1Text;
-    public GameObject mission2Display;
-    public TMP_Text mission2Text;
-    public GameObject mission3Display;
-    public TMP_Text mission3Text;
-    public GameObject StyleDisplay;
-    public TMP_Text styleText;
-    public GameObject PointsDisplay;
-    public TMP_Text pointsText;
-    private GameObject lastHazard = null;
+
+    public GameObject MissionDisplayPrefab;
+    public GameObject ScoreDisplayPrefab;
+
+    Slider goalProgress;
+    TMP_Text mission1Text;
+    TMP_Text mission2Text;    
+    TMP_Text mission3Text;
+    TMP_Text styleText;
+    TMP_Text pointsText;
+
+    GameObject lastHazard = null;
+
     bool goalMet = false;
     float styleCounter = 0;
     float totalPoints;
@@ -41,24 +42,24 @@ public class Goals_Tracker : MonoBehaviour
     Mission mission2;
     Mission mission3;
 
-    private void Awake()
-    {
-        if(instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-        SceneManager.sceneLoaded += SceneLoaded;
-    }
     // Start is called before the first frame update
     void Start()
     {
         pm = GetComponent<PlayerMovement>();
+
+        GameObject DisplayCanvas = Instantiate(MissionDisplayPrefab);
+        GameObject ScoreDisplay = Instantiate(ScoreDisplayPrefab);
+
+        mission1Text = DisplayCanvas.transform.Find("Mission1 Display").gameObject.GetComponent<TMP_Text>();
+        mission2Text = DisplayCanvas.transform.Find("Mission2 Display").gameObject.GetComponent<TMP_Text>();
+        mission3Text = DisplayCanvas.transform.Find("Mission3 Display").gameObject.GetComponent<TMP_Text>();
+
+        styleText = ScoreDisplay.transform.Find("StyleDisplay").gameObject.GetComponent<TMP_Text>();
+        pointsText = ScoreDisplay.transform.Find("PointsDisplay").gameObject.GetComponent<TMP_Text>();
+        goalProgress = ScoreDisplay.transform.Find("Goal Progress").gameObject.GetComponent<Slider>();
+        
         goalStart();
+        SceneManager.sceneLoaded += SceneLoaded;
     }
 
     // Update is called once per frame
@@ -151,10 +152,6 @@ public class Goals_Tracker : MonoBehaviour
         hazardCount = 0;
         hazardsJumped = 0;
         gapBelow = false;
-        goalProgress.gameObject.SetActive(true);
-        mission1Display.SetActive(true);
-        mission2Display.SetActive(true);
-        mission3Display.SetActive(true);
 
         mission1Text.text = mission1.getDescription();
         mission2Text.text = mission2.getDescription();
@@ -290,21 +287,21 @@ public class Goals_Tracker : MonoBehaviour
     void SceneLoaded(Scene scene, LoadSceneMode mode){
         if(scene.name == "RunScene"){
             goalProgress.gameObject.SetActive(true);
-            mission1Display.SetActive(true);
-            mission2Display.SetActive(true);
-            mission3Display.SetActive(true);
+     //       mission1Display.SetActive(true);
+     //       mission2Display.SetActive(true);
+    //        mission3Display.SetActive(true);
             distance = 0;
         }
         else{
             goalProgress.gameObject.SetActive(false);
-            mission1Display.SetActive(false);
-            mission2Display.SetActive(false);
-            mission3Display.SetActive(false);
+     //       mission1Display.SetActive(false);
+            //mission2Display.SetActive(false);
+            //mission3Display.SetActive(false);
         }
     }
 
     public void RunEnded()
     {
-
+        Inventory.AddBananas(bananas);
     }
 }

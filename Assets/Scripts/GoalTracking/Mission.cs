@@ -61,15 +61,81 @@ public class Mission
         return missionType;
     }
 
-    public bool MetGoal()
+    public float GetCurrentCount()
     {
         if (missionType == MissionType.Trick)
         {
-            return tracker.GetCount(this.trickType) >= goal;
+            return tracker.GetCount(this.trickType);
         }
         else
         {
-            return tracker.GetCount() >= goal;
+            return tracker.GetCount();
         }
+    }
+
+    public bool MetGoal()
+    {
+        return GetCurrentCount() >= goal;
+    }
+
+    public static Mission GetMissionFromDescription(string description)
+    {
+        string firstWord = description.Substring(0, description.IndexOf(" "));
+        switch (firstWord)
+        {
+            case "Travel":
+                return new Mission(MissionType.Distance, goalGenerator(MissionType.Distance));
+                break;
+            case "Collect":
+                return new Mission(MissionType.BananaCount, goalGenerator(MissionType.BananaCount));
+                break;
+            case "Jump":
+                return new Mission(MissionType.HazardCount, goalGenerator(MissionType.HazardCount));
+                break;
+            case "Achieve":
+                return new Mission(MissionType.MaxSpeed, goalGenerator(MissionType.MaxSpeed));
+                break;
+            case "Obtain":
+                return new Mission(MissionType.StyleCount, goalGenerator(MissionType.StyleCount));
+                break;
+            default:
+                return new Mission(MissionType.Trick, goalGenerator(MissionType.Trick), trickRandomizer());
+                break;
+        }
+    }
+
+    static float goalGenerator(MissionType misType)
+    {
+        System.Random rnd = new System.Random();
+        switch (misType)
+        {
+            case MissionType.Distance:
+                return rnd.Next(1000, 10001);
+
+            case MissionType.BananaCount:
+                return rnd.Next(50, 101);
+
+            case MissionType.MaxSpeed:
+                return rnd.Next(50, 76);
+
+            case MissionType.HazardCount:
+                return rnd.Next(50, 101);
+
+            case MissionType.Trick:
+                return rnd.Next(4, 11);
+
+            case MissionType.StyleCount:
+                return rnd.Next(100, 1001);
+
+            default:
+                return 0;
+        }
+    }
+    static string trickRandomizer()
+    {
+        System.Random rnd = new System.Random();
+        string[] tricks = { "Up", "Down", "Left", "Right" };
+        int num = rnd.Next(0, 4);
+        return tricks[num];
     }
 }

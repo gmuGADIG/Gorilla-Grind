@@ -99,4 +99,10 @@ public class MissionObject : ScriptableObject
             }
         }
     }
+
+    public void AddMissionToListFromDescription(string description)
+    {
+        Mission monkeyMission = Mission.GetMissionFromDescription(description);
+        missions.Add(monkeyMission);
+    }
 }
