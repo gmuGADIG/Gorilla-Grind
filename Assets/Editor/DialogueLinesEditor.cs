@@ -5,11 +5,16 @@ using System.Collections.Generic;
 [CustomEditor(typeof(DialogueLines))]
 public class DialogueLinesEditor : Editor
 {
-    private int selectedEmotionIndex;
+    private List<int> selectedEmotionIndices;
 
     public override void OnInspectorGUI()
     {
         DialogueLines dialogueLines = (DialogueLines)target;
+
+        if (selectedEmotionIndices == null || selectedEmotionIndices.Count != dialogueLines.currentTalk.Length)
+        {
+            selectedEmotionIndices = new List<int>(new int[dialogueLines.currentTalk.Length]);
+        }
 
         // Draw the default inspector GUI
         DrawDefaultInspector();
@@ -32,6 +37,7 @@ public class DialogueLinesEditor : Editor
                 if (newSelectedIndex != currentSelectedIndex)
                 {
                     dialogueLines.currentTalk[i].emotion = emotions[newSelectedIndex];
+                    selectedEmotionIndices[i] = newSelectedIndex;
                 }
             }
         }

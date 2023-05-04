@@ -9,16 +9,17 @@ public class DialogueLines : ScriptableObject
 
     public MonkeyDataList database;
 
-    public whosTalking[] currentTalk;
+    public whosTalking[] currentTalk = new whosTalking[0];
 
     [System.Serializable]
     public class whosTalking
     {
-        [Dropdown("database.Monkeys", "Name")]
+        [Dropdown("database.Monkeys", "name")]
         public MonkeyMaker monkey;
         public int myIndex;
         public List<Emotions> emotions;
         public Emotions emotion;
         public string[] dialogueLines;
+        public bool isNarrator; // Add this line
     }
 }

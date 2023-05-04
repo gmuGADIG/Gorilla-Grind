@@ -7,7 +7,7 @@ public class DialogueSystem : MonoBehaviour
 {
     public Text dialogueText;
     public Image headshotImage;
-    public Text nameText;
+    public Image nameImage;
     public DialogueLines dialogueLinesPrefab;
     public DialogueLines dialogueLines;
     public int currentDialogueIndex = 0;
@@ -23,6 +23,8 @@ public class DialogueSystem : MonoBehaviour
     private string currentLineText;
     private bool isTextAppearing = false;
     private bool isCurrentCharacterSpeaking = false;
+    public GameObject background;
+
 
     void Start()
     {
@@ -32,10 +34,12 @@ public class DialogueSystem : MonoBehaviour
     public void StartDialogue()
     {
         gameObject.SetActive(true);
+        background.SetActive(true); // Activate the background object
         dialogueText.text = "";
         currentLineIndex = 0;
         currentCharacterLineIndex = 0;
         LoadDialogueLines();
+        Debug.Log("Current character after loading dialogue lines: " + currentCharacter.monkey.name); // Add this line
         StartCoroutine(AnimateText(currentDialogueLines[currentCharacterLineIndex]));
     }
 
@@ -97,11 +101,43 @@ public class DialogueSystem : MonoBehaviour
         currentCharacter = dialogueLinesPrefab.currentTalk[currentDialogueIndex];
         currentDialogueLines = currentCharacter.dialogueLines;
         currentCharacterLineIndex = 0;
-        Emotions emotion = GetSelectedEmotion(currentCharacter);
-        if (emotion != null)
+
+        // Set each monkey's GameObject to active and update their starting sprite
+        for (int i = 0; i < dialogueLinesPrefab.currentTalk.Length; i++)
         {
-            nameText.text = currentCharacter.monkey.Name;
-            headshotImage.sprite = emotion.emotion;
+            DialogueLines.whosTalking character = dialogueLinesPrefab.currentTalk[i];
+            Emotions startingEmotion = GetSelectedEmotion(character);
+            if (startingEmotion != null)
+            {
+                Debug.Log(i);
+                Debug.Log(character.monkey.name);
+                Image image = transform.parent.Find(character.monkey.name).GetComponent<Image>();
+                image.enabled = true;
+
+                image.sprite = startingEmotion.emotion;
+            }
+        }
+
+        if (currentCharacter.isNarrator)
+        {
+            nameImage.sprite = null;
+        }
+        else
+        {
+            Emotions emotion = GetSelectedEmotion(currentCharacter);
+            if (emotion != null)
+            {
+                if (currentCharacter.monkey.NamePlate != null)
+                {
+                    nameImage.sprite = currentCharacter.monkey.NamePlate;
+                    Debug.Log("Loading nameplate for: " + currentCharacter.monkey.name);
+                    Debug.Log("Nameplate sprite: " + nameImage.sprite);
+                }
+                else
+                {
+                    Debug.LogError("Nameplate sprite is not assigned for monkey: " + currentCharacter.monkey.name);
+                }
+            }
         }
     }
 
