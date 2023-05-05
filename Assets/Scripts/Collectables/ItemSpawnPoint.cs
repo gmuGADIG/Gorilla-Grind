@@ -8,7 +8,7 @@ public class ItemSpawnPoint : MonoBehaviour
     public GameObject itemToSpawn;
 
     [SerializeField]
-    [Range(0, 10)]
+    [Range(0, 20)]
     public float spawnDelta;
 
     [SerializeField]
@@ -43,9 +43,12 @@ public class ItemSpawnPoint : MonoBehaviour
     public void Spawn()
     {
         if (itemToSpawn == null) return;
-        foreach (Vector2 point in GetSpawnPoints())
+        Vector2[] points = GetSpawnPoints();
+
+        Debug.Log("Spawned " + points.Length);
+        foreach (Vector2 point in points)
         {
-            GameObject item= Instantiate(itemToSpawn, point, Quaternion.identity, transform);
+            GameObject item = Instantiate(itemToSpawn, point, Quaternion.identity, transform);
 
             //There's probably a better way to enforce this.
             if (item.GetComponent<ScrollObject>()) Destroy(item.GetComponent<ScrollObject>());
@@ -74,13 +77,19 @@ public class ItemSpawnPoint : MonoBehaviour
     //Returns the projection of the point downward to meet the line specified by the edge collider
     public Vector2 PositionOnLine(Vector2 point)
     {
-        //TODO change this from a raycast to vector math
-        RaycastHit2D temp = Physics2D.Raycast(point, Vector2.down);
-        if (!temp) return WRONG_HIT;
-        if (temp.collider.GetComponent<GroundEdge>() != groundEdge) return WRONG_HIT;
+        int ind = PrevPointIndex(point);
+        if (ind < 0) return WRONG_HIT;
+        Vector2 f = Utils.GetWorldPoint(groundEdge.edgeCollider.points[ind], groundEdge.gameObject);
+        Vector2 vf = point - f;
+        //return (Vector2)Vector3.Project(vf, GetSubEdgeVector(ind)) + f;
+        return vf.x * GetSubEdgeVector(ind).normalized + f;
+        ////TODO change this from a raycast to vector math
+        //RaycastHit2D temp = Physics2D.Raycast(point, Vector2.down);
+        //if (!temp) return WRONG_HIT;
+        //if (temp.collider.GetComponent<GroundEdge>() != groundEdge) return WRONG_HIT;
 
-        //Debug.DrawLine(point, temp.point);
-        return temp.point;
+        ////Debug.DrawLine(point, temp.point);
+        //return temp.point;
     }
  
     public float HeightOffset()
@@ -161,7 +170,7 @@ public class ItemSpawnPoint : MonoBehaviour
         float total = GetSpawnPoints().Length;
         foreach (Vector2 item in GetSpawnPoints())
         {
-
+            //Gizmos.DrawSphere(PositionOnLine(item), circleSize);
             Gizmos.DrawSphere(item, circleSize);
             //Gizmos.DrawLine(item, PositionOnLine(item));
             Gizmos.color = new Color(Gizmos.color.r, Gizmos.color.g + 1/total, Gizmos.color.b);
