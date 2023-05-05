@@ -5,7 +5,7 @@ using UnityEngine;
 public class Mission 
 {
 
-    float goal;
+    [HideInInspector] public float goal;
     MissionType missionType;
     Tracker tracker;
     string trickType;
@@ -18,6 +18,8 @@ public class Mission
     string description;
     public Mission(MissionType type, float goal)
     {
+        this.goal = goal;
+        missionType = type;
         switch (type)
         {
             case MissionType.Distance:
@@ -45,10 +47,13 @@ public class Mission
                 break;
         }
     }
-    public Mission(MissionType type, float goal, string trickType)
+    public Mission(MissionType type, float goal, string tType)
     {
-        description = "Perform " + goal + " " + trickType + " Tricks in one run.";
-        this.trickType = trickType;
+        this.goal = goal;
+        missionType = type;
+        description = "Perform " + goal + " " + tType + " Tricks in one run.";
+        tracker = new Trick_Tracker();
+        this.trickType = tType;
     }
 
     public string getDescription()

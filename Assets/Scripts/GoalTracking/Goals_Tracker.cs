@@ -17,31 +17,46 @@ public class Goals_Tracker : MonoBehaviour
 
     public GameObject MissionDisplayPrefab;
     public GameObject ScoreDisplayPrefab;
-
-    Slider goalProgress;
-    TMP_Text mission1Text;
-    TMP_Text mission2Text;    
-    TMP_Text mission3Text;
-    TMP_Text styleText;
-    TMP_Text pointsText;
-
-    GameObject lastHazard = null;
-
+    public Slider goalProgress;
+    public GameObject mission1Display;
+    public TMP_Text mission1Text;
+    public GameObject mission2Display;
+    public TMP_Text mission2Text;
+    public GameObject mission3Display;
+    public TMP_Text mission3Text;
+    public GameObject StyleDisplay;
+    public TMP_Text styleText;
+    public GameObject PointsDisplay;
+    public TMP_Text pointsText;
+    private GameObject lastHazard = null;
     bool goalMet = false;
     float styleCounter = 0;
     float totalPoints;
-    int hazardCount;
-    int hazardsJumped;
+    int hazardCount = 0;
+    int hazardsJumped = 0;
     int bananas = 0;
     bool gapBelow;
     private float maxSpeed = 0;
     private int scoreMultiplier;
     Dictionary<string, int> trickTracker = new Dictionary<string, int>();
     PlayerMovement pm;
-    Mission mission1;
-    Mission mission2;
-    Mission mission3;
+    [HideInInspector] public Mission mission1;
+    [HideInInspector] public Mission mission2;
+    [HideInInspector] public Mission mission3;
 
+    private void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        SceneManager.sceneLoaded += SceneLoaded;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -152,6 +167,10 @@ public class Goals_Tracker : MonoBehaviour
         hazardCount = 0;
         hazardsJumped = 0;
         gapBelow = false;
+        goalProgress.gameObject.SetActive(true);
+        mission1Display.SetActive(true);
+        mission2Display.SetActive(true);
+        mission3Display.SetActive(true);
 
         mission1Text.text = mission1.getDescription();
         mission2Text.text = mission2.getDescription();
@@ -287,16 +306,16 @@ public class Goals_Tracker : MonoBehaviour
     void SceneLoaded(Scene scene, LoadSceneMode mode){
         if(scene.name == "RunScene"){
             goalProgress.gameObject.SetActive(true);
-     //       mission1Display.SetActive(true);
-     //       mission2Display.SetActive(true);
-    //        mission3Display.SetActive(true);
+            mission1Display.SetActive(true);
+            mission2Display.SetActive(true);
+            mission3Display.SetActive(true);
             distance = 0;
         }
         else{
             goalProgress.gameObject.SetActive(false);
-     //       mission1Display.SetActive(false);
-            //mission2Display.SetActive(false);
-            //mission3Display.SetActive(false);
+            mission1Display.SetActive(false);
+            mission2Display.SetActive(false);
+            mission3Display.SetActive(false);
         }
     }
 
