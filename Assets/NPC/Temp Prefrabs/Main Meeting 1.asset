@@ -17,18 +17,43 @@ MonoBehaviour:
   - monkey:
       name: Kevin
       NamePlate: {fileID: 21300000, guid: 9fb302f050000f84c88960293e94e145, type: 3}
-      whereIam: {fileID: 483245586186415369, guid: 53a629744deb53645a5596ef66f3bc23, type: 3}
+      whereIam: {fileID: 0}
       emotion:
-      - EmotionName: Happy
-        emotion: {fileID: 21300000, guid: 095aa0f4bc908c24c97386d3280d425f, type: 3}
+      - EmotionName: Defualt
+        emotion: {fileID: 21300000, guid: 10a66e3d206e8fd4e979583fef16dc82, type: 3}
+        SoundMonkey:
+        - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
+        - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
+      - EmotionName: Excited
+        emotion: {fileID: 21300000, guid: 16a3c522f645dd64285a64480f03b842, type: 3}
+        SoundMonkey:
+        - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
+        - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
+      - EmotionName: Pog
+        emotion: {fileID: 21300000, guid: c8a5b77c617b83843a2b60e78c91f118, type: 3}
+        SoundMonkey:
+        - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
+        - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
+      - EmotionName: Annoyed
+        emotion: {fileID: 21300000, guid: ea882bf250f7c6b4dbfa133d8e45a369, type: 3}
+        SoundMonkey:
+        - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
+        - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
+      - EmotionName: Really Mad
+        emotion: {fileID: 21300000, guid: d5d1c880fbd3646409565f44210115cf, type: 3}
+        SoundMonkey:
+        - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
+        - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
+      - EmotionName: UwU
+        emotion: {fileID: 21300000, guid: 41cefbf5e50af0c41a01832052ba1428, type: 3}
         SoundMonkey:
         - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
         - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
     myIndex: 0
     emotions: []
     emotion:
-      EmotionName: Happy
-      emotion: {fileID: 21300000, guid: 095aa0f4bc908c24c97386d3280d425f, type: 3}
+      EmotionName: Defualt
+      emotion: {fileID: 21300000, guid: 10a66e3d206e8fd4e979583fef16dc82, type: 3}
       SoundMonkey:
       - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
       - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
@@ -41,21 +66,31 @@ MonoBehaviour:
       NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
       whereIam: {fileID: 190701320047871877, guid: 53a629744deb53645a5596ef66f3bc23, type: 3}
       emotion:
-      - EmotionName: Thinking
-        emotion: {fileID: 21300000, guid: 6cbbe492f494bd448949fb0487a2fa8e, type: 3}
+      - EmotionName: Default
+        emotion: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
         SoundMonkey:
         - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
         - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
-      - EmotionName: Sad
-        emotion: {fileID: 21300000, guid: 17e78426af8168541a0b84589f156fbf, type: 3}
+      - EmotionName: Holding Board
+        emotion: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
+        SoundMonkey:
+        - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
+        - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
+      - EmotionName: Begruding
+        emotion: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
+        SoundMonkey:
+        - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
+        - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
+      - EmotionName: Angry
+        emotion: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
         SoundMonkey:
         - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
         - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
     myIndex: 0
     emotions: []
     emotion:
-      EmotionName: Sad
-      emotion: {fileID: 21300000, guid: 17e78426af8168541a0b84589f156fbf, type: 3}
+      EmotionName: Holding Board
+      emotion: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
       SoundMonkey:
       - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
       - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
@@ -65,15 +100,10 @@ MonoBehaviour:
     - WOOO
     isNarrator: 0
   - monkey:
-      name: George
-      NamePlate: {fileID: 21300000, guid: dfb15b6e090cdfe499123d333f685733, type: 3}
-      whereIam: {fileID: 483245586186415369, guid: 53a629744deb53645a5596ef66f3bc23, type: 3}
-      emotion:
-      - EmotionName: Happy
-        emotion: {fileID: 21300000, guid: 095aa0f4bc908c24c97386d3280d425f, type: 3}
-        SoundMonkey:
-        - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
-        - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
+      name: Nariator
+      NamePlate: {fileID: 21300000, guid: d374478d1df889b40a5dbac2d5d9ead5, type: 3}
+      whereIam: {fileID: 0}
+      emotion: []
     myIndex: 0
     emotions: []
     emotion:
@@ -90,10 +120,35 @@ MonoBehaviour:
   - monkey:
       name: Kevin
       NamePlate: {fileID: 21300000, guid: 9fb302f050000f84c88960293e94e145, type: 3}
-      whereIam: {fileID: 483245586186415369, guid: 53a629744deb53645a5596ef66f3bc23, type: 3}
+      whereIam: {fileID: 0}
       emotion:
-      - EmotionName: Happy
-        emotion: {fileID: 21300000, guid: 095aa0f4bc908c24c97386d3280d425f, type: 3}
+      - EmotionName: Defualt
+        emotion: {fileID: 21300000, guid: 10a66e3d206e8fd4e979583fef16dc82, type: 3}
+        SoundMonkey:
+        - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
+        - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
+      - EmotionName: Excited
+        emotion: {fileID: 21300000, guid: 16a3c522f645dd64285a64480f03b842, type: 3}
+        SoundMonkey:
+        - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
+        - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
+      - EmotionName: Pog
+        emotion: {fileID: 21300000, guid: c8a5b77c617b83843a2b60e78c91f118, type: 3}
+        SoundMonkey:
+        - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
+        - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
+      - EmotionName: Annoyed
+        emotion: {fileID: 21300000, guid: ea882bf250f7c6b4dbfa133d8e45a369, type: 3}
+        SoundMonkey:
+        - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
+        - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
+      - EmotionName: Really Mad
+        emotion: {fileID: 21300000, guid: d5d1c880fbd3646409565f44210115cf, type: 3}
+        SoundMonkey:
+        - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
+        - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
+      - EmotionName: UwU
+        emotion: {fileID: 21300000, guid: 41cefbf5e50af0c41a01832052ba1428, type: 3}
         SoundMonkey:
         - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
         - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
@@ -103,8 +158,8 @@ MonoBehaviour:
       emotion: {fileID: 21300000, guid: 0bdd984be1c11a44bad617ba1e9d756a, type: 3}
       SoundMonkey: []
     emotion:
-      EmotionName: Happy
-      emotion: {fileID: 21300000, guid: 095aa0f4bc908c24c97386d3280d425f, type: 3}
+      EmotionName: Excited
+      emotion: {fileID: 21300000, guid: 16a3c522f645dd64285a64480f03b842, type: 3}
       SoundMonkey:
       - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
       - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
