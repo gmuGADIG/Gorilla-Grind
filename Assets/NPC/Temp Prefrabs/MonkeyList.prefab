@@ -1,5 +1,81 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &190701320047871877
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7764664672530147261}
+  - component: {fileID: 6389125276329166313}
+  - component: {fileID: 2251141221523154838}
+  m_Layer: 5
+  m_Name: Gavin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7764664672530147261
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190701320047871877}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 5.6247, y: 5.6247, z: 5.6247}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 483245585972780069}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: -419.38, y: 257.3366}
+  m_SizeDelta: {x: 148.79, y: 71.8774}
+  m_Pivot: {x: -0.20089315, y: 0.5317385}
+--- !u!222 &6389125276329166313
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190701320047871877}
+  m_CullTransparentMesh: 1
+--- !u!114 &2251141221523154838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190701320047871877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &483245584875418234
 GameObject:
   m_ObjectHideFlags: 0
@@ -17,7 +93,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &483245584875418235
 RectTransform:
   m_ObjectHideFlags: 0
@@ -306,7 +382,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &483245585098646119
 RectTransform:
   m_ObjectHideFlags: 0
@@ -550,6 +626,7 @@ RectTransform:
   - {fileID: 483245584875418235}
   - {fileID: 483245585098646119}
   - {fileID: 483245586186415372}
+  - {fileID: 7764664672530147261}
   m_Father: {fileID: 7898576681306619229}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -570,12 +647,12 @@ GameObject:
   - component: {fileID: 483245586186415371}
   - component: {fileID: 483245586186415370}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Kevin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &483245586186415372
 RectTransform:
   m_ObjectHideFlags: 0
@@ -593,9 +670,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 945.1106, y: 125.2489}
-  m_SizeDelta: {x: 82.9718, y: 44.5353}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 558.36, y: 131.75726}
+  m_SizeDelta: {x: 135.7607, y: 50.6557}
+  m_Pivot: {x: -0.20089315, y: 0.5317385}
 --- !u!222 &483245586186415371
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -624,7 +701,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 095aa0f4bc908c24c97386d3280d425f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 10a66e3d206e8fd4e979583fef16dc82, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -897,18 +974,18 @@ MonoBehaviour:
     NamePlate: {fileID: 0}
     whereIam: {fileID: 0}
     emotion: []
-  - name: George
-    NamePlate: {fileID: 21300000, guid: dfb15b6e090cdfe499123d333f685733, type: 3}
+  - name: Kevin
+    NamePlate: {fileID: 21300000, guid: 9fb302f050000f84c88960293e94e145, type: 3}
     whereIam: {fileID: 483245586186415369}
     emotion:
     - EmotionName: Happy
-      emotion: {fileID: 21300000, guid: 095aa0f4bc908c24c97386d3280d425f, type: 3}
+      emotion: {fileID: 21300000, guid: 16a3c522f645dd64285a64480f03b842, type: 3}
       SoundMonkey:
       - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
       - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
-  - name: Herombe
-    NamePlate: {fileID: 21300000, guid: 4dc63e2c397afae4dbb2229b94fd3b0c, type: 3}
-    whereIam: {fileID: 483245586186415369}
+  - name: Gavin
+    NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
+    whereIam: {fileID: 190701320047871877}
     emotion:
     - EmotionName: Thinking
       emotion: {fileID: 21300000, guid: 6cbbe492f494bd448949fb0487a2fa8e, type: 3}
