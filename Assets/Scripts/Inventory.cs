@@ -43,7 +43,7 @@ public class Inventory : MonoBehaviour
     ///Adds the passed in number to the count of bananas in the player's inventory.
     ///Returns true on success, false on failure (count wasn't updated)
     ///</summary>
-    public static bool AddBananas(uint moreBananas) {
+    public static bool AddBananas(int moreBananas) {
         BananasInInventory += (int)moreBananas;
         return true;
     }
@@ -52,7 +52,7 @@ public class Inventory : MonoBehaviour
     ///Removes the passed in number from the count of bananas in the player's inventory.
     ///Returns true on success, false on failure (count wasn't updated)
     ///</summary>
-    public static bool RemoveBananas(uint lessBananas) {
+    public static bool RemoveBananas(int lessBananas) {
         if (BananasInInventory >= lessBananas) {
             BananasInInventory -= (int)lessBananas;
             return true;

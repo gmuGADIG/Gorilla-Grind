@@ -84,8 +84,8 @@ public class Menu : MonoBehaviour
     }
     void DisplayMissionProgress()
     {
-        mission1Text.text = goals.mission1.getDescription() + "\n" + "(" + goals.mission1.getCurrentProgress() + "/" + goals.mission1.goal + ")";
-        mission2Text.text = goals.mission2.getDescription() + "\n" + "(" + goals.mission2.getCurrentProgress() + "/" + goals.mission2.goal + ")";
-        mission3Text.text = goals.mission3.getDescription() + "\n" + "(" + goals.mission3.getCurrentProgress() + "/" + goals.mission3.goal + ")";
+        mission1Text.text = goals.mission1.getDescription() + "\n" + "(" + goals.mission1.GetCurrentCount() + "/" + goals.mission1.goal + ")";
+        mission2Text.text = goals.mission2.getDescription() + "\n" + "(" + goals.mission2.GetCurrentCount() + "/" + goals.mission2.goal + ")";
+        mission3Text.text = goals.mission3.getDescription() + "\n" + "(" + goals.mission3.GetCurrentCount() + "/" + goals.mission3.goal + ")";
     }
 }

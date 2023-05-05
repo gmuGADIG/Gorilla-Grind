@@ -31,11 +31,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 483245585972780069}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -419.38, y: 257.3366}
+  m_AnchoredPosition: {x: 23, y: 13}
   m_SizeDelta: {x: 148.79, y: 71.8774}
   m_Pivot: {x: -0.20089315, y: 0.5317385}
 --- !u!222 &6389125276329166313
@@ -625,8 +625,8 @@ RectTransform:
   m_Children:
   - {fileID: 483245584875418235}
   - {fileID: 483245585098646119}
-  - {fileID: 483245586186415372}
   - {fileID: 7764664672530147261}
+  - {fileID: 6769719931210737652}
   m_Father: {fileID: 7898576681306619229}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -635,82 +635,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &483245586186415369
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 483245586186415372}
-  - component: {fileID: 483245586186415371}
-  - component: {fileID: 483245586186415370}
-  m_Layer: 5
-  m_Name: Kevin
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &483245586186415372
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 483245586186415369}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5.6247, y: 5.6247, z: 5.6247}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 483245585972780069}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 558.36, y: 131.75726}
-  m_SizeDelta: {x: 135.7607, y: 50.6557}
-  m_Pivot: {x: -0.20089315, y: 0.5317385}
---- !u!222 &483245586186415371
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 483245586186415369}
-  m_CullTransparentMesh: 1
---- !u!114 &483245586186415370
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 483245586186415369}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 10a66e3d206e8fd4e979583fef16dc82, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &483245586275831849
 GameObject:
   m_ObjectHideFlags: 0
@@ -974,12 +898,104 @@ MonoBehaviour:
     NamePlate: {fileID: 0}
     whereIam: {fileID: 0}
     emotion: []
+  - name: Nariator
+    NamePlate: {fileID: 21300000, guid: d374478d1df889b40a5dbac2d5d9ead5, type: 3}
+    whereIam: {fileID: 0}
+    emotion: []
   - name: Kevin
     NamePlate: {fileID: 21300000, guid: 9fb302f050000f84c88960293e94e145, type: 3}
-    whereIam: {fileID: 483245586186415369}
+    whereIam: {fileID: 0}
     emotion:
-    - EmotionName: Happy
+    - EmotionName: Defualt
+      emotion: {fileID: 21300000, guid: 10a66e3d206e8fd4e979583fef16dc82, type: 3}
+      SoundMonkey:
+      - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
+      - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
+    - EmotionName: Excited
       emotion: {fileID: 21300000, guid: 16a3c522f645dd64285a64480f03b842, type: 3}
+      SoundMonkey:
+      - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
+      - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
+    - EmotionName: Pog
+      emotion: {fileID: 21300000, guid: c8a5b77c617b83843a2b60e78c91f118, type: 3}
+      SoundMonkey:
+      - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
+      - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
+    - EmotionName: Annoyed
+      emotion: {fileID: 21300000, guid: ea882bf250f7c6b4dbfa133d8e45a369, type: 3}
+      SoundMonkey:
+      - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
+      - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
+    - EmotionName: Really Mad
+      emotion: {fileID: 21300000, guid: d5d1c880fbd3646409565f44210115cf, type: 3}
+      SoundMonkey:
+      - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
+      - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
+    - EmotionName: UwU
+      emotion: {fileID: 21300000, guid: 41cefbf5e50af0c41a01832052ba1428, type: 3}
+      SoundMonkey:
+      - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
+      - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
+  - name: Ollie
+    NamePlate: {fileID: 21300000, guid: 1abb4b9420f9db44da67d9bf81653bef, type: 3}
+    whereIam: {fileID: 190701320047871877}
+    emotion:
+    - EmotionName: Idle
+      emotion: {fileID: 21300000, guid: ecb414f6412c7d045bedc6c9f77800be, type: 3}
+      SoundMonkey:
+      - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
+      - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
+    - EmotionName: Idle 2
+      emotion: {fileID: 21300000, guid: 1a569aa015f059a43bbf55f893286a63, type: 3}
+      SoundMonkey:
+      - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
+      - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
+    - EmotionName: Cute
+      emotion: {fileID: 21300000, guid: a9a73adfeb978e847a51dd3e3818827a, type: 3}
+      SoundMonkey:
+      - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
+      - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
+    - EmotionName: Sad
+      emotion: {fileID: 21300000, guid: 42f46c9a6becef742b4d6057f80ee3b3, type: 3}
+      SoundMonkey:
+      - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
+      - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
+    - EmotionName: Shock
+      emotion: {fileID: 21300000, guid: b9cb69a985c270b40822c49cd8d77930, type: 3}
+      SoundMonkey:
+      - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
+      - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
+  - name: Munchies
+    NamePlate: {fileID: 21300000, guid: 39802ddae9a276549a2675279b27ff4d, type: 3}
+    whereIam: {fileID: 190701320047871877}
+    emotion:
+    - EmotionName: Annoyed
+      emotion: {fileID: 21300000, guid: e2ee648c734f4974aafc1044fcad1b5a, type: 3}
+      SoundMonkey:
+      - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
+      - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
+    - EmotionName: Sad
+      emotion: {fileID: 21300000, guid: 820cb6ae034578d41bf191e6edc87b39, type: 3}
+      SoundMonkey:
+      - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
+      - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
+    - EmotionName: Defualt
+      emotion: {fileID: 21300000, guid: a8fd174d2f5dd1b47848d3428eddafac, type: 3}
+      SoundMonkey:
+      - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
+      - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
+    - EmotionName: Happy
+      emotion: {fileID: 21300000, guid: f2fa65aa47c975940aa5aecd27319dc5, type: 3}
+      SoundMonkey:
+      - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
+      - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
+    - EmotionName: Smile
+      emotion: {fileID: 21300000, guid: 2156e947ecbb8154da87aeadafa79d2a, type: 3}
+      SoundMonkey:
+      - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
+      - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
+    - EmotionName: Sleep
+      emotion: {fileID: 21300000, guid: 42e3784fead6dd64aaa55f6461be690c, type: 3}
       SoundMonkey:
       - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
       - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
@@ -987,29 +1003,79 @@ MonoBehaviour:
     NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
     whereIam: {fileID: 190701320047871877}
     emotion:
-    - EmotionName: Thinking
-      emotion: {fileID: 21300000, guid: 6cbbe492f494bd448949fb0487a2fa8e, type: 3}
+    - EmotionName: Default
+      emotion: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+      SoundMonkey:
+      - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
+      - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
+    - EmotionName: Holding Board
+      emotion: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
+      SoundMonkey:
+      - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
+      - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
+    - EmotionName: Begruding
+      emotion: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
+      SoundMonkey:
+      - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
+      - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
+    - EmotionName: Angry
+      emotion: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
+      SoundMonkey:
+      - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
+      - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
+  - name: Tony Squawk
+    NamePlate: {fileID: 21300000, guid: 5f244d4de1f857642a0e37b91e1879ba, type: 3}
+    whereIam: {fileID: 190701320047871877}
+    emotion:
+    - EmotionName: Default
+      emotion: {fileID: 21300000, guid: b5d170961a7739f4e8d15add6ba2585b, type: 3}
+      SoundMonkey:
+      - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
+      - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
+    - EmotionName: Happy
+      emotion: {fileID: 21300000, guid: 02fe14cff5fb462459bb266a969d66e0, type: 3}
+      SoundMonkey:
+      - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
+      - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
+    - EmotionName: Lift
+      emotion: {fileID: 21300000, guid: 21574625b98802a47807d03f9fb92a65, type: 3}
+      SoundMonkey:
+      - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
+      - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
+    - EmotionName: Angry
+      emotion: {fileID: 21300000, guid: de595620d5a9c8f4091d0a02a461099e, type: 3}
       SoundMonkey:
       - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
       - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
     - EmotionName: Sad
-      emotion: {fileID: 21300000, guid: 17e78426af8168541a0b84589f156fbf, type: 3}
+      emotion: {fileID: 21300000, guid: fcc05e653ae36f64ab2ea50f3db14617, type: 3}
       SoundMonkey:
       - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
       - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
-  - name: Snarky
-    NamePlate: {fileID: 21300000, guid: a6bb7285ef012b9489224a37de51cfb5, type: 3}
-    whereIam: {fileID: 483245586186415369}
+    - EmotionName: Prose
+      emotion: {fileID: 21300000, guid: d765caf10672fb44e8031e2ae32a4bd2, type: 3}
+      SoundMonkey:
+      - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
+      - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
+    - EmotionName: Shock
+      emotion: {fileID: 21300000, guid: d070cda86eb94f543a3a0427acaec384, type: 3}
+      SoundMonkey:
+      - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
+      - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
+  - name: Shopkeep
+    NamePlate: {fileID: 21300000, guid: 5f244d4de1f857642a0e37b91e1879ba, type: 3}
+    whereIam: {fileID: 190701320047871877}
     emotion:
-    - EmotionName: Super Happy
-      emotion: {fileID: 21300000, guid: 646a5ee0609b31145ac7ffdfcdc45534, type: 3}
+    - EmotionName: Default
+      emotion: {fileID: 21300000, guid: 657662d287f9e9a4a8f1261f0c267fc2, type: 3}
       SoundMonkey:
       - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
       - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
-  - name: Nariator
-    NamePlate: {fileID: 21300000, guid: d374478d1df889b40a5dbac2d5d9ead5, type: 3}
-    whereIam: {fileID: 483245586186415369}
-    emotion: []
+    - EmotionName: React
+      emotion: {fileID: 21300000, guid: f1b463375d3c5d74f9f0e7fd15e3b02f, type: 3}
+      SoundMonkey:
+      - monkeyScream: {fileID: 8300000, guid: 6948edf05386cce4480ae1bcf873c496, type: 3}
+      - monkeyScream: {fileID: 8300000, guid: 3ea72672f619c654ebf117193061cb0f, type: 3}
 --- !u!1 &5802056161744943387
 GameObject:
   m_ObjectHideFlags: 0
@@ -1187,3 +1253,79 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &7681913556038926256
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6769719931210737652}
+  - component: {fileID: 5117202452887395179}
+  - component: {fileID: 1920522049761020167}
+  m_Layer: 5
+  m_Name: Kevin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6769719931210737652
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7681913556038926256}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 5.6247, y: 5.6247, z: 5.6247}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 483245585972780069}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: -814, y: 238}
+  m_SizeDelta: {x: 148.79, y: 71.8774}
+  m_Pivot: {x: -0.20089315, y: 0.5317385}
+--- !u!222 &5117202452887395179
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7681913556038926256}
+  m_CullTransparentMesh: 1
+--- !u!114 &1920522049761020167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7681913556038926256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
