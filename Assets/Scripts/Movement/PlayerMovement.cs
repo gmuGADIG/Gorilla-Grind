@@ -40,6 +40,9 @@ public class PlayerMovement : MonoBehaviour
 
     [Tooltip("If the player lands at an angle above this threshold, they will die.")]
     [SerializeField] float deathLandingAngleThreshold = 30;
+
+    [Tooltip("If the player is on a vine above this angle, then the player will fall off the vine.")]
+    [SerializeField] float vineBalanceAngleThreshold = 30;
     #endregion
 
     #region GroundedMovementVariables
@@ -270,11 +273,46 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit2D upCast   = Physics2D.Raycast(origin, Vector2.up,   3, currentSkateableLayer);
         RaycastHit2D downCast = Physics2D.Raycast(origin, Vector2.down, 3, currentSkateableLayer);
 
-        if (downCast.collider != null)
+        if (downCast.collider != null) {
             return (true, downCast.point);
-        else if (upCast.collider != null)
+        }
+        else if (upCast.collider != null) {
             return (true, upCast.point);
+        }
         else return (false, Vector2.zero);
+    }
+
+    Vine? GetVine() 
+    {
+        Vector3 origin = skateboardCenter.position + new Vector3(midPointOffset, 0);
+        RaycastHit2D upCast   = Physics2D.Raycast(origin, Vector2.up,   3, currentSkateableLayer);
+        RaycastHit2D downCast = Physics2D.Raycast(origin, Vector2.down, 3, currentSkateableLayer);
+
+        if (downCast.collider != null) {
+            return downCast.collider.GetComponent<Vine>();
+        }
+        else if (upCast.collider != null) {
+            return upCast.collider.GetComponent<Vine>();
+        }
+        else return null;
+    }
+
+    (float, Vector2) GetLandingAngle() {
+        // Get ground's tangent
+        (bool _, Vector2 midPoint) = GroundCast(midPointOffset);
+        (bool _, Vector2 slopeCheckPoint) = GroundCast(slopeCheckXOffset);
+        Vector2 groundTangent = (slopeCheckPoint - midPoint).normalized;
+        float groundAngle = Vector2.SignedAngle(Vector2.right, groundTangent);
+
+        // If tangent is too far from current rotation, the player loses
+        float deltaAngle = Mathf.Abs(Mathf.DeltaAngle(groundAngle, transform.eulerAngles.z));
+
+        return (deltaAngle, groundTangent);
+    }
+
+    bool IsLandingAngleInvalid(float angleThreshold) {
+        (float deltaAngle, Vector2 _) = GetLandingAngle();
+        return deltaAngle > angleThreshold;
     }
 
     bool LandingCheck()
@@ -282,7 +320,6 @@ public class PlayerMovement : MonoBehaviour
         if (this.velocity.y > 1) {
             return false;
         }
-
 
         // landing check consists of: a circle around the skateboard (casted along the velocity for continuous detection between frames) ...
         bool circleHits =
@@ -363,15 +400,9 @@ public class PlayerMovement : MonoBehaviour
 
             SoundManager.Instance.PlaySoundGlobal(move.skateboardLoopSoundID);
 
-            // Get ground's tangent
-            (bool _, Vector2 midPoint) = move.GroundCast(move.midPointOffset);
-            (bool _, Vector2 slopeCheckPoint) = move.GroundCast(move.slopeCheckXOffset);
-            Vector2 groundTangent = (slopeCheckPoint - midPoint).normalized;
-            float groundAngle = Vector2.SignedAngle(Vector2.right, groundTangent);
+            (float deltaAngle, Vector2 groundTangent) = move.GetLandingAngle();
 
-            // If tangent is too far from current rotation, the player loses
-            float deltaAngle = Mathf.Abs(Mathf.DeltaAngle(groundAngle, transform.eulerAngles.z));
-            if (deltaAngle > move.deathLandingAngleThreshold && move.isMortal)
+            if (move.IsLandingAngleInvalid(move.deathLandingAngleThreshold) && move.isMortal)
             {
                 if (move.IsDead) return;
                 move.Murder();
@@ -380,13 +411,12 @@ public class PlayerMovement : MonoBehaviour
             // Calculate new speed. faster if velocity is parallel to ground. lose some speed otherwise
             move.velocity = Vector2.Lerp(Vector3.Project(move.velocity, groundTangent), move.velocity, 0.5f);
 
-            Debug.Log($"deltaAngle = {deltaAngle}");
+            //Debug.Log($"deltaAngle = {deltaAngle}");
             SoundManager.Instance.PlaySoundGlobal(move.landSoundID);
         }
 
         public override void UpdateState()
         {
-            move.AdjustRotationToSlope();
             // set jump velocity to minimum on first frame spacebar is down.
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -414,30 +444,52 @@ public class PlayerMovement : MonoBehaviour
 
             Vector2 groundTangent = (slopeCheckPoint - midPoint).normalized;
 
+            Vine? vine = move.GetVine();
+
             // adjust velocity based on input. accelerating this way can only go so fast, but speed is never hard capped
             if (move.velocity == Vector2.zero)
             {
                 move.velocity = groundTangent * move.minMoveSpeed; // correct for normalized zero vector still being zero
             }
-            if (Input.GetKey(KeyCode.A))
-            {
-                float newSpeed = move.velocity.magnitude - move.movementAcceleration * Time.deltaTime * move.AccelerationMultiplier;
-                newSpeed = Mathf.Clamp(newSpeed, move.minMoveSpeed, 10000); // 10000 is an arbitrary high number
-                move.velocity = move.velocity.normalized * newSpeed;
-            }
-            if (Input.GetKey(KeyCode.D))
-            {
-                float newSpeed = move.velocity.magnitude + move.movementAcceleration * Time.deltaTime * move.AccelerationMultiplier;
-                newSpeed = Mathf.Clamp(newSpeed, move.minMoveSpeed, move.maxMoveSpeed);
-                if (newSpeed > move.velocity.magnitude)
+
+            if (vine == null) {
+                if (Input.GetKey(KeyCode.A))
                 {
-                    // ignore if it would slow player down
+                    float newSpeed = move.velocity.magnitude - move.movementAcceleration * Time.deltaTime * move.AccelerationMultiplier;
+                    newSpeed = Mathf.Clamp(newSpeed, move.minMoveSpeed, 10000); // 10000 is an arbitrary high number
                     move.velocity = move.velocity.normalized * newSpeed;
+                }
+                if (Input.GetKey(KeyCode.D))
+                {
+                    float newSpeed = move.velocity.magnitude + move.movementAcceleration * Time.deltaTime * move.AccelerationMultiplier;
+                    newSpeed = Mathf.Clamp(newSpeed, move.minMoveSpeed, move.maxMoveSpeed);
+                    if (newSpeed > move.velocity.magnitude)
+                    {
+                        // ignore if it would slow player down
+                        move.velocity = move.velocity.normalized * newSpeed;
+                    }
+                }
+            } else {
+                // rotate based on inputs
+                if (Input.GetKey(KeyCode.A))
+                {
+                    transform.Rotate(new Vector3(0, 0, 1), move.rotationSpeed * Time.deltaTime * move.RotationMultiplier);
+                }
+                if (Input.GetKey(KeyCode.D))
+                {
+                    transform.Rotate(new Vector3(0, 0, 1), -move.rotationSpeed * Time.deltaTime * move.RotationMultiplier);
                 }
             }
 
             // redirect magnitude to be parallel to the ground
             move.velocity = move.velocity.magnitude * groundTangent;
+
+            // rotate the player
+            if (vine == null) {
+                move.AdjustRotationToSlope();
+            } else {
+                transform.Rotate(new Vector3(0, 0, 1), vine.TiltDegreesPerSecond * Time.deltaTime);
+            }
 
             // apply gravity (speed up when going down a slope)
             float gravityStrength = -groundTangent.normalized.y;
@@ -462,6 +514,10 @@ public class PlayerMovement : MonoBehaviour
             // if any casts fail to find the ground, exit grounded state
             if (!midHit || !slopeCheckHit || !groundCheckHit)
             {
+                return StateType.InAir;
+            }
+
+            if (move.GetVine() != null && move.IsLandingAngleInvalid(move.vineBalanceAngleThreshold)) {
                 return StateType.InAir;
             }
 
@@ -600,7 +656,10 @@ public class PlayerMovement : MonoBehaviour
             float timeSinceLastJump = Time.time - move.lastJumpTime;
             if (timeSinceLastJump > move.groundCheckCooldownAfterJump && move.LandingCheck())
             {
-                return StateType.Grounded;
+                // Do not land if we're above a vine and the landing angle is invalid
+                if (move.GetVine() == null || !move.IsLandingAngleInvalid(move.vineBalanceAngleThreshold)) {
+                    return StateType.Grounded;
+                }
             }
             // enter trick state
             if (Input.GetKeyDown(KeyCode.Space))
