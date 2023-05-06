@@ -24,6 +24,7 @@ public class DialogueSystem : MonoBehaviour
     private bool isTextAppearing = false;
     private bool isCurrentCharacterSpeaking = false;
     public GameObject background;
+    private bool dialogueStarted = false;
 
 
     void Start()
@@ -31,21 +32,24 @@ public class DialogueSystem : MonoBehaviour
 
     }
 
-    public void StartDialogue()
+    public void StartDialogue(DialogueLines meeting)
     {
+        dialogueLinesPrefab = meeting;
         gameObject.SetActive(true);
         background.SetActive(true); // Activate the background object
         dialogueText.text = "";
         currentLineIndex = 0;
         currentCharacterLineIndex = 0;
+        currentDialogueIndex = 0;
         LoadDialogueLines();
         Debug.Log("Current character after loading dialogue lines: " + currentCharacter.monkey.name); // Add this line
         StartCoroutine(AnimateText(currentDialogueLines[currentCharacterLineIndex]));
+        dialogueStarted = true;
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && dialogueStarted)
         {
             if (!isTextAppearing)
             {
@@ -62,7 +66,24 @@ public class DialogueSystem : MonoBehaviour
 
                     if (currentDialogueIndex >= dialogueLinesPrefab.currentTalk.Length)
                     {
+                        background.SetActive(false);
                         gameObject.SetActive(false);
+
+                        for (int i = 0; i < dialogueLinesPrefab.currentTalk.Length; i++)
+                        {
+                            DialogueLines.whosTalking character = dialogueLinesPrefab.currentTalk[i];
+                            Emotions startingEmotion = GetSelectedEmotion(character);
+                            if (startingEmotion != null)
+                            {
+                                Debug.Log(i);
+                                Debug.Log(character.monkey.name);
+                                Image image = transform.parent.Find(character.monkey.name).GetComponent<Image>();
+                                image.enabled = false;
+
+                                image.sprite = startingEmotion.emotion;
+                            }
+                        }
+
                         return;
                     }
                     else
@@ -104,7 +125,7 @@ public class DialogueSystem : MonoBehaviour
         if (currentCharacter.isMission == true)
         {
             Debug.Log(currentDialogueLines[currentDialogueLines.Length - 1]);
-            AddMissionToListFromDescription(currentDialogueLines[currentDialogueLines.Length-1]);
+            //AddMissionToListFromDescription(currentDialogueLines[currentDialogueLines.Length-1]);
         }
 
         // Set each monkey's GameObject to active and update their starting sprite
