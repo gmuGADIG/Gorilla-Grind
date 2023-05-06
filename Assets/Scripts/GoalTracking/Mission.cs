@@ -56,6 +56,11 @@ public class Mission
         this.trickType = tType;
     }
 
+    public void SetTracker(Tracker newTracker)
+    {
+        tracker = newTracker;
+    }
+
     public string getDescription()
     {
         return description;
@@ -90,22 +95,22 @@ public class Mission
         {
             case "Travel":
                 return new Mission(MissionType.Distance, goalGenerator(MissionType.Distance));
-                break;
+            
             case "Collect":
                 return new Mission(MissionType.BananaCount, goalGenerator(MissionType.BananaCount));
-                break;
+                
             case "Jump":
                 return new Mission(MissionType.HazardCount, goalGenerator(MissionType.HazardCount));
-                break;
+                
             case "Achieve":
                 return new Mission(MissionType.MaxSpeed, goalGenerator(MissionType.MaxSpeed));
-                break;
+                
             case "Obtain":
                 return new Mission(MissionType.StyleCount, goalGenerator(MissionType.StyleCount));
-                break;
+                
             default:
                 return new Mission(MissionType.Trick, goalGenerator(MissionType.Trick), trickRandomizer());
-                break;
+                
         }
     }
 

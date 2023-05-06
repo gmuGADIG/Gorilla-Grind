@@ -18,17 +18,31 @@ public class Goals_Tracker : MonoBehaviour
     public GameObject MissionDisplayPrefab;
     public GameObject ScoreDisplayPrefab;
     public Slider goalProgress;
-    public GameObject mission1Display;
+    //public GameObject mission1Display;
     public TMP_Text mission1Text;
-    public GameObject mission2Display;
+    //public GameObject mission2Display;
     public TMP_Text mission2Text;
-    public GameObject mission3Display;
+    //public GameObject mission3Display;
     public TMP_Text mission3Text;
-    public GameObject StyleDisplay;
+    //public GameObject StyleDisplay;
+    public TMP_Text mission4Text;
     public TMP_Text styleText;
-    public GameObject PointsDisplay;
+    //public GameObject PointsDisplay;
     public TMP_Text pointsText;
     private GameObject lastHazard = null;
+
+    //Mission List
+    List<Mission> currentMissions;
+    List<TMP_Text> missionTextList = new List<TMP_Text>();
+
+    // TRACKERS
+    Distance_Tracker distanceTracker = new Distance_Tracker();
+    Hazards_Tracker hazardsTracker = new Hazards_Tracker();
+    Speed_Tracker speedTracker = new Speed_Tracker();
+    Banana_Tracker bananaTracker = new Banana_Tracker();
+    Style_Tracker styleTracker = new Style_Tracker();
+    Trick_Tracker trickTracker = new Trick_Tracker();
+
     bool goalMet = false;
     float styleCounter = 0;
     float totalPoints;
@@ -38,25 +52,16 @@ public class Goals_Tracker : MonoBehaviour
     bool gapBelow;
     private float maxSpeed = 0;
     private int scoreMultiplier;
-    Dictionary<string, int> trickTracker = new Dictionary<string, int>();
+    //Dictionary<string, int> trickTracker = new Dictionary<string, int>();
     PlayerMovement pm;
     [HideInInspector] public Mission mission1;
     [HideInInspector] public Mission mission2;
     [HideInInspector] public Mission mission3;
+    [HideInInspector] public Mission mission4;
 
-    private void Awake()
-    {
-        if(instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-        SceneManager.sceneLoaded += SceneLoaded;
-    }
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -68,38 +73,34 @@ public class Goals_Tracker : MonoBehaviour
         mission1Text = DisplayCanvas.transform.Find("Mission1 Display").gameObject.GetComponent<TMP_Text>();
         mission2Text = DisplayCanvas.transform.Find("Mission2 Display").gameObject.GetComponent<TMP_Text>();
         mission3Text = DisplayCanvas.transform.Find("Mission3 Display").gameObject.GetComponent<TMP_Text>();
+        mission4Text = DisplayCanvas.transform.Find("Mission4 Display").gameObject.GetComponent<TMP_Text>();
 
         styleText = ScoreDisplay.transform.Find("StyleDisplay").gameObject.GetComponent<TMP_Text>();
         pointsText = ScoreDisplay.transform.Find("PointsDisplay").gameObject.GetComponent<TMP_Text>();
         goalProgress = ScoreDisplay.transform.Find("Goal Progress").gameObject.GetComponent<Slider>();
         
         goalStart();
-        SceneManager.sceneLoaded += SceneLoaded;
+        //SceneManager.sceneLoaded += SceneLoaded;
     }
 
     // Update is called once per frame
     void Update()
     {
-        distance += PlayerMovement.CurrentHorizontalSpeed * Time.deltaTime;
-        if (distance >= distanceGoal)
-        {
-            monkeyMeeting(level);
-        }
-        else
-        {
-            //score++;
-            goalProgress.value = distance;
-        }
-        
+        distanceTracker.AddDistance(PlayerMovement.CurrentHorizontalSpeed * Time.deltaTime);
+        //distance += PlayerMovement.CurrentHorizontalSpeed * Time.deltaTime;
+       
+        goalProgress.value = distanceTracker.GetCount();
         
         if (pm.IsGrounded)
         {
             scoreMultiplier = 0;
-            hazardCount += hazardsJumped;
-            totalPoints += styleCounter;
+            //hazardCount += hazardsJumped;
+            hazardsTracker.IncrementCount(hazardsJumped);
+            styleTracker.AddStylePoints(styleCounter);
+            //totalPoints += styleCounter;
             styleCounter = 0;
             styleText.text = "";
-            Debug.Log("Hazards: " + hazardsJumped);
+            //Debug.Log("Hazards: " + hazardsJumped);
 
             hazardsJumped = 0;
         }
@@ -107,9 +108,10 @@ public class Goals_Tracker : MonoBehaviour
         {
             checkForHazards();
         }
-        if (maxSpeed < PlayerMovement.CurrentHorizontalSpeed)
+        if (speedTracker.GetCount() < PlayerMovement.CurrentHorizontalSpeed)
         {
-            maxSpeed = PlayerMovement.CurrentHorizontalSpeed;
+            //maxSpeed = PlayerMovement.CurrentHorizontalSpeed;
+            speedTracker.SetMaxSpeed(PlayerMovement.CurrentHorizontalSpeed);
         }
 
         pointsText.text = "Points: " + totalPoints;
@@ -117,103 +119,58 @@ public class Goals_Tracker : MonoBehaviour
 
     void goalStart()
     {
-        missionTypes = new List<Mission.MissionType>() {
-            Mission.MissionType.Distance,
-            Mission.MissionType.BananaCount,
-            Mission.MissionType.HazardCount,
-            Mission.MissionType.MaxSpeed,
-            Mission.MissionType.StyleCount,
-            Mission.MissionType.Trick
+        currentMissions = MissionObject.GetCurrentMissions();
+        missionTextList = new List<TMP_Text>()
+        {
+            mission1Text,
+            mission2Text,
+            mission3Text,
+            mission4Text
         };
-        distance = 0f;
-        goalMet = false;
-        styleCounter = 0;
-        System.Random rnd = new System.Random();
-        int num1 = rnd.Next(0, 6);
-        int num2;
-        int num3;
-        do
-        {
-            num2 = rnd.Next(0, 6);
-        } while (num2 == num1);
-        do
-        {
-            num3 = rnd.Next(0, 6);
-        } while (num3 == num1 || num3 == num2);
-        if (num1 < 5)
-        {
-            mission1 = new Mission(missionTypes[num1], goalGenerator(missionTypes[num1]));
-        }
-        else
-        {
-            mission1 = new Mission(missionTypes[num1], goalGenerator(missionTypes[num1]), trickRandomizer());
-        }
-        if (num2 < 5)
-        {
-            mission2 = new Mission(missionTypes[num2], goalGenerator(missionTypes[num2]));
-        }
-        else
-        {
-            mission2 = new Mission(missionTypes[num2], goalGenerator(missionTypes[num2]), trickRandomizer());
-        }
-        if (num3 < 5)
-        {
-            mission3 = new Mission(missionTypes[num3], goalGenerator(missionTypes[num3]));
-        }
-        else
-        {
-            mission3 = new Mission(missionTypes[num3], goalGenerator(missionTypes[num3]), trickRandomizer());
-        }
-        hazardCount = 0;
-        hazardsJumped = 0;
-        gapBelow = false;
-        goalProgress.gameObject.SetActive(true);
-        mission1Display.SetActive(true);
-        mission2Display.SetActive(true);
-        mission3Display.SetActive(true);
 
-        mission1Text.text = mission1.getDescription();
+        if (currentMissions.Count == 0) // Empty, Get new missions
+        {
+            MissionObject.CreateNewMissions();
+            currentMissions = MissionObject.GetCurrentMissions();
+        } 
+
+        /*mission1Text.text = mission1.getDescription();
         mission2Text.text = mission2.getDescription();
         mission3Text.text = mission3.getDescription();
+        mission4Text.text = mission4.getDescription();*/
 
         scoreMultiplier = 0;
         totalPoints = 0;
-    }
 
-    float goalGenerator(Mission.MissionType misType)
-    {
-        System.Random rnd = new System.Random();
-        switch (misType)
+        int count = 0;
+        foreach(Mission mission in currentMissions) // Set corresponding tracker
         {
-            case Mission.MissionType.Distance:
-                return rnd.Next(1000, 10001);
+            missionTextList[count].text = mission.getDescription();
+            count++;
 
-            case Mission.MissionType.BananaCount:
-                return rnd.Next(50, 101);
+            switch (mission.GetMissionType())
+            {
+                case Mission.MissionType.Distance:
+                    mission.SetTracker(distanceTracker);
+                    break;
+                case Mission.MissionType.HazardCount:
+                    mission.SetTracker(hazardsTracker);
+                    break;
+                case Mission.MissionType.BananaCount:
+                    mission.SetTracker(bananaTracker);
+                    break;
+                case Mission.MissionType.StyleCount:
+                    mission.SetTracker(styleTracker);
+                    break;
+                case Mission.MissionType.MaxSpeed:
+                    mission.SetTracker(speedTracker);
+                    break;
+                case Mission.MissionType.Trick:
+                    mission.SetTracker(trickTracker);
+                    break;
 
-            case Mission.MissionType.MaxSpeed:
-                return rnd.Next(50, 76);
-
-            case Mission.MissionType.HazardCount:
-                return rnd.Next(50, 101);
-
-            case Mission.MissionType.Trick:
-                return rnd.Next(4, 11);
-
-            case Mission.MissionType.StyleCount:
-                return rnd.Next(100, 1001);
-
-            default:
-                return 0;
+            }
         }
-    }
-
-    public string trickRandomizer()
-    {
-        System.Random rnd = new System.Random();
-        string[] tricks = { "Up", "Down", "Left", "Right"};
-        int num = rnd.Next(0, 4);
-        return tricks[num];
     }
 
     void monkeyMeeting(int level)
@@ -241,34 +198,34 @@ public class Goals_Tracker : MonoBehaviour
         if (rc.collider == null)
         {
             gapBelow = true;
-            Debug.Log("No Collider");
+            //Debug.Log("No Collider");
         }
         else if (rc.collider.gameObject.CompareTag("Hazards"))
         {
             objectDetected(rc.collider.gameObject);
-            Debug.Log("HAZARD");
+            //Debug.Log("HAZARD");
         }
         else if (rc.collider.gameObject.CompareTag("Terrain") && gapBelow)
         {
             hazardsJumped++;
-            Debug.Log("JUMPED OVER");
+            //Debug.Log("JUMPED OVER");
             gapBelow = false;
         }
         else
         {
-            Debug.Log(rc.transform.gameObject.name);
+            //Debug.Log(rc.transform.gameObject.name);
         }
         //Raycast downwards, if it hits an object, call object detected with detected object
     }
 
     public void AddBananas(int bananaCount)
     {
-        bananas += bananaCount;
+        bananaTracker.AddBananas(bananaCount);
     }
 
-    public int getBananas()
+    public float GetBananas()
     {
-        return bananas;
+        return bananaTracker.GetCount();
     }
 
     public void trickTypeExecuted (Type trickType)
@@ -277,50 +234,40 @@ public class Goals_Tracker : MonoBehaviour
         {
             scoreMultiplier++;
             styleCounter += 20 * scoreMultiplier;
-            trickTracker["Left"] += 1;
+            trickTracker.IncrementTrick("Left");
             styleText.text = styleCounter + " x " + scoreMultiplier;
         }
         else if (trickType == typeof(RightTrick))
         {
             scoreMultiplier++;
             styleCounter += 20 * scoreMultiplier;
-            trickTracker["Right"] += 1;
+            trickTracker.IncrementTrick("Right");
             styleText.text = styleCounter + " x " + scoreMultiplier;
         }
         else if (trickType == typeof(UpTrick))
         {
             scoreMultiplier++;
             styleCounter += 10 * scoreMultiplier;
-            trickTracker["Up"] += 1;
+            trickTracker.IncrementTrick("Up");
             styleText.text = styleCounter + " x " + scoreMultiplier;
         }
         else if (trickType == typeof(DownTrick))
         {
             scoreMultiplier++;
             styleCounter += 10 * scoreMultiplier;
-            trickTracker["Down"] += 1;
+            trickTracker.IncrementTrick("Down");
             styleText.text = styleCounter + " x " + scoreMultiplier;
-        }
-    }
-
-    void SceneLoaded(Scene scene, LoadSceneMode mode){
-        if(scene.name == "RunScene"){
-            goalProgress.gameObject.SetActive(true);
-            mission1Display.SetActive(true);
-            mission2Display.SetActive(true);
-            mission3Display.SetActive(true);
-            distance = 0;
-        }
-        else{
-            goalProgress.gameObject.SetActive(false);
-            mission1Display.SetActive(false);
-            mission2Display.SetActive(false);
-            mission3Display.SetActive(false);
         }
     }
 
     public void RunEnded()
     {
-        Inventory.AddBananas(bananas);
+        Inventory.AddBananas((int)bananaTracker.GetCount());
+
+        if (MissionObject.EvaluateMissions())
+        {
+            monkeyMeeting(level);
+            print("MONKEY MEETING NOW");
+        }
     }
 }
