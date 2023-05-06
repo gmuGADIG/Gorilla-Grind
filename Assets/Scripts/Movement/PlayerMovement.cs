@@ -402,7 +402,7 @@ public class PlayerMovement : MonoBehaviour
             move.lastJumpTime = Time.time;
             move.currentSkateableLayer = move.groundLayer;
             SoundManager.Instance.StopPlayingGlobal(move.skateboardLoopSoundID);
-            move.PlayerOffVine.Invoke();
+            OnVine = false;
             Debug.Log("Exiting grounded state");
         }
 
