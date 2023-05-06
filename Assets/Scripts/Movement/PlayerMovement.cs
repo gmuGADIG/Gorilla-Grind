@@ -130,6 +130,9 @@ public class PlayerMovement : MonoBehaviour
     
     // 0 lives mean you dead
     int lives = 1;
+
+    public UnityEvent PlayerOnVine;
+    public UnityEvent PlayerOffVine;
     
     void Murder() {
         print("PlayerMovement.Murder: murdered");
@@ -382,11 +385,24 @@ public class PlayerMovement : MonoBehaviour
     {
         public GroundedState(PlayerMovement move) : base(move) { }
 
+        bool _onVine = false;
+        bool OnVine {
+            get { return _onVine; }
+            set { 
+                if (_onVine != value) {
+                    if (value) { move.PlayerOnVine.Invoke(); }
+                    else { move.PlayerOffVine.Invoke(); }
+                }
+                _onVine = value;
+            }
+        }
+
         public override void AfterExecution()
         {
             move.lastJumpTime = Time.time;
             move.currentSkateableLayer = move.groundLayer;
             SoundManager.Instance.StopPlayingGlobal(move.skateboardLoopSoundID);
+            move.PlayerOffVine.Invoke();
             Debug.Log("Exiting grounded state");
         }
 
@@ -445,6 +461,7 @@ public class PlayerMovement : MonoBehaviour
             Vector2 groundTangent = (slopeCheckPoint - midPoint).normalized;
 
             Vine? vine = move.GetVine();
+            OnVine = vine != null;
 
             // adjust velocity based on input. accelerating this way can only go so fast, but speed is never hard capped
             if (move.velocity == Vector2.zero)
@@ -452,7 +469,7 @@ public class PlayerMovement : MonoBehaviour
                 move.velocity = groundTangent * move.minMoveSpeed; // correct for normalized zero vector still being zero
             }
 
-            if (vine == null) {
+            if (OnVine) {
                 if (Input.GetKey(KeyCode.A))
                 {
                     float newSpeed = move.velocity.magnitude - move.movementAcceleration * Time.deltaTime * move.AccelerationMultiplier;
@@ -485,7 +502,7 @@ public class PlayerMovement : MonoBehaviour
             move.velocity = move.velocity.magnitude * groundTangent;
 
             // rotate the player
-            if (vine == null) {
+            if (OnVine) {
                 move.AdjustRotationToSlope();
             } else {
                 transform.Rotate(new Vector3(0, 0, 1), vine.TiltDegreesPerSecond * Time.deltaTime);
@@ -517,7 +534,7 @@ public class PlayerMovement : MonoBehaviour
                 return StateType.InAir;
             }
 
-            if (move.GetVine() != null && move.IsLandingAngleInvalid(move.vineBalanceAngleThreshold)) {
+            if (OnVine && move.IsLandingAngleInvalid(move.vineBalanceAngleThreshold)) {
                 return StateType.InAir;
             }
 
@@ -657,7 +674,7 @@ public class PlayerMovement : MonoBehaviour
             if (timeSinceLastJump > move.groundCheckCooldownAfterJump && move.LandingCheck())
             {
                 // Do not land if we're above a vine and the landing angle is invalid
-                if (move.GetVine() == null || !move.IsLandingAngleInvalid(move.vineBalanceAngleThreshold)) {
+                if (move.GetVine() != null || !move.IsLandingAngleInvalid(move.vineBalanceAngleThreshold)) {
                     return StateType.Grounded;
                 }
             }
