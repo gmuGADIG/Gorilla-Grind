@@ -469,7 +469,7 @@ public class PlayerMovement : MonoBehaviour
                 move.velocity = groundTangent * move.minMoveSpeed; // correct for normalized zero vector still being zero
             }
 
-            if (OnVine) {
+            if (!OnVine) {
                 if (Input.GetKey(KeyCode.A))
                 {
                     float newSpeed = move.velocity.magnitude - move.movementAcceleration * Time.deltaTime * move.AccelerationMultiplier;
@@ -502,7 +502,7 @@ public class PlayerMovement : MonoBehaviour
             move.velocity = move.velocity.magnitude * groundTangent;
 
             // rotate the player
-            if (OnVine) {
+            if (!OnVine) {
                 move.AdjustRotationToSlope();
             } else {
                 transform.Rotate(new Vector3(0, 0, 1), vine.TiltDegreesPerSecond * Time.deltaTime);
@@ -674,7 +674,7 @@ public class PlayerMovement : MonoBehaviour
             if (timeSinceLastJump > move.groundCheckCooldownAfterJump && move.LandingCheck())
             {
                 // Do not land if we're above a vine and the landing angle is invalid
-                if (move.GetVine() != null || !move.IsLandingAngleInvalid(move.vineBalanceAngleThreshold)) {
+                if (move.GetVine() == null || !move.IsLandingAngleInvalid(move.vineBalanceAngleThreshold)) {
                     return StateType.Grounded;
                 }
             }
