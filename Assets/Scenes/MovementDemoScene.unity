@@ -4640,7 +4640,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6bb195d0577da5a394bd51dcc53ac51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TiltDegreesPerSecond: 20
+  TiltDegreesPerSecond: 90
 --- !u!1 &1684612392
 GameObject:
   m_ObjectHideFlags: 0
@@ -6416,6 +6416,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 583283535433455025, guid: 40cfbea24cf54a445a49df333392f736, type: 3}
+      propertyPath: vineBalanceAngleThreshold
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 583283535433455025, guid: 40cfbea24cf54a445a49df333392f736, type: 3}
+      propertyPath: deathLandingAngleThreshold
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 583283535433455034, guid: 40cfbea24cf54a445a49df333392f736, type: 3}
       propertyPath: m_Name
       value: Player
