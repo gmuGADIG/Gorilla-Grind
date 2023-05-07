@@ -23,6 +23,7 @@ public class ButtonAnimation : MonoBehaviour, IPointerEnterHandler, IPointerExit
         targetSize = new Vector3(normalSize, normalSize, normalSize);
         shifting = true;
     }
+    
     private void Update()
     {
         if (shifting)

@@ -44,7 +44,7 @@ public class Inventory : MonoBehaviour
     ///Returns true on success, false on failure (count wasn't updated)
     ///</summary>
     public static bool AddBananas(int moreBananas) {
-        BananasInInventory += moreBananas;
+        BananasInInventory += (int)moreBananas;
         return true;
     }
 
@@ -54,7 +54,7 @@ public class Inventory : MonoBehaviour
     ///</summary>
     public static bool RemoveBananas(int lessBananas) {
         if (BananasInInventory >= lessBananas) {
-            BananasInInventory -= lessBananas;
+            BananasInInventory -= (int)lessBananas;
             return true;
         }
         else {
@@ -63,10 +63,19 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    ///<summary>
+    ///Returns true if the passed in item name is stored in the player's inventory
+    ///Returns false otherwise
+    ///</summary>
     public static bool hasItem(string itemName) {
         return PurchasedItems.Contains(itemName);
     }
 
+    ///<summary>
+    ///Add an item's name to the player's inventory.
+    ///Returns true on success, meaning the item was not previously in the inventory
+    ///Returns false if the item is already in the inventory
+    ///</summary>
     public static bool addItem(string itemName) {
         if (hasItem(itemName)) {
             return false;

@@ -11,6 +11,7 @@ public class BananaScript : MonoBehaviour
     void Start()
     {
         Debug.Log("Banana");
+        playerCollider = GameObject.Find("Player").transform.GetComponent<CapsuleCollider2D>();
     }
 
     // Update is called once per frame
