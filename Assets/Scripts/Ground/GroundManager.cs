@@ -101,7 +101,7 @@ public class GroundManager : MonoBehaviour
         //List of groundsections from prefabs
         List<GroundSection> validSections = sectionPrefabs.ToList().Select(gs => gs.GetComponent<GroundSection>()).ToList();
         //return sections where the height change + last.y is greater than pos - bound but less that pos+bound
-        return validSections.Where(gs => gs != null && System.Math.Abs(activeSections.Last.Value.endPoint.y + gs.heightDiff - transform.position.y) < spawnBounds.y).ToList();
+        return validSections.Where(gs => System.Math.Abs(activeSections.Last.Value.endPoint.y + gs.heightDiff - transform.position.y) < spawnBounds.y).ToList();
     }
     void CreateNextSection(GameObject sectionPrefab) 
     { 

@@ -158,7 +158,6 @@ GameObject:
   - component: {fileID: 583283535433455025}
   - component: {fileID: 22198339121230368}
   - component: {fileID: 7258863040152870987}
-  - component: {fileID: 1138102348517935189}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -212,7 +211,6 @@ MonoBehaviour:
   slopeCheckXOffset: 0.1
   midPointOffset: 0
   deathLandingAngleThreshold: 30
-  vineBalanceAngleThreshold: 30
   movementAcceleration: 3
   maxMoveSpeed: 20
   minMoveSpeed: 0.5
@@ -226,9 +224,6 @@ MonoBehaviour:
   trickTimeSlowModifier: 0.6
   fastFallGravityIncrease: 40
   OnDeath:
-    m_PersistentCalls:
-      m_Calls: []
-  OnRessurection:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &22198339121230368
@@ -255,32 +250,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e7ceb845ccda9f47a77baf1d6146608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1138102348517935189
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 583283535433455034}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22446d1164281bc4ca02e4414cca64cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  level: 0
-  MissionDisplayPrefab: {fileID: 0}
-  ScoreDisplayPrefab: {fileID: 0}
-  goalProgress: {fileID: 0}
-  mission1Display: {fileID: 0}
-  mission1Text: {fileID: 0}
-  mission2Display: {fileID: 0}
-  mission2Text: {fileID: 0}
-  mission3Display: {fileID: 0}
-  mission3Text: {fileID: 0}
-  StyleDisplay: {fileID: 0}
-  styleText: {fileID: 0}
-  PointsDisplay: {fileID: 0}
-  pointsText: {fileID: 0}
 --- !u!1 &9116743229417559382
 GameObject:
   m_ObjectHideFlags: 0
