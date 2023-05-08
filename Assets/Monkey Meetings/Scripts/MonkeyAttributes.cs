@@ -16,31 +16,31 @@ public class MonkeySounds
 public class Emotions
 {
     public string EmotionName;
-    public Sprite emotion;
-    public List<MonkeySounds> SoundMonkey;
+    public Sprite characterSprite;
+    public List<MonkeySounds> emotionSound;
     public string GetFirstSoundName()
     {
-        if (SoundMonkey.Count > 0)
-            return "Sound material: " + SoundMonkey[0].monkeyScream;
+        if (emotionSound.Count > 0)
+            return "Sound material: " + emotionSound[0].monkeyScream;
         else
             return "No Sound";
     }
     public MonkeySounds GetSoundAt(int index)
     {
-        return SoundMonkey[index];
+        return emotionSound[index];
     }
 }
 
 [System.Serializable]
-public class MonkeyData
+public class CharacterData
 {
     public string name;
     public Sprite NamePlate;
-    public GameObject whereIam;
+    public GameObject characterGameObject;
     public List<Emotions> emotion;
 }
 
 [System.Serializable]
-public class MonkeyMaker : MonkeyData
+public class CharacterMaker : CharacterData
 {
 }

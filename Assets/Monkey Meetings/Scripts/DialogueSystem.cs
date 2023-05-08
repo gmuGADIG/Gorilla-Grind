@@ -8,15 +8,15 @@ public class DialogueSystem : MonoBehaviour
     public Text dialogueText;
     public Image headshotImage;
     public Image nameImage;
-    public DialogueLines dialogueLinesPrefab;
-    public DialogueLines dialogueLines;
+    public MonkeyMeetingDialogue dialogueLinesPrefab;
+    public MonkeyMeetingDialogue dialogueLines;
     public int currentDialogueIndex = 0;
     public float textSpeed = 0.1f;
     public AudioSource typingSound;
     public AudioSource monkeySoundSource;
     public int soundCharChange = 4;
 
-    private DialogueLines.whosTalking currentCharacter;
+    private MonkeyMeetingDialogue.DialogueFrame currentCharacter;
     private string[] currentDialogueLines;
     private int currentLineIndex;
     private int currentCharacterLineIndex;
@@ -32,7 +32,7 @@ public class DialogueSystem : MonoBehaviour
 
     }
 
-    public void StartDialogue(DialogueLines meeting)
+    public void StartDialogue(MonkeyMeetingDialogue meeting)
     {
         dialogueLinesPrefab = meeting;
         gameObject.SetActive(true);
@@ -42,7 +42,7 @@ public class DialogueSystem : MonoBehaviour
         currentCharacterLineIndex = 0;
         currentDialogueIndex = 0;
         LoadDialogueLines();
-        Debug.Log("Current character after loading dialogue lines: " + currentCharacter.monkey.name); // Add this line
+        Debug.Log("Current character after loading dialogue lines: " + currentCharacter.speakingCharacter.name); // Add this line
         StartCoroutine(AnimateText(currentDialogueLines[currentCharacterLineIndex]));
         dialogueStarted = true;
     }
@@ -64,23 +64,23 @@ public class DialogueSystem : MonoBehaviour
                 {
                     currentDialogueIndex++;
 
-                    if (currentDialogueIndex >= dialogueLinesPrefab.currentTalk.Length)
+                    if (currentDialogueIndex >= dialogueLinesPrefab.dialogue.Length)
                     {
                         background.SetActive(false);
                         gameObject.SetActive(false);
 
-                        for (int i = 0; i < dialogueLinesPrefab.currentTalk.Length; i++)
+                        for (int i = 0; i < dialogueLinesPrefab.dialogue.Length; i++)
                         {
-                            DialogueLines.whosTalking character = dialogueLinesPrefab.currentTalk[i];
+                            MonkeyMeetingDialogue.DialogueFrame character = dialogueLinesPrefab.dialogue[i];
                             Emotions startingEmotion = GetSelectedEmotion(character);
                             if (startingEmotion != null)
                             {
                                 Debug.Log(i);
-                                Debug.Log(character.monkey.name);
-                                Image image = transform.parent.Find(character.monkey.name).GetComponent<Image>();
+                                Debug.Log(character.speakingCharacter.name);
+                                Image image = transform.parent.Find(character.speakingCharacter.name).GetComponent<Image>();
                                 image.enabled = false;
 
-                                image.sprite = startingEmotion.emotion;
+                                image.sprite = startingEmotion.characterSprite;
                             }
                         }
 
@@ -105,11 +105,11 @@ public class DialogueSystem : MonoBehaviour
         }
     }
 
-    private Emotions GetSelectedEmotion(DialogueLines.whosTalking character)
+    private Emotions GetSelectedEmotion(MonkeyMeetingDialogue.DialogueFrame character)
     {
-        if (character != null && character.monkey != null && character.myIndex >= 0 && character.myIndex < character.monkey.emotion.Count)
+        if (character != null && character.speakingCharacter != null && character.myIndex >= 0 && character.myIndex < character.speakingCharacter.emotion.Count)
         {
-            return character.monkey.emotion[character.myIndex];
+            return character.speakingCharacter.emotion[character.myIndex];
         }
         else
         {
@@ -119,7 +119,7 @@ public class DialogueSystem : MonoBehaviour
 
     void LoadDialogueLines()
     {
-        currentCharacter = dialogueLinesPrefab.currentTalk[currentDialogueIndex];
+        currentCharacter = dialogueLinesPrefab.dialogue[currentDialogueIndex];
         currentDialogueLines = currentCharacter.dialogueLines;
         currentCharacterLineIndex = 0;
         if (currentCharacter.isMission == true)
@@ -129,18 +129,18 @@ public class DialogueSystem : MonoBehaviour
         }
 
         // Set each monkey's GameObject to active and update their starting sprite
-        for (int i = 0; i < dialogueLinesPrefab.currentTalk.Length; i++)
+        for (int i = 0; i < dialogueLinesPrefab.dialogue.Length; i++)
         {
-            DialogueLines.whosTalking character = dialogueLinesPrefab.currentTalk[i];
+            MonkeyMeetingDialogue.DialogueFrame character = dialogueLinesPrefab.dialogue[i];
             Emotions startingEmotion = GetSelectedEmotion(character);
             if (startingEmotion != null)
             {
                 Debug.Log(i);
-                Debug.Log(character.monkey.name);
-                Image image = transform.parent.Find(character.monkey.name).GetComponent<Image>();
+                Debug.Log(character.speakingCharacter.name);
+                Image image = transform.parent.Find(character.speakingCharacter.name).GetComponent<Image>();
                 image.enabled = true;
 
-                image.sprite = startingEmotion.emotion;
+                image.sprite = startingEmotion.characterSprite;
             }
         }
 
@@ -153,15 +153,15 @@ public class DialogueSystem : MonoBehaviour
             Emotions emotion = GetSelectedEmotion(currentCharacter);
             if (emotion != null)
             {
-                if (currentCharacter.monkey.NamePlate != null)
+                if (currentCharacter.speakingCharacter.NamePlate != null)
                 {
-                    nameImage.sprite = currentCharacter.monkey.NamePlate;
-                    Debug.Log("Loading nameplate for: " + currentCharacter.monkey.name);
+                    nameImage.sprite = currentCharacter.speakingCharacter.NamePlate;
+                    Debug.Log("Loading nameplate for: " + currentCharacter.speakingCharacter.name);
                     Debug.Log("Nameplate sprite: " + nameImage.sprite);
                 }
                 else
                 {
-                    Debug.LogError("Nameplate sprite is not assigned for monkey: " + currentCharacter.monkey.name);
+                    Debug.LogError("Nameplate sprite is not assigned for monkey: " + currentCharacter.speakingCharacter.name);
                 }
             }
         }
@@ -209,10 +209,10 @@ public class DialogueSystem : MonoBehaviour
 
     private void PlayRandomMonkeySound(Emotions emotion)
     {
-        if (emotion.SoundMonkey.Count > 0)
+        if (emotion.emotionSound.Count > 0)
         {
-            int randomIndex = UnityEngine.Random.Range(0, emotion.SoundMonkey.Count);
-            AudioClip randomSound = emotion.SoundMonkey[randomIndex].monkeyScream;
+            int randomIndex = UnityEngine.Random.Range(0, emotion.emotionSound.Count);
+            AudioClip randomSound = emotion.emotionSound[randomIndex].monkeyScream;
             monkeySoundSource.clip = randomSound;
             monkeySoundSource.Play();
 
