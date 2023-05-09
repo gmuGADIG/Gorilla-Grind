@@ -15,16 +15,22 @@ MonoBehaviour:
   characterDatabase: {fileID: 11400000, guid: 5ff5001a917067e499d10df040f92b30, type: 2}
   dialogueFrames:
   - speakingCharacter:
-      name: 
+      name: Character 01
       NamePlate: {fileID: 0}
       characterGameObject: {fileID: 0}
-      emotion: []
-    myIndex: 0
-    emotions: []
+      emotions:
+      - name: 
+        characterSprite: {fileID: 0}
+        emotionSound: []
+      - name: 
+        characterSprite: {fileID: 0}
+        emotionSound: []
     emotion:
-      EmotionName: 
+      name: Happy
       characterSprite: {fileID: 0}
       emotionSound: []
+    myIndex: 0
+    emotions: []
     dialogueLines:
     - Test 01
     - Test 02
@@ -34,13 +40,16 @@ MonoBehaviour:
       name: Character 02
       NamePlate: {fileID: 0}
       characterGameObject: {fileID: 0}
-      emotion: []
-    myIndex: 0
-    emotions: []
+      emotions:
+      - name: 
+        characterSprite: {fileID: 0}
+        emotionSound: []
     emotion:
-      EmotionName: 
+      name: Happy
       characterSprite: {fileID: 0}
       emotionSound: []
+    myIndex: 0
+    emotions: []
     dialogueLines:
     - Test 03
     isMission: 0

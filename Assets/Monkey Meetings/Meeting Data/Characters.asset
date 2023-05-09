@@ -16,11 +16,17 @@ MonoBehaviour:
   - name: Character 01
     NamePlate: {fileID: 0}
     characterGameObject: {fileID: 0}
-    emotion:
-    - EmotionName: Happy
+    emotions:
+    - name: Happy
+      characterSprite: {fileID: 0}
+      emotionSound: []
+    - name: Sad
       characterSprite: {fileID: 0}
       emotionSound: []
   - name: Character 02
     NamePlate: {fileID: 0}
     characterGameObject: {fileID: 0}
-    emotion: []
+    emotions:
+    - name: Happy
+      characterSprite: {fileID: 0}
+      emotionSound: []

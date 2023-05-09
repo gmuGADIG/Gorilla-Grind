@@ -13,9 +13,9 @@ public class MonkeySounds
 }
 
 [System.Serializable]
-public class Emotions
+public class Emotion
 {
-    public string EmotionName;
+    public string name;
     public Sprite characterSprite;
     public List<MonkeySounds> emotionSound;
     public string GetFirstSoundName()
@@ -37,7 +37,7 @@ public class CharacterData
     public string name;
     public Sprite NamePlate;
     public GameObject characterGameObject;
-    public List<Emotions> emotion;
+    public List<Emotion> emotions;
 }
 
 [System.Serializable]

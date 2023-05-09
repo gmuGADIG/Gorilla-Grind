@@ -23,12 +23,12 @@ public class MonkeyMeetingDialogueEditor : Editor
         {
             if (dialogueLines.dialogueFrames[i].speakingCharacter != null)
             {
-                List<Emotions> emotions = dialogueLines.dialogueFrames[i].speakingCharacter.emotion;
+                List<Emotion> emotions = dialogueLines.dialogueFrames[i].speakingCharacter.emotions;
                 List<string> emotionNames = new List<string>();
 
-                foreach (Emotions emotion in emotions)
+                foreach (Emotion emotion in emotions)
                 {
-                    emotionNames.Add(emotion.EmotionName);
+                    emotionNames.Add(emotion.name);
                 }
 
                 int currentSelectedIndex = emotions.IndexOf(dialogueLines.dialogueFrames[i].emotion);

@@ -70,7 +70,7 @@ public class MonkeyMeeting : MonoBehaviour
                         for (int i = 0; i < meetingDialogue.dialogueFrames.Length; i++)
                         {
                             MonkeyMeetingDialogue.DialogueFrame character = meetingDialogue.dialogueFrames[i];
-                            Emotions startingEmotion = GetSelectedEmotion(character);
+                            Emotion startingEmotion = GetSelectedEmotion(character);
                             if (startingEmotion != null)
                             {
                                 Debug.Log(i);
@@ -103,11 +103,11 @@ public class MonkeyMeeting : MonoBehaviour
         }
     }
 
-    private Emotions GetSelectedEmotion(MonkeyMeetingDialogue.DialogueFrame character)
+    private Emotion GetSelectedEmotion(MonkeyMeetingDialogue.DialogueFrame character)
     {
-        if (character != null && character.speakingCharacter != null && character.myIndex >= 0 && character.myIndex < character.speakingCharacter.emotion.Count)
+        if (character != null && character.speakingCharacter != null && character.myIndex >= 0 && character.myIndex < character.speakingCharacter.emotions.Count)
         {
-            return character.speakingCharacter.emotion[character.myIndex];
+            return character.speakingCharacter.emotions[character.myIndex];
         }
         else
         {
@@ -130,7 +130,7 @@ public class MonkeyMeeting : MonoBehaviour
         for (int i = 0; i < meetingDialogue.dialogueFrames.Length; i++)
         {
             MonkeyMeetingDialogue.DialogueFrame character = meetingDialogue.dialogueFrames[i];
-            Emotions startingEmotion = GetSelectedEmotion(character);
+            Emotion startingEmotion = GetSelectedEmotion(character);
             if (startingEmotion != null)
             {
                 Debug.Log(i);
@@ -148,7 +148,7 @@ public class MonkeyMeeting : MonoBehaviour
         }
         else
         {
-            Emotions emotion = GetSelectedEmotion(currentCharacter);
+            Emotion emotion = GetSelectedEmotion(currentCharacter);
             if (emotion != null)
             {
                 if (currentCharacter.speakingCharacter.NamePlate != null)
@@ -174,7 +174,7 @@ public class MonkeyMeeting : MonoBehaviour
 
         typingSound.Play();
         int characterCount = 0;
-        Emotions emotion = GetSelectedEmotion(currentCharacter);
+        Emotion emotion = GetSelectedEmotion(currentCharacter);
 
         for (int i = 0; i < line.Length; i++)
         {
@@ -205,7 +205,7 @@ public class MonkeyMeeting : MonoBehaviour
         }
     }
 
-    private void PlayRandomMonkeySound(Emotions emotion)
+    private void PlayRandomMonkeySound(Emotion emotion)
     {
         if (emotion.emotionSound.Count > 0)
         {
