@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DialogueSystem : MonoBehaviour
+public class MonkeyMeeting : MonoBehaviour
 {
     public Text dialogueText;
     public Image headshotImage;
     public Image nameImage;
-    public MonkeyMeetingDialogue dialogueLinesPrefab;
-    public MonkeyMeetingDialogue dialogueLines;
+    public MonkeyMeetingDialogue dialogue;
     public int currentDialogueIndex = 0;
     public float textSpeed = 0.1f;
     public AudioSource typingSound;
@@ -34,7 +33,7 @@ public class DialogueSystem : MonoBehaviour
 
     public void StartDialogue(MonkeyMeetingDialogue meeting)
     {
-        dialogueLinesPrefab = meeting;
+        dialogue = meeting;
         gameObject.SetActive(true);
         background.SetActive(true); // Activate the background object
         dialogueText.text = "";
@@ -64,14 +63,14 @@ public class DialogueSystem : MonoBehaviour
                 {
                     currentDialogueIndex++;
 
-                    if (currentDialogueIndex >= dialogueLinesPrefab.dialogue.Length)
+                    if (currentDialogueIndex >= dialogue.dialogue.Length)
                     {
                         background.SetActive(false);
                         gameObject.SetActive(false);
 
-                        for (int i = 0; i < dialogueLinesPrefab.dialogue.Length; i++)
+                        for (int i = 0; i < dialogue.dialogue.Length; i++)
                         {
-                            MonkeyMeetingDialogue.DialogueFrame character = dialogueLinesPrefab.dialogue[i];
+                            MonkeyMeetingDialogue.DialogueFrame character = dialogue.dialogue[i];
                             Emotions startingEmotion = GetSelectedEmotion(character);
                             if (startingEmotion != null)
                             {
@@ -119,7 +118,7 @@ public class DialogueSystem : MonoBehaviour
 
     void LoadDialogueLines()
     {
-        currentCharacter = dialogueLinesPrefab.dialogue[currentDialogueIndex];
+        currentCharacter = dialogue.dialogue[currentDialogueIndex];
         currentDialogueLines = currentCharacter.dialogueLines;
         currentCharacterLineIndex = 0;
         if (currentCharacter.isMission == true)
@@ -129,9 +128,9 @@ public class DialogueSystem : MonoBehaviour
         }
 
         // Set each monkey's GameObject to active and update their starting sprite
-        for (int i = 0; i < dialogueLinesPrefab.dialogue.Length; i++)
+        for (int i = 0; i < dialogue.dialogue.Length; i++)
         {
-            MonkeyMeetingDialogue.DialogueFrame character = dialogueLinesPrefab.dialogue[i];
+            MonkeyMeetingDialogue.DialogueFrame character = dialogue.dialogue[i];
             Emotions startingEmotion = GetSelectedEmotion(character);
             if (startingEmotion != null)
             {

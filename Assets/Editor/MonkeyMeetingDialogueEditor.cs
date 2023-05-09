@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 
 [CustomEditor(typeof(MonkeyMeetingDialogue))]
-public class DialogueLinesEditor : Editor
+public class MonkeyMeetingDialogueEditor : Editor
 {
     private List<int> selectedEmotionIndices;
 
