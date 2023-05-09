@@ -9,7 +9,7 @@ public class MonkeyMeetingDialogue : ScriptableObject
 
     public MonkeyMeetingCharacters characterDatabase;
 
-    public DialogueFrame[] dialogue = new DialogueFrame[0];
+    public DialogueFrame[] dialogueFrames = new DialogueFrame[0];
 
     List<CharacterMaker> Characters => characterDatabase.characters;
 

@@ -354,10 +354,10 @@ MonoBehaviour:
       - m_Target: {fileID: 567051491}
         m_TargetAssemblyTypeName: MonkeyMeeting, Assembly-CSharp
         m_MethodName: StartDialogue
-        m_Mode: 2
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: f0b9e167e640a544e8a9124fdc98a827, type: 2}
-          m_ObjectArgumentAssemblyTypeName: MonkeyMeetingDialogue, Assembly-CSharp
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1048,6 +1048,10 @@ PrefabInstance:
       propertyPath: dialogueLines
       value: 
       objectReference: {fileID: 11400000, guid: 4381b1f3f185832498150d226570a9b0, type: 2}
+    - target: {fileID: 483245585098646107, guid: 53a629744deb53645a5596ef66f3bc23, type: 3}
+      propertyPath: meetingDialogue
+      value: 
+      objectReference: {fileID: 11400000, guid: f682719a4ee3d8e4ca8b58a483f4d22c, type: 2}
     - target: {fileID: 483245585098646107, guid: 53a629744deb53645a5596ef66f3bc23, type: 3}
       propertyPath: soundCharChange
       value: 20

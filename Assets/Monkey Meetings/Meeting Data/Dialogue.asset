@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   characterDatabase: {fileID: 11400000, guid: 5ff5001a917067e499d10df040f92b30, type: 2}
-  dialogue:
+  dialogueFrames:
   - speakingCharacter:
       name: 
       NamePlate: {fileID: 0}
@@ -23,11 +23,11 @@ MonoBehaviour:
     emotions: []
     emotion:
       EmotionName: 
-      emotion: {fileID: 0}
-      SoundMonkey: []
+      characterSprite: {fileID: 0}
+      emotionSound: []
     dialogueLines:
-    - Line 01
-    - Line 02
+    - Test 01
+    - Test 02
     isMission: 0
     isNarrator: 0
   - speakingCharacter:
@@ -39,10 +39,9 @@ MonoBehaviour:
     emotions: []
     emotion:
       EmotionName: 
-      emotion: {fileID: 0}
-      SoundMonkey: []
+      characterSprite: {fileID: 0}
+      emotionSound: []
     dialogueLines:
-    - Line 03
-    - Line 04
+    - Test 03
     isMission: 0
     isNarrator: 0
