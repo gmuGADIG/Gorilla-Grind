@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewCharacterList", menuName = "Monkey Meetings/Characters")]
 public class MonkeyMeetingCharacters : ScriptableObject
 {
-    public List<CharacterMaker> characters;
+    public List<CharacterData> characters;
 
     public void Start()
     {

@@ -32,15 +32,15 @@ public class Emotion
 }
 
 [System.Serializable]
-public class CharacterData
+public class Character
 {
     public string name;
     public Sprite NamePlate;
-    public GameObject characterGameObject;
+    public GameObject characterPrefab;
     public List<Emotion> emotions;
 }
 
 [System.Serializable]
-public class CharacterMaker : CharacterData
+public class CharacterData : Character
 {
 }

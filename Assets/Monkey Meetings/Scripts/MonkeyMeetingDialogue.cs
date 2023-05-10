@@ -12,9 +12,11 @@ public class MonkeyMeetingDialogue : ScriptableObject
 
     public DialogueFrame[] dialogueFrames = new DialogueFrame[0];
 
-    List<CharacterMaker> Characters => characterDatabase.characters;
-
-
+    /* These are only here for the Dropdown menu attributes in DialogueFrame.
+     * The [Dropdown] attribute only accepts the fully qualified name of a variable in string form.
+     * These properties are the only way of generating them without using string literals. - Joe
+     */
+    List<CharacterData> Characters => characterDatabase.characters;
     List<Emotion> AllEmotions => GetAllEmotions();
     List<Emotion> GetAllEmotions()
     {
@@ -30,15 +32,12 @@ public class MonkeyMeetingDialogue : ScriptableObject
     [System.Serializable]
     public class DialogueFrame
     {
-        List<Emotion> CharacterEmotions => speakingCharacter.emotions;
-
         [Dropdown(nameof(Characters), nameof(name))]
-        public CharacterMaker speakingCharacter;
+        public CharacterData speakingCharacter;
         [Dropdown(nameof(AllEmotions), nameof(name))]
         public Emotion emotion;
         [HideInInspector] public int myIndex;
         [HideInInspector] public List<Emotion> emotions;
-        //[HideInInspector] public Emotion emotion;
         public string[] dialogueLines;
         public bool isMission;
         public bool isNarrator; // Add this line

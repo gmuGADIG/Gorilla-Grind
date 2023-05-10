@@ -129,13 +129,13 @@ public class MonkeyMeeting : MonoBehaviour
         // Set each monkey's GameObject to active and update their starting sprite
         for (int i = 0; i < meetingDialogue.dialogueFrames.Length; i++)
         {
-            MonkeyMeetingDialogue.DialogueFrame character = meetingDialogue.dialogueFrames[i];
-            Emotion startingEmotion = GetSelectedEmotion(character);
+            MonkeyMeetingDialogue.DialogueFrame dialogueFrame = meetingDialogue.dialogueFrames[i];
+            Emotion startingEmotion = GetSelectedEmotion(dialogueFrame);
             if (startingEmotion != null)
             {
                 Debug.Log(i);
-                Debug.Log(character.speakingCharacter.name);
-                Image image = transform.parent.Find(character.speakingCharacter.name).GetComponent<Image>();
+                Debug.Log(dialogueFrame.speakingCharacter.name);
+                Image image = transform.parent.Find(dialogueFrame.speakingCharacter.name).GetComponent<Image>();
                 image.enabled = true;
 
                 image.sprite = startingEmotion.characterSprite;
