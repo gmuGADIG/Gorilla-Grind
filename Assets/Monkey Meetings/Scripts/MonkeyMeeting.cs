@@ -17,26 +17,18 @@ public class MonkeyMeeting : MonoBehaviour
 
     private MonkeyMeetingDialogue.DialogueFrame currentCharacter;
     private string[] currentDialogueLines;
-    private int currentLineIndex;
     private int currentCharacterLineIndex;
     private string currentLineText;
-    private bool isTextAppearing = false;
-    private bool isCurrentCharacterSpeaking = false;
+    private bool isTextCurrentlyAnimating = false;
     public GameObject background;
     private bool dialogueStarted = false;
 
-
-    void Start()
-    {
-
-    }
 
     public void StartDialogue()
     {
         gameObject.SetActive(true);
         background.SetActive(true); // Activate the background object
         dialogueText.text = "";
-        currentLineIndex = 0;
         currentCharacterLineIndex = 0;
         currentDialogueIndex = 0;
         LoadDialogueLines();
@@ -49,14 +41,11 @@ public class MonkeyMeeting : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && dialogueStarted)
         {
-            if (!isTextAppearing)
+            if (!isTextCurrentlyAnimating)
             {
                 if (currentCharacterLineIndex < currentDialogueLines.Length - 1)
                 {
-                    currentCharacterLineIndex++;
-                    StopAllCoroutines();
-                    StartCoroutine(AnimateText(currentDialogueLines[currentCharacterLineIndex]));
-                    isCurrentCharacterSpeaking = true;
+                    PlayNextLine();
                 }
                 else
                 {
@@ -64,24 +53,7 @@ public class MonkeyMeeting : MonoBehaviour
 
                     if (currentDialogueIndex >= meetingDialogue.dialogueFrames.Length)
                     {
-                        background.SetActive(false);
-                        gameObject.SetActive(false);
-
-                        for (int i = 0; i < meetingDialogue.dialogueFrames.Length; i++)
-                        {
-                            MonkeyMeetingDialogue.DialogueFrame character = meetingDialogue.dialogueFrames[i];
-                            Emotion startingEmotion = GetSelectedEmotion(character);
-                            if (startingEmotion != null)
-                            {
-                                Debug.Log(i);
-                                Debug.Log(character.speakingCharacter.name);
-                                Image image = transform.parent.Find(character.speakingCharacter.name).GetComponent<Image>();
-                                image.enabled = false;
-
-                                image.sprite = startingEmotion.characterSprite;
-                            }
-                        }
-
+                        GoToNextDialogueFrame();
                         return;
                     }
                     else
@@ -98,7 +70,35 @@ public class MonkeyMeeting : MonoBehaviour
                 dialogueText.text = currentLineText;
                 typingSound.Stop();
                 monkeySoundSource.Stop();
-                isTextAppearing = false;
+                isTextCurrentlyAnimating = false;
+            }
+        }
+    }
+
+    void PlayNextLine()
+    {
+        currentCharacterLineIndex++;
+        StopAllCoroutines();
+        StartCoroutine(AnimateText(currentDialogueLines[currentCharacterLineIndex]));
+    }
+
+    void GoToNextDialogueFrame()
+    {
+        background.SetActive(false);
+        gameObject.SetActive(false);
+
+        for (int i = 0; i < meetingDialogue.dialogueFrames.Length; i++)
+        {
+            MonkeyMeetingDialogue.DialogueFrame character = meetingDialogue.dialogueFrames[i];
+            Emotion startingEmotion = GetSelectedEmotion(character);
+            if (startingEmotion != null)
+            {
+                Debug.Log(i);
+                Debug.Log(character.speakingCharacter.name);
+                Image image = transform.parent.Find(character.speakingCharacter.name).GetComponent<Image>();
+                image.enabled = false;
+
+                image.sprite = startingEmotion.characterSprite;
             }
         }
     }
@@ -168,7 +168,7 @@ public class MonkeyMeeting : MonoBehaviour
     private IEnumerator AnimateText(string line)
     {
         currentLineText = "";
-        isTextAppearing = true;
+        isTextCurrentlyAnimating = true;
 
         yield return new WaitForEndOfFrame();
 
@@ -193,16 +193,8 @@ public class MonkeyMeeting : MonoBehaviour
 
         typingSound.Stop();
         monkeySoundSource.Stop();
-        isTextAppearing = false;
+        isTextCurrentlyAnimating = false;
 
-        if (currentCharacterLineIndex < currentDialogueLines.Length - 1)
-        {
-            isCurrentCharacterSpeaking = true;
-        }
-        else
-        {
-            isCurrentCharacterSpeaking = false;
-        }
     }
 
     private void PlayRandomMonkeySound(Emotion emotion)
