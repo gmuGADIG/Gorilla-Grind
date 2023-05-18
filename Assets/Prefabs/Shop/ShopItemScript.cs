@@ -47,10 +47,17 @@ public class ShopItemScript : MonoBehaviour
     }
 
     public void purchase() {
-        if (!(Inventory.hasItem(itemName))) {
-            Inventory.addItem(itemName);
-            setButtonToPurchased();
+        if (Inventory.hasItem(itemName)) {
+            //Item is already purchased, don't purchase again
+            return;
         }
+        if (Inventory.getBananasInInventory() < price) {
+            //User does not have enough bananas to purchase this item
+            return;
+        }
+        Inventory.RemoveBananas(price);
+        Inventory.addItem(itemName);
+        setButtonToPurchased();
     }
 
     private void setButtonToPurchased() {
