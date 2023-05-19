@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class MonkeyMeeting : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class MonkeyMeeting : MonoBehaviour
     public Image headshotImage;
     public Image nameImage;
     public MonkeyMeetingDialogue meetingDialogue;
-    public int currentDialogueIndex = 0;
+    public int currentDialogueFrameIndex = 0;
     public float textSpeed = 0.1f;
     public AudioSource typingSound;
     public AudioSource monkeySoundSource;
@@ -30,7 +31,7 @@ public class MonkeyMeeting : MonoBehaviour
         background.SetActive(true); // Activate the background object
         dialogueText.text = "";
         currentCharacterLineIndex = 0;
-        currentDialogueIndex = 0;
+        currentDialogueFrameIndex = 0;
         LoadDialogueLines();
         Debug.Log("Current character after loading dialogue lines: " + currentCharacter.speakingCharacter.name); // Add this line
         StartCoroutine(AnimateText(currentDialogueLines[currentCharacterLineIndex]));
@@ -49,9 +50,9 @@ public class MonkeyMeeting : MonoBehaviour
                 }
                 else
                 {
-                    currentDialogueIndex++;
+                    currentDialogueFrameIndex++;
 
-                    if (currentDialogueIndex >= meetingDialogue.dialogueFrames.Length)
+                    if (currentDialogueFrameIndex >= meetingDialogue.dialogueFrames.Length)
                     {
                         GoToNextDialogueFrame();
                         return;
@@ -117,7 +118,7 @@ public class MonkeyMeeting : MonoBehaviour
 
     void LoadDialogueLines()
     {
-        currentCharacter = meetingDialogue.dialogueFrames[currentDialogueIndex];
+        currentCharacter = meetingDialogue.dialogueFrames[currentDialogueFrameIndex];
         currentDialogueLines = currentCharacter.dialogueLines;
         currentCharacterLineIndex = 0;
         if (currentCharacter.isMission == true)

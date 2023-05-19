@@ -6,8 +6,4 @@ using UnityEngine;
 public class MonkeyMeetingCharacters : ScriptableObject
 {
     public List<CharacterData> characters;
-
-    public void Start()
-    {
-    }
 }
