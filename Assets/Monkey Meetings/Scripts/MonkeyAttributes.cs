@@ -32,14 +32,14 @@ public class Emotion
 }
 
 [System.Serializable]
-public class Character
+public class CharacterData
 {
     public string name;
     public Sprite NamePlate;
     public List<Emotion> emotions;
 }
 
-[System.Serializable]
-public class CharacterData : Character
-{
-}
+//[System.Serializable]
+//public class CharacterData : Character
+//{
+//}

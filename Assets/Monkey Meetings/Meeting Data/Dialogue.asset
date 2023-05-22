@@ -15,9 +15,21 @@ MonoBehaviour:
   characterDatabase: {fileID: 11400000, guid: 5ff5001a917067e499d10df040f92b30, type: 2}
   dialogueFrames:
   - speakingCharacter:
-      name: 
-      NamePlate: {fileID: 0}
-      emotions: []
+      name: Gavin
+      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
+      emotions:
+      - name: Gavin_Angry
+        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
+        emotionSound: []
+      - name: Gavin_Begrudging
+        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
+        emotionSound: []
+      - name: Gavin_Default
+        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+        emotionSound: []
+      - name: Gavin_HoldingBoard
+        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
+        emotionSound: []
     emotion:
       name: 
       sprite: {fileID: 0}
@@ -30,7 +42,7 @@ MonoBehaviour:
     isNarrator: 0
   - speakingCharacter:
       name: Munchies
-      NamePlate: {fileID: 0}
+      NamePlate: {fileID: 21300000, guid: 39802ddae9a276549a2675279b27ff4d, type: 3}
       emotions:
       - name: Munchies_Annoyed
         sprite: {fileID: 21300000, guid: e2ee648c734f4974aafc1044fcad1b5a, type: 3}
@@ -69,7 +81,7 @@ MonoBehaviour:
     isNarrator: 0
   - speakingCharacter:
       name: Gavin
-      NamePlate: {fileID: 0}
+      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
       emotions:
       - name: Gavin_Angry
         sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}

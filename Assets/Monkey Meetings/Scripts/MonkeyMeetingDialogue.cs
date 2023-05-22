@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor;
 using System;
 
 [CreateAssetMenu(menuName = "Monkey Meetings/Dialogue")]
@@ -41,5 +42,10 @@ public class MonkeyMeetingDialogue : ScriptableObject
         public string[] dialogueLines;
         public bool isMission;
         public bool isNarrator; // Add this line
+    }
+
+    private void OnValidate()
+    {
+        EditorUtility.SetDirty(this);
     }
 }

@@ -168,6 +168,7 @@ public class MonkeyMeeting : MonoBehaviour
             Emotion emotion = GetSelectedEmotion(dialogueFrame);
             if (emotion != null)
             {
+                print(meetingDialogue.dialogueFrames[currentDialogueFrameIndex].speakingCharacter.NamePlate);
                 if (dialogueFrame.speakingCharacter.NamePlate != null)
                 {
                     nameImage.sprite = dialogueFrame.speakingCharacter.NamePlate;
@@ -180,6 +181,11 @@ public class MonkeyMeeting : MonoBehaviour
                 }
             }
         }
+    }
+
+    void SetNamePlate()
+    {
+
     }
 
     private IEnumerator AnimateText(string line)
