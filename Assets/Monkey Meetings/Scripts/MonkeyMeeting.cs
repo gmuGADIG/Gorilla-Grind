@@ -6,34 +6,39 @@ using TMPro;
 
 public class MonkeyMeeting : MonoBehaviour
 {
-    public Text dialogueText;
-    public Image headshotImage;
+    public TMP_Text dialogueText;
     public Image nameImage;
-    public MonkeyMeetingDialogue meetingDialogue;
-    public int currentDialogueFrameIndex = 0;
+    public Transform charactersParentObject;
+    [SerializeField] MonkeyMeetingDialogue meetingDialogue;
     public float textSpeed = 0.1f;
-    public AudioSource typingSound;
-    public AudioSource monkeySoundSource;
+    //public AudioSource typingSound;
+    //public AudioSource monkeySoundSource;
     public int soundCharChange = 4;
+    //public GameObject background;
 
-    private MonkeyMeetingDialogue.DialogueFrame currentCharacter;
+    private MonkeyMeetingDialogue.DialogueFrame dialogueFrame;
     private string[] currentDialogueLines;
+    private int currentDialogueFrameIndex = 0;
     private int currentCharacterLineIndex;
     private string currentLineText;
     private bool isTextCurrentlyAnimating = false;
-    public GameObject background;
     private bool dialogueStarted = false;
+
+    private void Start()
+    {
+        StartDialogue();
+    }
 
 
     public void StartDialogue()
     {
         gameObject.SetActive(true);
-        background.SetActive(true); // Activate the background object
+        //background.SetActive(true); // Activate the background object
         dialogueText.text = "";
         currentCharacterLineIndex = 0;
         currentDialogueFrameIndex = 0;
         LoadDialogueLines();
-        Debug.Log("Current character after loading dialogue lines: " + currentCharacter.speakingCharacter.name); // Add this line
+        Debug.Log("Current character after loading dialogue lines: " + dialogueFrame.speakingCharacter.name); // Add this line
         StartCoroutine(AnimateText(currentDialogueLines[currentCharacterLineIndex]));
         dialogueStarted = true;
     }
@@ -69,8 +74,8 @@ public class MonkeyMeeting : MonoBehaviour
                 StopAllCoroutines();
                 currentLineText = currentDialogueLines[currentCharacterLineIndex];
                 dialogueText.text = currentLineText;
-                typingSound.Stop();
-                monkeySoundSource.Stop();
+                //typingSound.Stop();
+                //monkeySoundSource.Stop();
                 isTextCurrentlyAnimating = false;
             }
         }
@@ -85,7 +90,7 @@ public class MonkeyMeeting : MonoBehaviour
 
     void GoToNextDialogueFrame()
     {
-        background.SetActive(false);
+        // background.SetActive(false);
         gameObject.SetActive(false);
 
         for (int i = 0; i < meetingDialogue.dialogueFrames.Length; i++)
@@ -96,19 +101,19 @@ public class MonkeyMeeting : MonoBehaviour
             {
                 Debug.Log(i);
                 Debug.Log(character.speakingCharacter.name);
-                Image image = transform.parent.Find(character.speakingCharacter.name).GetComponent<Image>();
-                image.enabled = false;
+                Image characterSprite = GetSceneCharactersSprite(character.speakingCharacter.name);
+                characterSprite.enabled = false;
 
-                image.sprite = startingEmotion.characterSprite;
+                characterSprite.sprite = startingEmotion.sprite;
             }
         }
     }
 
-    private Emotion GetSelectedEmotion(MonkeyMeetingDialogue.DialogueFrame character)
+    private Emotion GetSelectedEmotion(MonkeyMeetingDialogue.DialogueFrame frame)
     {
-        if (character != null && character.speakingCharacter != null && character.myIndex >= 0 && character.myIndex < character.speakingCharacter.emotions.Count)
+        if (frame != null && frame.speakingCharacter != null && frame.myIndex >= 0 && frame.myIndex < frame.speakingCharacter.emotions.Count)
         {
-            return character.speakingCharacter.emotions[character.myIndex];
+            return frame.speakingCharacter.emotions[frame.myIndex];
         }
         else
         {
@@ -118,10 +123,10 @@ public class MonkeyMeeting : MonoBehaviour
 
     void LoadDialogueLines()
     {
-        currentCharacter = meetingDialogue.dialogueFrames[currentDialogueFrameIndex];
-        currentDialogueLines = currentCharacter.dialogueLines;
+        dialogueFrame = meetingDialogue.dialogueFrames[currentDialogueFrameIndex];
+        currentDialogueLines = dialogueFrame.dialogueLines;
         currentCharacterLineIndex = 0;
-        if (currentCharacter.isMission == true)
+        if (dialogueFrame.isMission == true)
         {
             Debug.Log(currentDialogueLines[currentDialogueLines.Length - 1]);
             //AddMissionToListFromDescription(currentDialogueLines[currentDialogueLines.Length-1]);
@@ -136,31 +141,31 @@ public class MonkeyMeeting : MonoBehaviour
             {
                 Debug.Log(i);
                 Debug.Log(dialogueFrame.speakingCharacter.name);
-                Image image = transform.parent.Find(dialogueFrame.speakingCharacter.name).GetComponent<Image>();
-                image.enabled = true;
+                Image characterSprite = GetSceneCharactersSprite(dialogueFrame.speakingCharacter.name);
+                characterSprite.enabled = true;
 
-                image.sprite = startingEmotion.characterSprite;
+                characterSprite.sprite = startingEmotion.sprite;
             }
         }
 
-        if (currentCharacter.isNarrator)
+        if (dialogueFrame.isNarrator)
         {
             nameImage.sprite = null;
         }
         else
         {
-            Emotion emotion = GetSelectedEmotion(currentCharacter);
+            Emotion emotion = GetSelectedEmotion(dialogueFrame);
             if (emotion != null)
             {
-                if (currentCharacter.speakingCharacter.NamePlate != null)
+                if (dialogueFrame.speakingCharacter.NamePlate != null)
                 {
-                    nameImage.sprite = currentCharacter.speakingCharacter.NamePlate;
-                    Debug.Log("Loading nameplate for: " + currentCharacter.speakingCharacter.name);
+                    nameImage.sprite = dialogueFrame.speakingCharacter.NamePlate;
+                    Debug.Log("Loading nameplate for: " + dialogueFrame.speakingCharacter.name);
                     Debug.Log("Nameplate sprite: " + nameImage.sprite);
                 }
                 else
                 {
-                    Debug.LogError("Nameplate sprite is not assigned for monkey: " + currentCharacter.speakingCharacter.name);
+                    Debug.LogError("Nameplate sprite is not assigned for monkey: " + dialogueFrame.speakingCharacter.name);
                 }
             }
         }
@@ -173,9 +178,9 @@ public class MonkeyMeeting : MonoBehaviour
 
         yield return new WaitForEndOfFrame();
 
-        typingSound.Play();
+        //typingSound.Play();
         int characterCount = 0;
-        Emotion emotion = GetSelectedEmotion(currentCharacter);
+        Emotion emotion = GetSelectedEmotion(dialogueFrame);
 
         for (int i = 0; i < line.Length; i++)
         {
@@ -185,15 +190,15 @@ public class MonkeyMeeting : MonoBehaviour
 
             if (characterCount % soundCharChange == 0 && emotion != null)
             {
-                monkeySoundSource.Stop(); // Stop any previous monkey sound
+                //monkeySoundSource.Stop(); // Stop any previous monkey sound
                 PlayRandomMonkeySound(emotion); // Play a new random monkey sound
             }
 
             yield return new WaitForSeconds(textSpeed);
         }
 
-        typingSound.Stop();
-        monkeySoundSource.Stop();
+        //typingSound.Stop();
+        //monkeySoundSource.Stop();
         isTextCurrentlyAnimating = false;
 
     }
@@ -204,10 +209,16 @@ public class MonkeyMeeting : MonoBehaviour
         {
             int randomIndex = UnityEngine.Random.Range(0, emotion.emotionSound.Count);
             AudioClip randomSound = emotion.emotionSound[randomIndex].monkeyScream;
-            monkeySoundSource.clip = randomSound;
-            monkeySoundSource.Play();
+            //monkeySoundSource.clip = randomSound;
+            //monkeySoundSource.Play();
 
             Debug.Log("Playing sound at index: " + randomIndex); // Add this line
         }
+    }
+
+    Image GetSceneCharactersSprite(string name)
+    {
+        print(charactersParentObject.Find(name));
+        return charactersParentObject.Find(name).GetChild(0).GetComponent<Image>();
     }
 }

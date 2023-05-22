@@ -16,7 +16,7 @@ public class MonkeySounds
 public class Emotion
 {
     public string name;
-    public Sprite characterSprite;
+    public Sprite sprite;
     public List<MonkeySounds> emotionSound;
     public string GetFirstSoundName()
     {
@@ -36,7 +36,6 @@ public class Character
 {
     public string name;
     public Sprite NamePlate;
-    public GameObject characterPrefab;
     public List<Emotion> emotions;
 }
 

@@ -10,7 +10,7 @@ public class MonkeyMeetingDialogue : ScriptableObject
 
     public MonkeyMeetingCharacters characterDatabase;
 
-    public DialogueFrame[] dialogueFrames = new DialogueFrame[0];
+    public DialogueFrame[] dialogueFrames;
 
     /* These are only here for the Dropdown menu attributes in DialogueFrame.
      * The [Dropdown] attribute only accepts the fully qualified name of a variable in string form.
