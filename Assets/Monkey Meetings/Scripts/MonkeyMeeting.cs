@@ -37,10 +37,36 @@ public class MonkeyMeeting : MonoBehaviour
         dialogueText.text = "";
         currentCharacterLineIndex = 0;
         currentDialogueFrameIndex = 0;
-        LoadDialogueLines();
+        SetupCharacters();
+        LoadNextDialogueFrame();
         Debug.Log("Current character after loading dialogue lines: " + dialogueFrame.speakingCharacter.name); // Add this line
         StartCoroutine(AnimateText(currentDialogueLines[currentCharacterLineIndex]));
         dialogueStarted = true;
+    }
+
+    /// <summary>
+    /// Activates the sprite gameobjects for all characters who are in this monkey meeting
+    /// </summary>
+    void SetupCharacters()
+    {
+        // get list of all characters in meeting
+        List<string> characterNames = new List<string>();
+        for (int i = 0; i < meetingDialogue.dialogueFrames.Length; i++)
+        {
+            if (!characterNames.Contains(meetingDialogue.dialogueFrames[i].speakingCharacter.name))
+            {
+                characterNames.Add(meetingDialogue.dialogueFrames[i].speakingCharacter.name);
+            }
+        }
+        // set those characters' sprites active
+        for (int i = 0; i < characterNames.Count; i++)
+        {
+            Transform character = charactersParentObject.Find(characterNames[i]).GetChild(0);
+            if (character != null)
+            {
+                character.gameObject.SetActive(true);
+            }
+        }
     }
 
     void Update()
@@ -59,12 +85,12 @@ public class MonkeyMeeting : MonoBehaviour
 
                     if (currentDialogueFrameIndex >= meetingDialogue.dialogueFrames.Length)
                     {
-                        GoToNextDialogueFrame();
+                        EndDialogue();
                         return;
                     }
                     else
                     {
-                        LoadDialogueLines();
+                        LoadNextDialogueFrame();
                         StartCoroutine(AnimateText(currentDialogueLines[currentCharacterLineIndex]));
                     }
                 }
@@ -88,25 +114,10 @@ public class MonkeyMeeting : MonoBehaviour
         StartCoroutine(AnimateText(currentDialogueLines[currentCharacterLineIndex]));
     }
 
-    void GoToNextDialogueFrame()
+    void EndDialogue()
     {
         // background.SetActive(false);
         gameObject.SetActive(false);
-
-        for (int i = 0; i < meetingDialogue.dialogueFrames.Length; i++)
-        {
-            MonkeyMeetingDialogue.DialogueFrame character = meetingDialogue.dialogueFrames[i];
-            Emotion startingEmotion = GetSelectedEmotion(character);
-            if (startingEmotion != null)
-            {
-                Debug.Log(i);
-                Debug.Log(character.speakingCharacter.name);
-                Image characterSprite = GetSceneCharactersSprite(character.speakingCharacter.name);
-                characterSprite.enabled = false;
-
-                characterSprite.sprite = startingEmotion.sprite;
-            }
-        }
     }
 
     private Emotion GetSelectedEmotion(MonkeyMeetingDialogue.DialogueFrame frame)
@@ -121,7 +132,7 @@ public class MonkeyMeeting : MonoBehaviour
         }
     }
 
-    void LoadDialogueLines()
+    void LoadNextDialogueFrame()
     {
         dialogueFrame = meetingDialogue.dialogueFrames[currentDialogueFrameIndex];
         currentDialogueLines = dialogueFrame.dialogueLines;
