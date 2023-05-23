@@ -9,6 +9,7 @@ public class MonkeyMeeting : MonoBehaviour
     public TMP_Text dialogueText;
     public Image nameImage;
     public Transform charactersParentObject;
+    public Transform highlightImage;
     [SerializeField] MonkeyMeetingDialogue meetingDialogue;
     public float textSpeed = 0.1f;
     //public AudioSource typingSound;
@@ -28,7 +29,6 @@ public class MonkeyMeeting : MonoBehaviour
     {
         StartDialogue();
     }
-
 
     public void StartDialogue()
     {
@@ -61,7 +61,7 @@ public class MonkeyMeeting : MonoBehaviour
         // set those characters' sprites active
         for (int i = 0; i < characterNames.Count; i++)
         {
-            Transform character = GetSceneCharactersSprite(characterNames[i]).transform;
+            Transform character = GetSceneCharacter(characterNames[i]).GetChild(0);
             if (character != null)
             {
                 character.gameObject.SetActive(true);
@@ -144,12 +144,12 @@ public class MonkeyMeeting : MonoBehaviour
         }
 
         // set speaking character's emotion
-        Image characterSprite = GetSceneCharactersSprite(dialogueFrame.speakingCharacter.name);
+        Image characterSprite = GetSceneCharacter(dialogueFrame.speakingCharacter.name).GetChild(0).GetComponent<Image>();
         if (characterSprite != null)
         {
             characterSprite.sprite = dialogueFrame.emotion.sprite;
         }
-        
+        SetCharacterHighlight(dialogueFrame);
 
         if (dialogueFrame.isNarrator)
         {
@@ -220,8 +220,16 @@ public class MonkeyMeeting : MonoBehaviour
         }
     }
 
-    Image GetSceneCharactersSprite(string name)
+    Transform GetSceneCharacter(string name)
     {
-        return charactersParentObject.Find(name).GetChild(0).GetComponent<Image>();
+        return charactersParentObject.Find(name);
+    }
+
+    void SetCharacterHighlight(MonkeyMeetingDialogue.DialogueFrame dialogueFrame)
+    {
+        highlightImage.gameObject.SetActive(true);
+        highlightImage.SetSiblingIndex(charactersParentObject.childCount - 1);
+        Transform highlightedCharacter = GetSceneCharacter(dialogueFrame.speakingCharacter.name);
+        highlightedCharacter.SetSiblingIndex(charactersParentObject.childCount - 1);
     }
 }

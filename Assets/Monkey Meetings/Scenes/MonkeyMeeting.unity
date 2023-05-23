@@ -177,7 +177,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &69069868
 RectTransform:
   m_ObjectHideFlags: 0
@@ -529,7 +529,7 @@ RectTransform:
   m_Children:
   - {fileID: 1828381872}
   m_Father: {fileID: 1536146676}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1106,8 +1106,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 402565279}
-  - {fileID: 2009451307}
   - {fileID: 481050520}
+  - {fileID: 2009451307}
   - {fileID: 1643666919}
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -1132,6 +1132,7 @@ MonoBehaviour:
   dialogueText: {fileID: 1084209754}
   nameImage: {fileID: 1959379412}
   charactersParentObject: {fileID: 2009451307}
+  highlightImage: {fileID: 69069868}
   meetingDialogue: {fileID: 11400000, guid: f682719a4ee3d8e4ca8b58a483f4d22c, type: 2}
   textSpeed: 0.1
   soundCharChange: 4
@@ -1663,7 +1664,7 @@ RectTransform:
   - {fileID: 787831915}
   - {fileID: 69069868}
   m_Father: {fileID: 1536146676}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
