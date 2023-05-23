@@ -61,7 +61,7 @@ public class MonkeyMeeting : MonoBehaviour
         // set those characters' sprites active
         for (int i = 0; i < characterNames.Count; i++)
         {
-            Transform character = charactersParentObject.Find(characterNames[i]).GetChild(0);
+            Transform character = GetSceneCharactersSprite(characterNames[i]).transform;
             if (character != null)
             {
                 character.gameObject.SetActive(true);
@@ -143,21 +143,13 @@ public class MonkeyMeeting : MonoBehaviour
             //AddMissionToListFromDescription(currentDialogueLines[currentDialogueLines.Length-1]);
         }
 
-        // Set each monkey's GameObject to active and update their starting sprite
-        for (int i = 0; i < meetingDialogue.dialogueFrames.Length; i++)
+        // set speaking character's emotion
+        Image characterSprite = GetSceneCharactersSprite(dialogueFrame.speakingCharacter.name);
+        if (characterSprite != null)
         {
-            MonkeyMeetingDialogue.DialogueFrame dialogueFrame = meetingDialogue.dialogueFrames[i];
-            Emotion startingEmotion = GetSelectedEmotion(dialogueFrame);
-            if (startingEmotion != null)
-            {
-                Debug.Log(i);
-                Debug.Log(dialogueFrame.speakingCharacter.name);
-                Image characterSprite = GetSceneCharactersSprite(dialogueFrame.speakingCharacter.name);
-                characterSprite.enabled = true;
-
-                characterSprite.sprite = startingEmotion.sprite;
-            }
+            characterSprite.sprite = dialogueFrame.emotion.sprite;
         }
+        
 
         if (dialogueFrame.isNarrator)
         {
@@ -181,11 +173,6 @@ public class MonkeyMeeting : MonoBehaviour
                 }
             }
         }
-    }
-
-    void SetNamePlate()
-    {
-
     }
 
     private IEnumerator AnimateText(string line)
@@ -235,7 +222,6 @@ public class MonkeyMeeting : MonoBehaviour
 
     Image GetSceneCharactersSprite(string name)
     {
-        print(charactersParentObject.Find(name));
         return charactersParentObject.Find(name).GetChild(0).GetComponent<Image>();
     }
 }
