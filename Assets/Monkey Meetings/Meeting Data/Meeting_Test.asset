@@ -12,5 +12,83 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c560f868b549d48acca607a9787604, type: 3}
   m_Name: Meeting_Test
   m_EditorClassIdentifier: 
-  characterDatabase: {fileID: 0}
-  dialogueFrames: []
+  characterDatabase: {fileID: 11400000, guid: 5ff5001a917067e499d10df040f92b30, type: 2}
+  dialogueFrames:
+  - speakingCharacter:
+      name: 
+      NamePlate: {fileID: 0}
+      emotions: []
+    emotion:
+      name: Gavin_Begrudging
+      sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Man, it's so sad that Tony Hawk died of ligma.
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Munchies
+      NamePlate: {fileID: 21300000, guid: 39802ddae9a276549a2675279b27ff4d, type: 3}
+      emotions:
+      - name: Munchies_Annoyed
+        sprite: {fileID: 21300000, guid: e2ee648c734f4974aafc1044fcad1b5a, type: 3}
+        emotionSound: []
+      - name: Munchies_Happy01
+        sprite: {fileID: 21300000, guid: 3c63cac6e6ec3eb4cb44f7842ae56ff7, type: 3}
+        emotionSound: []
+      - name: Munchies_Happy02
+        sprite: {fileID: 21300000, guid: f2fa65aa47c975940aa5aecd27319dc5, type: 3}
+        emotionSound: []
+      - name: Munchies_Default
+        sprite: {fileID: 21300000, guid: a8fd174d2f5dd1b47848d3428eddafac, type: 3}
+        emotionSound: []
+      - name: Munchies_DefaultSmile
+        sprite: {fileID: 21300000, guid: 2156e947ecbb8154da87aeadafa79d2a, type: 3}
+        emotionSound: []
+      - name: Munchies_Sad01
+        sprite: {fileID: 21300000, guid: e0fdc5423bf649d41b20b08ae858b1fc, type: 3}
+        emotionSound: []
+      - name: Munchies_Sad02
+        sprite: {fileID: 21300000, guid: 820cb6ae034578d41bf191e6edc87b39, type: 3}
+        emotionSound: []
+      - name: Munchies_Sleep
+        sprite: {fileID: 21300000, guid: 42e3784fead6dd64aaa55f6461be690c, type: 3}
+        emotionSound: []
+    emotion:
+      name: Munchies_Sad01
+      sprite: {fileID: 21300000, guid: e0fdc5423bf649d41b20b08ae858b1fc, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Who's Tony Hawk?
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Gavin
+      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
+      emotions:
+      - name: Gavin_Angry
+        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
+        emotionSound: []
+      - name: Gavin_Begrudging
+        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
+        emotionSound: []
+      - name: Gavin_Default
+        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+        emotionSound: []
+      - name: Gavin_HoldingBoard
+        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
+        emotionSound: []
+    emotion:
+      name: Gavin_Default
+      sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Sugma Balls.
+    isMission: 0
+    isNarrator: 0
