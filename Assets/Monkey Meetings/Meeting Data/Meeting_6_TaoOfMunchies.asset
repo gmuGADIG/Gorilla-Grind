@@ -1,0 +1,1140 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c560f868b549d48acca607a9787604, type: 3}
+  m_Name: Meeting_6_TaoOfMunchies
+  m_EditorClassIdentifier: 
+  characterDatabase: {fileID: 11400000, guid: 5ff5001a917067e499d10df040f92b30, type: 2}
+  dialogueFrames:
+  - speakingCharacter:
+      name: Ollie
+      NamePlate: {fileID: 21300000, guid: 1abb4b9420f9db44da67d9bf81653bef, type: 3}
+      emotions:
+      - name: Ollie_Cute
+        sprite: {fileID: 21300000, guid: a9a73adfeb978e847a51dd3e3818827a, type: 3}
+        emotionSound: []
+      - name: Ollie_Idle02
+        sprite: {fileID: 21300000, guid: 1a569aa015f059a43bbf55f893286a63, type: 3}
+        emotionSound: []
+      - name: Ollie_Sad
+        sprite: {fileID: 21300000, guid: 42f46c9a6becef742b4d6057f80ee3b3, type: 3}
+        emotionSound: []
+      - name: Ollie_Shock
+        sprite: {fileID: 21300000, guid: b9cb69a985c270b40822c49cd8d77930, type: 3}
+        emotionSound: []
+      - name: Ollie_Idle
+        sprite: {fileID: 21300000, guid: ecb414f6412c7d045bedc6c9f77800be, type: 3}
+        emotionSound: []
+    emotion:
+      name: Ollie_Sad
+      sprite: {fileID: 21300000, guid: 42f46c9a6becef742b4d6057f80ee3b3, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Dude, glad you're here! Those two have been at it and it make my brain hurty...
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Kevin
+      NamePlate: {fileID: 21300000, guid: 9fb302f050000f84c88960293e94e145, type: 3}
+      emotions:
+      - name: Kevin_Annoyed
+        sprite: {fileID: 21300000, guid: ea882bf250f7c6b4dbfa133d8e45a369, type: 3}
+        emotionSound: []
+      - name: Kevin_Default
+        sprite: {fileID: 21300000, guid: 10a66e3d206e8fd4e979583fef16dc82, type: 3}
+        emotionSound: []
+      - name: Kevin_Excited
+        sprite: {fileID: 21300000, guid: 16a3c522f645dd64285a64480f03b842, type: 3}
+        emotionSound: []
+      - name: Kevin_Pog
+        sprite: {fileID: 21300000, guid: c8a5b77c617b83843a2b60e78c91f118, type: 3}
+        emotionSound: []
+      - name: Kevin_ReallyMad
+        sprite: {fileID: 21300000, guid: d5d1c880fbd3646409565f44210115cf, type: 3}
+        emotionSound: []
+      - name: Kevin_Uwu
+        sprite: {fileID: 21300000, guid: 41cefbf5e50af0c41a01832052ba1428, type: 3}
+        emotionSound: []
+    emotion:
+      name: Kevin_Annoyed
+      sprite: {fileID: 21300000, guid: ea882bf250f7c6b4dbfa133d8e45a369, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - All I'm sayin' is, your values are all wack, Gavin.
+    - There's more to life than being the best.
+    - Munchies, you gotta agree with me here. I've clearly got more wisdom than him.
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Gavin
+      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
+      emotions:
+      - name: Gavin_Angry
+        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
+        emotionSound: []
+      - name: Gavin_Begrudging
+        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
+        emotionSound: []
+      - name: Gavin_Default
+        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+        emotionSound: []
+      - name: Gavin_HoldingBoard
+        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
+        emotionSound: []
+    emotion:
+      name: Gavin_Default
+      sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - No shot, lil bro. All that matters is being number one and stacking those peels.
+    - Real world stuff.
+    - If it ain't the best of times, it's the blurst of times.
+    - Munchies, you feel me? I'm totally the enlightened one, amirite?
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Munchies
+      NamePlate: {fileID: 21300000, guid: 39802ddae9a276549a2675279b27ff4d, type: 3}
+      emotions:
+      - name: Munchies_Annoyed
+        sprite: {fileID: 21300000, guid: e2ee648c734f4974aafc1044fcad1b5a, type: 3}
+        emotionSound: []
+      - name: Munchies_Happy01
+        sprite: {fileID: 21300000, guid: 3c63cac6e6ec3eb4cb44f7842ae56ff7, type: 3}
+        emotionSound: []
+      - name: Munchies_Happy02
+        sprite: {fileID: 21300000, guid: f2fa65aa47c975940aa5aecd27319dc5, type: 3}
+        emotionSound: []
+      - name: Munchies_Default
+        sprite: {fileID: 21300000, guid: a8fd174d2f5dd1b47848d3428eddafac, type: 3}
+        emotionSound: []
+      - name: Munchies_DefaultSmile
+        sprite: {fileID: 21300000, guid: 2156e947ecbb8154da87aeadafa79d2a, type: 3}
+        emotionSound: []
+      - name: Munchies_Sad01
+        sprite: {fileID: 21300000, guid: e0fdc5423bf649d41b20b08ae858b1fc, type: 3}
+        emotionSound: []
+      - name: Munchies_Sad02
+        sprite: {fileID: 21300000, guid: 820cb6ae034578d41bf191e6edc87b39, type: 3}
+        emotionSound: []
+      - name: Munchies_Sleep
+        sprite: {fileID: 21300000, guid: 42e3784fead6dd64aaa55f6461be690c, type: 3}
+        emotionSound: []
+    emotion:
+      name: Munchies_DefaultSmile
+      sprite: {fileID: 21300000, guid: 2156e947ecbb8154da87aeadafa79d2a, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - 'Hmm... Well you know what they say:'
+    - Acting before thinking is like eating a banana before peeling it.
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Gavin
+      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
+      emotions:
+      - name: Gavin_Angry
+        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
+        emotionSound: []
+      - name: Gavin_Begrudging
+        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
+        emotionSound: []
+      - name: Gavin_Default
+        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+        emotionSound: []
+      - name: Gavin_HoldingBoard
+        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
+        emotionSound: []
+    emotion:
+      name: Gavin_Begrudging
+      sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Huh?
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Ollie
+      NamePlate: {fileID: 21300000, guid: 1abb4b9420f9db44da67d9bf81653bef, type: 3}
+      emotions:
+      - name: Ollie_Cute
+        sprite: {fileID: 21300000, guid: a9a73adfeb978e847a51dd3e3818827a, type: 3}
+        emotionSound: []
+      - name: Ollie_Idle02
+        sprite: {fileID: 21300000, guid: 1a569aa015f059a43bbf55f893286a63, type: 3}
+        emotionSound: []
+      - name: Ollie_Sad
+        sprite: {fileID: 21300000, guid: 42f46c9a6becef742b4d6057f80ee3b3, type: 3}
+        emotionSound: []
+      - name: Ollie_Shock
+        sprite: {fileID: 21300000, guid: b9cb69a985c270b40822c49cd8d77930, type: 3}
+        emotionSound: []
+      - name: Ollie_Idle
+        sprite: {fileID: 21300000, guid: ecb414f6412c7d045bedc6c9f77800be, type: 3}
+        emotionSound: []
+    emotion:
+      name: Ollie_Cute
+      sprite: {fileID: 21300000, guid: a9a73adfeb978e847a51dd3e3818827a, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - What's wrong with that? I always eat my banans with the shell. Makes it crunchier!
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Ollie
+      NamePlate: {fileID: 21300000, guid: 1abb4b9420f9db44da67d9bf81653bef, type: 3}
+      emotions:
+      - name: Ollie_Cute
+        sprite: {fileID: 21300000, guid: a9a73adfeb978e847a51dd3e3818827a, type: 3}
+        emotionSound: []
+      - name: Ollie_Idle02
+        sprite: {fileID: 21300000, guid: 1a569aa015f059a43bbf55f893286a63, type: 3}
+        emotionSound: []
+      - name: Ollie_Sad
+        sprite: {fileID: 21300000, guid: 42f46c9a6becef742b4d6057f80ee3b3, type: 3}
+        emotionSound: []
+      - name: Ollie_Shock
+        sprite: {fileID: 21300000, guid: b9cb69a985c270b40822c49cd8d77930, type: 3}
+        emotionSound: []
+      - name: Ollie_Idle
+        sprite: {fileID: 21300000, guid: ecb414f6412c7d045bedc6c9f77800be, type: 3}
+        emotionSound: []
+    emotion:
+      name: Ollie_Cute
+      sprite: {fileID: 21300000, guid: a9a73adfeb978e847a51dd3e3818827a, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - There's a moment of silence as all eyes turn towards Ollie.
+    isMission: 0
+    isNarrator: 1
+  - speakingCharacter:
+      name: Ollie
+      NamePlate: {fileID: 21300000, guid: 1abb4b9420f9db44da67d9bf81653bef, type: 3}
+      emotions:
+      - name: Ollie_Cute
+        sprite: {fileID: 21300000, guid: a9a73adfeb978e847a51dd3e3818827a, type: 3}
+        emotionSound: []
+      - name: Ollie_Idle02
+        sprite: {fileID: 21300000, guid: 1a569aa015f059a43bbf55f893286a63, type: 3}
+        emotionSound: []
+      - name: Ollie_Sad
+        sprite: {fileID: 21300000, guid: 42f46c9a6becef742b4d6057f80ee3b3, type: 3}
+        emotionSound: []
+      - name: Ollie_Shock
+        sprite: {fileID: 21300000, guid: b9cb69a985c270b40822c49cd8d77930, type: 3}
+        emotionSound: []
+      - name: Ollie_Idle
+        sprite: {fileID: 21300000, guid: ecb414f6412c7d045bedc6c9f77800be, type: 3}
+        emotionSound: []
+    emotion:
+      name: Ollie_Idle
+      sprite: {fileID: 21300000, guid: ecb414f6412c7d045bedc6c9f77800be, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Wh-what?
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Kevin
+      NamePlate: {fileID: 21300000, guid: 9fb302f050000f84c88960293e94e145, type: 3}
+      emotions:
+      - name: Kevin_Annoyed
+        sprite: {fileID: 21300000, guid: ea882bf250f7c6b4dbfa133d8e45a369, type: 3}
+        emotionSound: []
+      - name: Kevin_Default
+        sprite: {fileID: 21300000, guid: 10a66e3d206e8fd4e979583fef16dc82, type: 3}
+        emotionSound: []
+      - name: Kevin_Excited
+        sprite: {fileID: 21300000, guid: 16a3c522f645dd64285a64480f03b842, type: 3}
+        emotionSound: []
+      - name: Kevin_Pog
+        sprite: {fileID: 21300000, guid: c8a5b77c617b83843a2b60e78c91f118, type: 3}
+        emotionSound: []
+      - name: Kevin_ReallyMad
+        sprite: {fileID: 21300000, guid: d5d1c880fbd3646409565f44210115cf, type: 3}
+        emotionSound: []
+      - name: Kevin_Uwu
+        sprite: {fileID: 21300000, guid: 41cefbf5e50af0c41a01832052ba1428, type: 3}
+        emotionSound: []
+    emotion:
+      name: Kevin_Default
+      sprite: {fileID: 21300000, guid: 10a66e3d206e8fd4e979583fef16dc82, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - You... you know you're supposed to peel it, right?
+    - That peel ain't supposed to be edible, dawg.
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Ollie
+      NamePlate: {fileID: 21300000, guid: 1abb4b9420f9db44da67d9bf81653bef, type: 3}
+      emotions:
+      - name: Ollie_Cute
+        sprite: {fileID: 21300000, guid: a9a73adfeb978e847a51dd3e3818827a, type: 3}
+        emotionSound: []
+      - name: Ollie_Idle02
+        sprite: {fileID: 21300000, guid: 1a569aa015f059a43bbf55f893286a63, type: 3}
+        emotionSound: []
+      - name: Ollie_Sad
+        sprite: {fileID: 21300000, guid: 42f46c9a6becef742b4d6057f80ee3b3, type: 3}
+        emotionSound: []
+      - name: Ollie_Shock
+        sprite: {fileID: 21300000, guid: b9cb69a985c270b40822c49cd8d77930, type: 3}
+        emotionSound: []
+      - name: Ollie_Idle
+        sprite: {fileID: 21300000, guid: ecb414f6412c7d045bedc6c9f77800be, type: 3}
+        emotionSound: []
+    emotion:
+      name: Ollie_Sad
+      sprite: {fileID: 21300000, guid: 42f46c9a6becef742b4d6057f80ee3b3, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - I... No one ever told me that...
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Munchies
+      NamePlate: {fileID: 21300000, guid: 39802ddae9a276549a2675279b27ff4d, type: 3}
+      emotions:
+      - name: Munchies_Annoyed
+        sprite: {fileID: 21300000, guid: e2ee648c734f4974aafc1044fcad1b5a, type: 3}
+        emotionSound: []
+      - name: Munchies_Happy01
+        sprite: {fileID: 21300000, guid: 3c63cac6e6ec3eb4cb44f7842ae56ff7, type: 3}
+        emotionSound: []
+      - name: Munchies_Happy02
+        sprite: {fileID: 21300000, guid: f2fa65aa47c975940aa5aecd27319dc5, type: 3}
+        emotionSound: []
+      - name: Munchies_Default
+        sprite: {fileID: 21300000, guid: a8fd174d2f5dd1b47848d3428eddafac, type: 3}
+        emotionSound: []
+      - name: Munchies_DefaultSmile
+        sprite: {fileID: 21300000, guid: 2156e947ecbb8154da87aeadafa79d2a, type: 3}
+        emotionSound: []
+      - name: Munchies_Sad01
+        sprite: {fileID: 21300000, guid: e0fdc5423bf649d41b20b08ae858b1fc, type: 3}
+        emotionSound: []
+      - name: Munchies_Sad02
+        sprite: {fileID: 21300000, guid: 820cb6ae034578d41bf191e6edc87b39, type: 3}
+        emotionSound: []
+      - name: Munchies_Sleep
+        sprite: {fileID: 21300000, guid: 42e3784fead6dd64aaa55f6461be690c, type: 3}
+        emotionSound: []
+    emotion:
+      name: Munchies_DefaultSmile
+      sprite: {fileID: 21300000, guid: 2156e947ecbb8154da87aeadafa79d2a, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Don't worry, man. As the old saying goes, "See no evil. Eat no Evil. Peel no
+      evil."
+    - Everyone likes their banans a little differently.
+    - I, for one, like getting roasted
+    - bananas.
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Munchies
+      NamePlate: {fileID: 21300000, guid: 39802ddae9a276549a2675279b27ff4d, type: 3}
+      emotions:
+      - name: Munchies_Annoyed
+        sprite: {fileID: 21300000, guid: e2ee648c734f4974aafc1044fcad1b5a, type: 3}
+        emotionSound: []
+      - name: Munchies_Happy01
+        sprite: {fileID: 21300000, guid: 3c63cac6e6ec3eb4cb44f7842ae56ff7, type: 3}
+        emotionSound: []
+      - name: Munchies_Happy02
+        sprite: {fileID: 21300000, guid: f2fa65aa47c975940aa5aecd27319dc5, type: 3}
+        emotionSound: []
+      - name: Munchies_Default
+        sprite: {fileID: 21300000, guid: a8fd174d2f5dd1b47848d3428eddafac, type: 3}
+        emotionSound: []
+      - name: Munchies_DefaultSmile
+        sprite: {fileID: 21300000, guid: 2156e947ecbb8154da87aeadafa79d2a, type: 3}
+        emotionSound: []
+      - name: Munchies_Sad01
+        sprite: {fileID: 21300000, guid: e0fdc5423bf649d41b20b08ae858b1fc, type: 3}
+        emotionSound: []
+      - name: Munchies_Sad02
+        sprite: {fileID: 21300000, guid: 820cb6ae034578d41bf191e6edc87b39, type: 3}
+        emotionSound: []
+      - name: Munchies_Sleep
+        sprite: {fileID: 21300000, guid: 42e3784fead6dd64aaa55f6461be690c, type: 3}
+        emotionSound: []
+    emotion:
+      name: Munchies_Happy02
+      sprite: {fileID: 21300000, guid: f2fa65aa47c975940aa5aecd27319dc5, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Roasted bananas.
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Munchies
+      NamePlate: {fileID: 21300000, guid: 39802ddae9a276549a2675279b27ff4d, type: 3}
+      emotions:
+      - name: Munchies_Annoyed
+        sprite: {fileID: 21300000, guid: e2ee648c734f4974aafc1044fcad1b5a, type: 3}
+        emotionSound: []
+      - name: Munchies_Happy01
+        sprite: {fileID: 21300000, guid: 3c63cac6e6ec3eb4cb44f7842ae56ff7, type: 3}
+        emotionSound: []
+      - name: Munchies_Happy02
+        sprite: {fileID: 21300000, guid: f2fa65aa47c975940aa5aecd27319dc5, type: 3}
+        emotionSound: []
+      - name: Munchies_Default
+        sprite: {fileID: 21300000, guid: a8fd174d2f5dd1b47848d3428eddafac, type: 3}
+        emotionSound: []
+      - name: Munchies_DefaultSmile
+        sprite: {fileID: 21300000, guid: 2156e947ecbb8154da87aeadafa79d2a, type: 3}
+        emotionSound: []
+      - name: Munchies_Sad01
+        sprite: {fileID: 21300000, guid: e0fdc5423bf649d41b20b08ae858b1fc, type: 3}
+        emotionSound: []
+      - name: Munchies_Sad02
+        sprite: {fileID: 21300000, guid: 820cb6ae034578d41bf191e6edc87b39, type: 3}
+        emotionSound: []
+      - name: Munchies_Sleep
+        sprite: {fileID: 21300000, guid: 42e3784fead6dd64aaa55f6461be690c, type: 3}
+        emotionSound: []
+    emotion:
+      name: Munchies_Happy01
+      sprite: {fileID: 21300000, guid: 3c63cac6e6ec3eb4cb44f7842ae56ff7, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - I like roasted bananas.
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Kevin
+      NamePlate: {fileID: 21300000, guid: 9fb302f050000f84c88960293e94e145, type: 3}
+      emotions:
+      - name: Kevin_Annoyed
+        sprite: {fileID: 21300000, guid: ea882bf250f7c6b4dbfa133d8e45a369, type: 3}
+        emotionSound: []
+      - name: Kevin_Default
+        sprite: {fileID: 21300000, guid: 10a66e3d206e8fd4e979583fef16dc82, type: 3}
+        emotionSound: []
+      - name: Kevin_Excited
+        sprite: {fileID: 21300000, guid: 16a3c522f645dd64285a64480f03b842, type: 3}
+        emotionSound: []
+      - name: Kevin_Pog
+        sprite: {fileID: 21300000, guid: c8a5b77c617b83843a2b60e78c91f118, type: 3}
+        emotionSound: []
+      - name: Kevin_ReallyMad
+        sprite: {fileID: 21300000, guid: d5d1c880fbd3646409565f44210115cf, type: 3}
+        emotionSound: []
+      - name: Kevin_Uwu
+        sprite: {fileID: 21300000, guid: 41cefbf5e50af0c41a01832052ba1428, type: 3}
+        emotionSound: []
+    emotion:
+      name: Kevin_Excited
+      sprite: {fileID: 21300000, guid: 16a3c522f645dd64285a64480f03b842, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - I just like mine plain, I guess. Straight off the peel, nothing fancy.
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Tony Squawk
+      NamePlate: {fileID: 21300000, guid: 5f244d4de1f857642a0e37b91e1879ba, type: 3}
+      emotions:
+      - name: Tony_Angry
+        sprite: {fileID: 21300000, guid: de595620d5a9c8f4091d0a02a461099e, type: 3}
+        emotionSound: []
+      - name: Tony_Happy
+        sprite: {fileID: 21300000, guid: 02fe14cff5fb462459bb266a969d66e0, type: 3}
+        emotionSound: []
+      - name: Tony_Lift
+        sprite: {fileID: 21300000, guid: 21574625b98802a47807d03f9fb92a65, type: 3}
+        emotionSound: []
+      - name: Tony_Default
+        sprite: {fileID: 21300000, guid: b5d170961a7739f4e8d15add6ba2585b, type: 3}
+        emotionSound: []
+      - name: Tony_Pog
+        sprite: {fileID: 21300000, guid: d070cda86eb94f543a3a0427acaec384, type: 3}
+        emotionSound: []
+      - name: Tony_Prose
+        sprite: {fileID: 21300000, guid: d765caf10672fb44e8031e2ae32a4bd2, type: 3}
+        emotionSound: []
+      - name: Tony_Sad
+        sprite: {fileID: 21300000, guid: fcc05e653ae36f64ab2ea50f3db14617, type: 3}
+        emotionSound: []
+    emotion:
+      name: Tony_Lift
+      sprite: {fileID: 21300000, guid: 21574625b98802a47807d03f9fb92a65, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - "Ain't nothing better than a Banana Protein Smoothie\u2122 after a good pump,
+      bro."
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Tony Squawk
+      NamePlate: {fileID: 21300000, guid: 5f244d4de1f857642a0e37b91e1879ba, type: 3}
+      emotions:
+      - name: Tony_Angry
+        sprite: {fileID: 21300000, guid: de595620d5a9c8f4091d0a02a461099e, type: 3}
+        emotionSound: []
+      - name: Tony_Happy
+        sprite: {fileID: 21300000, guid: 02fe14cff5fb462459bb266a969d66e0, type: 3}
+        emotionSound: []
+      - name: Tony_Lift
+        sprite: {fileID: 21300000, guid: 21574625b98802a47807d03f9fb92a65, type: 3}
+        emotionSound: []
+      - name: Tony_Default
+        sprite: {fileID: 21300000, guid: b5d170961a7739f4e8d15add6ba2585b, type: 3}
+        emotionSound: []
+      - name: Tony_Pog
+        sprite: {fileID: 21300000, guid: d070cda86eb94f543a3a0427acaec384, type: 3}
+        emotionSound: []
+      - name: Tony_Prose
+        sprite: {fileID: 21300000, guid: d765caf10672fb44e8031e2ae32a4bd2, type: 3}
+        emotionSound: []
+      - name: Tony_Sad
+        sprite: {fileID: 21300000, guid: fcc05e653ae36f64ab2ea50f3db14617, type: 3}
+        emotionSound: []
+    emotion:
+      name: Tony_Happy
+      sprite: {fileID: 21300000, guid: 02fe14cff5fb462459bb266a969d66e0, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Tony starts flexing his muscles to the amusement of no one.
+    isMission: 0
+    isNarrator: 1
+  - speakingCharacter:
+      name: Gavin
+      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
+      emotions:
+      - name: Gavin_Angry
+        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
+        emotionSound: []
+      - name: Gavin_Begrudging
+        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
+        emotionSound: []
+      - name: Gavin_Default
+        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+        emotionSound: []
+      - name: Gavin_HoldingBoard
+        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
+        emotionSound: []
+    emotion:
+      name: Gavin_Begrudging
+      sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Heh, you fools still eat bananas? Pfft.
+    - This is why you bongo-headed bozos are swimmin' in the dirt.
+    - A banana eaten is a dolla wasted.
+    - Bananabstince. Call that real wisdom.
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Gavin
+      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
+      emotions:
+      - name: Gavin_Angry
+        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
+        emotionSound: []
+      - name: Gavin_Begrudging
+        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
+        emotionSound: []
+      - name: Gavin_Default
+        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+        emotionSound: []
+      - name: Gavin_HoldingBoard
+        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
+        emotionSound: []
+    emotion:
+      name: Gavin_Default
+      sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Everyone looks remarkably offended.
+    isMission: 0
+    isNarrator: 1
+  - speakingCharacter:
+      name: Kevin
+      NamePlate: {fileID: 21300000, guid: 9fb302f050000f84c88960293e94e145, type: 3}
+      emotions:
+      - name: Kevin_Annoyed
+        sprite: {fileID: 21300000, guid: ea882bf250f7c6b4dbfa133d8e45a369, type: 3}
+        emotionSound: []
+      - name: Kevin_Default
+        sprite: {fileID: 21300000, guid: 10a66e3d206e8fd4e979583fef16dc82, type: 3}
+        emotionSound: []
+      - name: Kevin_Excited
+        sprite: {fileID: 21300000, guid: 16a3c522f645dd64285a64480f03b842, type: 3}
+        emotionSound: []
+      - name: Kevin_Pog
+        sprite: {fileID: 21300000, guid: c8a5b77c617b83843a2b60e78c91f118, type: 3}
+        emotionSound: []
+      - name: Kevin_ReallyMad
+        sprite: {fileID: 21300000, guid: d5d1c880fbd3646409565f44210115cf, type: 3}
+        emotionSound: []
+      - name: Kevin_Uwu
+        sprite: {fileID: 21300000, guid: 41cefbf5e50af0c41a01832052ba1428, type: 3}
+        emotionSound: []
+    emotion:
+      name: Kevin_ReallyMad
+      sprite: {fileID: 21300000, guid: d5d1c880fbd3646409565f44210115cf, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - What do you mean you don't eat bananas, Gavin!
+    - What kind of sick freak are you?!
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Gavin
+      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
+      emotions:
+      - name: Gavin_Angry
+        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
+        emotionSound: []
+      - name: Gavin_Begrudging
+        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
+        emotionSound: []
+      - name: Gavin_Default
+        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+        emotionSound: []
+      - name: Gavin_HoldingBoard
+        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
+        emotionSound: []
+    emotion:
+      name: Gavin_Default
+      sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Heh, rent-free, amirite? Totally rockin' dat wis-a-tude, dude. Right, Munchies?
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Munchies
+      NamePlate: {fileID: 21300000, guid: 39802ddae9a276549a2675279b27ff4d, type: 3}
+      emotions:
+      - name: Munchies_Annoyed
+        sprite: {fileID: 21300000, guid: e2ee648c734f4974aafc1044fcad1b5a, type: 3}
+        emotionSound: []
+      - name: Munchies_Happy01
+        sprite: {fileID: 21300000, guid: 3c63cac6e6ec3eb4cb44f7842ae56ff7, type: 3}
+        emotionSound: []
+      - name: Munchies_Happy02
+        sprite: {fileID: 21300000, guid: f2fa65aa47c975940aa5aecd27319dc5, type: 3}
+        emotionSound: []
+      - name: Munchies_Default
+        sprite: {fileID: 21300000, guid: a8fd174d2f5dd1b47848d3428eddafac, type: 3}
+        emotionSound: []
+      - name: Munchies_DefaultSmile
+        sprite: {fileID: 21300000, guid: 2156e947ecbb8154da87aeadafa79d2a, type: 3}
+        emotionSound: []
+      - name: Munchies_Sad01
+        sprite: {fileID: 21300000, guid: e0fdc5423bf649d41b20b08ae858b1fc, type: 3}
+        emotionSound: []
+      - name: Munchies_Sad02
+        sprite: {fileID: 21300000, guid: 820cb6ae034578d41bf191e6edc87b39, type: 3}
+        emotionSound: []
+      - name: Munchies_Sleep
+        sprite: {fileID: 21300000, guid: 42e3784fead6dd64aaa55f6461be690c, type: 3}
+        emotionSound: []
+    emotion:
+      name: Munchies_DefaultSmile
+      sprite: {fileID: 21300000, guid: 2156e947ecbb8154da87aeadafa79d2a, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - 'Well, you know what they say:'
+    - when a bum lends you a couch,
+    - ...
+    - don't let the bedbugs bite.
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Ollie
+      NamePlate: {fileID: 21300000, guid: 1abb4b9420f9db44da67d9bf81653bef, type: 3}
+      emotions:
+      - name: Ollie_Cute
+        sprite: {fileID: 21300000, guid: a9a73adfeb978e847a51dd3e3818827a, type: 3}
+        emotionSound: []
+      - name: Ollie_Idle02
+        sprite: {fileID: 21300000, guid: 1a569aa015f059a43bbf55f893286a63, type: 3}
+        emotionSound: []
+      - name: Ollie_Sad
+        sprite: {fileID: 21300000, guid: 42f46c9a6becef742b4d6057f80ee3b3, type: 3}
+        emotionSound: []
+      - name: Ollie_Shock
+        sprite: {fileID: 21300000, guid: b9cb69a985c270b40822c49cd8d77930, type: 3}
+        emotionSound: []
+      - name: Ollie_Idle
+        sprite: {fileID: 21300000, guid: ecb414f6412c7d045bedc6c9f77800be, type: 3}
+        emotionSound: []
+    emotion:
+      name: Ollie_Idle
+      sprite: {fileID: 21300000, guid: ecb414f6412c7d045bedc6c9f77800be, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - So true...
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Gavin
+      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
+      emotions:
+      - name: Gavin_Angry
+        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
+        emotionSound: []
+      - name: Gavin_Begrudging
+        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
+        emotionSound: []
+      - name: Gavin_Default
+        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+        emotionSound: []
+      - name: Gavin_HoldingBoard
+        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
+        emotionSound: []
+    emotion:
+      name: Gavin_Begrudging
+      sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - You gotta start makin' some snse dawg. You've been droppin' duds.
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Kevin
+      NamePlate: {fileID: 21300000, guid: 9fb302f050000f84c88960293e94e145, type: 3}
+      emotions:
+      - name: Kevin_Annoyed
+        sprite: {fileID: 21300000, guid: ea882bf250f7c6b4dbfa133d8e45a369, type: 3}
+        emotionSound: []
+      - name: Kevin_Default
+        sprite: {fileID: 21300000, guid: 10a66e3d206e8fd4e979583fef16dc82, type: 3}
+        emotionSound: []
+      - name: Kevin_Excited
+        sprite: {fileID: 21300000, guid: 16a3c522f645dd64285a64480f03b842, type: 3}
+        emotionSound: []
+      - name: Kevin_Pog
+        sprite: {fileID: 21300000, guid: c8a5b77c617b83843a2b60e78c91f118, type: 3}
+        emotionSound: []
+      - name: Kevin_ReallyMad
+        sprite: {fileID: 21300000, guid: d5d1c880fbd3646409565f44210115cf, type: 3}
+        emotionSound: []
+      - name: Kevin_Uwu
+        sprite: {fileID: 21300000, guid: 41cefbf5e50af0c41a01832052ba1428, type: 3}
+        emotionSound: []
+    emotion:
+      name: Kevin_Annoyed
+      sprite: {fileID: 21300000, guid: ea882bf250f7c6b4dbfa133d8e45a369, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - You only say that because you can't handle her wicked wisdom.
+    - What she's saying is uh... um...
+    - So long as you keep, uh trying...
+    - You've already, you know... succeeded. Yeah...
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Gavin
+      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
+      emotions:
+      - name: Gavin_Angry
+        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
+        emotionSound: []
+      - name: Gavin_Begrudging
+        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
+        emotionSound: []
+      - name: Gavin_Default
+        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+        emotionSound: []
+      - name: Gavin_HoldingBoard
+        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
+        emotionSound: []
+    emotion:
+      name: Gavin_Default
+      sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - That's the most cornball crap I've ever heard. Ain't no way that's what she
+      meant.
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Munchies
+      NamePlate: {fileID: 21300000, guid: 39802ddae9a276549a2675279b27ff4d, type: 3}
+      emotions:
+      - name: Munchies_Annoyed
+        sprite: {fileID: 21300000, guid: e2ee648c734f4974aafc1044fcad1b5a, type: 3}
+        emotionSound: []
+      - name: Munchies_Happy01
+        sprite: {fileID: 21300000, guid: 3c63cac6e6ec3eb4cb44f7842ae56ff7, type: 3}
+        emotionSound: []
+      - name: Munchies_Happy02
+        sprite: {fileID: 21300000, guid: f2fa65aa47c975940aa5aecd27319dc5, type: 3}
+        emotionSound: []
+      - name: Munchies_Default
+        sprite: {fileID: 21300000, guid: a8fd174d2f5dd1b47848d3428eddafac, type: 3}
+        emotionSound: []
+      - name: Munchies_DefaultSmile
+        sprite: {fileID: 21300000, guid: 2156e947ecbb8154da87aeadafa79d2a, type: 3}
+        emotionSound: []
+      - name: Munchies_Sad01
+        sprite: {fileID: 21300000, guid: e0fdc5423bf649d41b20b08ae858b1fc, type: 3}
+        emotionSound: []
+      - name: Munchies_Sad02
+        sprite: {fileID: 21300000, guid: 820cb6ae034578d41bf191e6edc87b39, type: 3}
+        emotionSound: []
+      - name: Munchies_Sleep
+        sprite: {fileID: 21300000, guid: 42e3784fead6dd64aaa55f6461be690c, type: 3}
+        emotionSound: []
+    emotion:
+      name: Munchies_DefaultSmile
+      sprite: {fileID: 21300000, guid: 2156e947ecbb8154da87aeadafa79d2a, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Well, what does it really mean to "mean", you know?
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Gavin
+      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
+      emotions:
+      - name: Gavin_Angry
+        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
+        emotionSound: []
+      - name: Gavin_Begrudging
+        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
+        emotionSound: []
+      - name: Gavin_Default
+        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+        emotionSound: []
+      - name: Gavin_HoldingBoard
+        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
+        emotionSound: []
+    emotion:
+      name: Gavin_Angry
+      sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - I DON'T know, Munchies! Just settle the argument!
+    - Who's the wisest here? Me or Knucklehead Kevin.
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Munchies
+      NamePlate: {fileID: 21300000, guid: 39802ddae9a276549a2675279b27ff4d, type: 3}
+      emotions:
+      - name: Munchies_Annoyed
+        sprite: {fileID: 21300000, guid: e2ee648c734f4974aafc1044fcad1b5a, type: 3}
+        emotionSound: []
+      - name: Munchies_Happy01
+        sprite: {fileID: 21300000, guid: 3c63cac6e6ec3eb4cb44f7842ae56ff7, type: 3}
+        emotionSound: []
+      - name: Munchies_Happy02
+        sprite: {fileID: 21300000, guid: f2fa65aa47c975940aa5aecd27319dc5, type: 3}
+        emotionSound: []
+      - name: Munchies_Default
+        sprite: {fileID: 21300000, guid: a8fd174d2f5dd1b47848d3428eddafac, type: 3}
+        emotionSound: []
+      - name: Munchies_DefaultSmile
+        sprite: {fileID: 21300000, guid: 2156e947ecbb8154da87aeadafa79d2a, type: 3}
+        emotionSound: []
+      - name: Munchies_Sad01
+        sprite: {fileID: 21300000, guid: e0fdc5423bf649d41b20b08ae858b1fc, type: 3}
+        emotionSound: []
+      - name: Munchies_Sad02
+        sprite: {fileID: 21300000, guid: 820cb6ae034578d41bf191e6edc87b39, type: 3}
+        emotionSound: []
+      - name: Munchies_Sleep
+        sprite: {fileID: 21300000, guid: 42e3784fead6dd64aaa55f6461be690c, type: 3}
+        emotionSound: []
+    emotion:
+      name: Munchies_Default
+      sprite: {fileID: 21300000, guid: a8fd174d2f5dd1b47848d3428eddafac, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Munchies thinks for a minute.
+    isMission: 0
+    isNarrator: 1
+  - speakingCharacter:
+      name: Munchies
+      NamePlate: {fileID: 21300000, guid: 39802ddae9a276549a2675279b27ff4d, type: 3}
+      emotions:
+      - name: Munchies_Annoyed
+        sprite: {fileID: 21300000, guid: e2ee648c734f4974aafc1044fcad1b5a, type: 3}
+        emotionSound: []
+      - name: Munchies_Happy01
+        sprite: {fileID: 21300000, guid: 3c63cac6e6ec3eb4cb44f7842ae56ff7, type: 3}
+        emotionSound: []
+      - name: Munchies_Happy02
+        sprite: {fileID: 21300000, guid: f2fa65aa47c975940aa5aecd27319dc5, type: 3}
+        emotionSound: []
+      - name: Munchies_Default
+        sprite: {fileID: 21300000, guid: a8fd174d2f5dd1b47848d3428eddafac, type: 3}
+        emotionSound: []
+      - name: Munchies_DefaultSmile
+        sprite: {fileID: 21300000, guid: 2156e947ecbb8154da87aeadafa79d2a, type: 3}
+        emotionSound: []
+      - name: Munchies_Sad01
+        sprite: {fileID: 21300000, guid: e0fdc5423bf649d41b20b08ae858b1fc, type: 3}
+        emotionSound: []
+      - name: Munchies_Sad02
+        sprite: {fileID: 21300000, guid: 820cb6ae034578d41bf191e6edc87b39, type: 3}
+        emotionSound: []
+      - name: Munchies_Sleep
+        sprite: {fileID: 21300000, guid: 42e3784fead6dd64aaa55f6461be690c, type: 3}
+        emotionSound: []
+    emotion:
+      name: Munchies_Happy01
+      sprite: {fileID: 21300000, guid: 3c63cac6e6ec3eb4cb44f7842ae56ff7, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - You know, hard to say, but when it comes to who here's the most enlightened...
+    - I think it's gotta be a tie.
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Gavin
+      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
+      emotions:
+      - name: Gavin_Angry
+        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
+        emotionSound: []
+      - name: Gavin_Begrudging
+        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
+        emotionSound: []
+      - name: Gavin_Default
+        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+        emotionSound: []
+      - name: Gavin_HoldingBoard
+        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
+        emotionSound: []
+    emotion:
+      name: Gavin_Angry
+      sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - What!? Say cap right now.
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Kevin
+      NamePlate: {fileID: 21300000, guid: 9fb302f050000f84c88960293e94e145, type: 3}
+      emotions:
+      - name: Kevin_Annoyed
+        sprite: {fileID: 21300000, guid: ea882bf250f7c6b4dbfa133d8e45a369, type: 3}
+        emotionSound: []
+      - name: Kevin_Default
+        sprite: {fileID: 21300000, guid: 10a66e3d206e8fd4e979583fef16dc82, type: 3}
+        emotionSound: []
+      - name: Kevin_Excited
+        sprite: {fileID: 21300000, guid: 16a3c522f645dd64285a64480f03b842, type: 3}
+        emotionSound: []
+      - name: Kevin_Pog
+        sprite: {fileID: 21300000, guid: c8a5b77c617b83843a2b60e78c91f118, type: 3}
+        emotionSound: []
+      - name: Kevin_ReallyMad
+        sprite: {fileID: 21300000, guid: d5d1c880fbd3646409565f44210115cf, type: 3}
+        emotionSound: []
+      - name: Kevin_Uwu
+        sprite: {fileID: 21300000, guid: 41cefbf5e50af0c41a01832052ba1428, type: 3}
+        emotionSound: []
+    emotion:
+      name: Kevin_Pog
+      sprite: {fileID: 21300000, guid: c8a5b77c617b83843a2b60e78c91f118, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Suck it, Gav.
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Munchies
+      NamePlate: {fileID: 21300000, guid: 39802ddae9a276549a2675279b27ff4d, type: 3}
+      emotions:
+      - name: Munchies_Annoyed
+        sprite: {fileID: 21300000, guid: e2ee648c734f4974aafc1044fcad1b5a, type: 3}
+        emotionSound: []
+      - name: Munchies_Happy01
+        sprite: {fileID: 21300000, guid: 3c63cac6e6ec3eb4cb44f7842ae56ff7, type: 3}
+        emotionSound: []
+      - name: Munchies_Happy02
+        sprite: {fileID: 21300000, guid: f2fa65aa47c975940aa5aecd27319dc5, type: 3}
+        emotionSound: []
+      - name: Munchies_Default
+        sprite: {fileID: 21300000, guid: a8fd174d2f5dd1b47848d3428eddafac, type: 3}
+        emotionSound: []
+      - name: Munchies_DefaultSmile
+        sprite: {fileID: 21300000, guid: 2156e947ecbb8154da87aeadafa79d2a, type: 3}
+        emotionSound: []
+      - name: Munchies_Sad01
+        sprite: {fileID: 21300000, guid: e0fdc5423bf649d41b20b08ae858b1fc, type: 3}
+        emotionSound: []
+      - name: Munchies_Sad02
+        sprite: {fileID: 21300000, guid: 820cb6ae034578d41bf191e6edc87b39, type: 3}
+        emotionSound: []
+      - name: Munchies_Sleep
+        sprite: {fileID: 21300000, guid: 42e3784fead6dd64aaa55f6461be690c, type: 3}
+        emotionSound: []
+    emotion:
+      name: Munchies_DefaultSmile
+      sprite: {fileID: 21300000, guid: 2156e947ecbb8154da87aeadafa79d2a, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Of everyone here, the wisest is either Ollie or the Champ.
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Ollie
+      NamePlate: {fileID: 21300000, guid: 1abb4b9420f9db44da67d9bf81653bef, type: 3}
+      emotions:
+      - name: Ollie_Cute
+        sprite: {fileID: 21300000, guid: a9a73adfeb978e847a51dd3e3818827a, type: 3}
+        emotionSound: []
+      - name: Ollie_Idle02
+        sprite: {fileID: 21300000, guid: 1a569aa015f059a43bbf55f893286a63, type: 3}
+        emotionSound: []
+      - name: Ollie_Sad
+        sprite: {fileID: 21300000, guid: 42f46c9a6becef742b4d6057f80ee3b3, type: 3}
+        emotionSound: []
+      - name: Ollie_Shock
+        sprite: {fileID: 21300000, guid: b9cb69a985c270b40822c49cd8d77930, type: 3}
+        emotionSound: []
+      - name: Ollie_Idle
+        sprite: {fileID: 21300000, guid: ecb414f6412c7d045bedc6c9f77800be, type: 3}
+        emotionSound: []
+    emotion:
+      name: Ollie_Shock
+      sprite: {fileID: 21300000, guid: b9cb69a985c270b40822c49cd8d77930, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Wut? Huh? Hu-wuh?
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Ollie
+      NamePlate: {fileID: 21300000, guid: 1abb4b9420f9db44da67d9bf81653bef, type: 3}
+      emotions:
+      - name: Ollie_Cute
+        sprite: {fileID: 21300000, guid: a9a73adfeb978e847a51dd3e3818827a, type: 3}
+        emotionSound: []
+      - name: Ollie_Idle02
+        sprite: {fileID: 21300000, guid: 1a569aa015f059a43bbf55f893286a63, type: 3}
+        emotionSound: []
+      - name: Ollie_Sad
+        sprite: {fileID: 21300000, guid: 42f46c9a6becef742b4d6057f80ee3b3, type: 3}
+        emotionSound: []
+      - name: Ollie_Shock
+        sprite: {fileID: 21300000, guid: b9cb69a985c270b40822c49cd8d77930, type: 3}
+        emotionSound: []
+      - name: Ollie_Idle
+        sprite: {fileID: 21300000, guid: ecb414f6412c7d045bedc6c9f77800be, type: 3}
+        emotionSound: []
+    emotion:
+      name: Ollie_Shock
+      sprite: {fileID: 21300000, guid: b9cb69a985c270b40822c49cd8d77930, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - 'Champ: ...'
+    isMission: 0
+    isNarrator: 1
+  - speakingCharacter:
+      name: Ollie
+      NamePlate: {fileID: 21300000, guid: 1abb4b9420f9db44da67d9bf81653bef, type: 3}
+      emotions:
+      - name: Ollie_Cute
+        sprite: {fileID: 21300000, guid: a9a73adfeb978e847a51dd3e3818827a, type: 3}
+        emotionSound: []
+      - name: Ollie_Idle02
+        sprite: {fileID: 21300000, guid: 1a569aa015f059a43bbf55f893286a63, type: 3}
+        emotionSound: []
+      - name: Ollie_Sad
+        sprite: {fileID: 21300000, guid: 42f46c9a6becef742b4d6057f80ee3b3, type: 3}
+        emotionSound: []
+      - name: Ollie_Shock
+        sprite: {fileID: 21300000, guid: b9cb69a985c270b40822c49cd8d77930, type: 3}
+        emotionSound: []
+      - name: Ollie_Idle
+        sprite: {fileID: 21300000, guid: ecb414f6412c7d045bedc6c9f77800be, type: 3}
+        emotionSound: []
+    emotion:
+      name: Ollie_Shock
+      sprite: {fileID: 21300000, guid: b9cb69a985c270b40822c49cd8d77930, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Achieve a maximum speed of 30 in one run.
+    isMission: 1
+    isNarrator: 1

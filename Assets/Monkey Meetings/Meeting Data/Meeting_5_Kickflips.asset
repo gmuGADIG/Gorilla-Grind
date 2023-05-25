@@ -1,0 +1,932 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c560f868b549d48acca607a9787604, type: 3}
+  m_Name: Meeting_5_Kickflips
+  m_EditorClassIdentifier: 
+  characterDatabase: {fileID: 11400000, guid: 5ff5001a917067e499d10df040f92b30, type: 2}
+  dialogueFrames:
+  - speakingCharacter:
+      name: Gavin
+      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
+      emotions:
+      - name: Gavin_Angry
+        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
+        emotionSound: []
+      - name: Gavin_Begrudging
+        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
+        emotionSound: []
+      - name: Gavin_Default
+        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+        emotionSound: []
+      - name: Gavin_HoldingBoard
+        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
+        emotionSound: []
+    emotion:
+      name: Gavin_Default
+      sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Oh, hey! The 'Champion' is back. What, you wipeout again?
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Kevin
+      NamePlate: {fileID: 21300000, guid: 9fb302f050000f84c88960293e94e145, type: 3}
+      emotions:
+      - name: Kevin_Annoyed
+        sprite: {fileID: 21300000, guid: ea882bf250f7c6b4dbfa133d8e45a369, type: 3}
+        emotionSound: []
+      - name: Kevin_Default
+        sprite: {fileID: 21300000, guid: 10a66e3d206e8fd4e979583fef16dc82, type: 3}
+        emotionSound: []
+      - name: Kevin_Excited
+        sprite: {fileID: 21300000, guid: 16a3c522f645dd64285a64480f03b842, type: 3}
+        emotionSound: []
+      - name: Kevin_Pog
+        sprite: {fileID: 21300000, guid: c8a5b77c617b83843a2b60e78c91f118, type: 3}
+        emotionSound: []
+      - name: Kevin_ReallyMad
+        sprite: {fileID: 21300000, guid: d5d1c880fbd3646409565f44210115cf, type: 3}
+        emotionSound: []
+      - name: Kevin_Uwu
+        sprite: {fileID: 21300000, guid: 41cefbf5e50af0c41a01832052ba1428, type: 3}
+        emotionSound: []
+    emotion:
+      name: Kevin_Excited
+      sprite: {fileID: 21300000, guid: 16a3c522f645dd64285a64480f03b842, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Omg, hey, Champ! I bet you shredded it mad nice out there, bro! You get a new
+      record? Land any sick Kickflips out there?
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Gavin
+      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
+      emotions:
+      - name: Gavin_Angry
+        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
+        emotionSound: []
+      - name: Gavin_Begrudging
+        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
+        emotionSound: []
+      - name: Gavin_Default
+        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+        emotionSound: []
+      - name: Gavin_HoldingBoard
+        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
+        emotionSound: []
+    emotion:
+      name: Gavin_Default
+      sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Hold on, lil' bro. I got a question for you.
+    - No goofy-towning around.
+    - 'Brother to brother, homie to sapien:'
+    - Do you even know what a kickflip is?
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Kevin
+      NamePlate: {fileID: 21300000, guid: 9fb302f050000f84c88960293e94e145, type: 3}
+      emotions:
+      - name: Kevin_Annoyed
+        sprite: {fileID: 21300000, guid: ea882bf250f7c6b4dbfa133d8e45a369, type: 3}
+        emotionSound: []
+      - name: Kevin_Default
+        sprite: {fileID: 21300000, guid: 10a66e3d206e8fd4e979583fef16dc82, type: 3}
+        emotionSound: []
+      - name: Kevin_Excited
+        sprite: {fileID: 21300000, guid: 16a3c522f645dd64285a64480f03b842, type: 3}
+        emotionSound: []
+      - name: Kevin_Pog
+        sprite: {fileID: 21300000, guid: c8a5b77c617b83843a2b60e78c91f118, type: 3}
+        emotionSound: []
+      - name: Kevin_ReallyMad
+        sprite: {fileID: 21300000, guid: d5d1c880fbd3646409565f44210115cf, type: 3}
+        emotionSound: []
+      - name: Kevin_Uwu
+        sprite: {fileID: 21300000, guid: 41cefbf5e50af0c41a01832052ba1428, type: 3}
+        emotionSound: []
+    emotion:
+      name: Kevin_Uwu
+      sprite: {fileID: 21300000, guid: 41cefbf5e50af0c41a01832052ba1428, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Uh... heh, heh... I mean, yeah! Of course, bro. that's like, my name after
+      all. I totally Kick it and Flip it.
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Ollie
+      NamePlate: {fileID: 21300000, guid: 1abb4b9420f9db44da67d9bf81653bef, type: 3}
+      emotions:
+      - name: Ollie_Cute
+        sprite: {fileID: 21300000, guid: a9a73adfeb978e847a51dd3e3818827a, type: 3}
+        emotionSound: []
+      - name: Ollie_Idle02
+        sprite: {fileID: 21300000, guid: 1a569aa015f059a43bbf55f893286a63, type: 3}
+        emotionSound: []
+      - name: Ollie_Sad
+        sprite: {fileID: 21300000, guid: 42f46c9a6becef742b4d6057f80ee3b3, type: 3}
+        emotionSound: []
+      - name: Ollie_Shock
+        sprite: {fileID: 21300000, guid: b9cb69a985c270b40822c49cd8d77930, type: 3}
+        emotionSound: []
+      - name: Ollie_Idle
+        sprite: {fileID: 21300000, guid: ecb414f6412c7d045bedc6c9f77800be, type: 3}
+        emotionSound: []
+    emotion:
+      name: Ollie_Cute
+      sprite: {fileID: 21300000, guid: a9a73adfeb978e847a51dd3e3818827a, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - He spittin' truth! Names never lie!
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Gavin
+      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
+      emotions:
+      - name: Gavin_Angry
+        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
+        emotionSound: []
+      - name: Gavin_Begrudging
+        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
+        emotionSound: []
+      - name: Gavin_Default
+        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+        emotionSound: []
+      - name: Gavin_HoldingBoard
+        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
+        emotionSound: []
+    emotion:
+      name: Gavin_Default
+      sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Heh, true. Glad you noticed, pipsqueak. I really am the Grind-Lord...
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Gavin
+      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
+      emotions:
+      - name: Gavin_Angry
+        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
+        emotionSound: []
+      - name: Gavin_Begrudging
+        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
+        emotionSound: []
+      - name: Gavin_Default
+        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+        emotionSound: []
+      - name: Gavin_HoldingBoard
+        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
+        emotionSound: []
+    emotion:
+      name: Gavin_Begrudging
+      sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Wait, hold on. You aren't even an orangutan, bro. What are you spitting right
+      now?
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Ollie
+      NamePlate: {fileID: 21300000, guid: 1abb4b9420f9db44da67d9bf81653bef, type: 3}
+      emotions:
+      - name: Ollie_Cute
+        sprite: {fileID: 21300000, guid: a9a73adfeb978e847a51dd3e3818827a, type: 3}
+        emotionSound: []
+      - name: Ollie_Idle02
+        sprite: {fileID: 21300000, guid: 1a569aa015f059a43bbf55f893286a63, type: 3}
+        emotionSound: []
+      - name: Ollie_Sad
+        sprite: {fileID: 21300000, guid: 42f46c9a6becef742b4d6057f80ee3b3, type: 3}
+        emotionSound: []
+      - name: Ollie_Shock
+        sprite: {fileID: 21300000, guid: b9cb69a985c270b40822c49cd8d77930, type: 3}
+        emotionSound: []
+      - name: Ollie_Idle
+        sprite: {fileID: 21300000, guid: ecb414f6412c7d045bedc6c9f77800be, type: 3}
+        emotionSound: []
+    emotion:
+      name: Ollie_Sad
+      sprite: {fileID: 21300000, guid: 42f46c9a6becef742b4d6057f80ee3b3, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - I just haven't hit primate puberty yet, man. Cut me some slack.
+    - I'm still at least 112% Orangutan on my grandma's side.
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Kevin
+      NamePlate: {fileID: 21300000, guid: 9fb302f050000f84c88960293e94e145, type: 3}
+      emotions:
+      - name: Kevin_Annoyed
+        sprite: {fileID: 21300000, guid: ea882bf250f7c6b4dbfa133d8e45a369, type: 3}
+        emotionSound: []
+      - name: Kevin_Default
+        sprite: {fileID: 21300000, guid: 10a66e3d206e8fd4e979583fef16dc82, type: 3}
+        emotionSound: []
+      - name: Kevin_Excited
+        sprite: {fileID: 21300000, guid: 16a3c522f645dd64285a64480f03b842, type: 3}
+        emotionSound: []
+      - name: Kevin_Pog
+        sprite: {fileID: 21300000, guid: c8a5b77c617b83843a2b60e78c91f118, type: 3}
+        emotionSound: []
+      - name: Kevin_ReallyMad
+        sprite: {fileID: 21300000, guid: d5d1c880fbd3646409565f44210115cf, type: 3}
+        emotionSound: []
+      - name: Kevin_Uwu
+        sprite: {fileID: 21300000, guid: 41cefbf5e50af0c41a01832052ba1428, type: 3}
+        emotionSound: []
+    emotion:
+      name: Kevin_Pog
+      sprite: {fileID: 21300000, guid: c8a5b77c617b83843a2b60e78c91f118, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - You tell 'em, Ollie! I know you'll be the gnarliest orangutan in no time!
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Gavin
+      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
+      emotions:
+      - name: Gavin_Angry
+        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
+        emotionSound: []
+      - name: Gavin_Begrudging
+        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
+        emotionSound: []
+      - name: Gavin_Default
+        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+        emotionSound: []
+      - name: Gavin_HoldingBoard
+        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
+        emotionSound: []
+    emotion:
+      name: Gavin_Angry
+      sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Tch... Whatever. Can we get back on topic? Kevin, do a single kickflip. Now.
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Kevin
+      NamePlate: {fileID: 21300000, guid: 9fb302f050000f84c88960293e94e145, type: 3}
+      emotions:
+      - name: Kevin_Annoyed
+        sprite: {fileID: 21300000, guid: ea882bf250f7c6b4dbfa133d8e45a369, type: 3}
+        emotionSound: []
+      - name: Kevin_Default
+        sprite: {fileID: 21300000, guid: 10a66e3d206e8fd4e979583fef16dc82, type: 3}
+        emotionSound: []
+      - name: Kevin_Excited
+        sprite: {fileID: 21300000, guid: 16a3c522f645dd64285a64480f03b842, type: 3}
+        emotionSound: []
+      - name: Kevin_Pog
+        sprite: {fileID: 21300000, guid: c8a5b77c617b83843a2b60e78c91f118, type: 3}
+        emotionSound: []
+      - name: Kevin_ReallyMad
+        sprite: {fileID: 21300000, guid: d5d1c880fbd3646409565f44210115cf, type: 3}
+        emotionSound: []
+      - name: Kevin_Uwu
+        sprite: {fileID: 21300000, guid: 41cefbf5e50af0c41a01832052ba1428, type: 3}
+        emotionSound: []
+    emotion:
+      name: Kevin_Uwu
+      sprite: {fileID: 21300000, guid: 41cefbf5e50af0c41a01832052ba1428, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Heh... um... Only one you say? I mean, I know like, ALL the kickflips.
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Gavin
+      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
+      emotions:
+      - name: Gavin_Angry
+        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
+        emotionSound: []
+      - name: Gavin_Begrudging
+        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
+        emotionSound: []
+      - name: Gavin_Default
+        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+        emotionSound: []
+      - name: Gavin_HoldingBoard
+        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
+        emotionSound: []
+    emotion:
+      name: Gavin_Default
+      sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Prove it then.
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Kevin
+      NamePlate: {fileID: 21300000, guid: 9fb302f050000f84c88960293e94e145, type: 3}
+      emotions:
+      - name: Kevin_Annoyed
+        sprite: {fileID: 21300000, guid: ea882bf250f7c6b4dbfa133d8e45a369, type: 3}
+        emotionSound: []
+      - name: Kevin_Default
+        sprite: {fileID: 21300000, guid: 10a66e3d206e8fd4e979583fef16dc82, type: 3}
+        emotionSound: []
+      - name: Kevin_Excited
+        sprite: {fileID: 21300000, guid: 16a3c522f645dd64285a64480f03b842, type: 3}
+        emotionSound: []
+      - name: Kevin_Pog
+        sprite: {fileID: 21300000, guid: c8a5b77c617b83843a2b60e78c91f118, type: 3}
+        emotionSound: []
+      - name: Kevin_ReallyMad
+        sprite: {fileID: 21300000, guid: d5d1c880fbd3646409565f44210115cf, type: 3}
+        emotionSound: []
+      - name: Kevin_Uwu
+        sprite: {fileID: 21300000, guid: 41cefbf5e50af0c41a01832052ba1428, type: 3}
+        emotionSound: []
+    emotion:
+      name: Kevin_Annoyed
+      sprite: {fileID: 21300000, guid: ea882bf250f7c6b4dbfa133d8e45a369, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Uh.. Well, do YOU even know what a kickflip is?
+    - I think you're trying to get me to tell you because YOU don't actually know.
+    - How 'bout them 'nanas, bro?
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Gavin
+      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
+      emotions:
+      - name: Gavin_Angry
+        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
+        emotionSound: []
+      - name: Gavin_Begrudging
+        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
+        emotionSound: []
+      - name: Gavin_Default
+        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+        emotionSound: []
+      - name: Gavin_HoldingBoard
+        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
+        emotionSound: []
+    emotion:
+      name: Gavin_Begrudging
+      sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Dude. I'm the Grind. Lord.
+    - One and only.
+    - Of course I know what a kickflip is. It came free with my tubular skating skills.
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Kevin
+      NamePlate: {fileID: 21300000, guid: 9fb302f050000f84c88960293e94e145, type: 3}
+      emotions:
+      - name: Kevin_Annoyed
+        sprite: {fileID: 21300000, guid: ea882bf250f7c6b4dbfa133d8e45a369, type: 3}
+        emotionSound: []
+      - name: Kevin_Default
+        sprite: {fileID: 21300000, guid: 10a66e3d206e8fd4e979583fef16dc82, type: 3}
+        emotionSound: []
+      - name: Kevin_Excited
+        sprite: {fileID: 21300000, guid: 16a3c522f645dd64285a64480f03b842, type: 3}
+        emotionSound: []
+      - name: Kevin_Pog
+        sprite: {fileID: 21300000, guid: c8a5b77c617b83843a2b60e78c91f118, type: 3}
+        emotionSound: []
+      - name: Kevin_ReallyMad
+        sprite: {fileID: 21300000, guid: d5d1c880fbd3646409565f44210115cf, type: 3}
+        emotionSound: []
+      - name: Kevin_Uwu
+        sprite: {fileID: 21300000, guid: 41cefbf5e50af0c41a01832052ba1428, type: 3}
+        emotionSound: []
+    emotion:
+      name: Kevin_Excited
+      sprite: {fileID: 21300000, guid: 16a3c522f645dd64285a64480f03b842, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Yeah. Well bro, I bet the Champ can do a better kickflip than you!
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Gavin
+      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
+      emotions:
+      - name: Gavin_Angry
+        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
+        emotionSound: []
+      - name: Gavin_Begrudging
+        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
+        emotionSound: []
+      - name: Gavin_Default
+        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+        emotionSound: []
+      - name: Gavin_HoldingBoard
+        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
+        emotionSound: []
+    emotion:
+      name: Gavin_Angry
+      sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Ok. First off, that's is totes wrong, and, dare I say, a stupid thing to say.
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Kevin
+      NamePlate: {fileID: 21300000, guid: 9fb302f050000f84c88960293e94e145, type: 3}
+      emotions:
+      - name: Kevin_Annoyed
+        sprite: {fileID: 21300000, guid: ea882bf250f7c6b4dbfa133d8e45a369, type: 3}
+        emotionSound: []
+      - name: Kevin_Default
+        sprite: {fileID: 21300000, guid: 10a66e3d206e8fd4e979583fef16dc82, type: 3}
+        emotionSound: []
+      - name: Kevin_Excited
+        sprite: {fileID: 21300000, guid: 16a3c522f645dd64285a64480f03b842, type: 3}
+        emotionSound: []
+      - name: Kevin_Pog
+        sprite: {fileID: 21300000, guid: c8a5b77c617b83843a2b60e78c91f118, type: 3}
+        emotionSound: []
+      - name: Kevin_ReallyMad
+        sprite: {fileID: 21300000, guid: d5d1c880fbd3646409565f44210115cf, type: 3}
+        emotionSound: []
+      - name: Kevin_Uwu
+        sprite: {fileID: 21300000, guid: 41cefbf5e50af0c41a01832052ba1428, type: 3}
+        emotionSound: []
+    emotion:
+      name: Kevin_Annoyed
+      sprite: {fileID: 21300000, guid: ea882bf250f7c6b4dbfa133d8e45a369, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Nuh-uh.
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Gavin
+      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
+      emotions:
+      - name: Gavin_Angry
+        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
+        emotionSound: []
+      - name: Gavin_Begrudging
+        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
+        emotionSound: []
+      - name: Gavin_Default
+        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+        emotionSound: []
+      - name: Gavin_HoldingBoard
+        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
+        emotionSound: []
+    emotion:
+      name: Gavin_Default
+      sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Yeah-uh.
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Kevin
+      NamePlate: {fileID: 21300000, guid: 9fb302f050000f84c88960293e94e145, type: 3}
+      emotions:
+      - name: Kevin_Annoyed
+        sprite: {fileID: 21300000, guid: ea882bf250f7c6b4dbfa133d8e45a369, type: 3}
+        emotionSound: []
+      - name: Kevin_Default
+        sprite: {fileID: 21300000, guid: 10a66e3d206e8fd4e979583fef16dc82, type: 3}
+        emotionSound: []
+      - name: Kevin_Excited
+        sprite: {fileID: 21300000, guid: 16a3c522f645dd64285a64480f03b842, type: 3}
+        emotionSound: []
+      - name: Kevin_Pog
+        sprite: {fileID: 21300000, guid: c8a5b77c617b83843a2b60e78c91f118, type: 3}
+        emotionSound: []
+      - name: Kevin_ReallyMad
+        sprite: {fileID: 21300000, guid: d5d1c880fbd3646409565f44210115cf, type: 3}
+        emotionSound: []
+      - name: Kevin_Uwu
+        sprite: {fileID: 21300000, guid: 41cefbf5e50af0c41a01832052ba1428, type: 3}
+        emotionSound: []
+    emotion:
+      name: Kevin_Annoyed
+      sprite: {fileID: 21300000, guid: ea882bf250f7c6b4dbfa133d8e45a369, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Nuh-uh, Nuh-uh.
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Gavin
+      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
+      emotions:
+      - name: Gavin_Angry
+        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
+        emotionSound: []
+      - name: Gavin_Begrudging
+        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
+        emotionSound: []
+      - name: Gavin_Default
+        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+        emotionSound: []
+      - name: Gavin_HoldingBoard
+        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
+        emotionSound: []
+    emotion:
+      name: Gavin_Angry
+      sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Yeah-uh, Yeah-uh.
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Kevin
+      NamePlate: {fileID: 21300000, guid: 9fb302f050000f84c88960293e94e145, type: 3}
+      emotions:
+      - name: Kevin_Annoyed
+        sprite: {fileID: 21300000, guid: ea882bf250f7c6b4dbfa133d8e45a369, type: 3}
+        emotionSound: []
+      - name: Kevin_Default
+        sprite: {fileID: 21300000, guid: 10a66e3d206e8fd4e979583fef16dc82, type: 3}
+        emotionSound: []
+      - name: Kevin_Excited
+        sprite: {fileID: 21300000, guid: 16a3c522f645dd64285a64480f03b842, type: 3}
+        emotionSound: []
+      - name: Kevin_Pog
+        sprite: {fileID: 21300000, guid: c8a5b77c617b83843a2b60e78c91f118, type: 3}
+        emotionSound: []
+      - name: Kevin_ReallyMad
+        sprite: {fileID: 21300000, guid: d5d1c880fbd3646409565f44210115cf, type: 3}
+        emotionSound: []
+      - name: Kevin_Uwu
+        sprite: {fileID: 21300000, guid: 41cefbf5e50af0c41a01832052ba1428, type: 3}
+        emotionSound: []
+    emotion:
+      name: Kevin_ReallyMad
+      sprite: {fileID: 21300000, guid: d5d1c880fbd3646409565f44210115cf, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Nuh-uh, Nuh-uh, Nuh-uh!
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Gavin
+      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
+      emotions:
+      - name: Gavin_Angry
+        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
+        emotionSound: []
+      - name: Gavin_Begrudging
+        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
+        emotionSound: []
+      - name: Gavin_Default
+        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+        emotionSound: []
+      - name: Gavin_HoldingBoard
+        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
+        emotionSound: []
+    emotion:
+      name: Gavin_Begrudging
+      sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Whatever. You're acting like you're on some fruit loops right now.
+    - 'Tell me, Mr. Kickflip fantastic: How''d you even learn all your supposed kickflips?'
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Kevin
+      NamePlate: {fileID: 21300000, guid: 9fb302f050000f84c88960293e94e145, type: 3}
+      emotions:
+      - name: Kevin_Annoyed
+        sprite: {fileID: 21300000, guid: ea882bf250f7c6b4dbfa133d8e45a369, type: 3}
+        emotionSound: []
+      - name: Kevin_Default
+        sprite: {fileID: 21300000, guid: 10a66e3d206e8fd4e979583fef16dc82, type: 3}
+        emotionSound: []
+      - name: Kevin_Excited
+        sprite: {fileID: 21300000, guid: 16a3c522f645dd64285a64480f03b842, type: 3}
+        emotionSound: []
+      - name: Kevin_Pog
+        sprite: {fileID: 21300000, guid: c8a5b77c617b83843a2b60e78c91f118, type: 3}
+        emotionSound: []
+      - name: Kevin_ReallyMad
+        sprite: {fileID: 21300000, guid: d5d1c880fbd3646409565f44210115cf, type: 3}
+        emotionSound: []
+      - name: Kevin_Uwu
+        sprite: {fileID: 21300000, guid: 41cefbf5e50af0c41a01832052ba1428, type: 3}
+        emotionSound: []
+    emotion:
+      name: Kevin_Uwu
+      sprite: {fileID: 21300000, guid: 41cefbf5e50af0c41a01832052ba1428, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Uh, my buddy taught me! Yeah, that's it!
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Gavin
+      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
+      emotions:
+      - name: Gavin_Angry
+        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
+        emotionSound: []
+      - name: Gavin_Begrudging
+        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
+        emotionSound: []
+      - name: Gavin_Default
+        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+        emotionSound: []
+      - name: Gavin_HoldingBoard
+        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
+        emotionSound: []
+    emotion:
+      name: Gavin_Default
+      sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - And that "buddy" would be?
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Kevin
+      NamePlate: {fileID: 21300000, guid: 9fb302f050000f84c88960293e94e145, type: 3}
+      emotions:
+      - name: Kevin_Annoyed
+        sprite: {fileID: 21300000, guid: ea882bf250f7c6b4dbfa133d8e45a369, type: 3}
+        emotionSound: []
+      - name: Kevin_Default
+        sprite: {fileID: 21300000, guid: 10a66e3d206e8fd4e979583fef16dc82, type: 3}
+        emotionSound: []
+      - name: Kevin_Excited
+        sprite: {fileID: 21300000, guid: 16a3c522f645dd64285a64480f03b842, type: 3}
+        emotionSound: []
+      - name: Kevin_Pog
+        sprite: {fileID: 21300000, guid: c8a5b77c617b83843a2b60e78c91f118, type: 3}
+        emotionSound: []
+      - name: Kevin_ReallyMad
+        sprite: {fileID: 21300000, guid: d5d1c880fbd3646409565f44210115cf, type: 3}
+        emotionSound: []
+      - name: Kevin_Uwu
+        sprite: {fileID: 21300000, guid: 41cefbf5e50af0c41a01832052ba1428, type: 3}
+        emotionSound: []
+    emotion:
+      name: Kevin_Annoyed
+      sprite: {fileID: 21300000, guid: ea882bf250f7c6b4dbfa133d8e45a369, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Ummmm... Ooh! Gnarly Gnathan! You haven't met him 'cause he goes to another
+      jungle! Mhm!
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Gavin
+      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
+      emotions:
+      - name: Gavin_Angry
+        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
+        emotionSound: []
+      - name: Gavin_Begrudging
+        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
+        emotionSound: []
+      - name: Gavin_Default
+        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+        emotionSound: []
+      - name: Gavin_HoldingBoard
+        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
+        emotionSound: []
+    emotion:
+      name: Gavin_Default
+      sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - You expect me to believe that? You're speaking like you ate more 'nanas than
+      Munchies, lil bro.
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Ollie
+      NamePlate: {fileID: 21300000, guid: 1abb4b9420f9db44da67d9bf81653bef, type: 3}
+      emotions:
+      - name: Ollie_Cute
+        sprite: {fileID: 21300000, guid: a9a73adfeb978e847a51dd3e3818827a, type: 3}
+        emotionSound: []
+      - name: Ollie_Idle02
+        sprite: {fileID: 21300000, guid: 1a569aa015f059a43bbf55f893286a63, type: 3}
+        emotionSound: []
+      - name: Ollie_Sad
+        sprite: {fileID: 21300000, guid: 42f46c9a6becef742b4d6057f80ee3b3, type: 3}
+        emotionSound: []
+      - name: Ollie_Shock
+        sprite: {fileID: 21300000, guid: b9cb69a985c270b40822c49cd8d77930, type: 3}
+        emotionSound: []
+      - name: Ollie_Idle
+        sprite: {fileID: 21300000, guid: ecb414f6412c7d045bedc6c9f77800be, type: 3}
+        emotionSound: []
+    emotion:
+      name: Ollie_Idle
+      sprite: {fileID: 21300000, guid: ecb414f6412c7d045bedc6c9f77800be, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Ooh, I know Gnarly Gnathan!
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Gavin
+      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
+      emotions:
+      - name: Gavin_Angry
+        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
+        emotionSound: []
+      - name: Gavin_Begrudging
+        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
+        emotionSound: []
+      - name: Gavin_Default
+        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+        emotionSound: []
+      - name: Gavin_HoldingBoard
+        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
+        emotionSound: []
+    emotion:
+      name: Gavin_Begrudging
+      sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Wait, what? How? He clearly doesn't exist.
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Ollie
+      NamePlate: {fileID: 21300000, guid: 1abb4b9420f9db44da67d9bf81653bef, type: 3}
+      emotions:
+      - name: Ollie_Cute
+        sprite: {fileID: 21300000, guid: a9a73adfeb978e847a51dd3e3818827a, type: 3}
+        emotionSound: []
+      - name: Ollie_Idle02
+        sprite: {fileID: 21300000, guid: 1a569aa015f059a43bbf55f893286a63, type: 3}
+        emotionSound: []
+      - name: Ollie_Sad
+        sprite: {fileID: 21300000, guid: 42f46c9a6becef742b4d6057f80ee3b3, type: 3}
+        emotionSound: []
+      - name: Ollie_Shock
+        sprite: {fileID: 21300000, guid: b9cb69a985c270b40822c49cd8d77930, type: 3}
+        emotionSound: []
+      - name: Ollie_Idle
+        sprite: {fileID: 21300000, guid: ecb414f6412c7d045bedc6c9f77800be, type: 3}
+        emotionSound: []
+    emotion:
+      name: Ollie_Idle02
+      sprite: {fileID: 21300000, guid: 1a569aa015f059a43bbf55f893286a63, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Oh, really? I meant to say - ooh I have NO idea who Gnarly Gnathan is!
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Kevin
+      NamePlate: {fileID: 21300000, guid: 9fb302f050000f84c88960293e94e145, type: 3}
+      emotions:
+      - name: Kevin_Annoyed
+        sprite: {fileID: 21300000, guid: ea882bf250f7c6b4dbfa133d8e45a369, type: 3}
+        emotionSound: []
+      - name: Kevin_Default
+        sprite: {fileID: 21300000, guid: 10a66e3d206e8fd4e979583fef16dc82, type: 3}
+        emotionSound: []
+      - name: Kevin_Excited
+        sprite: {fileID: 21300000, guid: 16a3c522f645dd64285a64480f03b842, type: 3}
+        emotionSound: []
+      - name: Kevin_Pog
+        sprite: {fileID: 21300000, guid: c8a5b77c617b83843a2b60e78c91f118, type: 3}
+        emotionSound: []
+      - name: Kevin_ReallyMad
+        sprite: {fileID: 21300000, guid: d5d1c880fbd3646409565f44210115cf, type: 3}
+        emotionSound: []
+      - name: Kevin_Uwu
+        sprite: {fileID: 21300000, guid: 41cefbf5e50af0c41a01832052ba1428, type: 3}
+        emotionSound: []
+    emotion:
+      name: Kevin_Excited
+      sprite: {fileID: 21300000, guid: 16a3c522f645dd64285a64480f03b842, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Erm, anyways... Hey, Champ! You think you can go out there and hit a whole
+      buncha Kickflips before you come back?
+    - I, uhh... just wanna see the master do it, ya know! Show Gavin who the real
+      legend is, bro!
+    - I'll be sure to watch to make sure your form is good!
+    - (No other reason.)
+    - Aight, see ya, Champ!
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Kevin
+      NamePlate: {fileID: 21300000, guid: 9fb302f050000f84c88960293e94e145, type: 3}
+      emotions:
+      - name: Kevin_Annoyed
+        sprite: {fileID: 21300000, guid: ea882bf250f7c6b4dbfa133d8e45a369, type: 3}
+        emotionSound: []
+      - name: Kevin_Default
+        sprite: {fileID: 21300000, guid: 10a66e3d206e8fd4e979583fef16dc82, type: 3}
+        emotionSound: []
+      - name: Kevin_Excited
+        sprite: {fileID: 21300000, guid: 16a3c522f645dd64285a64480f03b842, type: 3}
+        emotionSound: []
+      - name: Kevin_Pog
+        sprite: {fileID: 21300000, guid: c8a5b77c617b83843a2b60e78c91f118, type: 3}
+        emotionSound: []
+      - name: Kevin_ReallyMad
+        sprite: {fileID: 21300000, guid: d5d1c880fbd3646409565f44210115cf, type: 3}
+        emotionSound: []
+      - name: Kevin_Uwu
+        sprite: {fileID: 21300000, guid: 41cefbf5e50af0c41a01832052ba1428, type: 3}
+        emotionSound: []
+    emotion:
+      name: Kevin_Pog
+      sprite: {fileID: 21300000, guid: c8a5b77c617b83843a2b60e78c91f118, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Obtain 300 style points in one run.
+    isMission: 1
+    isNarrator: 1
