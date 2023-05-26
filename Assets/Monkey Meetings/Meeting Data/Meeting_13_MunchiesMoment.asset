@@ -1,0 +1,512 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c560f868b549d48acca607a9787604, type: 3}
+  m_Name: Meeting_13_MunchiesMoment
+  m_EditorClassIdentifier: 
+  characterDatabase: {fileID: 11400000, guid: 5ff5001a917067e499d10df040f92b30, type: 2}
+  dialogueFrames:
+  - speakingCharacter:
+      name: Munchies
+      NamePlate: {fileID: 21300000, guid: 39802ddae9a276549a2675279b27ff4d, type: 3}
+      emotions:
+      - name: Munchies_Annoyed
+        sprite: {fileID: 21300000, guid: e2ee648c734f4974aafc1044fcad1b5a, type: 3}
+        emotionSound: []
+      - name: Munchies_Happy01
+        sprite: {fileID: 21300000, guid: 3c63cac6e6ec3eb4cb44f7842ae56ff7, type: 3}
+        emotionSound: []
+      - name: Munchies_Happy02
+        sprite: {fileID: 21300000, guid: f2fa65aa47c975940aa5aecd27319dc5, type: 3}
+        emotionSound: []
+      - name: Munchies_Default
+        sprite: {fileID: 21300000, guid: a8fd174d2f5dd1b47848d3428eddafac, type: 3}
+        emotionSound: []
+      - name: Munchies_DefaultSmile
+        sprite: {fileID: 21300000, guid: 2156e947ecbb8154da87aeadafa79d2a, type: 3}
+        emotionSound: []
+      - name: Munchies_Sad01
+        sprite: {fileID: 21300000, guid: e0fdc5423bf649d41b20b08ae858b1fc, type: 3}
+        emotionSound: []
+      - name: Munchies_Sad02
+        sprite: {fileID: 21300000, guid: 820cb6ae034578d41bf191e6edc87b39, type: 3}
+        emotionSound: []
+      - name: Munchies_Sleep
+        sprite: {fileID: 21300000, guid: 42e3784fead6dd64aaa55f6461be690c, type: 3}
+        emotionSound: []
+      - name: Munchies_Dream
+        sprite: {fileID: 21300000, guid: a745409c0ad407841b5450354e78f573, type: 3}
+        emotionSound: []
+    emotion:
+      name: Munchies_DefaultSmile
+      sprite: {fileID: 21300000, guid: 2156e947ecbb8154da87aeadafa79d2a, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Oh, uh. Hey, Champ. You holding up ok...?
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Munchies
+      NamePlate: {fileID: 21300000, guid: 39802ddae9a276549a2675279b27ff4d, type: 3}
+      emotions:
+      - name: Munchies_Annoyed
+        sprite: {fileID: 21300000, guid: e2ee648c734f4974aafc1044fcad1b5a, type: 3}
+        emotionSound: []
+      - name: Munchies_Happy01
+        sprite: {fileID: 21300000, guid: 3c63cac6e6ec3eb4cb44f7842ae56ff7, type: 3}
+        emotionSound: []
+      - name: Munchies_Happy02
+        sprite: {fileID: 21300000, guid: f2fa65aa47c975940aa5aecd27319dc5, type: 3}
+        emotionSound: []
+      - name: Munchies_Default
+        sprite: {fileID: 21300000, guid: a8fd174d2f5dd1b47848d3428eddafac, type: 3}
+        emotionSound: []
+      - name: Munchies_DefaultSmile
+        sprite: {fileID: 21300000, guid: 2156e947ecbb8154da87aeadafa79d2a, type: 3}
+        emotionSound: []
+      - name: Munchies_Sad01
+        sprite: {fileID: 21300000, guid: e0fdc5423bf649d41b20b08ae858b1fc, type: 3}
+        emotionSound: []
+      - name: Munchies_Sad02
+        sprite: {fileID: 21300000, guid: 820cb6ae034578d41bf191e6edc87b39, type: 3}
+        emotionSound: []
+      - name: Munchies_Sleep
+        sprite: {fileID: 21300000, guid: 42e3784fead6dd64aaa55f6461be690c, type: 3}
+        emotionSound: []
+      - name: Munchies_Dream
+        sprite: {fileID: 21300000, guid: a745409c0ad407841b5450354e78f573, type: 3}
+        emotionSound: []
+    emotion:
+      name: Munchies_Default
+      sprite: {fileID: 21300000, guid: a8fd174d2f5dd1b47848d3428eddafac, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - 'Champ: ...'
+    isMission: 0
+    isNarrator: 1
+  - speakingCharacter:
+      name: Munchies
+      NamePlate: {fileID: 21300000, guid: 39802ddae9a276549a2675279b27ff4d, type: 3}
+      emotions:
+      - name: Munchies_Annoyed
+        sprite: {fileID: 21300000, guid: e2ee648c734f4974aafc1044fcad1b5a, type: 3}
+        emotionSound: []
+      - name: Munchies_Happy01
+        sprite: {fileID: 21300000, guid: 3c63cac6e6ec3eb4cb44f7842ae56ff7, type: 3}
+        emotionSound: []
+      - name: Munchies_Happy02
+        sprite: {fileID: 21300000, guid: f2fa65aa47c975940aa5aecd27319dc5, type: 3}
+        emotionSound: []
+      - name: Munchies_Default
+        sprite: {fileID: 21300000, guid: a8fd174d2f5dd1b47848d3428eddafac, type: 3}
+        emotionSound: []
+      - name: Munchies_DefaultSmile
+        sprite: {fileID: 21300000, guid: 2156e947ecbb8154da87aeadafa79d2a, type: 3}
+        emotionSound: []
+      - name: Munchies_Sad01
+        sprite: {fileID: 21300000, guid: e0fdc5423bf649d41b20b08ae858b1fc, type: 3}
+        emotionSound: []
+      - name: Munchies_Sad02
+        sprite: {fileID: 21300000, guid: 820cb6ae034578d41bf191e6edc87b39, type: 3}
+        emotionSound: []
+      - name: Munchies_Sleep
+        sprite: {fileID: 21300000, guid: 42e3784fead6dd64aaa55f6461be690c, type: 3}
+        emotionSound: []
+      - name: Munchies_Dream
+        sprite: {fileID: 21300000, guid: a745409c0ad407841b5450354e78f573, type: 3}
+        emotionSound: []
+    emotion:
+      name: Munchies_Default
+      sprite: {fileID: 21300000, guid: a8fd174d2f5dd1b47848d3428eddafac, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - It's plain to see your down in the dumps.
+    - You got it written all over your face.
+    - Yeah, it's uh, just me here. Everyone else is dealing with the sitch in their
+      own ways.
+    - Tony's off lifting, Ollie decided to count every leaf on a tree, and Kev's...
+    - Well, Kevin's trying his best.
+    - Gavin's still taking the Holy Board for a spin or two.
+    - And for me, well, I'm keeping my mind at ease.
+    - ...
+    - Hey, listen, Champ. I know it ain't easy.
+    - Life is pretty darn good at throwing curveballs your way, I can tell ya that
+      for sure.
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Munchies
+      NamePlate: {fileID: 21300000, guid: 39802ddae9a276549a2675279b27ff4d, type: 3}
+      emotions:
+      - name: Munchies_Annoyed
+        sprite: {fileID: 21300000, guid: e2ee648c734f4974aafc1044fcad1b5a, type: 3}
+        emotionSound: []
+      - name: Munchies_Happy01
+        sprite: {fileID: 21300000, guid: 3c63cac6e6ec3eb4cb44f7842ae56ff7, type: 3}
+        emotionSound: []
+      - name: Munchies_Happy02
+        sprite: {fileID: 21300000, guid: f2fa65aa47c975940aa5aecd27319dc5, type: 3}
+        emotionSound: []
+      - name: Munchies_Default
+        sprite: {fileID: 21300000, guid: a8fd174d2f5dd1b47848d3428eddafac, type: 3}
+        emotionSound: []
+      - name: Munchies_DefaultSmile
+        sprite: {fileID: 21300000, guid: 2156e947ecbb8154da87aeadafa79d2a, type: 3}
+        emotionSound: []
+      - name: Munchies_Sad01
+        sprite: {fileID: 21300000, guid: e0fdc5423bf649d41b20b08ae858b1fc, type: 3}
+        emotionSound: []
+      - name: Munchies_Sad02
+        sprite: {fileID: 21300000, guid: 820cb6ae034578d41bf191e6edc87b39, type: 3}
+        emotionSound: []
+      - name: Munchies_Sleep
+        sprite: {fileID: 21300000, guid: 42e3784fead6dd64aaa55f6461be690c, type: 3}
+        emotionSound: []
+      - name: Munchies_Dream
+        sprite: {fileID: 21300000, guid: a745409c0ad407841b5450354e78f573, type: 3}
+        emotionSound: []
+    emotion:
+      name: Munchies_DefaultSmile
+      sprite: {fileID: 21300000, guid: 2156e947ecbb8154da87aeadafa79d2a, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - We all got our foils in life. Ya know, your opposite.
+    - The whole balance of the universe type beat, ya dig?
+    - The darker the night, the brighter the stars.
+    - Now listen, I ain't calling ol' Gavin 'the darkness', but you catch my drift.
+    - We got our polar opposites in life, and that's ok, ya feel?
+    - 'A magnet can''t exist without a north and south pole: the two opposites livin''
+      under the same canopy.'
+    - ...At least I think that's how mangets work. I've never seen one tbh.
+    - 'But listen here, Champ: We all got our special lil quirks to us, ya feel.'
+    - And one of yours is being the champion of the Holy Board.
+    - I know it might not feel like it right now, but that's your destiny,
+    - The lil quirk of your future.
+    - 'Everybody''s got their destiny lined up for ''em. '
+    - The moment I saw you shreddin' for the first time, I knew that your destiny
+      was to be the greatest skater this jungle's ever seen.
+    - Regardless though, I see Gavin's destiny all laid out.
+    - And I can tell ya he's straying from the path.
+    - You wanna know his destiny?
+    - Can't say...
+    - It'd spoil the next adventure if you catch my drift...
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Munchies
+      NamePlate: {fileID: 21300000, guid: 39802ddae9a276549a2675279b27ff4d, type: 3}
+      emotions:
+      - name: Munchies_Annoyed
+        sprite: {fileID: 21300000, guid: e2ee648c734f4974aafc1044fcad1b5a, type: 3}
+        emotionSound: []
+      - name: Munchies_Happy01
+        sprite: {fileID: 21300000, guid: 3c63cac6e6ec3eb4cb44f7842ae56ff7, type: 3}
+        emotionSound: []
+      - name: Munchies_Happy02
+        sprite: {fileID: 21300000, guid: f2fa65aa47c975940aa5aecd27319dc5, type: 3}
+        emotionSound: []
+      - name: Munchies_Default
+        sprite: {fileID: 21300000, guid: a8fd174d2f5dd1b47848d3428eddafac, type: 3}
+        emotionSound: []
+      - name: Munchies_DefaultSmile
+        sprite: {fileID: 21300000, guid: 2156e947ecbb8154da87aeadafa79d2a, type: 3}
+        emotionSound: []
+      - name: Munchies_Sad01
+        sprite: {fileID: 21300000, guid: e0fdc5423bf649d41b20b08ae858b1fc, type: 3}
+        emotionSound: []
+      - name: Munchies_Sad02
+        sprite: {fileID: 21300000, guid: 820cb6ae034578d41bf191e6edc87b39, type: 3}
+        emotionSound: []
+      - name: Munchies_Sleep
+        sprite: {fileID: 21300000, guid: 42e3784fead6dd64aaa55f6461be690c, type: 3}
+        emotionSound: []
+      - name: Munchies_Dream
+        sprite: {fileID: 21300000, guid: a745409c0ad407841b5450354e78f573, type: 3}
+        emotionSound: []
+    emotion:
+      name: Munchies_Default
+      sprite: {fileID: 21300000, guid: a8fd174d2f5dd1b47848d3428eddafac, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - What was I sayin'?
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Munchies
+      NamePlate: {fileID: 21300000, guid: 39802ddae9a276549a2675279b27ff4d, type: 3}
+      emotions:
+      - name: Munchies_Annoyed
+        sprite: {fileID: 21300000, guid: e2ee648c734f4974aafc1044fcad1b5a, type: 3}
+        emotionSound: []
+      - name: Munchies_Happy01
+        sprite: {fileID: 21300000, guid: 3c63cac6e6ec3eb4cb44f7842ae56ff7, type: 3}
+        emotionSound: []
+      - name: Munchies_Happy02
+        sprite: {fileID: 21300000, guid: f2fa65aa47c975940aa5aecd27319dc5, type: 3}
+        emotionSound: []
+      - name: Munchies_Default
+        sprite: {fileID: 21300000, guid: a8fd174d2f5dd1b47848d3428eddafac, type: 3}
+        emotionSound: []
+      - name: Munchies_DefaultSmile
+        sprite: {fileID: 21300000, guid: 2156e947ecbb8154da87aeadafa79d2a, type: 3}
+        emotionSound: []
+      - name: Munchies_Sad01
+        sprite: {fileID: 21300000, guid: e0fdc5423bf649d41b20b08ae858b1fc, type: 3}
+        emotionSound: []
+      - name: Munchies_Sad02
+        sprite: {fileID: 21300000, guid: 820cb6ae034578d41bf191e6edc87b39, type: 3}
+        emotionSound: []
+      - name: Munchies_Sleep
+        sprite: {fileID: 21300000, guid: 42e3784fead6dd64aaa55f6461be690c, type: 3}
+        emotionSound: []
+      - name: Munchies_Dream
+        sprite: {fileID: 21300000, guid: a745409c0ad407841b5450354e78f573, type: 3}
+        emotionSound: []
+    emotion:
+      name: Munchies_DefaultSmile
+      sprite: {fileID: 21300000, guid: 2156e947ecbb8154da87aeadafa79d2a, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Oh yeah, Gavin's reaching a turn in his destiny, and he's takin' the turn too
+      wide.
+    - But you, you can bring him back.
+    - Pull that feller off the cliff's edge and bring peace back to this jungle,
+      capiche?
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Munchies
+      NamePlate: {fileID: 21300000, guid: 39802ddae9a276549a2675279b27ff4d, type: 3}
+      emotions:
+      - name: Munchies_Annoyed
+        sprite: {fileID: 21300000, guid: e2ee648c734f4974aafc1044fcad1b5a, type: 3}
+        emotionSound: []
+      - name: Munchies_Happy01
+        sprite: {fileID: 21300000, guid: 3c63cac6e6ec3eb4cb44f7842ae56ff7, type: 3}
+        emotionSound: []
+      - name: Munchies_Happy02
+        sprite: {fileID: 21300000, guid: f2fa65aa47c975940aa5aecd27319dc5, type: 3}
+        emotionSound: []
+      - name: Munchies_Default
+        sprite: {fileID: 21300000, guid: a8fd174d2f5dd1b47848d3428eddafac, type: 3}
+        emotionSound: []
+      - name: Munchies_DefaultSmile
+        sprite: {fileID: 21300000, guid: 2156e947ecbb8154da87aeadafa79d2a, type: 3}
+        emotionSound: []
+      - name: Munchies_Sad01
+        sprite: {fileID: 21300000, guid: e0fdc5423bf649d41b20b08ae858b1fc, type: 3}
+        emotionSound: []
+      - name: Munchies_Sad02
+        sprite: {fileID: 21300000, guid: 820cb6ae034578d41bf191e6edc87b39, type: 3}
+        emotionSound: []
+      - name: Munchies_Sleep
+        sprite: {fileID: 21300000, guid: 42e3784fead6dd64aaa55f6461be690c, type: 3}
+        emotionSound: []
+      - name: Munchies_Dream
+        sprite: {fileID: 21300000, guid: a745409c0ad407841b5450354e78f573, type: 3}
+        emotionSound: []
+    emotion:
+      name: Munchies_Happy02
+      sprite: {fileID: 21300000, guid: f2fa65aa47c975940aa5aecd27319dc5, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - She pats you on the back with a wide smile.
+    isMission: 0
+    isNarrator: 1
+  - speakingCharacter:
+      name: Munchies
+      NamePlate: {fileID: 21300000, guid: 39802ddae9a276549a2675279b27ff4d, type: 3}
+      emotions:
+      - name: Munchies_Annoyed
+        sprite: {fileID: 21300000, guid: e2ee648c734f4974aafc1044fcad1b5a, type: 3}
+        emotionSound: []
+      - name: Munchies_Happy01
+        sprite: {fileID: 21300000, guid: 3c63cac6e6ec3eb4cb44f7842ae56ff7, type: 3}
+        emotionSound: []
+      - name: Munchies_Happy02
+        sprite: {fileID: 21300000, guid: f2fa65aa47c975940aa5aecd27319dc5, type: 3}
+        emotionSound: []
+      - name: Munchies_Default
+        sprite: {fileID: 21300000, guid: a8fd174d2f5dd1b47848d3428eddafac, type: 3}
+        emotionSound: []
+      - name: Munchies_DefaultSmile
+        sprite: {fileID: 21300000, guid: 2156e947ecbb8154da87aeadafa79d2a, type: 3}
+        emotionSound: []
+      - name: Munchies_Sad01
+        sprite: {fileID: 21300000, guid: e0fdc5423bf649d41b20b08ae858b1fc, type: 3}
+        emotionSound: []
+      - name: Munchies_Sad02
+        sprite: {fileID: 21300000, guid: 820cb6ae034578d41bf191e6edc87b39, type: 3}
+        emotionSound: []
+      - name: Munchies_Sleep
+        sprite: {fileID: 21300000, guid: 42e3784fead6dd64aaa55f6461be690c, type: 3}
+        emotionSound: []
+      - name: Munchies_Dream
+        sprite: {fileID: 21300000, guid: a745409c0ad407841b5450354e78f573, type: 3}
+        emotionSound: []
+    emotion:
+      name: Munchies_Happy01
+      sprite: {fileID: 21300000, guid: 3c63cac6e6ec3eb4cb44f7842ae56ff7, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - You're the Champion after all.
+    - One in a Gorillion!
+    - That board didn't choose just anybody.
+    - It chose YOU.
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Munchies
+      NamePlate: {fileID: 21300000, guid: 39802ddae9a276549a2675279b27ff4d, type: 3}
+      emotions:
+      - name: Munchies_Annoyed
+        sprite: {fileID: 21300000, guid: e2ee648c734f4974aafc1044fcad1b5a, type: 3}
+        emotionSound: []
+      - name: Munchies_Happy01
+        sprite: {fileID: 21300000, guid: 3c63cac6e6ec3eb4cb44f7842ae56ff7, type: 3}
+        emotionSound: []
+      - name: Munchies_Happy02
+        sprite: {fileID: 21300000, guid: f2fa65aa47c975940aa5aecd27319dc5, type: 3}
+        emotionSound: []
+      - name: Munchies_Default
+        sprite: {fileID: 21300000, guid: a8fd174d2f5dd1b47848d3428eddafac, type: 3}
+        emotionSound: []
+      - name: Munchies_DefaultSmile
+        sprite: {fileID: 21300000, guid: 2156e947ecbb8154da87aeadafa79d2a, type: 3}
+        emotionSound: []
+      - name: Munchies_Sad01
+        sprite: {fileID: 21300000, guid: e0fdc5423bf649d41b20b08ae858b1fc, type: 3}
+        emotionSound: []
+      - name: Munchies_Sad02
+        sprite: {fileID: 21300000, guid: 820cb6ae034578d41bf191e6edc87b39, type: 3}
+        emotionSound: []
+      - name: Munchies_Sleep
+        sprite: {fileID: 21300000, guid: 42e3784fead6dd64aaa55f6461be690c, type: 3}
+        emotionSound: []
+      - name: Munchies_Dream
+        sprite: {fileID: 21300000, guid: a745409c0ad407841b5450354e78f573, type: 3}
+        emotionSound: []
+    emotion:
+      name: Munchies_DefaultSmile
+      sprite: {fileID: 21300000, guid: 2156e947ecbb8154da87aeadafa79d2a, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - I know this is a big ask to save Gavin from himself,
+    - 'but I got a lil something that might make your duty a smidge bit easier:'
+    - It's the board I made myself.
+    - I, uh, hadn't used it cause the time never felt right.
+    - But now this board's callin' out for its purpose.
+    - It's calling out to give you a second chance.
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Munchies
+      NamePlate: {fileID: 21300000, guid: 39802ddae9a276549a2675279b27ff4d, type: 3}
+      emotions:
+      - name: Munchies_Annoyed
+        sprite: {fileID: 21300000, guid: e2ee648c734f4974aafc1044fcad1b5a, type: 3}
+        emotionSound: []
+      - name: Munchies_Happy01
+        sprite: {fileID: 21300000, guid: 3c63cac6e6ec3eb4cb44f7842ae56ff7, type: 3}
+        emotionSound: []
+      - name: Munchies_Happy02
+        sprite: {fileID: 21300000, guid: f2fa65aa47c975940aa5aecd27319dc5, type: 3}
+        emotionSound: []
+      - name: Munchies_Default
+        sprite: {fileID: 21300000, guid: a8fd174d2f5dd1b47848d3428eddafac, type: 3}
+        emotionSound: []
+      - name: Munchies_DefaultSmile
+        sprite: {fileID: 21300000, guid: 2156e947ecbb8154da87aeadafa79d2a, type: 3}
+        emotionSound: []
+      - name: Munchies_Sad01
+        sprite: {fileID: 21300000, guid: e0fdc5423bf649d41b20b08ae858b1fc, type: 3}
+        emotionSound: []
+      - name: Munchies_Sad02
+        sprite: {fileID: 21300000, guid: 820cb6ae034578d41bf191e6edc87b39, type: 3}
+        emotionSound: []
+      - name: Munchies_Sleep
+        sprite: {fileID: 21300000, guid: 42e3784fead6dd64aaa55f6461be690c, type: 3}
+        emotionSound: []
+      - name: Munchies_Dream
+        sprite: {fileID: 21300000, guid: a745409c0ad407841b5450354e78f573, type: 3}
+        emotionSound: []
+    emotion:
+      name: Munchies_Happy01
+      sprite: {fileID: 21300000, guid: 3c63cac6e6ec3eb4cb44f7842ae56ff7, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - I've been rambling for long enough.
+    - Champ, go out there, set this jungle straight, and save Gavin.
+    - May the midday's breeze bring you determination to thrash like you hever have
+      before.
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Munchies
+      NamePlate: {fileID: 21300000, guid: 39802ddae9a276549a2675279b27ff4d, type: 3}
+      emotions:
+      - name: Munchies_Annoyed
+        sprite: {fileID: 21300000, guid: e2ee648c734f4974aafc1044fcad1b5a, type: 3}
+        emotionSound: []
+      - name: Munchies_Happy01
+        sprite: {fileID: 21300000, guid: 3c63cac6e6ec3eb4cb44f7842ae56ff7, type: 3}
+        emotionSound: []
+      - name: Munchies_Happy02
+        sprite: {fileID: 21300000, guid: f2fa65aa47c975940aa5aecd27319dc5, type: 3}
+        emotionSound: []
+      - name: Munchies_Default
+        sprite: {fileID: 21300000, guid: a8fd174d2f5dd1b47848d3428eddafac, type: 3}
+        emotionSound: []
+      - name: Munchies_DefaultSmile
+        sprite: {fileID: 21300000, guid: 2156e947ecbb8154da87aeadafa79d2a, type: 3}
+        emotionSound: []
+      - name: Munchies_Sad01
+        sprite: {fileID: 21300000, guid: e0fdc5423bf649d41b20b08ae858b1fc, type: 3}
+        emotionSound: []
+      - name: Munchies_Sad02
+        sprite: {fileID: 21300000, guid: 820cb6ae034578d41bf191e6edc87b39, type: 3}
+        emotionSound: []
+      - name: Munchies_Sleep
+        sprite: {fileID: 21300000, guid: 42e3784fead6dd64aaa55f6461be690c, type: 3}
+        emotionSound: []
+      - name: Munchies_Dream
+        sprite: {fileID: 21300000, guid: a745409c0ad407841b5450354e78f573, type: 3}
+        emotionSound: []
+    emotion:
+      name: Munchies_Happy02
+      sprite: {fileID: 21300000, guid: f2fa65aa47c975940aa5aecd27319dc5, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Travel a distance of 1000 in one run.
+    isMission: 1
+    isNarrator: 1
