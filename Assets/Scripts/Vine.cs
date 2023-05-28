@@ -4,5 +4,13 @@ using UnityEngine;
 
 public class Vine : MonoBehaviour
 {
-    public float TiltDegreesPerSecond = 20;
+    public float TiltDegreesPerSecond = 90;
+
+    public static void OnPlayerOnVine() {
+        print("Player on vine");
+    }
+    
+    public static void OnPlayerOffVine() {
+        print("Player off vine");
+    }
 }
