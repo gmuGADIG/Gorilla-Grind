@@ -1,0 +1,629 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c560f868b549d48acca607a9787604, type: 3}
+  m_Name: Meeting_8_TonyLLC
+  m_EditorClassIdentifier: 
+  characterDatabase: {fileID: 11400000, guid: 5ff5001a917067e499d10df040f92b30, type: 2}
+  dialogueFrames:
+  - speakingCharacter:
+      name: Tony Squawk
+      NamePlate: {fileID: 21300000, guid: 5f244d4de1f857642a0e37b91e1879ba, type: 3}
+      emotions:
+      - name: Tony_Angry
+        sprite: {fileID: 21300000, guid: de595620d5a9c8f4091d0a02a461099e, type: 3}
+        emotionSound: []
+      - name: Tony_Happy
+        sprite: {fileID: 21300000, guid: 02fe14cff5fb462459bb266a969d66e0, type: 3}
+        emotionSound: []
+      - name: Tony_Lift
+        sprite: {fileID: 21300000, guid: 21574625b98802a47807d03f9fb92a65, type: 3}
+        emotionSound: []
+      - name: Tony_Default
+        sprite: {fileID: 21300000, guid: b5d170961a7739f4e8d15add6ba2585b, type: 3}
+        emotionSound: []
+      - name: Tony_Pog
+        sprite: {fileID: 21300000, guid: d070cda86eb94f543a3a0427acaec384, type: 3}
+        emotionSound: []
+      - name: Tony_Prose
+        sprite: {fileID: 21300000, guid: d765caf10672fb44e8031e2ae32a4bd2, type: 3}
+        emotionSound: []
+      - name: Tony_Sad
+        sprite: {fileID: 21300000, guid: fcc05e653ae36f64ab2ea50f3db14617, type: 3}
+        emotionSound: []
+      - name: Tony_Dream
+        sprite: {fileID: 21300000, guid: 70d42313ff0313b42982a8c8914a1dfe, type: 3}
+        emotionSound: []
+    emotion:
+      name: Tony_Happy
+      sprite: {fileID: 21300000, guid: 02fe14cff5fb462459bb266a969d66e0, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Yo, Champ. My gnarly new LLc is up and runnin, and I need uber 'nanas to...
+    - PUMP!
+    - IT!
+    - UP!
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Kevin
+      NamePlate: {fileID: 21300000, guid: 9fb302f050000f84c88960293e94e145, type: 3}
+      emotions:
+      - name: Kevin_Annoyed
+        sprite: {fileID: 21300000, guid: ea882bf250f7c6b4dbfa133d8e45a369, type: 3}
+        emotionSound: []
+      - name: Kevin_Default
+        sprite: {fileID: 21300000, guid: 10a66e3d206e8fd4e979583fef16dc82, type: 3}
+        emotionSound: []
+      - name: Kevin_Excited
+        sprite: {fileID: 21300000, guid: 16a3c522f645dd64285a64480f03b842, type: 3}
+        emotionSound: []
+      - name: Kevin_Pog
+        sprite: {fileID: 21300000, guid: c8a5b77c617b83843a2b60e78c91f118, type: 3}
+        emotionSound: []
+      - name: Kevin_ReallyMad
+        sprite: {fileID: 21300000, guid: d5d1c880fbd3646409565f44210115cf, type: 3}
+        emotionSound: []
+      - name: Kevin_Uwu
+        sprite: {fileID: 21300000, guid: 41cefbf5e50af0c41a01832052ba1428, type: 3}
+        emotionSound: []
+      - name: Kevin_Dream
+        sprite: {fileID: 21300000, guid: 313def6d62debc04fa30f261851e33e6, type: 3}
+        emotionSound: []
+    emotion:
+      name: Kevin_Annoyed
+      sprite: {fileID: 21300000, guid: ea882bf250f7c6b4dbfa133d8e45a369, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Tony, do you even know-
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Gavin
+      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
+      emotions:
+      - name: Gavin_Angry
+        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
+        emotionSound: []
+      - name: Gavin_Begrudging
+        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
+        emotionSound: []
+      - name: Gavin_Default
+        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+        emotionSound: []
+      - name: Gavin_HoldingBoard
+        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
+        emotionSound: []
+      - name: Gavin_Dream
+        sprite: {fileID: 21300000, guid: ec343c57143af064ca7cd73082e194a8, type: 3}
+        emotionSound: []
+    emotion:
+      name: Gavin_Default
+      sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Tony Squawk! THE SQUAWKINATOR!
+    - Why associate your totally tubular LLC with these fruit booters when you can
+      get the almighty Gavin to invest?
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Kevin
+      NamePlate: {fileID: 21300000, guid: 9fb302f050000f84c88960293e94e145, type: 3}
+      emotions:
+      - name: Kevin_Annoyed
+        sprite: {fileID: 21300000, guid: ea882bf250f7c6b4dbfa133d8e45a369, type: 3}
+        emotionSound: []
+      - name: Kevin_Default
+        sprite: {fileID: 21300000, guid: 10a66e3d206e8fd4e979583fef16dc82, type: 3}
+        emotionSound: []
+      - name: Kevin_Excited
+        sprite: {fileID: 21300000, guid: 16a3c522f645dd64285a64480f03b842, type: 3}
+        emotionSound: []
+      - name: Kevin_Pog
+        sprite: {fileID: 21300000, guid: c8a5b77c617b83843a2b60e78c91f118, type: 3}
+        emotionSound: []
+      - name: Kevin_ReallyMad
+        sprite: {fileID: 21300000, guid: d5d1c880fbd3646409565f44210115cf, type: 3}
+        emotionSound: []
+      - name: Kevin_Uwu
+        sprite: {fileID: 21300000, guid: 41cefbf5e50af0c41a01832052ba1428, type: 3}
+        emotionSound: []
+      - name: Kevin_Dream
+        sprite: {fileID: 21300000, guid: 313def6d62debc04fa30f261851e33e6, type: 3}
+        emotionSound: []
+    emotion:
+      name: Kevin_Annoyed
+      sprite: {fileID: 21300000, guid: ea882bf250f7c6b4dbfa133d8e45a369, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Yo, Tony. What do you even sell, dawg?
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Tony Squawk
+      NamePlate: {fileID: 21300000, guid: 5f244d4de1f857642a0e37b91e1879ba, type: 3}
+      emotions:
+      - name: Tony_Angry
+        sprite: {fileID: 21300000, guid: de595620d5a9c8f4091d0a02a461099e, type: 3}
+        emotionSound: []
+      - name: Tony_Happy
+        sprite: {fileID: 21300000, guid: 02fe14cff5fb462459bb266a969d66e0, type: 3}
+        emotionSound: []
+      - name: Tony_Lift
+        sprite: {fileID: 21300000, guid: 21574625b98802a47807d03f9fb92a65, type: 3}
+        emotionSound: []
+      - name: Tony_Default
+        sprite: {fileID: 21300000, guid: b5d170961a7739f4e8d15add6ba2585b, type: 3}
+        emotionSound: []
+      - name: Tony_Pog
+        sprite: {fileID: 21300000, guid: d070cda86eb94f543a3a0427acaec384, type: 3}
+        emotionSound: []
+      - name: Tony_Prose
+        sprite: {fileID: 21300000, guid: d765caf10672fb44e8031e2ae32a4bd2, type: 3}
+        emotionSound: []
+      - name: Tony_Sad
+        sprite: {fileID: 21300000, guid: fcc05e653ae36f64ab2ea50f3db14617, type: 3}
+        emotionSound: []
+      - name: Tony_Dream
+        sprite: {fileID: 21300000, guid: 70d42313ff0313b42982a8c8914a1dfe, type: 3}
+        emotionSound: []
+    emotion:
+      name: Tony_Happy
+      sprite: {fileID: 21300000, guid: 02fe14cff5fb462459bb266a969d66e0, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - I'm stoked you asked, brotherly dude.
+    - Here at Tony Squawk LLC, we pump iron! Check this my homie-sapien...
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Tony Squawk
+      NamePlate: {fileID: 21300000, guid: 5f244d4de1f857642a0e37b91e1879ba, type: 3}
+      emotions:
+      - name: Tony_Angry
+        sprite: {fileID: 21300000, guid: de595620d5a9c8f4091d0a02a461099e, type: 3}
+        emotionSound: []
+      - name: Tony_Happy
+        sprite: {fileID: 21300000, guid: 02fe14cff5fb462459bb266a969d66e0, type: 3}
+        emotionSound: []
+      - name: Tony_Lift
+        sprite: {fileID: 21300000, guid: 21574625b98802a47807d03f9fb92a65, type: 3}
+        emotionSound: []
+      - name: Tony_Default
+        sprite: {fileID: 21300000, guid: b5d170961a7739f4e8d15add6ba2585b, type: 3}
+        emotionSound: []
+      - name: Tony_Pog
+        sprite: {fileID: 21300000, guid: d070cda86eb94f543a3a0427acaec384, type: 3}
+        emotionSound: []
+      - name: Tony_Prose
+        sprite: {fileID: 21300000, guid: d765caf10672fb44e8031e2ae32a4bd2, type: 3}
+        emotionSound: []
+      - name: Tony_Sad
+        sprite: {fileID: 21300000, guid: fcc05e653ae36f64ab2ea50f3db14617, type: 3}
+        emotionSound: []
+      - name: Tony_Dream
+        sprite: {fileID: 21300000, guid: 70d42313ff0313b42982a8c8914a1dfe, type: 3}
+        emotionSound: []
+    emotion:
+      name: Tony_Lift
+      sprite: {fileID: 21300000, guid: 21574625b98802a47807d03f9fb92a65, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Tony pulls out a dumbbell and starts lifting.
+    isMission: 0
+    isNarrator: 1
+  - speakingCharacter:
+      name: Kevin
+      NamePlate: {fileID: 21300000, guid: 9fb302f050000f84c88960293e94e145, type: 3}
+      emotions:
+      - name: Kevin_Annoyed
+        sprite: {fileID: 21300000, guid: ea882bf250f7c6b4dbfa133d8e45a369, type: 3}
+        emotionSound: []
+      - name: Kevin_Default
+        sprite: {fileID: 21300000, guid: 10a66e3d206e8fd4e979583fef16dc82, type: 3}
+        emotionSound: []
+      - name: Kevin_Excited
+        sprite: {fileID: 21300000, guid: 16a3c522f645dd64285a64480f03b842, type: 3}
+        emotionSound: []
+      - name: Kevin_Pog
+        sprite: {fileID: 21300000, guid: c8a5b77c617b83843a2b60e78c91f118, type: 3}
+        emotionSound: []
+      - name: Kevin_ReallyMad
+        sprite: {fileID: 21300000, guid: d5d1c880fbd3646409565f44210115cf, type: 3}
+        emotionSound: []
+      - name: Kevin_Uwu
+        sprite: {fileID: 21300000, guid: 41cefbf5e50af0c41a01832052ba1428, type: 3}
+        emotionSound: []
+      - name: Kevin_Dream
+        sprite: {fileID: 21300000, guid: 313def6d62debc04fa30f261851e33e6, type: 3}
+        emotionSound: []
+    emotion:
+      name: Kevin_Annoyed
+      sprite: {fileID: 21300000, guid: ea882bf250f7c6b4dbfa133d8e45a369, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Tony, this whole LLC thing doesn't seem like a good idea.
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Tony Squawk
+      NamePlate: {fileID: 21300000, guid: 5f244d4de1f857642a0e37b91e1879ba, type: 3}
+      emotions:
+      - name: Tony_Angry
+        sprite: {fileID: 21300000, guid: de595620d5a9c8f4091d0a02a461099e, type: 3}
+        emotionSound: []
+      - name: Tony_Happy
+        sprite: {fileID: 21300000, guid: 02fe14cff5fb462459bb266a969d66e0, type: 3}
+        emotionSound: []
+      - name: Tony_Lift
+        sprite: {fileID: 21300000, guid: 21574625b98802a47807d03f9fb92a65, type: 3}
+        emotionSound: []
+      - name: Tony_Default
+        sprite: {fileID: 21300000, guid: b5d170961a7739f4e8d15add6ba2585b, type: 3}
+        emotionSound: []
+      - name: Tony_Pog
+        sprite: {fileID: 21300000, guid: d070cda86eb94f543a3a0427acaec384, type: 3}
+        emotionSound: []
+      - name: Tony_Prose
+        sprite: {fileID: 21300000, guid: d765caf10672fb44e8031e2ae32a4bd2, type: 3}
+        emotionSound: []
+      - name: Tony_Sad
+        sprite: {fileID: 21300000, guid: fcc05e653ae36f64ab2ea50f3db14617, type: 3}
+        emotionSound: []
+      - name: Tony_Dream
+        sprite: {fileID: 21300000, guid: 70d42313ff0313b42982a8c8914a1dfe, type: 3}
+        emotionSound: []
+    emotion:
+      name: Tony_Pog
+      sprite: {fileID: 21300000, guid: d070cda86eb94f543a3a0427acaec384, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Blasphemy!
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Gavin
+      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
+      emotions:
+      - name: Gavin_Angry
+        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
+        emotionSound: []
+      - name: Gavin_Begrudging
+        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
+        emotionSound: []
+      - name: Gavin_Default
+        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+        emotionSound: []
+      - name: Gavin_HoldingBoard
+        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
+        emotionSound: []
+      - name: Gavin_Dream
+        sprite: {fileID: 21300000, guid: ec343c57143af064ca7cd73082e194a8, type: 3}
+        emotionSound: []
+    emotion:
+      name: Gavin_Begrudging
+      sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Chill out, brocacho. You always hype up the Champ but hate on an entrepreneur
+      like the Squawkinator when he tries to get his 'nanas up.
+    - You must be kick-flipping it with Munchies too much cause all that potassium
+      is going to your head.
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Tony Squawk
+      NamePlate: {fileID: 21300000, guid: 5f244d4de1f857642a0e37b91e1879ba, type: 3}
+      emotions:
+      - name: Tony_Angry
+        sprite: {fileID: 21300000, guid: de595620d5a9c8f4091d0a02a461099e, type: 3}
+        emotionSound: []
+      - name: Tony_Happy
+        sprite: {fileID: 21300000, guid: 02fe14cff5fb462459bb266a969d66e0, type: 3}
+        emotionSound: []
+      - name: Tony_Lift
+        sprite: {fileID: 21300000, guid: 21574625b98802a47807d03f9fb92a65, type: 3}
+        emotionSound: []
+      - name: Tony_Default
+        sprite: {fileID: 21300000, guid: b5d170961a7739f4e8d15add6ba2585b, type: 3}
+        emotionSound: []
+      - name: Tony_Pog
+        sprite: {fileID: 21300000, guid: d070cda86eb94f543a3a0427acaec384, type: 3}
+        emotionSound: []
+      - name: Tony_Prose
+        sprite: {fileID: 21300000, guid: d765caf10672fb44e8031e2ae32a4bd2, type: 3}
+        emotionSound: []
+      - name: Tony_Sad
+        sprite: {fileID: 21300000, guid: fcc05e653ae36f64ab2ea50f3db14617, type: 3}
+        emotionSound: []
+      - name: Tony_Dream
+        sprite: {fileID: 21300000, guid: 70d42313ff0313b42982a8c8914a1dfe, type: 3}
+        emotionSound: []
+    emotion:
+      name: Tony_Prose
+      sprite: {fileID: 21300000, guid: d765caf10672fb44e8031e2ae32a4bd2, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Indubiously!
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Kevin
+      NamePlate: {fileID: 21300000, guid: 9fb302f050000f84c88960293e94e145, type: 3}
+      emotions:
+      - name: Kevin_Annoyed
+        sprite: {fileID: 21300000, guid: ea882bf250f7c6b4dbfa133d8e45a369, type: 3}
+        emotionSound: []
+      - name: Kevin_Default
+        sprite: {fileID: 21300000, guid: 10a66e3d206e8fd4e979583fef16dc82, type: 3}
+        emotionSound: []
+      - name: Kevin_Excited
+        sprite: {fileID: 21300000, guid: 16a3c522f645dd64285a64480f03b842, type: 3}
+        emotionSound: []
+      - name: Kevin_Pog
+        sprite: {fileID: 21300000, guid: c8a5b77c617b83843a2b60e78c91f118, type: 3}
+        emotionSound: []
+      - name: Kevin_ReallyMad
+        sprite: {fileID: 21300000, guid: d5d1c880fbd3646409565f44210115cf, type: 3}
+        emotionSound: []
+      - name: Kevin_Uwu
+        sprite: {fileID: 21300000, guid: 41cefbf5e50af0c41a01832052ba1428, type: 3}
+        emotionSound: []
+      - name: Kevin_Dream
+        sprite: {fileID: 21300000, guid: 313def6d62debc04fa30f261851e33e6, type: 3}
+        emotionSound: []
+    emotion:
+      name: Kevin_ReallyMad
+      sprite: {fileID: 21300000, guid: d5d1c880fbd3646409565f44210115cf, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Gavin, dawg. You're never this nice to someone. You're just fakin' the funk
+      to steal Tony's shine.
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Gavin
+      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
+      emotions:
+      - name: Gavin_Angry
+        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
+        emotionSound: []
+      - name: Gavin_Begrudging
+        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
+        emotionSound: []
+      - name: Gavin_Default
+        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+        emotionSound: []
+      - name: Gavin_HoldingBoard
+        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
+        emotionSound: []
+      - name: Gavin_Dream
+        sprite: {fileID: 21300000, guid: ec343c57143af064ca7cd73082e194a8, type: 3}
+        emotionSound: []
+    emotion:
+      name: Gavin_Default
+      sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - You're just too buried in your brain bucket to see the gnarliness of this LLC,
+      lil bro.
+    - Maybe if you tried to run a business like me, you would actually have some
+      bananas to your name.
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Tony Squawk
+      NamePlate: {fileID: 21300000, guid: 5f244d4de1f857642a0e37b91e1879ba, type: 3}
+      emotions:
+      - name: Tony_Angry
+        sprite: {fileID: 21300000, guid: de595620d5a9c8f4091d0a02a461099e, type: 3}
+        emotionSound: []
+      - name: Tony_Happy
+        sprite: {fileID: 21300000, guid: 02fe14cff5fb462459bb266a969d66e0, type: 3}
+        emotionSound: []
+      - name: Tony_Lift
+        sprite: {fileID: 21300000, guid: 21574625b98802a47807d03f9fb92a65, type: 3}
+        emotionSound: []
+      - name: Tony_Default
+        sprite: {fileID: 21300000, guid: b5d170961a7739f4e8d15add6ba2585b, type: 3}
+        emotionSound: []
+      - name: Tony_Pog
+        sprite: {fileID: 21300000, guid: d070cda86eb94f543a3a0427acaec384, type: 3}
+        emotionSound: []
+      - name: Tony_Prose
+        sprite: {fileID: 21300000, guid: d765caf10672fb44e8031e2ae32a4bd2, type: 3}
+        emotionSound: []
+      - name: Tony_Sad
+        sprite: {fileID: 21300000, guid: fcc05e653ae36f64ab2ea50f3db14617, type: 3}
+        emotionSound: []
+      - name: Tony_Dream
+        sprite: {fileID: 21300000, guid: 70d42313ff0313b42982a8c8914a1dfe, type: 3}
+        emotionSound: []
+    emotion:
+      name: Tony_Happy
+      sprite: {fileID: 21300000, guid: 02fe14cff5fb462459bb266a969d66e0, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Phew... that was a gnarly pump.
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Kevin
+      NamePlate: {fileID: 21300000, guid: 9fb302f050000f84c88960293e94e145, type: 3}
+      emotions:
+      - name: Kevin_Annoyed
+        sprite: {fileID: 21300000, guid: ea882bf250f7c6b4dbfa133d8e45a369, type: 3}
+        emotionSound: []
+      - name: Kevin_Default
+        sprite: {fileID: 21300000, guid: 10a66e3d206e8fd4e979583fef16dc82, type: 3}
+        emotionSound: []
+      - name: Kevin_Excited
+        sprite: {fileID: 21300000, guid: 16a3c522f645dd64285a64480f03b842, type: 3}
+        emotionSound: []
+      - name: Kevin_Pog
+        sprite: {fileID: 21300000, guid: c8a5b77c617b83843a2b60e78c91f118, type: 3}
+        emotionSound: []
+      - name: Kevin_ReallyMad
+        sprite: {fileID: 21300000, guid: d5d1c880fbd3646409565f44210115cf, type: 3}
+        emotionSound: []
+      - name: Kevin_Uwu
+        sprite: {fileID: 21300000, guid: 41cefbf5e50af0c41a01832052ba1428, type: 3}
+        emotionSound: []
+      - name: Kevin_Dream
+        sprite: {fileID: 21300000, guid: 313def6d62debc04fa30f261851e33e6, type: 3}
+        emotionSound: []
+    emotion:
+      name: Kevin_Annoyed
+      sprite: {fileID: 21300000, guid: ea882bf250f7c6b4dbfa133d8e45a369, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Nuh-uh, I bet the kick in my flip that I have more bananas than you!
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Gavin
+      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
+      emotions:
+      - name: Gavin_Angry
+        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
+        emotionSound: []
+      - name: Gavin_Begrudging
+        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
+        emotionSound: []
+      - name: Gavin_Default
+        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
+        emotionSound: []
+      - name: Gavin_HoldingBoard
+        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
+        emotionSound: []
+      - name: Gavin_Dream
+        sprite: {fileID: 21300000, guid: ec343c57143af064ca7cd73082e194a8, type: 3}
+        emotionSound: []
+    emotion:
+      name: Gavin_Angry
+      sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - And I bet the grind in my lord they're all plantains, you poser!
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Tony Squawk
+      NamePlate: {fileID: 21300000, guid: 5f244d4de1f857642a0e37b91e1879ba, type: 3}
+      emotions:
+      - name: Tony_Angry
+        sprite: {fileID: 21300000, guid: de595620d5a9c8f4091d0a02a461099e, type: 3}
+        emotionSound: []
+      - name: Tony_Happy
+        sprite: {fileID: 21300000, guid: 02fe14cff5fb462459bb266a969d66e0, type: 3}
+        emotionSound: []
+      - name: Tony_Lift
+        sprite: {fileID: 21300000, guid: 21574625b98802a47807d03f9fb92a65, type: 3}
+        emotionSound: []
+      - name: Tony_Default
+        sprite: {fileID: 21300000, guid: b5d170961a7739f4e8d15add6ba2585b, type: 3}
+        emotionSound: []
+      - name: Tony_Pog
+        sprite: {fileID: 21300000, guid: d070cda86eb94f543a3a0427acaec384, type: 3}
+        emotionSound: []
+      - name: Tony_Prose
+        sprite: {fileID: 21300000, guid: d765caf10672fb44e8031e2ae32a4bd2, type: 3}
+        emotionSound: []
+      - name: Tony_Sad
+        sprite: {fileID: 21300000, guid: fcc05e653ae36f64ab2ea50f3db14617, type: 3}
+        emotionSound: []
+      - name: Tony_Dream
+        sprite: {fileID: 21300000, guid: 70d42313ff0313b42982a8c8914a1dfe, type: 3}
+        emotionSound: []
+    emotion:
+      name: Tony_Default
+      sprite: {fileID: 21300000, guid: b5d170961a7739f4e8d15add6ba2585b, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Listen Champ, I don't know what these bozos are arguing about,
+    - but I need your help to get this LLC off the ground.
+    - If you come across some extra 'nanas, why don't you help a homie out?
+    - I got a radical new board for you to gonk on goofy town if you decide to spare
+      your winged homie a wing...
+    - or hand for you, I guess.
+    isMission: 0
+    isNarrator: 0
+  - speakingCharacter:
+      name: Tony Squawk
+      NamePlate: {fileID: 21300000, guid: 5f244d4de1f857642a0e37b91e1879ba, type: 3}
+      emotions:
+      - name: Tony_Angry
+        sprite: {fileID: 21300000, guid: de595620d5a9c8f4091d0a02a461099e, type: 3}
+        emotionSound: []
+      - name: Tony_Happy
+        sprite: {fileID: 21300000, guid: 02fe14cff5fb462459bb266a969d66e0, type: 3}
+        emotionSound: []
+      - name: Tony_Lift
+        sprite: {fileID: 21300000, guid: 21574625b98802a47807d03f9fb92a65, type: 3}
+        emotionSound: []
+      - name: Tony_Default
+        sprite: {fileID: 21300000, guid: b5d170961a7739f4e8d15add6ba2585b, type: 3}
+        emotionSound: []
+      - name: Tony_Pog
+        sprite: {fileID: 21300000, guid: d070cda86eb94f543a3a0427acaec384, type: 3}
+        emotionSound: []
+      - name: Tony_Prose
+        sprite: {fileID: 21300000, guid: d765caf10672fb44e8031e2ae32a4bd2, type: 3}
+        emotionSound: []
+      - name: Tony_Sad
+        sprite: {fileID: 21300000, guid: fcc05e653ae36f64ab2ea50f3db14617, type: 3}
+        emotionSound: []
+      - name: Tony_Dream
+        sprite: {fileID: 21300000, guid: 70d42313ff0313b42982a8c8914a1dfe, type: 3}
+        emotionSound: []
+    emotion:
+      name: Tony_Happy
+      sprite: {fileID: 21300000, guid: 02fe14cff5fb462459bb266a969d66e0, type: 3}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - Collect 100 bananas in one run.
+    isMission: 1
+    isNarrator: 1
