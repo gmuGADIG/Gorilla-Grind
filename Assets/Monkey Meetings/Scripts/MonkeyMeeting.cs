@@ -11,7 +11,7 @@ public class MonkeyMeeting : MonoBehaviour
     public Transform charactersParentObject;
     public Transform highlightImage;
     [SerializeField] MonkeyMeetingDialogue meetingDialogue;
-    public float textSpeed = 0.1f;
+    public float textSpeed = 0.033f;
     //public AudioSource typingSound;
     //public AudioSource monkeySoundSource;
     public int soundCharChange = 4;
@@ -61,10 +61,13 @@ public class MonkeyMeeting : MonoBehaviour
         // set those characters' sprites active
         for (int i = 0; i < characterNames.Count; i++)
         {
-            Transform character = GetSceneCharacter(characterNames[i]).GetChild(0);
-            if (character != null)
+            if (characterNames[i] != "None")
             {
-                character.gameObject.SetActive(true);
+                Transform character = GetSceneCharacter(characterNames[i]).GetChild(0);
+                if (character != null)
+                {
+                    character.gameObject.SetActive(true);
+                }
             }
         }
     }
@@ -143,20 +146,21 @@ public class MonkeyMeeting : MonoBehaviour
             //AddMissionToListFromDescription(currentDialogueLines[currentDialogueLines.Length-1]);
         }
 
-        // set speaking character's emotion
-        Image characterSprite = GetSceneCharacter(dialogueFrame.speakingCharacter.name).GetChild(0).GetComponent<Image>();
-        if (characterSprite != null)
+        if (dialogueFrame.isNarrator || dialogueFrame.isPlayerCharacter)
         {
-            characterSprite.sprite = dialogueFrame.emotion.sprite;
-        }
-        SetCharacterHighlight(dialogueFrame);
-
-        if (dialogueFrame.isNarrator)
-        {
-            nameImage.sprite = null;
+            nameImage.gameObject.SetActive(false);
         }
         else
         {
+            nameImage.gameObject.SetActive(true);
+            // set speaking character's emotion
+            Image characterSprite = GetSceneCharacter(dialogueFrame.speakingCharacter.name).GetChild(0).GetComponent<Image>();
+            if (characterSprite != null)
+            {
+                characterSprite.sprite = dialogueFrame.emotion.sprite;
+            }
+            SetCharacterHighlight(dialogueFrame);
+
             Emotion emotion = GetSelectedEmotion(dialogueFrame);
             if (emotion != null)
             {

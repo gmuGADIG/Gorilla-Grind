@@ -40,6 +40,7 @@ MonoBehaviour:
     - Line 01
     isMission: 0
     isNarrator: 0
+    isPlayerCharacter: 0
   - speakingCharacter:
       name: Munchies
       NamePlate: {fileID: 21300000, guid: 39802ddae9a276549a2675279b27ff4d, type: 3}
@@ -79,6 +80,7 @@ MonoBehaviour:
     - Line 03
     isMission: 0
     isNarrator: 0
+    isPlayerCharacter: 0
   - speakingCharacter:
       name: Gavin
       NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
@@ -106,3 +108,23 @@ MonoBehaviour:
     - Line 05
     isMission: 0
     isNarrator: 0
+    isPlayerCharacter: 0
+  - speakingCharacter:
+      name: None
+      NamePlate: {fileID: 0}
+      emotions:
+      - name: None
+        sprite: {fileID: 0}
+        emotionSound: []
+    emotion:
+      name: None
+      sprite: {fileID: 0}
+      emotionSound: []
+    myIndex: 0
+    emotions: []
+    dialogueLines:
+    - ...
+    - ...
+    isMission: 0
+    isNarrator: 0
+    isPlayerCharacter: 1
