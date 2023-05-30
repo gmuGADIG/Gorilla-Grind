@@ -183,6 +183,7 @@ public class MonkeyMeeting : MonoBehaviour
     {
         currentLineText = "";
         isTextCurrentlyAnimating = true;
+        int characterSoundID = SoundManager.Instance.GetSoundID(dialogueFrame.speakingCharacter.characterSoundName);
 
         yield return new WaitForEndOfFrame();
 
@@ -196,10 +197,12 @@ public class MonkeyMeeting : MonoBehaviour
             dialogueText.text = currentLineText;
             characterCount++;
 
-            if (characterCount % soundCharChange == 0 && emotion != null)
+            // play character sound
+            if (!dialogueFrame.isNarrator && !dialogueFrame.isPlayerCharacter && characterCount % soundCharChange == 0 && emotion != null)
             {
                 //monkeySoundSource.Stop(); // Stop any previous monkey sound
-                PlayRandomMonkeySound(emotion); // Play a new random monkey sound
+                //PlayRandomMonkeySound(emotion); // Play a new random monkey sound
+                SoundManager.Instance.PlaySoundGlobal(characterSoundID);
             }
 
             yield return new WaitForSeconds(textSpeed);
@@ -211,18 +214,18 @@ public class MonkeyMeeting : MonoBehaviour
 
     }
 
-    private void PlayRandomMonkeySound(Emotion emotion)
-    {
-        if (emotion.emotionSound.Count > 0)
-        {
-            int randomIndex = UnityEngine.Random.Range(0, emotion.emotionSound.Count);
-            AudioClip randomSound = emotion.emotionSound[randomIndex].monkeyScream;
-            //monkeySoundSource.clip = randomSound;
-            //monkeySoundSource.Play();
+    //private void PlayRandomMonkeySound(Emotion emotion)
+    //{
+    //    if (emotion.emotionSound.Count > 0)
+    //    {
+    //        int randomIndex = UnityEngine.Random.Range(0, emotion.emotionSound.Count);
+    //        AudioClip randomSound = emotion.emotionSound[randomIndex].monkeyScream;
+    //        //monkeySoundSource.clip = randomSound;
+    //        //monkeySoundSource.Play();
 
-            Debug.Log("Playing sound at index: " + randomIndex); // Add this line
-        }
-    }
+    //        Debug.Log("Playing sound at index: " + randomIndex); // Add this line
+    //    }
+    //}
 
     Transform GetSceneCharacter(string name)
     {

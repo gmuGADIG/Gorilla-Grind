@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEditor;
 
 [System.Serializable]
 public class MonkeySounds
@@ -37,6 +37,7 @@ public class CharacterData
     public string name;
     public Sprite NamePlate;
     public List<Emotion> emotions;
+    public string characterSoundName;
 }
 
 //[System.Serializable]
