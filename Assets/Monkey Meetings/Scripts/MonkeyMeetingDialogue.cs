@@ -33,7 +33,6 @@ public class MonkeyMeetingDialogue : ScriptableObject
     [System.Serializable]
     public class DialogueFrame
     {
-        [Dropdown(nameof(Characters), nameof(name))]
         public CharacterData speakingCharacter;
         [Dropdown(nameof(AllEmotions), nameof(name))]
         public Emotion emotion;

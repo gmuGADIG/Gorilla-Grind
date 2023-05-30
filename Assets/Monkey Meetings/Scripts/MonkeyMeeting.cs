@@ -12,8 +12,6 @@ public class MonkeyMeeting : MonoBehaviour
     public Transform highlightImage;
     [SerializeField] MonkeyMeetingDialogue meetingDialogue;
     public float textSpeed = 0.033f;
-    //public AudioSource typingSound;
-    //public AudioSource monkeySoundSource;
     public int soundCharChange = 4;
     //public GameObject background;
 
@@ -61,7 +59,7 @@ public class MonkeyMeeting : MonoBehaviour
         // set those characters' sprites active
         for (int i = 0; i < characterNames.Count; i++)
         {
-            if (characterNames[i] != "None")
+            if (characterNames[i] != "Narrator")
             {
                 Transform character = GetSceneCharacter(characterNames[i]).GetChild(0);
                 if (character != null)
@@ -103,8 +101,6 @@ public class MonkeyMeeting : MonoBehaviour
                 StopAllCoroutines();
                 currentLineText = currentDialogueLines[currentCharacterLineIndex];
                 dialogueText.text = currentLineText;
-                //typingSound.Stop();
-                //monkeySoundSource.Stop();
                 isTextCurrentlyAnimating = false;
             }
         }
@@ -149,10 +145,12 @@ public class MonkeyMeeting : MonoBehaviour
         if (dialogueFrame.isNarrator || dialogueFrame.isPlayerCharacter)
         {
             nameImage.gameObject.SetActive(false);
+            dialogueText.fontStyle = FontStyles.Italic;
         }
         else
         {
             nameImage.gameObject.SetActive(true);
+            dialogueText.fontStyle = FontStyles.Normal;
             // set speaking character's emotion
             Image characterSprite = GetSceneCharacter(dialogueFrame.speakingCharacter.name).GetChild(0).GetComponent<Image>();
             if (characterSprite != null)
@@ -200,32 +198,14 @@ public class MonkeyMeeting : MonoBehaviour
             // play character sound
             if (!dialogueFrame.isNarrator && !dialogueFrame.isPlayerCharacter && characterCount % soundCharChange == 0 && emotion != null)
             {
-                //monkeySoundSource.Stop(); // Stop any previous monkey sound
-                //PlayRandomMonkeySound(emotion); // Play a new random monkey sound
                 SoundManager.Instance.PlaySoundGlobal(characterSoundID);
             }
 
             yield return new WaitForSeconds(textSpeed);
         }
-
-        //typingSound.Stop();
-        //monkeySoundSource.Stop();
         isTextCurrentlyAnimating = false;
 
     }
-
-    //private void PlayRandomMonkeySound(Emotion emotion)
-    //{
-    //    if (emotion.emotionSound.Count > 0)
-    //    {
-    //        int randomIndex = UnityEngine.Random.Range(0, emotion.emotionSound.Count);
-    //        AudioClip randomSound = emotion.emotionSound[randomIndex].monkeyScream;
-    //        //monkeySoundSource.clip = randomSound;
-    //        //monkeySoundSource.Play();
-
-    //        Debug.Log("Playing sound at index: " + randomIndex); // Add this line
-    //    }
-    //}
 
     Transform GetSceneCharacter(string name)
     {
