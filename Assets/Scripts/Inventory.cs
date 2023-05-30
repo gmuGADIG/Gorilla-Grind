@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.VisualScripting;
 
 public class Inventory : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class Inventory : MonoBehaviour
         GameInventory = this;
         DontDestroyOnLoad(this);
 
-        BananasInInventory = 0;
+        BananasInInventory = 500;
         PurchasedItems = new HashSet<string>(); 
     }
 

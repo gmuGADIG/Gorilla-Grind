@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MissionObject : ScriptableObject
 {
-    List<Mission> missions = new List<Mission>();
-    List<Mission.MissionType> missionTypes = new List<Mission.MissionType>() {
+    public static List<Mission> missions = new List<Mission>();
+    static List<Mission.MissionType> missionTypes = new List<Mission.MissionType>() {
             Mission.MissionType.Distance,
             Mission.MissionType.BananaCount,
             Mission.MissionType.HazardCount,
@@ -13,7 +13,7 @@ public class MissionObject : ScriptableObject
             Mission.MissionType.StyleCount,
             Mission.MissionType.Trick
         };
-    public void GetNewMissions()
+    public static void CreateNewMissions()
     {
         System.Random rnd = new System.Random();
         
@@ -37,18 +37,25 @@ public class MissionObject : ScriptableObject
                         num = rnd.Next(0, 6);
                     } while (missionTypes[num] == previous0 || missionTypes[num] == previous1);
                     break;
+                default:
+                    break;
+
+
             }
             if (num < 5)
             {
-                missions[i] = new Mission(missionTypes[num], goalGenerator(missionTypes[num]));
+                Debug.Log(num);
+                Debug.Log(i);
+                missions.Add(new Mission(missionTypes[num], goalGenerator(missionTypes[num])));
             }
             else
             {
-                missions[i] = new Mission(missionTypes[num], goalGenerator(missionTypes[num]), trickRandomizer());
+               missions.Add(new Mission(missionTypes[num], goalGenerator(missionTypes[num]), trickRandomizer()));
             }
         }
     }
-    float goalGenerator(Mission.MissionType misType)
+
+    static float goalGenerator(Mission.MissionType misType)
     {
         System.Random rnd = new System.Random();
         switch (misType)
@@ -76,7 +83,7 @@ public class MissionObject : ScriptableObject
         }
     }
 
-    string trickRandomizer()
+    static string trickRandomizer()
     {
         System.Random rnd = new System.Random();
         string[] tricks = { "Up", "Down", "Left", "Right" };
@@ -84,12 +91,7 @@ public class MissionObject : ScriptableObject
         return tricks[num];
     }
 
-    public bool AllMissionsCompleted()
-    {
-        return missions.Count == 0;
-    }
-
-    public void EvaluateMissions()
+    public static bool EvaluateMissions()
     {
         foreach(Mission mission in missions)
         {
@@ -98,11 +100,18 @@ public class MissionObject : ScriptableObject
                 missions.Remove(mission);
             }
         }
+
+        return missions.Count == 0;
     }
 
     public void AddMissionToListFromDescription(string description)
     {
         Mission monkeyMission = Mission.GetMissionFromDescription(description);
         missions.Add(monkeyMission);
+    }
+
+    public static List<Mission> GetCurrentMissions()
+    {
+        return missions;
     }
 }
