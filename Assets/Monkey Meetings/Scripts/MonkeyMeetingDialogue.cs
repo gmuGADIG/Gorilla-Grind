@@ -43,9 +43,4 @@ public class MonkeyMeetingDialogue : ScriptableObject
         public bool isNarrator; // Add this line
         public bool isPlayerCharacter;
     }
-
-    private void OnValidate()
-    {
-        EditorUtility.SetDirty(this);
-    }
 }

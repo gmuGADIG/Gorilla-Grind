@@ -123,10 +123,10 @@ public class PlayerMovement : MonoBehaviour
     public bool IsDead { get; private set; } = false;
 
     // Sound IDs
-    int jumpSoundID;
-    int landSoundID;
-    int deathSoundID;
-    int skateboardLoopSoundID;
+    int jumpSoundID = -1;
+    int landSoundID = -1;
+    int deathSoundID = -1;
+    int skateboardLoopSoundID = -1;
     
     // 0 lives mean you dead
     int lives = 1;
