@@ -14,38 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterDatabase: {fileID: 11400000, guid: 5ff5001a917067e499d10df040f92b30, type: 2}
   dialogueFrames:
-  - speakingCharacter:
-      name: Kevin
-      NamePlate: {fileID: 21300000, guid: 9fb302f050000f84c88960293e94e145, type: 3}
-      emotions:
-      - name: Kevin_Annoyed
-        sprite: {fileID: 21300000, guid: ea882bf250f7c6b4dbfa133d8e45a369, type: 3}
-        emotionSound: []
-      - name: Kevin_Default
-        sprite: {fileID: 21300000, guid: 10a66e3d206e8fd4e979583fef16dc82, type: 3}
-        emotionSound: []
-      - name: Kevin_Excited
-        sprite: {fileID: 21300000, guid: 16a3c522f645dd64285a64480f03b842, type: 3}
-        emotionSound: []
-      - name: Kevin_Pog
-        sprite: {fileID: 21300000, guid: c8a5b77c617b83843a2b60e78c91f118, type: 3}
-        emotionSound: []
-      - name: Kevin_ReallyMad
-        sprite: {fileID: 21300000, guid: d5d1c880fbd3646409565f44210115cf, type: 3}
-        emotionSound: []
-      - name: Kevin_Uwu
-        sprite: {fileID: 21300000, guid: 41cefbf5e50af0c41a01832052ba1428, type: 3}
-        emotionSound: []
-      - name: Kevin_Dream
-        sprite: {fileID: 21300000, guid: 313def6d62debc04fa30f261851e33e6, type: 3}
-        emotionSound: []
-      - name: Kevin_Gone
-        sprite: {fileID: 21300000, guid: b96cb6abd2fa9da40963cd850409cf97, type: 3}
-        emotionSound: []
+  - speakingCharacter: {fileID: 11400000, guid: 0a17fe078b81dfb4d824e9cd4dd39fa1, type: 2}
     emotion:
       name: Kevin_Default
       sprite: {fileID: 21300000, guid: 10a66e3d206e8fd4e979583fef16dc82, type: 3}
-      emotionSound: []
     myIndex: 0
     emotions: []
     dialogueLines:
@@ -54,29 +26,11 @@ MonoBehaviour:
     - They don't seem to notice you.
     isMission: 0
     isNarrator: 1
-  - speakingCharacter:
-      name: Gavin
-      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
-      emotions:
-      - name: Gavin_Angry
-        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
-        emotionSound: []
-      - name: Gavin_Begrudging
-        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-        emotionSound: []
-      - name: Gavin_Default
-        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
-        emotionSound: []
-      - name: Gavin_HoldingBoard
-        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
-        emotionSound: []
-      - name: Gavin_Dream
-        sprite: {fileID: 21300000, guid: ec343c57143af064ca7cd73082e194a8, type: 3}
-        emotionSound: []
+    isPlayerCharacter: 0
+  - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
     emotion:
       name: Gavin_Default
       sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
-      emotionSound: []
     myIndex: 0
     emotions: []
     dialogueLines:
@@ -85,64 +39,22 @@ MonoBehaviour:
     - Totally roasted 'em, am I right?
     isMission: 0
     isNarrator: 0
-  - speakingCharacter:
-      name: Kevin
-      NamePlate: {fileID: 21300000, guid: 9fb302f050000f84c88960293e94e145, type: 3}
-      emotions:
-      - name: Kevin_Annoyed
-        sprite: {fileID: 21300000, guid: ea882bf250f7c6b4dbfa133d8e45a369, type: 3}
-        emotionSound: []
-      - name: Kevin_Default
-        sprite: {fileID: 21300000, guid: 10a66e3d206e8fd4e979583fef16dc82, type: 3}
-        emotionSound: []
-      - name: Kevin_Excited
-        sprite: {fileID: 21300000, guid: 16a3c522f645dd64285a64480f03b842, type: 3}
-        emotionSound: []
-      - name: Kevin_Pog
-        sprite: {fileID: 21300000, guid: c8a5b77c617b83843a2b60e78c91f118, type: 3}
-        emotionSound: []
-      - name: Kevin_ReallyMad
-        sprite: {fileID: 21300000, guid: d5d1c880fbd3646409565f44210115cf, type: 3}
-        emotionSound: []
-      - name: Kevin_Uwu
-        sprite: {fileID: 21300000, guid: 41cefbf5e50af0c41a01832052ba1428, type: 3}
-        emotionSound: []
-      - name: Kevin_Dream
-        sprite: {fileID: 21300000, guid: 313def6d62debc04fa30f261851e33e6, type: 3}
-        emotionSound: []
+    isPlayerCharacter: 0
+  - speakingCharacter: {fileID: 11400000, guid: 0a17fe078b81dfb4d824e9cd4dd39fa1, type: 2}
     emotion:
       name: Kevin_Annoyed
       sprite: {fileID: 21300000, guid: ea882bf250f7c6b4dbfa133d8e45a369, type: 3}
-      emotionSound: []
     myIndex: 0
     emotions: []
     dialogueLines:
     - Yeah, sure, whatever, Gav.
     isMission: 0
     isNarrator: 0
-  - speakingCharacter:
-      name: Gavin
-      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
-      emotions:
-      - name: Gavin_Angry
-        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
-        emotionSound: []
-      - name: Gavin_Begrudging
-        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-        emotionSound: []
-      - name: Gavin_Default
-        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
-        emotionSound: []
-      - name: Gavin_HoldingBoard
-        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
-        emotionSound: []
-      - name: Gavin_Dream
-        sprite: {fileID: 21300000, guid: ec343c57143af064ca7cd73082e194a8, type: 3}
-        emotionSound: []
+    isPlayerCharacter: 0
+  - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
     emotion:
       name: Gavin_Default
       sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
-      emotionSound: []
     myIndex: 0
     emotions: []
     dialogueLines:
@@ -150,35 +62,11 @@ MonoBehaviour:
     - Bet that 'Chump' couldn't pull that off even with the Holy Board!
     isMission: 0
     isNarrator: 0
-  - speakingCharacter:
-      name: Kevin
-      NamePlate: {fileID: 21300000, guid: 9fb302f050000f84c88960293e94e145, type: 3}
-      emotions:
-      - name: Kevin_Annoyed
-        sprite: {fileID: 21300000, guid: ea882bf250f7c6b4dbfa133d8e45a369, type: 3}
-        emotionSound: []
-      - name: Kevin_Default
-        sprite: {fileID: 21300000, guid: 10a66e3d206e8fd4e979583fef16dc82, type: 3}
-        emotionSound: []
-      - name: Kevin_Excited
-        sprite: {fileID: 21300000, guid: 16a3c522f645dd64285a64480f03b842, type: 3}
-        emotionSound: []
-      - name: Kevin_Pog
-        sprite: {fileID: 21300000, guid: c8a5b77c617b83843a2b60e78c91f118, type: 3}
-        emotionSound: []
-      - name: Kevin_ReallyMad
-        sprite: {fileID: 21300000, guid: d5d1c880fbd3646409565f44210115cf, type: 3}
-        emotionSound: []
-      - name: Kevin_Uwu
-        sprite: {fileID: 21300000, guid: 41cefbf5e50af0c41a01832052ba1428, type: 3}
-        emotionSound: []
-      - name: Kevin_Dream
-        sprite: {fileID: 21300000, guid: 313def6d62debc04fa30f261851e33e6, type: 3}
-        emotionSound: []
+    isPlayerCharacter: 0
+  - speakingCharacter: {fileID: 11400000, guid: 0a17fe078b81dfb4d824e9cd4dd39fa1, type: 2}
     emotion:
       name: Kevin_Default
       sprite: {fileID: 21300000, guid: 10a66e3d206e8fd4e979583fef16dc82, type: 3}
-      emotionSound: []
     myIndex: 0
     emotions: []
     dialogueLines:
@@ -186,64 +74,22 @@ MonoBehaviour:
     - I'm gonna go hit the vines. Catch you whenever, dude.
     isMission: 0
     isNarrator: 0
-  - speakingCharacter:
-      name: Kevin
-      NamePlate: {fileID: 21300000, guid: 9fb302f050000f84c88960293e94e145, type: 3}
-      emotions:
-      - name: Kevin_Annoyed
-        sprite: {fileID: 21300000, guid: ea882bf250f7c6b4dbfa133d8e45a369, type: 3}
-        emotionSound: []
-      - name: Kevin_Default
-        sprite: {fileID: 21300000, guid: 10a66e3d206e8fd4e979583fef16dc82, type: 3}
-        emotionSound: []
-      - name: Kevin_Excited
-        sprite: {fileID: 21300000, guid: 16a3c522f645dd64285a64480f03b842, type: 3}
-        emotionSound: []
-      - name: Kevin_Pog
-        sprite: {fileID: 21300000, guid: c8a5b77c617b83843a2b60e78c91f118, type: 3}
-        emotionSound: []
-      - name: Kevin_ReallyMad
-        sprite: {fileID: 21300000, guid: d5d1c880fbd3646409565f44210115cf, type: 3}
-        emotionSound: []
-      - name: Kevin_Uwu
-        sprite: {fileID: 21300000, guid: 41cefbf5e50af0c41a01832052ba1428, type: 3}
-        emotionSound: []
-      - name: Kevin_Dream
-        sprite: {fileID: 21300000, guid: 313def6d62debc04fa30f261851e33e6, type: 3}
-        emotionSound: []
+    isPlayerCharacter: 0
+  - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
     emotion:
       name: Kevin_Gone
       sprite: {fileID: 21300000, guid: b96cb6abd2fa9da40963cd850409cf97, type: 3}
-      emotionSound: []
     myIndex: 0
     emotions: []
     dialogueLines:
     - Kevin leaves Gavin to himself.
     isMission: 0
     isNarrator: 1
-  - speakingCharacter:
-      name: Gavin
-      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
-      emotions:
-      - name: Gavin_Angry
-        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
-        emotionSound: []
-      - name: Gavin_Begrudging
-        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-        emotionSound: []
-      - name: Gavin_Default
-        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
-        emotionSound: []
-      - name: Gavin_HoldingBoard
-        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
-        emotionSound: []
-      - name: Gavin_Dream
-        sprite: {fileID: 21300000, guid: ec343c57143af064ca7cd73082e194a8, type: 3}
-        emotionSound: []
+    isPlayerCharacter: 0
+  - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
     emotion:
       name: Gavin_Begrudging
       sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-      emotionSound: []
     myIndex: 0
     emotions: []
     dialogueLines:
@@ -251,87 +97,33 @@ MonoBehaviour:
       finally notices you.
     isMission: 0
     isNarrator: 1
-  - speakingCharacter:
-      name: Gavin
-      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
-      emotions:
-      - name: Gavin_Angry
-        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
-        emotionSound: []
-      - name: Gavin_Begrudging
-        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-        emotionSound: []
-      - name: Gavin_Default
-        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
-        emotionSound: []
-      - name: Gavin_HoldingBoard
-        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
-        emotionSound: []
-      - name: Gavin_Dream
-        sprite: {fileID: 21300000, guid: ec343c57143af064ca7cd73082e194a8, type: 3}
-        emotionSound: []
+    isPlayerCharacter: 0
+  - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
     emotion:
       name: Gavin_Default
       sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
-      emotionSound: []
     myIndex: 0
     emotions: []
     dialogueLines:
     - Oh, hey. It's you.
     isMission: 0
     isNarrator: 0
-  - speakingCharacter:
-      name: Gavin
-      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
-      emotions:
-      - name: Gavin_Angry
-        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
-        emotionSound: []
-      - name: Gavin_Begrudging
-        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-        emotionSound: []
-      - name: Gavin_Default
-        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
-        emotionSound: []
-      - name: Gavin_HoldingBoard
-        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
-        emotionSound: []
-      - name: Gavin_Dream
-        sprite: {fileID: 21300000, guid: ec343c57143af064ca7cd73082e194a8, type: 3}
-        emotionSound: []
+    isPlayerCharacter: 0
+  - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
     emotion:
       name: Gavin_Default
       sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
-      emotionSound: []
     myIndex: 0
     emotions: []
     dialogueLines:
     - 'Champ: ...'
     isMission: 0
     isNarrator: 1
-  - speakingCharacter:
-      name: Gavin
-      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
-      emotions:
-      - name: Gavin_Angry
-        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
-        emotionSound: []
-      - name: Gavin_Begrudging
-        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-        emotionSound: []
-      - name: Gavin_Default
-        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
-        emotionSound: []
-      - name: Gavin_HoldingBoard
-        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
-        emotionSound: []
-      - name: Gavin_Dream
-        sprite: {fileID: 21300000, guid: ec343c57143af064ca7cd73082e194a8, type: 3}
-        emotionSound: []
+    isPlayerCharacter: 0
+  - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
     emotion:
       name: Gavin_Default
       sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
-      emotionSound: []
     myIndex: 0
     emotions: []
     dialogueLines:
@@ -339,116 +131,44 @@ MonoBehaviour:
     - Better than any trick you've hit, I bet! Heh.
     isMission: 0
     isNarrator: 0
-  - speakingCharacter:
-      name: Gavin
-      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
-      emotions:
-      - name: Gavin_Angry
-        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
-        emotionSound: []
-      - name: Gavin_Begrudging
-        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-        emotionSound: []
-      - name: Gavin_Default
-        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
-        emotionSound: []
-      - name: Gavin_HoldingBoard
-        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
-        emotionSound: []
-      - name: Gavin_Dream
-        sprite: {fileID: 21300000, guid: ec343c57143af064ca7cd73082e194a8, type: 3}
-        emotionSound: []
+    isPlayerCharacter: 0
+  - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
     emotion:
       name: Gavin_Default
       sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
-      emotionSound: []
     myIndex: 0
     emotions: []
     dialogueLines:
     - 'Champ: ...'
     isMission: 0
     isNarrator: 1
-  - speakingCharacter:
-      name: Gavin
-      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
-      emotions:
-      - name: Gavin_Angry
-        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
-        emotionSound: []
-      - name: Gavin_Begrudging
-        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-        emotionSound: []
-      - name: Gavin_Default
-        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
-        emotionSound: []
-      - name: Gavin_HoldingBoard
-        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
-        emotionSound: []
-      - name: Gavin_Dream
-        sprite: {fileID: 21300000, guid: ec343c57143af064ca7cd73082e194a8, type: 3}
-        emotionSound: []
+    isPlayerCharacter: 0
+  - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
     emotion:
       name: Gavin_Begrudging
       sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-      emotionSound: []
     myIndex: 0
     emotions: []
     dialogueLines:
     - ...
     isMission: 0
     isNarrator: 0
-  - speakingCharacter:
-      name: Gavin
-      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
-      emotions:
-      - name: Gavin_Angry
-        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
-        emotionSound: []
-      - name: Gavin_Begrudging
-        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-        emotionSound: []
-      - name: Gavin_Default
-        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
-        emotionSound: []
-      - name: Gavin_HoldingBoard
-        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
-        emotionSound: []
-      - name: Gavin_Dream
-        sprite: {fileID: 21300000, guid: ec343c57143af064ca7cd73082e194a8, type: 3}
-        emotionSound: []
+    isPlayerCharacter: 0
+  - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
     emotion:
       name: Gavin_Begrudging
       sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-      emotionSound: []
     myIndex: 0
     emotions: []
     dialogueLines:
     - 'Champ: ...'
     isMission: 0
     isNarrator: 1
-  - speakingCharacter:
-      name: Gavin
-      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
-      emotions:
-      - name: Gavin_Angry
-        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
-        emotionSound: []
-      - name: Gavin_Begrudging
-        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-        emotionSound: []
-      - name: Gavin_Default
-        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
-        emotionSound: []
-      - name: Gavin_HoldingBoard
-        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
-        emotionSound: []
-      - name: Gavin_Dream
-        sprite: {fileID: 21300000, guid: ec343c57143af064ca7cd73082e194a8, type: 3}
-        emotionSound: []
+    isPlayerCharacter: 0
+  - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
     emotion:
       name: Gavin_Angry
       sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
-      emotionSound: []
     myIndex: 0
     emotions: []
     dialogueLines:
@@ -456,58 +176,22 @@ MonoBehaviour:
     - You're just so much... you!
     isMission: 0
     isNarrator: 0
-  - speakingCharacter:
-      name: Gavin
-      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
-      emotions:
-      - name: Gavin_Angry
-        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
-        emotionSound: []
-      - name: Gavin_Begrudging
-        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-        emotionSound: []
-      - name: Gavin_Default
-        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
-        emotionSound: []
-      - name: Gavin_HoldingBoard
-        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
-        emotionSound: []
-      - name: Gavin_Dream
-        sprite: {fileID: 21300000, guid: ec343c57143af064ca7cd73082e194a8, type: 3}
-        emotionSound: []
+    isPlayerCharacter: 0
+  - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
     emotion:
       name: Gavin_Angry
       sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
-      emotionSound: []
     myIndex: 0
     emotions: []
     dialogueLines:
     - Gavin starts trying to mock you.
     isMission: 0
     isNarrator: 1
-  - speakingCharacter:
-      name: Gavin
-      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
-      emotions:
-      - name: Gavin_Angry
-        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
-        emotionSound: []
-      - name: Gavin_Begrudging
-        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-        emotionSound: []
-      - name: Gavin_Default
-        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
-        emotionSound: []
-      - name: Gavin_HoldingBoard
-        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
-        emotionSound: []
-      - name: Gavin_Dream
-        sprite: {fileID: 21300000, guid: ec343c57143af064ca7cd73082e194a8, type: 3}
-        emotionSound: []
+    isPlayerCharacter: 0
+  - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
     emotion:
       name: Gavin_Angry
       sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
-      emotionSound: []
     myIndex: 0
     emotions: []
     dialogueLines:
@@ -517,116 +201,44 @@ MonoBehaviour:
     - I"m the champ!
     isMission: 0
     isNarrator: 0
-  - speakingCharacter:
-      name: Gavin
-      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
-      emotions:
-      - name: Gavin_Angry
-        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
-        emotionSound: []
-      - name: Gavin_Begrudging
-        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-        emotionSound: []
-      - name: Gavin_Default
-        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
-        emotionSound: []
-      - name: Gavin_HoldingBoard
-        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
-        emotionSound: []
-      - name: Gavin_Dream
-        sprite: {fileID: 21300000, guid: ec343c57143af064ca7cd73082e194a8, type: 3}
-        emotionSound: []
+    isPlayerCharacter: 0
+  - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
     emotion:
       name: Gavin_Angry
       sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
-      emotionSound: []
     myIndex: 0
     emotions: []
     dialogueLines:
     - 'Champ: ...'
     isMission: 0
     isNarrator: 1
-  - speakingCharacter:
-      name: Gavin
-      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
-      emotions:
-      - name: Gavin_Angry
-        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
-        emotionSound: []
-      - name: Gavin_Begrudging
-        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-        emotionSound: []
-      - name: Gavin_Default
-        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
-        emotionSound: []
-      - name: Gavin_HoldingBoard
-        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
-        emotionSound: []
-      - name: Gavin_Dream
-        sprite: {fileID: 21300000, guid: ec343c57143af064ca7cd73082e194a8, type: 3}
-        emotionSound: []
+    isPlayerCharacter: 0
+  - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
     emotion:
       name: Gavin_Angry
       sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
-      emotionSound: []
     myIndex: 0
     emotions: []
     dialogueLines:
     - Yeah, I bet you think you're so perfect that you could skateboard on this!
     isMission: 0
     isNarrator: 0
-  - speakingCharacter:
-      name: Gavin
-      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
-      emotions:
-      - name: Gavin_Angry
-        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
-        emotionSound: []
-      - name: Gavin_Begrudging
-        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-        emotionSound: []
-      - name: Gavin_Default
-        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
-        emotionSound: []
-      - name: Gavin_HoldingBoard
-        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
-        emotionSound: []
-      - name: Gavin_Dream
-        sprite: {fileID: 21300000, guid: ec343c57143af064ca7cd73082e194a8, type: 3}
-        emotionSound: []
+    isPlayerCharacter: 0
+  - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
     emotion:
       name: Gavin_Default
       sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
-      emotionSound: []
     myIndex: 0
     emotions: []
     dialogueLines:
     - Gavin holds out his arms empty-handed as if holding an Invisible Skateboard.
     isMission: 0
     isNarrator: 1
-  - speakingCharacter:
-      name: Gavin
-      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
-      emotions:
-      - name: Gavin_Angry
-        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
-        emotionSound: []
-      - name: Gavin_Begrudging
-        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-        emotionSound: []
-      - name: Gavin_Default
-        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
-        emotionSound: []
-      - name: Gavin_HoldingBoard
-        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
-        emotionSound: []
-      - name: Gavin_Dream
-        sprite: {fileID: 21300000, guid: ec343c57143af064ca7cd73082e194a8, type: 3}
-        emotionSound: []
+    isPlayerCharacter: 0
+  - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
     emotion:
       name: Gavin_Begrudging
       sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-      emotionSound: []
     myIndex: 0
     emotions: []
     dialogueLines:
@@ -634,58 +246,22 @@ MonoBehaviour:
     - You pull of a sick grind-to-kickflip combo. The board-feel is pretty decent.
     isMission: 0
     isNarrator: 1
-  - speakingCharacter:
-      name: Gavin
-      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
-      emotions:
-      - name: Gavin_Angry
-        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
-        emotionSound: []
-      - name: Gavin_Begrudging
-        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-        emotionSound: []
-      - name: Gavin_Default
-        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
-        emotionSound: []
-      - name: Gavin_HoldingBoard
-        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
-        emotionSound: []
-      - name: Gavin_Dream
-        sprite: {fileID: 21300000, guid: ec343c57143af064ca7cd73082e194a8, type: 3}
-        emotionSound: []
+    isPlayerCharacter: 0
+  - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
     emotion:
       name: Gavin_Angry
       sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
-      emotionSound: []
     myIndex: 0
     emotions: []
     dialogueLines:
     - Gavin is dumbfounded.
     isMission: 0
     isNarrator: 1
-  - speakingCharacter:
-      name: Gavin
-      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
-      emotions:
-      - name: Gavin_Angry
-        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
-        emotionSound: []
-      - name: Gavin_Begrudging
-        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-        emotionSound: []
-      - name: Gavin_Default
-        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
-        emotionSound: []
-      - name: Gavin_HoldingBoard
-        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
-        emotionSound: []
-      - name: Gavin_Dream
-        sprite: {fileID: 21300000, guid: ec343c57143af064ca7cd73082e194a8, type: 3}
-        emotionSound: []
+    isPlayerCharacter: 0
+  - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
     emotion:
       name: Gavin_Angry
       sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
-      emotionSound: []
     myIndex: 0
     emotions: []
     dialogueLines:
@@ -697,58 +273,22 @@ MonoBehaviour:
     - Kevin looks up to you...
     isMission: 0
     isNarrator: 0
-  - speakingCharacter:
-      name: Gavin
-      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
-      emotions:
-      - name: Gavin_Angry
-        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
-        emotionSound: []
-      - name: Gavin_Begrudging
-        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-        emotionSound: []
-      - name: Gavin_Default
-        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
-        emotionSound: []
-      - name: Gavin_HoldingBoard
-        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
-        emotionSound: []
-      - name: Gavin_Dream
-        sprite: {fileID: 21300000, guid: ec343c57143af064ca7cd73082e194a8, type: 3}
-        emotionSound: []
+    isPlayerCharacter: 0
+  - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
     emotion:
       name: Gavin_Begrudging
       sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-      emotionSound: []
     myIndex: 0
     emotions: []
     dialogueLines:
     - 'Champ: ...'
     isMission: 0
     isNarrator: 1
-  - speakingCharacter:
-      name: Gavin
-      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
-      emotions:
-      - name: Gavin_Angry
-        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
-        emotionSound: []
-      - name: Gavin_Begrudging
-        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-        emotionSound: []
-      - name: Gavin_Default
-        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
-        emotionSound: []
-      - name: Gavin_HoldingBoard
-        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
-        emotionSound: []
-      - name: Gavin_Dream
-        sprite: {fileID: 21300000, guid: ec343c57143af064ca7cd73082e194a8, type: 3}
-        emotionSound: []
+    isPlayerCharacter: 0
+  - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
     emotion:
       name: Gavin_Angry
       sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
-      emotionSound: []
     myIndex: 0
     emotions: []
     dialogueLines:
@@ -756,174 +296,66 @@ MonoBehaviour:
     - What do you got to say to that, huh?
     isMission: 0
     isNarrator: 0
-  - speakingCharacter:
-      name: Gavin
-      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
-      emotions:
-      - name: Gavin_Angry
-        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
-        emotionSound: []
-      - name: Gavin_Begrudging
-        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-        emotionSound: []
-      - name: Gavin_Default
-        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
-        emotionSound: []
-      - name: Gavin_HoldingBoard
-        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
-        emotionSound: []
-      - name: Gavin_Dream
-        sprite: {fileID: 21300000, guid: ec343c57143af064ca7cd73082e194a8, type: 3}
-        emotionSound: []
+    isPlayerCharacter: 0
+  - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
     emotion:
       name: Gavin_Angry
       sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
-      emotionSound: []
     myIndex: 0
     emotions: []
     dialogueLines:
     - 'Champ: ...'
     isMission: 0
     isNarrator: 1
-  - speakingCharacter:
-      name: Gavin
-      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
-      emotions:
-      - name: Gavin_Angry
-        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
-        emotionSound: []
-      - name: Gavin_Begrudging
-        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-        emotionSound: []
-      - name: Gavin_Default
-        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
-        emotionSound: []
-      - name: Gavin_HoldingBoard
-        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
-        emotionSound: []
-      - name: Gavin_Dream
-        sprite: {fileID: 21300000, guid: ec343c57143af064ca7cd73082e194a8, type: 3}
-        emotionSound: []
+    isPlayerCharacter: 0
+  - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
     emotion:
       name: Gavin_Begrudging
       sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-      emotionSound: []
     myIndex: 0
     emotions: []
     dialogueLines:
     - ...
     isMission: 0
     isNarrator: 0
-  - speakingCharacter:
-      name: Gavin
-      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
-      emotions:
-      - name: Gavin_Angry
-        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
-        emotionSound: []
-      - name: Gavin_Begrudging
-        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-        emotionSound: []
-      - name: Gavin_Default
-        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
-        emotionSound: []
-      - name: Gavin_HoldingBoard
-        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
-        emotionSound: []
-      - name: Gavin_Dream
-        sprite: {fileID: 21300000, guid: ec343c57143af064ca7cd73082e194a8, type: 3}
-        emotionSound: []
+    isPlayerCharacter: 0
+  - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
     emotion:
       name: Gavin_Begrudging
       sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-      emotionSound: []
     myIndex: 0
     emotions: []
     dialogueLines:
     - 'Champ: ...'
     isMission: 0
     isNarrator: 1
-  - speakingCharacter:
-      name: Gavin
-      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
-      emotions:
-      - name: Gavin_Angry
-        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
-        emotionSound: []
-      - name: Gavin_Begrudging
-        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-        emotionSound: []
-      - name: Gavin_Default
-        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
-        emotionSound: []
-      - name: Gavin_HoldingBoard
-        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
-        emotionSound: []
-      - name: Gavin_Dream
-        sprite: {fileID: 21300000, guid: ec343c57143af064ca7cd73082e194a8, type: 3}
-        emotionSound: []
+    isPlayerCharacter: 0
+  - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
     emotion:
       name: Gavin_Begrudging
       sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-      emotionSound: []
     myIndex: 0
     emotions: []
     dialogueLines:
     - Man, why do you always know just what to say? Always, Mr. Perfect.
     isMission: 0
     isNarrator: 0
-  - speakingCharacter:
-      name: Gavin
-      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
-      emotions:
-      - name: Gavin_Angry
-        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
-        emotionSound: []
-      - name: Gavin_Begrudging
-        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-        emotionSound: []
-      - name: Gavin_Default
-        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
-        emotionSound: []
-      - name: Gavin_HoldingBoard
-        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
-        emotionSound: []
-      - name: Gavin_Dream
-        sprite: {fileID: 21300000, guid: ec343c57143af064ca7cd73082e194a8, type: 3}
-        emotionSound: []
+    isPlayerCharacter: 0
+  - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
     emotion:
       name: Gavin_Begrudging
       sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-      emotionSound: []
     myIndex: 0
     emotions: []
     dialogueLines:
     - 'Champ: ...'
     isMission: 0
     isNarrator: 1
-  - speakingCharacter:
-      name: Gavin
-      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
-      emotions:
-      - name: Gavin_Angry
-        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
-        emotionSound: []
-      - name: Gavin_Begrudging
-        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-        emotionSound: []
-      - name: Gavin_Default
-        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
-        emotionSound: []
-      - name: Gavin_HoldingBoard
-        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
-        emotionSound: []
-      - name: Gavin_Dream
-        sprite: {fileID: 21300000, guid: ec343c57143af064ca7cd73082e194a8, type: 3}
-        emotionSound: []
+    isPlayerCharacter: 0
+  - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
     emotion:
       name: Gavin_Begrudging
       sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-      emotionSound: []
     myIndex: 0
     emotions: []
     dialogueLines:
@@ -931,116 +363,44 @@ MonoBehaviour:
     - You saying I'm my own worst enemy?
     isMission: 0
     isNarrator: 0
-  - speakingCharacter:
-      name: Gavin
-      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
-      emotions:
-      - name: Gavin_Angry
-        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
-        emotionSound: []
-      - name: Gavin_Begrudging
-        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-        emotionSound: []
-      - name: Gavin_Default
-        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
-        emotionSound: []
-      - name: Gavin_HoldingBoard
-        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
-        emotionSound: []
-      - name: Gavin_Dream
-        sprite: {fileID: 21300000, guid: ec343c57143af064ca7cd73082e194a8, type: 3}
-        emotionSound: []
+    isPlayerCharacter: 0
+  - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
     emotion:
       name: Gavin_Begrudging
       sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-      emotionSound: []
     myIndex: 0
     emotions: []
     dialogueLines:
     - 'Champ: ...'
     isMission: 0
     isNarrator: 1
-  - speakingCharacter:
-      name: Gavin
-      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
-      emotions:
-      - name: Gavin_Angry
-        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
-        emotionSound: []
-      - name: Gavin_Begrudging
-        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-        emotionSound: []
-      - name: Gavin_Default
-        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
-        emotionSound: []
-      - name: Gavin_HoldingBoard
-        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
-        emotionSound: []
-      - name: Gavin_Dream
-        sprite: {fileID: 21300000, guid: ec343c57143af064ca7cd73082e194a8, type: 3}
-        emotionSound: []
+    isPlayerCharacter: 0
+  - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
     emotion:
       name: Gavin_Begrudging
       sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-      emotionSound: []
     myIndex: 0
     emotions: []
     dialogueLines:
     - You saying others will like me more if I just accept myself for who I am?
     isMission: 0
     isNarrator: 0
-  - speakingCharacter:
-      name: Gavin
-      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
-      emotions:
-      - name: Gavin_Angry
-        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
-        emotionSound: []
-      - name: Gavin_Begrudging
-        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-        emotionSound: []
-      - name: Gavin_Default
-        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
-        emotionSound: []
-      - name: Gavin_HoldingBoard
-        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
-        emotionSound: []
-      - name: Gavin_Dream
-        sprite: {fileID: 21300000, guid: ec343c57143af064ca7cd73082e194a8, type: 3}
-        emotionSound: []
+    isPlayerCharacter: 0
+  - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
     emotion:
       name: Gavin_Begrudging
       sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-      emotionSound: []
     myIndex: 0
     emotions: []
     dialogueLines:
     - 'Champ: ...'
     isMission: 0
     isNarrator: 1
-  - speakingCharacter:
-      name: Gavin
-      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
-      emotions:
-      - name: Gavin_Angry
-        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
-        emotionSound: []
-      - name: Gavin_Begrudging
-        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-        emotionSound: []
-      - name: Gavin_Default
-        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
-        emotionSound: []
-      - name: Gavin_HoldingBoard
-        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
-        emotionSound: []
-      - name: Gavin_Dream
-        sprite: {fileID: 21300000, guid: ec343c57143af064ca7cd73082e194a8, type: 3}
-        emotionSound: []
+    isPlayerCharacter: 0
+  - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
     emotion:
       name: Gavin_Begrudging
       sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-      emotionSound: []
     myIndex: 0
     emotions: []
     dialogueLines:
@@ -1052,32 +412,15 @@ MonoBehaviour:
     - Catch you later, dude.
     isMission: 0
     isNarrator: 0
-  - speakingCharacter:
-      name: Gavin
-      NamePlate: {fileID: 21300000, guid: b2f55ada674ca014a841da4df23bcebb, type: 3}
-      emotions:
-      - name: Gavin_Angry
-        sprite: {fileID: 21300000, guid: b709fcc606c804341a59ce2aa02c26ee, type: 3}
-        emotionSound: []
-      - name: Gavin_Begrudging
-        sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-        emotionSound: []
-      - name: Gavin_Default
-        sprite: {fileID: 21300000, guid: 78174aa8edfc52847a214e9bec6adae9, type: 3}
-        emotionSound: []
-      - name: Gavin_HoldingBoard
-        sprite: {fileID: 21300000, guid: f739c82dd89ece548b54296b7126acfc, type: 3}
-        emotionSound: []
-      - name: Gavin_Dream
-        sprite: {fileID: 21300000, guid: ec343c57143af064ca7cd73082e194a8, type: 3}
-        emotionSound: []
+    isPlayerCharacter: 0
+  - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
     emotion:
       name: Gavin_Begrudging
       sprite: {fileID: 21300000, guid: 79e52e1d48316d549b86b1c7f7aa5a07, type: 3}
-      emotionSound: []
     myIndex: 0
     emotions: []
     dialogueLines:
     - Jump over 40 hazards in one run.
     isMission: 1
     isNarrator: 1
+    isPlayerCharacter: 0

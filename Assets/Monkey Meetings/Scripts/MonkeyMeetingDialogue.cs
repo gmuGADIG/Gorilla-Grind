@@ -33,7 +33,6 @@ public class MonkeyMeetingDialogue : ScriptableObject
     [System.Serializable]
     public class DialogueFrame
     {
-        [Dropdown(nameof(Characters), nameof(name))]
         public CharacterData speakingCharacter;
         [Dropdown(nameof(AllEmotions), nameof(name))]
         public Emotion emotion;
@@ -42,10 +41,6 @@ public class MonkeyMeetingDialogue : ScriptableObject
         public string[] dialogueLines;
         public bool isMission;
         public bool isNarrator; // Add this line
-    }
-
-    private void OnValidate()
-    {
-        EditorUtility.SetDirty(this);
+        public bool isPlayerCharacter;
     }
 }
