@@ -10,11 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7355175567613366693}
   - component: {fileID: 4867607394678265288}
-  - component: {fileID: 3537308934302372613}
-  - component: {fileID: 6014169438690177550}
-  - component: {fileID: 2115947982998142510}
   m_Layer: 6
-  m_Name: GroundEdge 6
+  m_Name: Decoration 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87,59 +84,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!68 &3537308934302372613
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7738892087182637362}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -1.474571, y: 0.17540684}
-  - {x: -0.8620545, y: 0.38985065}
-  - {x: -0.44631186, y: 0.37631762}
-  - {x: 0.23256847, y: 0.17502731}
-  - {x: 0.8154007, y: 0.2484857}
-  - {x: 1.4752753, y: 0.21470675}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
---- !u!114 &6014169438690177550
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7738892087182637362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d284a620c6050eb4a8dcf228c324aba8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boundSize: {x: 0, y: 0}
-  edgeCollider: {fileID: 3537308934302372613}
-  noCollision: 0
-  previous: {fileID: 0}
-  next: {fileID: 0}
---- !u!114 &2115947982998142510
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7738892087182637362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32c69ca21dd4ceb4b84d03be7a0547b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  snapToPrevious: 1

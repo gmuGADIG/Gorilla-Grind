@@ -10,11 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7355175567613366693}
   - component: {fileID: 4867607394678265288}
-  - component: {fileID: 3537308934302372613}
-  - component: {fileID: 6014169438690177550}
-  - component: {fileID: 2115947982998142510}
   m_Layer: 6
-  m_Name: GroundEdge 3
+  m_Name: Decoration 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a21ee28fb9159e94d8c196d407d102af, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 98947fa8d160c0840bd49a5b1fc59edf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -87,62 +84,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!68 &3537308934302372613
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7738892087182637362}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -1.2382841, y: 0.24153757}
-  - {x: -0.9935112, y: 0.37425876}
-  - {x: -0.8778269, y: 0.35292757}
-  - {x: -0.6627337, y: 0.21960436}
-  - {x: -0.24664599, y: 0.063946456}
-  - {x: 0.19133948, y: 0.070343584}
-  - {x: 0.5082006, y: 0.1847435}
-  - {x: 0.73239493, y: 0.21087909}
-  - {x: 1.4531654, y: -0.12783295}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
---- !u!114 &6014169438690177550
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7738892087182637362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d284a620c6050eb4a8dcf228c324aba8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boundSize: {x: 0, y: 0}
-  edgeCollider: {fileID: 3537308934302372613}
-  noCollision: 0
-  previous: {fileID: 0}
-  next: {fileID: 0}
---- !u!114 &2115947982998142510
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7738892087182637362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32c69ca21dd4ceb4b84d03be7a0547b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  snapToPrevious: 1
