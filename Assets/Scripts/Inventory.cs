@@ -7,8 +7,8 @@ public class Inventory : MonoBehaviour
 {
     private static Inventory GameInventory;
     private static int BananasInInventory; //Number of bananas in player's inventory; should never go below 0
-    // Start is called before the first frame update
     private static HashSet<string> PurchasedItems;
+    private static string equippedBoard;
     
     void Awake() {
             if (GameInventory) {
@@ -19,7 +19,9 @@ public class Inventory : MonoBehaviour
         DontDestroyOnLoad(this);
 
         BananasInInventory = 500;
-        PurchasedItems = new HashSet<string>(); 
+        PurchasedItems = new HashSet<string>();
+        addItem("All Natural Board"); //Starting board is already in inventory at start of game
+        equipBoard("All Natural Board");
     }
 
     void Start()
@@ -83,5 +85,20 @@ public class Inventory : MonoBehaviour
         }
         PurchasedItems.Add(itemName);
         return true;
+    }
+
+    ///<summary>
+    ///Set the equipped board to the passed in board name
+    ///</summary>
+    public static void equipBoard(string boardName) {
+        equippedBoard = boardName;
+    }
+
+    ///<summary>
+    ///Returns the name of the board that the player has equipped
+    ///May return null if no board is equipped
+    ///</summary>
+    public static string getEquippedBoard() {
+        return equippedBoard;
     }
 }
