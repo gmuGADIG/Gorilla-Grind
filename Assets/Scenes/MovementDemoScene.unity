@@ -4485,6 +4485,7 @@ GameObject:
   - component: {fileID: 1644975655}
   - component: {fileID: 1644975658}
   - component: {fileID: 1644975657}
+  - component: {fileID: 1644975659}
   m_Layer: 6
   m_Name: temp3
   m_TagString: Untagged
@@ -4552,7 +4553,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1644975654}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 78.5, y: 8.15, z: 0}
+  m_LocalPosition: {x: 103.8, y: 7.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4627,6 +4628,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollRate: 1
+--- !u!114 &1644975659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644975654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6bb195d0577da5a394bd51dcc53ac51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TiltDegreesPerSecond: 20
 --- !u!1 &1684612392
 GameObject:
   m_ObjectHideFlags: 0

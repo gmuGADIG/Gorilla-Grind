@@ -14,6 +14,9 @@ public class Goals_Tracker : MonoBehaviour
     float distanceGoal = 100f;
     float distance = 0f;
     public int level = 0;
+
+    public GameObject MissionDisplayPrefab;
+    public GameObject ScoreDisplayPrefab;
     public Slider goalProgress;
     public GameObject mission1Display;
     public TMP_Text mission1Text;
@@ -29,17 +32,17 @@ public class Goals_Tracker : MonoBehaviour
     bool goalMet = false;
     float styleCounter = 0;
     float totalPoints;
-    int hazardCount;
-    int hazardsJumped;
+    int hazardCount = 0;
+    int hazardsJumped = 0;
     int bananas = 0;
     bool gapBelow;
     private float maxSpeed = 0;
     private int scoreMultiplier;
     Dictionary<string, int> trickTracker = new Dictionary<string, int>();
     PlayerMovement pm;
-    Mission mission1;
-    Mission mission2;
-    Mission mission3;
+    [HideInInspector] public Mission mission1;
+    [HideInInspector] public Mission mission2;
+    [HideInInspector] public Mission mission3;
 
     private void Awake()
     {
@@ -58,7 +61,20 @@ public class Goals_Tracker : MonoBehaviour
     void Start()
     {
         pm = GetComponent<PlayerMovement>();
+
+        GameObject DisplayCanvas = Instantiate(MissionDisplayPrefab);
+        GameObject ScoreDisplay = Instantiate(ScoreDisplayPrefab);
+
+        mission1Text = DisplayCanvas.transform.Find("Mission1 Display").gameObject.GetComponent<TMP_Text>();
+        mission2Text = DisplayCanvas.transform.Find("Mission2 Display").gameObject.GetComponent<TMP_Text>();
+        mission3Text = DisplayCanvas.transform.Find("Mission3 Display").gameObject.GetComponent<TMP_Text>();
+
+        styleText = ScoreDisplay.transform.Find("StyleDisplay").gameObject.GetComponent<TMP_Text>();
+        pointsText = ScoreDisplay.transform.Find("PointsDisplay").gameObject.GetComponent<TMP_Text>();
+        goalProgress = ScoreDisplay.transform.Find("Goal Progress").gameObject.GetComponent<Slider>();
+        
         goalStart();
+        SceneManager.sceneLoaded += SceneLoaded;
     }
 
     // Update is called once per frame
@@ -305,6 +321,6 @@ public class Goals_Tracker : MonoBehaviour
 
     public void RunEnded()
     {
-
+        Inventory.AddBananas(bananas);
     }
 }

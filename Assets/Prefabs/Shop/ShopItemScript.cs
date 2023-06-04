@@ -15,6 +15,8 @@ public class ShopItemScript : MonoBehaviour
     private bool isPurchased;
     private Button buyButton;
     private TMP_Text buttonText;
+    private TMP_Text itemNameText;
+    private TMP_Text priceText;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +24,8 @@ public class ShopItemScript : MonoBehaviour
         isPurchased = Inventory.hasItem(itemName);
         buyButton = gameObject.GetComponentInChildren<Button>();
         buttonText = buyButton.GetComponentInChildren<TMP_Text>();
+        itemNameText = transform.Find("ItemName").GetComponent<TMP_Text>();
+        priceText = transform.Find("Price").GetComponent<TMP_Text>();
 
 
         if (isPurchased) {
@@ -32,6 +36,8 @@ public class ShopItemScript : MonoBehaviour
         if (itemName.Length == 0) {
             itemName = gameObject.name;
         }
+        itemNameText.text = itemName;
+        priceText.text = price.ToString();
     }
 
     // Update is called once per frame
