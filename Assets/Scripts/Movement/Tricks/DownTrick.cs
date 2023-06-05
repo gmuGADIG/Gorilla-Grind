@@ -24,7 +24,7 @@ public class DownTrick : Trick
     {
         skateboard.localRotation = Quaternion.identity;
         skateboard.localPosition = startingPosition;
-        Goals_Tracker.instance?.trickTypeExecuted(GetType());
+        //Goals_Tracker.instance?.trickTypeExecuted(GetType());
     }
 
     public override void StartTrick()

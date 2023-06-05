@@ -11,7 +11,7 @@ public class Menu : MonoBehaviour
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] List<GameObject> subMenus;
     private PlayerMovement player;
-    private Goals_Tracker goals;
+    //private Goals_Tracker goals;
     [SerializeField] GameObject missionDisplays;
     [SerializeField] TMP_Text mission1Text;
     [SerializeField] TMP_Text mission2Text;
@@ -21,7 +21,7 @@ public class Menu : MonoBehaviour
     void Start()
     {
         player = FindObjectOfType<PlayerMovement>();
-        goals = player.GetComponent<Goals_Tracker>();
+        //goals = player.GetComponent<Goals_Tracker>();
     }
 
     // Update is called once per frame
@@ -84,8 +84,8 @@ public class Menu : MonoBehaviour
     }
     void DisplayMissionProgress()
     {
-        mission1Text.text = goals.mission1.getDescription() + "\n" + "(" + goals.mission1.GetCurrentCount() + "/" + goals.mission1.goal + ")";
-        mission2Text.text = goals.mission2.getDescription() + "\n" + "(" + goals.mission2.GetCurrentCount() + "/" + goals.mission2.goal + ")";
-        mission3Text.text = goals.mission3.getDescription() + "\n" + "(" + goals.mission3.GetCurrentCount() + "/" + goals.mission3.goal + ")";
+        //mission1Text.text = goals.mission1.getDescription() + "\n" + "(" + goals.mission1.GetCurrentCount() + "/" + goals.mission1.goal + ")";
+        //mission2Text.text = goals.mission2.getDescription() + "\n" + "(" + goals.mission2.GetCurrentCount() + "/" + goals.mission2.goal + ")";
+        //mission3Text.text = goals.mission3.getDescription() + "\n" + "(" + goals.mission3.GetCurrentCount() + "/" + goals.mission3.goal + ")";
     }
 }

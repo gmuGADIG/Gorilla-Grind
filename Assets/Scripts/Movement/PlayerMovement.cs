@@ -93,6 +93,7 @@ public class PlayerMovement : MonoBehaviour
     public float RotationMultiplier { get; set; } = 1f;
     public float AccelerationMultiplier { get; set; } = 1f;
     public event Action<StateType> OnStateChange;
+    public event Action<Type> OnTrickStart;
 
     LayerMask currentSkateableLayer;
     Vector2 velocity;
@@ -263,6 +264,7 @@ public class PlayerMovement : MonoBehaviour
         {
             currentPlayerTrick = availableTricks[trickType];
             currentPlayerTrick.StartTrick();
+            OnTrickStart?.Invoke(trickType);
         }
     }
 
@@ -285,7 +287,7 @@ public class PlayerMovement : MonoBehaviour
         else return (false, Vector2.zero);
     }
 
-    Vine? GetVine() 
+    Vine GetVine() 
     {
         Vector3 origin = skateboardCenter.position + new Vector3(midPointOffset, 0);
         RaycastHit2D upCast   = Physics2D.Raycast(origin, Vector2.up,   3, currentSkateableLayer);
@@ -460,7 +462,7 @@ public class PlayerMovement : MonoBehaviour
 
             Vector2 groundTangent = (slopeCheckPoint - midPoint).normalized;
 
-            Vine? vine = move.GetVine();
+            Vine vine = move.GetVine();
             OnVine = vine != null;
 
             // adjust velocity based on input. accelerating this way can only go so fast, but speed is never hard capped

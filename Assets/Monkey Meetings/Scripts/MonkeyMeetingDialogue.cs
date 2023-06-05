@@ -9,6 +9,8 @@ public class MonkeyMeetingDialogue : ScriptableObject
 {
     //list of images of whos at the meeting
 
+    //public Mission linkedMission;
+
     public MonkeyMeetingCharacters characterDatabase;
 
     public DialogueFrame[] dialogueFrames;

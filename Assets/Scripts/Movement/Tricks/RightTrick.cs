@@ -19,7 +19,7 @@ public class RightTrick : Trick
     public override void EndTrick()
     {
         skateboard.localRotation = Quaternion.identity;
-        Goals_Tracker.instance?.trickTypeExecuted(GetType());
+        //Goals_Tracker.instance?.trickTypeExecuted(GetType());
     }
 
     public override void StartTrick()

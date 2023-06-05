@@ -28,8 +28,8 @@ public class BananaScript : MonoBehaviour
     {
         if (collision == playerCollider)
         {
-            Goals_Tracker tracker = collision.gameObject.GetComponent<Goals_Tracker>();
-            tracker.AddBananas(1);
+            //Goals_Tracker tracker = collision.gameObject.GetComponent<Goals_Tracker>();
+            //tracker.AddBananas(1);
             Destroy(gameObject);
         }
     }

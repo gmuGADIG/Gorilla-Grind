@@ -8,21 +8,8 @@ public class PlayerData : MonoBehaviour
 
     [SerializeField] BoardList boardList;
 
-    public int CurrentBananas
-    {
-        get => currentBananas;
-        set
-        {
-            currentBananas = value;
-            currentBananas = currentBananas > 0 ? currentBananas : 0;
-        }
-    }
-
-
-    int currentBananas;
-    List<GameObject> currentlyUnlockedBoardPrefabs;
-    GameObject currentlySelectedBoardPrefab;
     MonkeyMeetingDialogue pendingMonkeyMeeting;
+    
 
     private void Awake()
     {
@@ -37,12 +24,5 @@ public class PlayerData : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void UnlockNewBoard(string boardName)
-    {
-        GameObject boardPrefab = boardList.GetBoardPrefabFromName(boardName);
-        if (boardPrefab != null)
-        {
-            currentlyUnlockedBoardPrefabs.Add(boardPrefab);
-        }
-    }
+
 }
