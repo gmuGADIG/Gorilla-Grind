@@ -10,7 +10,7 @@ public class MissionManager : MonoBehaviour
 
     public int NumOfCurrentMissions => randomMissions.Count + (monkeyMeetingMission == null ? 0 : 1);
     public List<Mission> randomMissions = new List<Mission>();
-    public Mission monkeyMeetingMission;
+    public Mission monkeyMeetingMission = null;
 
     private void Awake()
     {
@@ -29,7 +29,7 @@ public class MissionManager : MonoBehaviour
     public void GenerateMissions()
     {
         randomMissions.Clear();
-        for (int i = 0; i < numOfRandomMissions; i++)
+        for (int i = 0; i <= numOfRandomMissions; i++)
         {
             Mission newMission = null;
             int missionType = Random.Range(0, 3);

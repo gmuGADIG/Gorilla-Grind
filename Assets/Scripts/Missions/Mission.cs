@@ -7,6 +7,7 @@ public abstract class Mission
     protected float goal;
     protected float currentProgress;
 
+    public float CurrentProgress => currentProgress;
     public float Goal => goal;
     public string Name { get; protected set; }
     public string Description { get; protected set; }

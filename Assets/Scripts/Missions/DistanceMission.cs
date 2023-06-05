@@ -9,11 +9,11 @@ public class DistanceMission : Mission
     {
         goal = distanceGoal;
         Name = "Distance:";
-        Description = "Go " + distanceGoal + " without wiping out.";
+        Description = "Go " + distanceGoal + "m in one run.";
     }
 
     public override void UpdateProgress()
     {
-        currentProgress += PlayerMovement.CurrentHorizontalSpeed;
+        currentProgress += PlayerMovement.CurrentHorizontalSpeed * Time.deltaTime;
     }
 }
