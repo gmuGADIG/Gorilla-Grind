@@ -6,12 +6,12 @@ public class MissionManager : MonoBehaviour
 {
     public static MissionManager Instance { get; private set; }
 
-    [SerializeField] int numOfRandomMissions = 3;
 
     public int NumOfCurrentMissions => randomMissions.Count + (monkeyMeetingMission == null ? 0 : 1);
     public List<Mission> randomMissions = new List<Mission>();
     public Mission monkeyMeetingMission = null;
 
+    int numOfRandomMissions = 3;
     int numOfMissionTypes = 4;
 
     private void Awake()
@@ -45,16 +45,16 @@ public class MissionManager : MonoBehaviour
             switch (missionType)
             {
                 case 0:
-                    newMission = new DistanceMission(100f);
+                    newMission = new DistanceMission();
                     break;
                 case 1:
-                    newMission = new TrickMission(10, typeof(UpTrick), FindObjectOfType<PlayerMovement>());
+                    newMission = new TrickMission(FindObjectOfType<PlayerMovement>());
                     break;
                 case 2:
-                    newMission = new BananaMission(100);
+                    newMission = new BananaMission();
                     break;
                 case 3:
-                    newMission = new HazardMission(20);
+                    newMission = new HazardMission();
                     break;
             }
             randomMissions.Add(newMission);

@@ -2,11 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Random = UnityEngine.Random;
 
 public class TrickMission : Mission
 {
+    static List<Type> trickTypes = new List<Type>() { typeof(UpTrick), typeof(DownTrick), typeof(LeftTrick), typeof(RightTrick) };
+    static int minGoal = 10;
+    static int maxGoal = 20;
+
     Type goalTrickType;
     PlayerMovement player;
+
+    public TrickMission(PlayerMovement player) : this(Random.Range(minGoal, maxGoal), trickTypes[Random.Range(0, trickTypes.Count)], player)
+    {
+
+    }
 
     public TrickMission(int trickGoalCount, Type goalTrickType, PlayerMovement player)
     {

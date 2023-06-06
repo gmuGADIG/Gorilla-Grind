@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class HazardMission : Mission
 {
+    static int minGoal = 10;
+    static int maxGoal = 50;
+
+    public HazardMission() : this(Random.Range(minGoal, maxGoal))
+    {
+
+    }
+
     public HazardMission(int hazardGoal)
     {
         goal = hazardGoal;

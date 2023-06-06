@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class BananaMission : Mission
 {
+    static int minGoal = 50;
+    static int maxGoal = 200;
+
+    public BananaMission() : this (Random.Range(minGoal, maxGoal))
+    {
+
+    }
+
     public BananaMission(int bananaCount)
     {
         goal = bananaCount;
