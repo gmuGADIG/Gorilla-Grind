@@ -12,6 +12,8 @@ public class MissionManager : MonoBehaviour
     public List<Mission> randomMissions = new List<Mission>();
     public Mission monkeyMeetingMission = null;
 
+    int numOfMissionTypes = 4;
+
     private void Awake()
     {
         if (Instance == null)
@@ -29,13 +31,20 @@ public class MissionManager : MonoBehaviour
     public void GenerateMissions()
     {
         randomMissions.Clear();
+        List<int> alreadyPickedMissionTypes = new List<int>(); // to prevent duplicate mission creation
         for (int i = 0; i <= numOfRandomMissions; i++)
         {
             Mission newMission = null;
-            int missionType = Random.Range(0, 3);
+            int missionType;
+            do
+            {
+                missionType = Random.Range(0, numOfMissionTypes);
+            }
+            while (alreadyPickedMissionTypes.Contains(missionType));
+            alreadyPickedMissionTypes.Add(missionType);
             switch (missionType)
             {
-                case 0: 
+                case 0:
                     newMission = new DistanceMission(100f);
                     break;
                 case 1:
