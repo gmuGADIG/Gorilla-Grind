@@ -13,7 +13,6 @@ public class BananaScript : MonoBehaviour
     void Start()
     {
         BananaSoundID = SoundManager.Instance.GetSoundID("Banana_Pickup");
-        Debug.Log("Banana");
         playerCollider = GameObject.Find("Player").transform.GetComponent<CapsuleCollider2D>();
     }
 
@@ -25,15 +24,12 @@ public class BananaScript : MonoBehaviour
 
     public void Collect()
     {
-        GameObject.Destroy(gameObject);
+        Destroy(gameObject);
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision == playerCollider)
         {
-            //Goals_Tracker tracker = collision.gameObject.GetComponent<Goals_Tracker>();
-            //tracker.AddBananas(1);
-
             SoundManager.Instance.PlaySoundGlobal(BananaSoundID);
             Inventory.AddBananas(1);
             Destroy(gameObject);
