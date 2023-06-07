@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 583283535433455025}
   - component: {fileID: 22198339121230368}
   - component: {fileID: 7258863040152870987}
-  - component: {fileID: 1138102348517935189}
+  - component: {fileID: 5266596905814915078}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -231,6 +231,12 @@ MonoBehaviour:
   OnRessurection:
     m_PersistentCalls:
       m_Calls: []
+  PlayerOnVine:
+    m_PersistentCalls:
+      m_Calls: []
+  PlayerOffVine:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &22198339121230368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,27 +261,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e7ceb845ccda9f47a77baf1d6146608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1138102348517935189
-MonoBehaviour:
+--- !u!70 &5266596905814915078
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 583283535433455034}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22446d1164281bc4ca02e4414cca64cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  level: 0
-  MissionDisplayPrefab: {fileID: 8704349068294754442, guid: 75be066bb0139dc41b4e502e881fc1a6, type: 3}
-  ScoreDisplayPrefab: {fileID: 3526151488674264958, guid: 5a6a43a3b8dd6274ea2efb28ae7cb64e, type: 3}
-  goalProgress: {fileID: 0}
-  mission1Text: {fileID: 0}
-  mission2Text: {fileID: 0}
-  mission3Text: {fileID: 0}
-  styleText: {fileID: 0}
-  pointsText: {fileID: 0}
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.03624022, y: 0.75115967}
+  m_Size: {x: 1.0073621, y: 2.5023193}
+  m_Direction: 0
 --- !u!1 &9116743229417559382
 GameObject:
   m_ObjectHideFlags: 0
@@ -558,8 +559,20 @@ PrefabInstance:
       value: -0.7234076
       objectReference: {fileID: 0}
     - target: {fileID: 3632450497933371849, guid: 0e0dba5bf69a754499cd85099f43bdad, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632450497933371849, guid: 0e0dba5bf69a754499cd85099f43bdad, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632450497933371849, guid: 0e0dba5bf69a754499cd85099f43bdad, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0.6904212
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632450497933371849, guid: 0e0dba5bf69a754499cd85099f43bdad, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 87.327
       objectReference: {fileID: 0}
     - target: {fileID: 4818051692526190656, guid: 0e0dba5bf69a754499cd85099f43bdad, type: 3}
       propertyPath: m_Controller

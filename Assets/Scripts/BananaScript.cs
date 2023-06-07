@@ -7,10 +7,12 @@ public class BananaScript : MonoBehaviour
     public BoxCollider2D bananaCollider;
     public CapsuleCollider2D playerCollider;
 
+    int BananaSoundID;
+
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Banana");
+        BananaSoundID = SoundManager.Instance.GetSoundID("Banana_Pickup");
         playerCollider = GameObject.Find("Player").transform.GetComponent<CapsuleCollider2D>();
     }
 
@@ -22,14 +24,14 @@ public class BananaScript : MonoBehaviour
 
     public void Collect()
     {
-        GameObject.Destroy(gameObject);
+        Destroy(gameObject);
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision == playerCollider)
         {
-            //Goals_Tracker tracker = collision.gameObject.GetComponent<Goals_Tracker>();
-            //tracker.AddBananas(1);
+            SoundManager.Instance.PlaySoundGlobal(BananaSoundID);
+            Inventory.AddBananas(1);
             Destroy(gameObject);
         }
     }
