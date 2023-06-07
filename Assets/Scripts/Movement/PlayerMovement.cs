@@ -134,8 +134,8 @@ public class PlayerMovement : MonoBehaviour
 
     public UnityEvent PlayerOnVine;
     public UnityEvent PlayerOffVine;
-    
-    void Murder() {
+
+    public void Murder() {
         print("PlayerMovement.Murder: murdered");
         lives -= 1;
         if (lives <= 0)
