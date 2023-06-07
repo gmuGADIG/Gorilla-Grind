@@ -9,7 +9,6 @@ public class Hazards : MonoBehaviour
     {
         if (col.CompareTag("Player"))
         {
-            print("Murdering Players");
             col.GetComponent<PlayerMovement>().Murder();
         }
     }
