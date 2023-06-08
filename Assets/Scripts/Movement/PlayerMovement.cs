@@ -563,7 +563,7 @@ public class PlayerMovement : MonoBehaviour
 
         public override void BeforeExecution()
         {
-
+            SoundManager.Instance.PlaySoundGlobal(move.jumpSoundID);
         }
 
         public override void PhysicsUpdate()
