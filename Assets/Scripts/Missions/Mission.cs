@@ -19,7 +19,7 @@ public abstract class Mission
 
     public virtual bool Complete()
     {
-        if (goal >= currentProgress)
+        if (currentProgress >= goal)
         {
             return true;
         }

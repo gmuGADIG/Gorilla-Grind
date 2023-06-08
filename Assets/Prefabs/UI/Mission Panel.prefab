@@ -302,7 +302,7 @@ MonoBehaviour:
   m_text: Desc.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 6f1690f335770274092652cb3bd3b6a1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -449,9 +449,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e45a72400e7e314b94ba3cbdb61aa5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  markedAsComplete: 0
+  completedColor: {r: 0.09480369, g: 1, b: 0, a: 1}
+  incompleteColor: {r: 0.7019608, g: 0.25882354, b: 0.33333334, a: 1}
   missionName: {fileID: 5104934765978392884}
   missionDescription: {fileID: 5104934764409485124}
   missionProgress: {fileID: 1181581999}
+  progressHighlight: {fileID: 1147606238}
 --- !u!222 &2218977139173879422
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -556,7 +560,7 @@ MonoBehaviour:
   m_text: Mission 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 6f1690f335770274092652cb3bd3b6a1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
