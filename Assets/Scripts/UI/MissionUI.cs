@@ -51,8 +51,8 @@ public class MissionUI : MonoBehaviour
             stringBuilders[0].Append(MissionManager.Instance.monkeyMeetingMission.Goal);
             missionPanels[0].missionProgress.text = stringBuilders[0].ToString();
         }
-
-        for (int i = 1; i < stringBuilders.Length; i++)
+        int randMissionCount = MissionManager.Instance.randomMissions.Count;
+        for (int i = 1; i < randMissionCount; i++)
         {
             if (stringBuilders[i] == null)
             {
