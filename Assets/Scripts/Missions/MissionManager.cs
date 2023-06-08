@@ -54,7 +54,7 @@ public class MissionManager : MonoBehaviour
                     newMission = new BananaMission();
                     break;
                 case 3:
-                    newMission = new HazardMission();
+                    newMission = new HazardMission(FindObjectOfType<PlayerMovement>());
                     break;
             }
             randomMissions.Add(newMission);

@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class DistanceMission : Mission
 {
-    static int minDistance = 100;
-    static int maxDistance = 500;
+    private static int[] randomGoals = { 100, 200, 300, 400, 500 };
 
-    public DistanceMission() : this(Random.Range(minDistance, maxDistance))
-    {
-        
-    }
+    public DistanceMission() : this(randomGoals[Random.Range(0, randomGoals.Length)])
+    { }
 
     public DistanceMission(float distanceGoal)
     {
