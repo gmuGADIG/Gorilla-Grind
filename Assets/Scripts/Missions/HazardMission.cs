@@ -4,23 +4,31 @@ using UnityEngine;
 
 public class HazardMission : Mission
 {
-    static int minGoal = 10;
-    static int maxGoal = 50;
+    private static int[] randomGoals = { 10, 20, 30, 40, 50 };
+    private PlayerMovement player;
 
-    public HazardMission() : this(Random.Range(minGoal, maxGoal))
-    {
+    public HazardMission(PlayerMovement player) : this(player, randomGoals[Random.Range(0, randomGoals.Length)])
+    { }
 
-    }
-
-    public HazardMission(int hazardGoal)
+    public HazardMission(PlayerMovement player, int hazardGoal)
     {
         goal = hazardGoal;
         Name = "Hazard";
         Description = "Jump over " + goal + " hazards in one run";
+
+        this.player = player;
+        player.OnJumpedOverHazard.AddListener(IncrementProgress);
     }
+
+    void IncrementProgress() => currentProgress += 1;
 
     public override void UpdateProgress()
     {
+        // nothing
+    }
 
+    ~HazardMission()
+    {
+        player.OnJumpedOverHazard.RemoveListener(IncrementProgress);
     }
 }
