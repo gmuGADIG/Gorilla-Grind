@@ -586,6 +586,10 @@ PrefabInstance:
       propertyPath: itemName
       value: Banana Board
       objectReference: {fileID: 0}
+    - target: {fileID: 2174258694791304178, guid: f1a8288f4341b1f48ad20c274ea47e3d, type: 3}
+      propertyPath: equipSoundName
+      value: Equip_Banana
+      objectReference: {fileID: 0}
     - target: {fileID: 2215302542400934846, guid: f1a8288f4341b1f48ad20c274ea47e3d, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -33.418945
@@ -680,8 +684,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 697023877}
   m_HandleRect: {fileID: 697023876}
   m_Direction: 2
-  m_Value: 0.9999999
-  m_Size: 0.5117638
+  m_Value: 1
+  m_Size: 0.5115797
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1115,6 +1119,10 @@ PrefabInstance:
       propertyPath: itemName
       value: Hawaiian Board
       objectReference: {fileID: 0}
+    - target: {fileID: 2174258694791304178, guid: f1a8288f4341b1f48ad20c274ea47e3d, type: 3}
+      propertyPath: equipSoundName
+      value: Equip_Hawaiian
+      objectReference: {fileID: 0}
     - target: {fileID: 2215302542400934846, guid: f1a8288f4341b1f48ad20c274ea47e3d, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -33.418945
@@ -1467,6 +1475,10 @@ PrefabInstance:
       propertyPath: itemName
       value: Popsicle Board
       objectReference: {fileID: 0}
+    - target: {fileID: 2174258694791304178, guid: f1a8288f4341b1f48ad20c274ea47e3d, type: 3}
+      propertyPath: equipSoundName
+      value: Equip_Popsicle
+      objectReference: {fileID: 0}
     - target: {fileID: 2215302542400934846, guid: f1a8288f4341b1f48ad20c274ea47e3d, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -33.418945
@@ -1693,6 +1705,10 @@ PrefabInstance:
     - target: {fileID: 2174258694791304178, guid: f1a8288f4341b1f48ad20c274ea47e3d, type: 3}
       propertyPath: itemName
       value: Flamin Board
+      objectReference: {fileID: 0}
+    - target: {fileID: 2174258694791304178, guid: f1a8288f4341b1f48ad20c274ea47e3d, type: 3}
+      propertyPath: equipSoundName
+      value: Equip_Flamin
       objectReference: {fileID: 0}
     - target: {fileID: 2215302542400934846, guid: f1a8288f4341b1f48ad20c274ea47e3d, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -2006,6 +2022,10 @@ PrefabInstance:
       propertyPath: itemName
       value: Vine Board
       objectReference: {fileID: 0}
+    - target: {fileID: 2174258694791304178, guid: f1a8288f4341b1f48ad20c274ea47e3d, type: 3}
+      propertyPath: equipSoundName
+      value: Equip_Vine
+      objectReference: {fileID: 0}
     - target: {fileID: 2215302542400934846, guid: f1a8288f4341b1f48ad20c274ea47e3d, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -33.418945
@@ -2237,7 +2257,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: f2fea3e978822424b9024fe04408247f, type: 3}
     - target: {fileID: 1752627200657127862, guid: f1a8288f4341b1f48ad20c274ea47e3d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2174258694791304178, guid: f1a8288f4341b1f48ad20c274ea47e3d, type: 3}
       propertyPath: price
@@ -2247,13 +2267,17 @@ PrefabInstance:
       propertyPath: itemName
       value: All Natural Board
       objectReference: {fileID: 0}
+    - target: {fileID: 2174258694791304178, guid: f1a8288f4341b1f48ad20c274ea47e3d, type: 3}
+      propertyPath: equipSoundName
+      value: Equip_All_Natural
+      objectReference: {fileID: 0}
     - target: {fileID: 2215302542400934846, guid: f1a8288f4341b1f48ad20c274ea47e3d, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -33.418945
       objectReference: {fileID: 0}
     - target: {fileID: 9021980042448992587, guid: f1a8288f4341b1f48ad20c274ea47e3d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1a8288f4341b1f48ad20c274ea47e3d, type: 3}
@@ -2315,60 +2339,3 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 9209924347307219635, guid: 0e03b2e1ec5fb3b44ba210e47c96ec38, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0e03b2e1ec5fb3b44ba210e47c96ec38, type: 3}
---- !u!1001 &8018508357874420113
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 8018508357954329586, guid: 75a435b6a8fbc93479c98067fb2b3c54, type: 3}
-      propertyPath: m_Name
-      value: Shop Music
-      objectReference: {fileID: 0}
-    - target: {fileID: 8018508357954329588, guid: 75a435b6a8fbc93479c98067fb2b3c54, type: 3}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8018508357954329588, guid: 75a435b6a8fbc93479c98067fb2b3c54, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 490.94156
-      objectReference: {fileID: 0}
-    - target: {fileID: 8018508357954329588, guid: 75a435b6a8fbc93479c98067fb2b3c54, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 248.09541
-      objectReference: {fileID: 0}
-    - target: {fileID: 8018508357954329588, guid: 75a435b6a8fbc93479c98067fb2b3c54, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1.3943944
-      objectReference: {fileID: 0}
-    - target: {fileID: 8018508357954329588, guid: 75a435b6a8fbc93479c98067fb2b3c54, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8018508357954329588, guid: 75a435b6a8fbc93479c98067fb2b3c54, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8018508357954329588, guid: 75a435b6a8fbc93479c98067fb2b3c54, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8018508357954329588, guid: 75a435b6a8fbc93479c98067fb2b3c54, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8018508357954329588, guid: 75a435b6a8fbc93479c98067fb2b3c54, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8018508357954329588, guid: 75a435b6a8fbc93479c98067fb2b3c54, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8018508357954329588, guid: 75a435b6a8fbc93479c98067fb2b3c54, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 75a435b6a8fbc93479c98067fb2b3c54, type: 3}
