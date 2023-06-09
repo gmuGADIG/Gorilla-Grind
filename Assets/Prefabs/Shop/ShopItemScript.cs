@@ -11,6 +11,8 @@ public class ShopItemScript : MonoBehaviour
     public string itemName;
     [Tooltip("Number of bananas to deduct from inventory when player purchases item")]
     public int price;
+    [Tooltip("The file in Resources/Sounds to play when item is equipped")]
+    public string equipSoundName;
 
     private bool isPurchased;
     private Button buyButton;
@@ -20,6 +22,10 @@ public class ShopItemScript : MonoBehaviour
     private TMP_Text itemNameText;
     private TMP_Text priceText;
     private Image panelImage;
+    private Image bananaImage;
+
+    private int purchasingSoundId = -1;
+    private int equippingSoundId = -1;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +42,7 @@ public class ShopItemScript : MonoBehaviour
         itemNameText = transform.Find("ItemName").GetComponent<TMP_Text>();
         priceText = transform.Find("Price").GetComponent<TMP_Text>();
         panelImage = gameObject.GetComponent<Image>();
+        bananaImage = transform.Find("Banana").GetComponent<Image>();
 
         if (isPurchased) {
             onPurchased();
@@ -49,6 +56,9 @@ public class ShopItemScript : MonoBehaviour
 
         itemNameText.text = itemName;
         priceText.text = price.ToString();
+
+        purchasingSoundId = SoundManager.Instance.GetSoundID("Shop_Purchase_Item");
+        equippingSoundId  = SoundManager.Instance.GetSoundID(equipSoundName);
     }
 
     // Update is called once per frame
@@ -76,6 +86,8 @@ public class ShopItemScript : MonoBehaviour
             //User does not have enough bananas to purchase this item
             return;
         }
+
+        SoundManager.Instance.PlaySoundGlobal(purchasingSoundId);
         Inventory.RemoveBananas(price);
         Inventory.addItem(itemName);
         onPurchased();
@@ -87,7 +99,9 @@ public class ShopItemScript : MonoBehaviour
         buyButtonText.text = "Bought";
         buyButton.gameObject.SetActive(false);
         equipButton.gameObject.SetActive(true);
-        panelImage.color = new UnityEngine.Color(0.63f,1f,0.47f,0.7f); //Light green color
+        panelImage.color = new Color(0.63f,1f,0.47f,0.7f); //Light green color
+        bananaImage.gameObject.SetActive(false);
+        priceText.gameObject.SetActive(false);
     }
 
     public void onEquipButtonPressed() {
@@ -95,6 +109,9 @@ public class ShopItemScript : MonoBehaviour
             return;
         }
         // Board is in inventory
+        if (Inventory.getEquippedBoard() == itemName) return; // do nothing if this board is already equipped
+        
         Inventory.equipBoard(itemName);
+        SoundManager.Instance.PlaySoundGlobal(equippingSoundId);
     }
 }
