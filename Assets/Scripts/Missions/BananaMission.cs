@@ -9,7 +9,7 @@ public class BananaMission : Mission
 
     public BananaMission() : this (Random.Range(minGoal, maxGoal))
     {
-        Inventory.OnBananaCountChange += UpdateBananaCount;
+        RunController.Current.OnBananaCountChange += UpdateBananaCount;
     }
 
     public BananaMission(int bananaCount)
@@ -31,6 +31,6 @@ public class BananaMission : Mission
 
     ~BananaMission()
     {
-        Inventory.OnBananaCountChange -= UpdateBananaCount;
+        RunController.Current.OnBananaCountChange -= UpdateBananaCount;
     }
 }

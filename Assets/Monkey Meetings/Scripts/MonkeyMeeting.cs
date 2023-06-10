@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class MonkeyMeeting : MonoBehaviour
 {
+    public static event Action OnMonkeyMeetingEnd;
+
     public TMP_Text dialogueText;
     public Image nameImage;
     public Transform charactersParentObject;
@@ -13,7 +17,7 @@ public class MonkeyMeeting : MonoBehaviour
     [SerializeField] MonkeyMeetingDialogue meetingDialogue;
     public float textSpeed = 0.033f;
     public int soundCharChange = 4;
-    //public GameObject background;
+    [SerializeField] string postRunSceneName;
 
     private MonkeyMeetingDialogue.DialogueFrame dialogueFrame;
     private string[] currentDialogueLines;
@@ -25,7 +29,16 @@ public class MonkeyMeeting : MonoBehaviour
 
     private void Start()
     {
-        StartDialogue();
+        if (meetingDialogue != null)
+        {
+            StartDialogue();
+        }
+    }
+
+    public void SetMeetingDialogue(MonkeyMeetingDialogue dialogue)
+    {
+        meetingDialogue = dialogue;
+        //StartDialogue();
     }
 
     public void StartDialogue()
@@ -115,8 +128,9 @@ public class MonkeyMeeting : MonoBehaviour
 
     void EndDialogue()
     {
-        // background.SetActive(false);
-        gameObject.SetActive(false);
+        OnMonkeyMeetingEnd?.Invoke();
+        meetingDialogue = null;
+        SceneManager.LoadScene(postRunSceneName);
     }
 
     private Emotion GetSelectedEmotion(MonkeyMeetingDialogue.DialogueFrame frame)
@@ -136,11 +150,6 @@ public class MonkeyMeeting : MonoBehaviour
         dialogueFrame = meetingDialogue.dialogueFrames[currentDialogueFrameIndex];
         currentDialogueLines = dialogueFrame.dialogueLines;
         currentCharacterLineIndex = 0;
-        if (dialogueFrame.isMission == true)
-        {
-            Debug.Log(currentDialogueLines[currentDialogueLines.Length - 1]);
-            //AddMissionToListFromDescription(currentDialogueLines[currentDialogueLines.Length-1]);
-        }
 
         if (dialogueFrame.isNarrator || dialogueFrame.isPlayerCharacter)
         {

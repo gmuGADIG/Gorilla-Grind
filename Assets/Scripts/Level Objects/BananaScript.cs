@@ -31,7 +31,7 @@ public class BananaScript : MonoBehaviour
         if (collision == playerCollider)
         {
             SoundManager.Instance.PlaySoundGlobal(BananaSoundID);
-            Inventory.AddBananaDuringRun(1);
+            RunController.Current.AddBananas(1);
             Destroy(gameObject);
         }
     }

@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c560f868b549d48acca607a9787604, type: 3}
   m_Name: Meeting_11_BadTrip
   m_EditorClassIdentifier: 
+  hasMission: 0
+  linkedMissionType: 0
+  missionGoalCount: 0
+  nextMonkeyMeeting: {fileID: 11400000, guid: 4b3f5dbed47e9964fa11bd7079e4e621, type: 2}
   characterDatabase: {fileID: 11400000, guid: 5ff5001a917067e499d10df040f92b30, type: 2}
   dialogueFrames:
   - speakingCharacter: {fileID: 11400000, guid: bda5b80130d6e514992153881c501f3b, type: 2}
@@ -22,7 +26,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Oh, uh, hey, Champ! We could use a wee bit of help over here!
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a649c9cba84f8d4da596355a2726c19, type: 2}
@@ -34,7 +37,6 @@ MonoBehaviour:
     dialogueLines:
     - Heh, heh... Champ... more like Chimp... heh heh...
     - Monkey...
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -45,7 +47,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Thanks for summing up the sitch', sis. Couldn'ta' said it better myself.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -57,7 +58,6 @@ MonoBehaviour:
     dialogueLines:
     - Yeah, dude. Munchies acting kinda funky right now.
     - Well, more funky than usual...
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -68,7 +68,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Indubitably! Well I dare say-
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a649c9cba84f8d4da596355a2726c19, type: 2}
@@ -80,7 +79,6 @@ MonoBehaviour:
     dialogueLines:
     - Eeeeahhhey, he saying big word!
     - That's like a whole sentence, but like...
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a649c9cba84f8d4da596355a2726c19, type: 2}
@@ -92,7 +90,6 @@ MonoBehaviour:
     dialogueLines:
     - without any spaces...
     - like a time efficient sentence...
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a649c9cba84f8d4da596355a2726c19, type: 2}
@@ -104,7 +101,6 @@ MonoBehaviour:
     dialogueLines:
     - that's like a paragraph of the word world...
     - so much thought but without any gaps...
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a649c9cba84f8d4da596355a2726c19, type: 2}
@@ -116,7 +112,6 @@ MonoBehaviour:
     dialogueLines:
     - waow...
     - ...
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: bda5b80130d6e514992153881c501f3b, type: 2}
@@ -127,7 +122,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - No, no! We can't have two of them talking like that! No, no, no, no...
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -141,7 +135,6 @@ MonoBehaviour:
     - I seem to have flexed my glorious muscles a bit too much while explaining to
       our Gorilla amigo.
     - But whatevs'.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -154,7 +147,6 @@ MonoBehaviour:
     - We gotta get to the bottom of Ms. Munchies wacked-out vibes.
     - Ollie, my wee homeslice. You were the first on the scene.
     - Any idea what happened to her?
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: bda5b80130d6e514992153881c501f3b, type: 2}
@@ -166,7 +158,6 @@ MonoBehaviour:
     dialogueLines:
     - 'First off: I am not a ''wee'' homeslice, ok.'
     - I just haven't had my growth spurt, yet.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -179,7 +170,6 @@ MonoBehaviour:
     - 'Second off: Lemme explain it.'
     - So, I just got back from testing out my new brain bucket, right?
     - And when I came back to the crib, it was like, all foggy and stuff.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: bda5b80130d6e514992153881c501f3b, type: 2}
@@ -190,7 +180,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Munchies was just laying on the ground, covered in banana peels!
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -203,7 +192,6 @@ MonoBehaviour:
     - Hmm.. sounds to me like there might be some foul play.
     - And I ain't talking fowl!
     - 'This sounds like a serious matter, so I oughta bring out my secret weapon:'
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -214,7 +202,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Thinking Cap, Engaged!
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -225,7 +212,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Tony breaks into doing push ups!
-    isMission: 0
     isNarrator: 1
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -236,7 +222,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - One Moment! *huff* ...6! *huff* ...13! *huff* ...22!
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a649c9cba84f8d4da596355a2726c19, type: 2}
@@ -252,7 +237,6 @@ MonoBehaviour:
     - but like,
     - like,
     - he falls again...
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a649c9cba84f8d4da596355a2726c19, type: 2}
@@ -264,7 +248,6 @@ MonoBehaviour:
     dialogueLines:
     - it's like purgatory, but like,
     - he's fighting back against the divine...
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -275,7 +258,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Tony stands back up.
-    isMission: 0
     isNarrator: 1
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -289,7 +271,6 @@ MonoBehaviour:
     - 'Now to the matter at hand: the case is afoot!'
     - The assailant that diluted the mind of our poor damsel Ms. Munchies
     - will be brought to justice by my sharp beak and my even sharper mind!
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: bda5b80130d6e514992153881c501f3b, type: 2}
@@ -300,7 +281,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Oh, jeez. My brain hurty. Do I have to think too?
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -317,7 +297,6 @@ MonoBehaviour:
     - and our beloved banana pile has been eloped,
     - as in my enhanced cranium I found it only natural to investigate.
     - Now my wee Ollie, how might you consider we move forward?
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: bda5b80130d6e514992153881c501f3b, type: 2}
@@ -330,7 +309,6 @@ MonoBehaviour:
     - The Monkey Wizard got her!
     - And then, the bananas grew legs 'cause of da wizard spell,
     - and they ran away cause the wizard was so scary!
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -344,7 +322,6 @@ MonoBehaviour:
     - but I wouldn't put it past the chance of possibility.
     - After all, I do have a chap from my college days who spent their days buried
       in such a grimoire...
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -355,7 +332,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - There's a long pause as Tony is in thought.
-    isMission: 0
     isNarrator: 1
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -369,7 +345,6 @@ MonoBehaviour:
     - Ms. Munchies, have you seen a wizard about?
     - And on that same line of intrigue, have you seen our beloved bananas,
     - which have so tragically gone missing?
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a649c9cba84f8d4da596355a2726c19, type: 2}
@@ -380,7 +355,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Give orange me give eat orange me eat orange give me eat orange give me you.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: bda5b80130d6e514992153881c501f3b, type: 2}
@@ -391,7 +365,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Now we need to worry about oranges, too?
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -403,7 +376,6 @@ MonoBehaviour:
     dialogueLines:
     - Avast! The curse's afflication grows ever stronger!
     - We must save the poor damsel Munchies!
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a649c9cba84f8d4da596355a2726c19, type: 2}
@@ -415,7 +387,6 @@ MonoBehaviour:
     dialogueLines:
     - Damsel-smamsel, ya know? I'm good,
     - I'm like, real good...
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a649c9cba84f8d4da596355a2726c19, type: 2}
@@ -428,7 +399,6 @@ MonoBehaviour:
     - I'm like a river on  a rainy day,
     - like a leaf in an updraft, ya know?
     - I'm more mellow than a yellow,
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a649c9cba84f8d4da596355a2726c19, type: 2}
@@ -441,7 +411,6 @@ MonoBehaviour:
     - heh, heh...
     - yellow...
     - heh, heh...
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a649c9cba84f8d4da596355a2726c19, type: 2}
@@ -452,7 +421,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - mellow...
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -465,7 +433,6 @@ MonoBehaviour:
     - Eureka! That's it, Ms. Munchies!
     - The origin of your debilitating state!
     - The Mellow Yellow has struck!
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: bda5b80130d6e514992153881c501f3b, type: 2}
@@ -476,7 +443,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - The what?!
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -491,7 +457,6 @@ MonoBehaviour:
     - The song was assumed to be about smoking banana peels to obtain the psychoactive
       substance Bananadine.
     - A hoax, really. Published in the Berkeley barb in March 1967 - Wikipedia.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: bda5b80130d6e514992153881c501f3b, type: 2}
@@ -502,7 +467,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Now I'm even more confused.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a649c9cba84f8d4da596355a2726c19, type: 2}
@@ -513,7 +477,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - I'm like Bananadine in real life, heh, heh...
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -524,7 +487,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Indubitably! I... uh... *COUGH* *COUGH*
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -537,7 +499,6 @@ MonoBehaviour:
     - Oh, huh. That was wack.
     - Eh, whatever. We know why Munchies is all funky, right?
     - 'I think I know what might fix her up:'
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -549,7 +510,6 @@ MonoBehaviour:
     dialogueLines:
     - A good long skate!
     - Nothing like some cardio to get the blood flow all straightened out!
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: bda5b80130d6e514992153881c501f3b, type: 2}
@@ -561,7 +521,6 @@ MonoBehaviour:
     dialogueLines:
     - Ooh, ooh, true! If you go really far you might just inspire her!
     - You think you can do that, Champ?
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: bda5b80130d6e514992153881c501f3b, type: 2}
@@ -572,6 +531,5 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Travel a distance of 1500 in one run.
-    isMission: 1
     isNarrator: 1
     isPlayerCharacter: 0

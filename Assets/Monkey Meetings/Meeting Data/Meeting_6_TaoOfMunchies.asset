@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c560f868b549d48acca607a9787604, type: 3}
   m_Name: Meeting_6_TaoOfMunchies
   m_EditorClassIdentifier: 
+  hasMission: 0
+  linkedMissionType: 0
+  missionGoalCount: 0
+  nextMonkeyMeeting: {fileID: 11400000, guid: 95375272dbf98db459a0de49bda6b20f, type: 2}
   characterDatabase: {fileID: 11400000, guid: 5ff5001a917067e499d10df040f92b30, type: 2}
   dialogueFrames:
   - speakingCharacter: {fileID: 11400000, guid: bda5b80130d6e514992153881c501f3b, type: 2}
@@ -22,7 +26,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Dude, glad you're here! Those two have been at it and it make my brain hurty...
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a17fe078b81dfb4d824e9cd4dd39fa1, type: 2}
@@ -35,7 +38,6 @@ MonoBehaviour:
     - All I'm sayin' is, your values are all wack, Gavin.
     - There's more to life than being the best.
     - Munchies, you gotta agree with me here. I've clearly got more wisdom than him.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -49,7 +51,6 @@ MonoBehaviour:
     - Real world stuff.
     - If it ain't the best of times, it's the blurst of times.
     - Munchies, you feel me? I'm totally the enlightened one, amirite?
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a649c9cba84f8d4da596355a2726c19, type: 2}
@@ -61,7 +62,6 @@ MonoBehaviour:
     dialogueLines:
     - 'Hmm... Well you know what they say:'
     - Acting before thinking is like eating a banana before peeling it.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -72,7 +72,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Huh?
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: bda5b80130d6e514992153881c501f3b, type: 2}
@@ -83,7 +82,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - What's wrong with that? I always eat my banans with the shell. Makes it crunchier!
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: bda5b80130d6e514992153881c501f3b, type: 2}
@@ -94,7 +92,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - There's a moment of silence as all eyes turn towards Ollie.
-    isMission: 0
     isNarrator: 1
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -105,7 +102,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Wh-what?
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a17fe078b81dfb4d824e9cd4dd39fa1, type: 2}
@@ -117,7 +113,6 @@ MonoBehaviour:
     dialogueLines:
     - You... you know you're supposed to peel it, right?
     - That peel ain't supposed to be edible, dawg.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: bda5b80130d6e514992153881c501f3b, type: 2}
@@ -128,7 +123,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - I... No one ever told me that...
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a649c9cba84f8d4da596355a2726c19, type: 2}
@@ -143,7 +137,6 @@ MonoBehaviour:
     - Everyone likes their banans a little differently.
     - I, for one, like getting roasted
     - bananas.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a649c9cba84f8d4da596355a2726c19, type: 2}
@@ -154,7 +147,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Roasted bananas.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a649c9cba84f8d4da596355a2726c19, type: 2}
@@ -165,7 +157,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - I like roasted bananas.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a17fe078b81dfb4d824e9cd4dd39fa1, type: 2}
@@ -176,7 +167,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - I just like mine plain, I guess. Straight off the peel, nothing fancy.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -188,7 +178,6 @@ MonoBehaviour:
     dialogueLines:
     - "Ain't nothing better than a Banana Protein Smoothie\u2122 after a good pump,
       bro."
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -199,7 +188,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Tony starts flexing his muscles to the amusement of no one.
-    isMission: 0
     isNarrator: 1
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -213,7 +201,6 @@ MonoBehaviour:
     - This is why you bongo-headed bozos are swimmin' in the dirt.
     - A banana eaten is a dolla wasted.
     - Bananabstince. Call that real wisdom.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -224,7 +211,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Everyone looks remarkably offended.
-    isMission: 0
     isNarrator: 1
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a17fe078b81dfb4d824e9cd4dd39fa1, type: 2}
@@ -236,7 +222,6 @@ MonoBehaviour:
     dialogueLines:
     - What do you mean you don't eat bananas, Gavin!
     - What kind of sick freak are you?!
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -247,7 +232,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Heh, rent-free, amirite? Totally rockin' dat wis-a-tude, dude. Right, Munchies?
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a649c9cba84f8d4da596355a2726c19, type: 2}
@@ -261,7 +245,6 @@ MonoBehaviour:
     - when a bum lends you a couch,
     - ...
     - don't let the bedbugs bite.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -272,7 +255,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - So true...
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -283,7 +265,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - You gotta start makin' some snse dawg. You've been droppin' duds.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a17fe078b81dfb4d824e9cd4dd39fa1, type: 2}
@@ -297,7 +278,6 @@ MonoBehaviour:
     - What she's saying is uh... um...
     - So long as you keep, uh trying...
     - You've already, you know... succeeded. Yeah...
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -309,7 +289,6 @@ MonoBehaviour:
     dialogueLines:
     - That's the most cornball crap I've ever heard. Ain't no way that's what she
       meant.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a649c9cba84f8d4da596355a2726c19, type: 2}
@@ -320,7 +299,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Well, what does it really mean to "mean", you know?
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -332,7 +310,6 @@ MonoBehaviour:
     dialogueLines:
     - I DON'T know, Munchies! Just settle the argument!
     - Who's the wisest here? Me or Knucklehead Kevin.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a649c9cba84f8d4da596355a2726c19, type: 2}
@@ -343,7 +320,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Munchies thinks for a minute.
-    isMission: 0
     isNarrator: 1
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a649c9cba84f8d4da596355a2726c19, type: 2}
@@ -355,7 +331,6 @@ MonoBehaviour:
     dialogueLines:
     - You know, hard to say, but when it comes to who here's the most enlightened...
     - I think it's gotta be a tie.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -366,7 +341,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - What!? Say cap right now.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a17fe078b81dfb4d824e9cd4dd39fa1, type: 2}
@@ -377,7 +351,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Suck it, Gav.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a649c9cba84f8d4da596355a2726c19, type: 2}
@@ -388,7 +361,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Of everyone here, the wisest is either Ollie or the Champ.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: bda5b80130d6e514992153881c501f3b, type: 2}
@@ -399,7 +371,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Wut? Huh? Hu-wuh?
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: bda5b80130d6e514992153881c501f3b, type: 2}
@@ -410,7 +381,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - 'Champ: ...'
-    isMission: 0
     isNarrator: 1
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: bda5b80130d6e514992153881c501f3b, type: 2}
@@ -421,6 +391,5 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Achieve a maximum speed of 30 in one run.
-    isMission: 1
     isNarrator: 1
     isPlayerCharacter: 0

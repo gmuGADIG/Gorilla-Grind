@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum MissionType
+{
+    Banana, Distance, StylePoint, Hazard
+}
+
 public abstract class Mission
 {
     protected float goal;

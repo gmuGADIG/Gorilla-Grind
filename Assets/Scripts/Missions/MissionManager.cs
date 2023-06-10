@@ -24,8 +24,10 @@ public class MissionManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        DontDestroyOnLoad(gameObject);
-        GenerateMissions();
+        if (transform.parent == null)
+        {
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
     public void GenerateMissions()
@@ -48,13 +50,13 @@ public class MissionManager : MonoBehaviour
                     newMission = new DistanceMission();
                     break;
                 case 1:
-                    newMission = new TrickMission(FindObjectOfType<PlayerMovement>());
+                    newMission = new StylePointMission();
                     break;
                 case 2:
                     newMission = new BananaMission();
                     break;
                 case 3:
-                    newMission = new HazardMission(FindObjectOfType<PlayerMovement>());
+                    newMission = new HazardMission();
                     break;
             }
             randomMissions.Add(newMission);

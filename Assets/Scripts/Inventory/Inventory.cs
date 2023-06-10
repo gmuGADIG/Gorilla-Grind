@@ -6,11 +6,8 @@ using System;
 
 public class Inventory : MonoBehaviour
 {
-    public static event Action<int> OnBananaCountChange;
-
     private static Inventory GameInventory;
     private static int BananasInInventory; //Number of bananas in player's inventory; should never go below 0
-    private static int BananasCollectedInRun;
     private static HashSet<string> PurchasedItems;
     private static string equippedBoard;
     
@@ -20,7 +17,10 @@ public class Inventory : MonoBehaviour
             return;
         }
         GameInventory = this;
-        DontDestroyOnLoad(this);
+        if (transform.parent = null)
+        {
+            DontDestroyOnLoad(this);
+        }
 
         BananasInInventory = 500;
         PurchasedItems = new HashSet<string>();
@@ -46,31 +46,12 @@ public class Inventory : MonoBehaviour
         return BananasInInventory;
     }
 
-    /// <summary>
-    /// Used to add bananas that were collected during a run. These bananas only get added to the total inventory at the end of the run.
-    /// </summary>
-    /// <param name="count"></param>
-    public static void AddBananaDuringRun(int count)
-    {
-        BananasCollectedInRun += count;
-        OnBananaCountChange?.Invoke(BananasCollectedInRun);
-    }
-
-    /// <summary>
-    /// Adds bananas that were collected during the current run to the total bananas in inventory. Should be called at the end of a run.
-    /// </summary>
-    public static void BankRunBananas()
-    {
-        BananasInInventory += BananasCollectedInRun;
-    }
-
     ///<summary>
     ///Adds the passed in number to the count of bananas in the player's inventory.
-    ///Returns true on success, false on failure (count wasn't updated)
+    ///Returns true on success, false on failure (count wasn't updated). DO NOT USE DURING A RUN! USE RUNDATA INSTEAD!
     ///</summary>
     public static bool AddBananas(int moreBananas) {
         BananasInInventory += (int)moreBananas;
-        OnBananaCountChange?.Invoke(BananasInInventory);
         return true;
     }
 
@@ -81,7 +62,6 @@ public class Inventory : MonoBehaviour
     public static bool RemoveBananas(int lessBananas) {
         if (BananasInInventory >= lessBananas) {
             BananasInInventory -= (int)lessBananas;
-            OnBananaCountChange?.Invoke(BananasInInventory);
             return true;
         }
         else {

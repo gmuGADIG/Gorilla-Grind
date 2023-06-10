@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c560f868b549d48acca607a9787604, type: 3}
   m_Name: Meeting_12_StolenBoard
   m_EditorClassIdentifier: 
+  hasMission: 0
+  linkedMissionType: 0
+  missionGoalCount: 0
+  nextMonkeyMeeting: {fileID: 11400000, guid: a865d3cfa07cdac47a58f91ffb8df5fd, type: 2}
   characterDatabase: {fileID: 11400000, guid: 5ff5001a917067e499d10df040f92b30, type: 2}
   dialogueFrames:
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -22,7 +26,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - A normal, peaceful hangout with the homies is interrupted by sudden yelling.
-    isMission: 0
     isNarrator: 1
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a17fe078b81dfb4d824e9cd4dd39fa1, type: 2}
@@ -33,7 +36,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - AAAAAAAAAAAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHHHHHHH! EMERGENCY MEETING!!!
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: bda5b80130d6e514992153881c501f3b, type: 2}
@@ -45,7 +47,6 @@ MonoBehaviour:
     dialogueLines:
     - Oh, yo. We screaming?
     - aaaaaaaaaaaaaaaAAAAAAAAAAAAAAAAAAHHHHHHHHHHhhhhhhhhhh.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a649c9cba84f8d4da596355a2726c19, type: 2}
@@ -56,7 +57,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - aah.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a17fe078b81dfb4d824e9cd4dd39fa1, type: 2}
@@ -67,7 +67,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Yes, we screaming, bro! The Holy Board is gone!
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: bda5b80130d6e514992153881c501f3b, type: 2}
@@ -78,7 +77,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Did it grow legs and run away?
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -92,7 +90,6 @@ MonoBehaviour:
     - At last, he hath acquired the macguffin that much eluded him for so long.
     - Just look at him, you can practically see the determination and will of the
       soul radiating off of him!
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -103,7 +100,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - 'Champ: ...'
-    isMission: 0
     isNarrator: 1
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a17fe078b81dfb4d824e9cd4dd39fa1, type: 2}
@@ -116,7 +112,6 @@ MonoBehaviour:
     - Erm, Tony, I think you might have to take off the sunglasses, bro.
     - Champ's here, but the board's not.
     - I'm going bananas! And not the Munchies kind!
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -127,7 +122,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Oh.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a649c9cba84f8d4da596355a2726c19, type: 2}
@@ -139,7 +133,6 @@ MonoBehaviour:
     dialogueLines:
     - Nothing like crackin' open a 'nana and hearing the fizz.
     - Mm, catchin' a whiff o' that 'tassium.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -152,7 +145,6 @@ MonoBehaviour:
     - Eloquently put my fine simian!
     - 'But alas, to wrap around to the crisis at hand, young Kevin of Kickflips:'
     - spring forth your proclamation of the aforementioned calamity.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a17fe078b81dfb4d824e9cd4dd39fa1, type: 2}
@@ -167,7 +159,6 @@ MonoBehaviour:
     - to, ya know, polish it like I do 6 times a day.
     - Once after every meal, and after each time I wash my hands.
     - And like, it wasn't there.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a649c9cba84f8d4da596355a2726c19, type: 2}
@@ -178,7 +169,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Are we supposed to be washing our hands?
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: bda5b80130d6e514992153881c501f3b, type: 2}
@@ -189,7 +179,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Gross...
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -200,7 +189,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Tch... Check this out, you nincompoops.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a17fe078b81dfb4d824e9cd4dd39fa1, type: 2}
@@ -211,7 +199,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Gavin! That ain't yours!
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -223,7 +210,6 @@ MonoBehaviour:
     dialogueLines:
     - It is now! The board taking too long to find its champion,
     - I took it upon myself to actually get something done around here.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: bda5b80130d6e514992153881c501f3b, type: 2}
@@ -234,7 +220,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Gavin! I can't believe you'd do this!
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -245,7 +230,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Such a weak move, dawg.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a649c9cba84f8d4da596355a2726c19, type: 2}
@@ -256,7 +240,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - ...
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -267,7 +250,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Smell you later, fart heads.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -278,7 +260,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Gavin scoffs in your direction.
-    isMission: 0
     isNarrator: 1
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -289,7 +270,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Why don't you run into a stinky flower, bozo?
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -300,6 +280,5 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Die to a Stinky Fruit hazard.
-    isMission: 1
     isNarrator: 1
     isPlayerCharacter: 0

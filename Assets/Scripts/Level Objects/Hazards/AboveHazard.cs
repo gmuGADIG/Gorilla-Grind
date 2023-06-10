@@ -16,7 +16,7 @@ public class AboveHazard : MonoBehaviour
             var player = other.GetComponent<PlayerMovement>();
             if (player.IsDead) return;
             
-            player.OnJumpedOverHazard.Invoke();
+            player.JumpedOverHazard();
         }
     }
 }

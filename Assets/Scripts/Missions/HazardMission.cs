@@ -5,19 +5,17 @@ using UnityEngine;
 public class HazardMission : Mission
 {
     private static int[] randomGoals = { 10, 20, 30, 40, 50 };
-    private PlayerMovement player;
 
-    public HazardMission(PlayerMovement player) : this(player, randomGoals[Random.Range(0, randomGoals.Length)])
+    public HazardMission() : this(randomGoals[Random.Range(0, randomGoals.Length)])
     { }
 
-    public HazardMission(PlayerMovement player, int hazardGoal)
+    public HazardMission(int hazardGoal)
     {
         goal = hazardGoal;
         Name = "Hazard";
         Description = "Jump over " + goal + " hazards in one run";
 
-        this.player = player;
-        player.OnJumpedOverHazard.AddListener(IncrementProgress);
+        PlayerMovement.OnJumpedOverHazard += IncrementProgress;
     }
 
     void IncrementProgress() => currentProgress += 1;
@@ -29,6 +27,6 @@ public class HazardMission : Mission
 
     ~HazardMission()
     {
-        player.OnJumpedOverHazard.RemoveListener(IncrementProgress);
+        PlayerMovement.OnJumpedOverHazard -= IncrementProgress;
     }
 }
