@@ -8,8 +8,8 @@ public class RunController : MonoBehaviour
 {
     public static RunController Current { get; private set; }
 
-    public event Action<int> OnBananaCountChange;
-    public event Action<int> OnStylePointChange;
+    public static event Action<int> OnBananaCountChange;
+    public static event Action<int> OnStylePointChange;
 
     [SerializeField] float runEndDelay = 3f;
     [SerializeField] string postRunMenuScene;

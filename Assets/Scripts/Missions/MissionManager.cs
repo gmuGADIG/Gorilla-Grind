@@ -9,7 +9,7 @@ public class MissionManager : MonoBehaviour
 
     public int NumOfCurrentMissions => randomMissions.Count + (monkeyMeetingMission == null ? 0 : 1);
     public List<Mission> randomMissions = new List<Mission>();
-    public Mission monkeyMeetingMission = null;
+    public Mission monkeyMeetingMission;
 
     int numOfRandomMissions = 3;
     int numOfMissionTypes = 4;
