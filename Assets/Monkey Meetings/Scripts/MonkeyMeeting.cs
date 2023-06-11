@@ -8,7 +8,7 @@ using System;
 
 public class MonkeyMeeting : MonoBehaviour
 {
-    public static event Action OnMonkeyMeetingEnd;
+    public static event Action<MonkeyMeetingDialogue> OnMonkeyMeetingEnd;
 
     public TMP_Text dialogueText;
     public Image nameImage;
@@ -124,7 +124,7 @@ public class MonkeyMeeting : MonoBehaviour
 
     void EndDialogue()
     {
-        OnMonkeyMeetingEnd?.Invoke();
+        OnMonkeyMeetingEnd?.Invoke(meetingDialogue);
         meetingDialogue = null;
         SceneManager.LoadScene(postRunSceneName);
     }

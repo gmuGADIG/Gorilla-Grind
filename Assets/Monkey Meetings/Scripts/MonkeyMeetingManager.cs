@@ -28,8 +28,9 @@ public class MonkeyMeetingManager : MonoBehaviour
         MonkeyMeeting.OnMonkeyMeetingEnd += AtEndOfMeeting;
     }
 
-    void AtEndOfMeeting()
+    void AtEndOfMeeting(MonkeyMeetingDialogue meeting)
     {
+        currentMeeting = meeting;
         if (currentMeeting.hasMission)
         {
             Mission mission = null;
