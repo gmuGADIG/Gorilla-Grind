@@ -49,8 +49,13 @@ public class MonkeyMeetingManager : MonoBehaviour
             {
                 mission = new StylePointMission(currentMeeting.missionGoalCount);
             }
-            MissionManager.Instance.monkeyMeetingMission = mission;
+            mission.unlockedMonkeyMeeting = currentMeeting.nextMonkeyMeeting;
+            MissionManager.Instance.SetStoryMission(mission);
+            currentMeeting = null;
         }
-        currentMeeting = currentMeeting.nextMonkeyMeeting;
+        else
+        {
+            currentMeeting = currentMeeting.nextMonkeyMeeting;
+        }
     }
 }

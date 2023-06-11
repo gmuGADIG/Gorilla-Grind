@@ -16,6 +16,7 @@ public abstract class Mission
     public float Goal => goal;
     public string Name { get; protected set; }
     public string Description { get; protected set; }
+    public MonkeyMeetingDialogue unlockedMonkeyMeeting;
 
     public static Mission GenerateRandomMission()
     {

@@ -6,6 +6,7 @@ using System.Text;
 
 public class MissionUI : MonoBehaviour
 {
+    [SerializeField] MissionPanelUI storyMissionPanel;
     [SerializeField] MissionPanelUI[] missionPanels;
     StringBuilder[] stringBuilders;
 
@@ -17,27 +18,27 @@ public class MissionUI : MonoBehaviour
         completeSoundID = SoundManager.Instance.GetSoundID("Mission_Complete");
         stringBuilders = new StringBuilder[missionPanels.Length];
         // setup monkey meeting mission
-        if (MissionManager.Instance.monkeyMeetingMission != null)
+        if (MissionManager.Instance.StoryMission != null)
         {
-            missionPanels[0].gameObject.SetActive(true);
-            missionPanels[0].missionDescription.text = MissionManager.Instance.monkeyMeetingMission.Description;
-            missionPanels[0].missionName.text = MissionManager.Instance.monkeyMeetingMission.Name;
-            missionPanels[0].progressHighlight.color = missionPanels[0].incompleteColor;
+            storyMissionPanel.gameObject.SetActive(true);
+            storyMissionPanel.missionDescription.text = MissionManager.Instance.StoryMission.Description;
+            storyMissionPanel.missionName.text = MissionManager.Instance.StoryMission.Name;
+            storyMissionPanel.progressHighlight.color = storyMissionPanel.incompleteColor;
         }
         else
         {
-            missionPanels[0].gameObject.SetActive(false);
+            storyMissionPanel.gameObject.SetActive(false);
         }
-        int i = 1;
+        int i = 0;
         // setup random missions
-        for ( ; i < MissionManager.Instance.NumOfCurrentMissions; i++)
+        for ( ; i < MissionManager.Instance.randomMissions.Count; i++)
         {
             missionPanels[i].gameObject.SetActive(true);
             missionPanels[i].missionDescription.text = MissionManager.Instance.randomMissions[i].Description;
             missionPanels[i].missionName.text = MissionManager.Instance.randomMissions[i].Name;
             missionPanels[i].progressHighlight.color = missionPanels[i].incompleteColor;
         }
-        i++;
+        //i++;
         // deactivate any extra mission panels
         for (; i < missionPanels.Length; i++)
         {
@@ -47,26 +48,26 @@ public class MissionUI : MonoBehaviour
 
     private void Update()
     {
-        if (MissionManager.Instance.monkeyMeetingMission != null)
+        if (MissionManager.Instance.StoryMission != null)
         {
             if (stringBuilders[0] == null)
             {
                 stringBuilders[0] = new StringBuilder();
             }
             stringBuilders[0].Clear();
-            stringBuilders[0].Append((int)MissionManager.Instance.monkeyMeetingMission.CurrentProgress);
+            stringBuilders[0].Append((int)MissionManager.Instance.StoryMission.CurrentProgress);
             stringBuilders[0].Append('/');
-            stringBuilders[0].Append(MissionManager.Instance.monkeyMeetingMission.Goal);
-            missionPanels[0].missionProgress.text = stringBuilders[0].ToString();
-            if (MissionManager.Instance.monkeyMeetingMission.Complete() && !missionPanels[0].markedAsComplete)
+            stringBuilders[0].Append(MissionManager.Instance.StoryMission.Goal);
+            storyMissionPanel.missionProgress.text = stringBuilders[0].ToString();
+            if (MissionManager.Instance.StoryMission.Complete() && !storyMissionPanel.markedAsComplete)
             {
-                missionPanels[0].progressHighlight.color = missionPanels[0].completedColor;
-                missionPanels[0].markedAsComplete = true;
+                storyMissionPanel.progressHighlight.color = storyMissionPanel.completedColor;
+                storyMissionPanel.markedAsComplete = true;
                 SoundManager.Instance.PlaySoundGlobal(completeSoundID);
             }
         }
         int randMissionCount = MissionManager.Instance.randomMissions.Count;
-        for (int i = 1; i < randMissionCount; i++)
+        for (int i = 0; i < randMissionCount; i++)
         {
             if (stringBuilders[i] == null)
             {
