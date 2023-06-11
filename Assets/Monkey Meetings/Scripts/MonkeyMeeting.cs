@@ -29,22 +29,18 @@ public class MonkeyMeeting : MonoBehaviour
 
     private void Start()
     {
-        if (meetingDialogue != null)
+        if (MonkeyMeetingManager.Instance != null)
         {
+            meetingDialogue = MonkeyMeetingManager.Instance.currentMeeting;
             StartDialogue();
         }
     }
 
-    public void SetMeetingDialogue(MonkeyMeetingDialogue dialogue)
-    {
-        meetingDialogue = dialogue;
-        //StartDialogue();
-    }
-
     public void StartDialogue()
     {
-        gameObject.SetActive(true);
+        //gameObject.SetActive(true);
         //background.SetActive(true); // Activate the background object
+        print(meetingDialogue.name);
         dialogueText.text = "";
         currentCharacterLineIndex = 0;
         currentDialogueFrameIndex = 0;

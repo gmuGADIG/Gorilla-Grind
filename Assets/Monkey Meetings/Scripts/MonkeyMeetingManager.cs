@@ -7,9 +7,9 @@ public class MonkeyMeetingManager : MonoBehaviour
 {
     public static MonkeyMeetingManager Instance { get; private set; }
 
-    public bool HasMeetingPending => nextMeeting != null;
+    public bool HasMeetingPending => currentMeeting != null;
 
-    [SerializeField] MonkeyMeetingDialogue nextMeeting;
+    public MonkeyMeetingDialogue currentMeeting;
 
     private void Awake()
     {
@@ -25,41 +25,32 @@ public class MonkeyMeetingManager : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);
         }
-        SceneManager.activeSceneChanged += CheckForMonkeyMeetingScene;
-        MonkeyMeeting.OnMonkeyMeetingEnd += CreateMonkeyMeetingMission;
+        MonkeyMeeting.OnMonkeyMeetingEnd += AtEndOfMeeting;
     }
 
-    private void CheckForMonkeyMeetingScene(Scene arg0, Scene arg1)
+    void AtEndOfMeeting()
     {
-        MonkeyMeeting meeting = FindObjectOfType<MonkeyMeeting>();
-        if (meeting != null)
-        {
-            meeting.SetMeetingDialogue(nextMeeting);
-        }
-    }
-
-    void CreateMonkeyMeetingMission()
-    {
-        if (nextMeeting.hasMission)
+        if (currentMeeting.hasMission)
         {
             Mission mission = null;
-            if (nextMeeting.linkedMissionType == MissionType.Banana)
+            if (currentMeeting.linkedMissionType == MissionType.Banana)
             {
-                mission = new BananaMission(nextMeeting.missionGoalCount);
+                mission = new BananaMission(currentMeeting.missionGoalCount);
             }
-            else if (nextMeeting.linkedMissionType == MissionType.Distance)
+            else if (currentMeeting.linkedMissionType == MissionType.Distance)
             {
-                mission = new DistanceMission(nextMeeting.missionGoalCount);
+                mission = new DistanceMission(currentMeeting.missionGoalCount);
             }
-            else if (nextMeeting.linkedMissionType == MissionType.Hazard)
+            else if (currentMeeting.linkedMissionType == MissionType.Hazard)
             {
-                mission = new HazardMission(nextMeeting.missionGoalCount);
+                mission = new HazardMission(currentMeeting.missionGoalCount);
             }
-            else if (nextMeeting.linkedMissionType == MissionType.StylePoint)
+            else if (currentMeeting.linkedMissionType == MissionType.StylePoint)
             {
-                mission = new StylePointMission(nextMeeting.missionGoalCount);
+                mission = new StylePointMission(currentMeeting.missionGoalCount);
             }
             MissionManager.Instance.monkeyMeetingMission = mission;
         }
+        currentMeeting = currentMeeting.nextMonkeyMeeting;
     }
 }
