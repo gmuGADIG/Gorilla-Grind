@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CinematicController : MonoBehaviour
@@ -13,6 +14,7 @@ public class CinematicController : MonoBehaviour
     }
 
     [SerializeField] float fadeSpeed = 1f;
+    [SerializeField] string mainMenuSceneName = "Menu";
     [SerializeField] Panel[] panels;
     [SerializeField] Image blackCover;
 
@@ -41,12 +43,13 @@ public class CinematicController : MonoBehaviour
 
     IEnumerator FadeToBlack()
     {
-        while (blackCover.color.a < 1)
+        while (blackCover.color.a < .99f)
         {
             Color color = blackCover.color;
             color.a = Mathf.Lerp(color.a, 1, fadeSpeed * Time.deltaTime);
             blackCover.color = color;
             yield return null;
         }
+        SceneManager.LoadScene(mainMenuSceneName);
     }
 }
