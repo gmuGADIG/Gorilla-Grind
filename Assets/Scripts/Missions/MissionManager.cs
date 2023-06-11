@@ -12,7 +12,7 @@ public class MissionManager : MonoBehaviour
     public Mission monkeyMeetingMission = null;
 
     int numOfRandomMissions = 3;
-    int numOfMissionTypes = 4;
+    int numOfMissionTypes = 5;
 
     private void Awake()
     {
@@ -55,6 +55,9 @@ public class MissionManager : MonoBehaviour
                     break;
                 case 3:
                     newMission = new HazardMission(FindObjectOfType<PlayerMovement>());
+                    break;
+                case 4:
+                    newMission = new SpeedMission();
                     break;
             }
             randomMissions.Add(newMission);
