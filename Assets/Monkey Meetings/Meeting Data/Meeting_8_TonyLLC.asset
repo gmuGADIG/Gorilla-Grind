@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c560f868b549d48acca607a9787604, type: 3}
   m_Name: Meeting_8_TonyLLC
   m_EditorClassIdentifier: 
+  hasMission: 0
+  linkedMissionType: 0
+  missionGoalCount: 0
+  nextMonkeyMeeting: {fileID: 11400000, guid: 0133bea77d38eac40ba51d91ce2affe2, type: 2}
   characterDatabase: {fileID: 11400000, guid: 5ff5001a917067e499d10df040f92b30, type: 2}
   dialogueFrames:
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -25,7 +29,6 @@ MonoBehaviour:
     - PUMP!
     - IT!
     - UP!
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a17fe078b81dfb4d824e9cd4dd39fa1, type: 2}
@@ -36,7 +39,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Tony, do you even know-
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -49,7 +51,6 @@ MonoBehaviour:
     - Tony Squawk! THE SQUAWKINATOR!
     - Why associate your totally tubular LLC with these fruit booters when you can
       get the almighty Gavin to invest?
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a17fe078b81dfb4d824e9cd4dd39fa1, type: 2}
@@ -60,7 +61,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Yo, Tony. What do you even sell, dawg?
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -72,7 +72,6 @@ MonoBehaviour:
     dialogueLines:
     - I'm stoked you asked, brotherly dude.
     - Here at Tony Squawk LLC, we pump iron! Check this my homie-sapien...
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -83,7 +82,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Tony pulls out a dumbbell and starts lifting.
-    isMission: 0
     isNarrator: 1
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a17fe078b81dfb4d824e9cd4dd39fa1, type: 2}
@@ -94,7 +92,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Tony, this whole LLC thing doesn't seem like a good idea.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -105,7 +102,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Blasphemy!
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -119,7 +115,6 @@ MonoBehaviour:
       like the Squawkinator when he tries to get his 'nanas up.
     - You must be kick-flipping it with Munchies too much cause all that potassium
       is going to your head.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -130,7 +125,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Indubiously!
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a17fe078b81dfb4d824e9cd4dd39fa1, type: 2}
@@ -142,7 +136,6 @@ MonoBehaviour:
     dialogueLines:
     - Gavin, dawg. You're never this nice to someone. You're just fakin' the funk
       to steal Tony's shine.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -156,7 +149,6 @@ MonoBehaviour:
       lil bro.
     - Maybe if you tried to run a business like me, you would actually have some
       bananas to your name.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -167,7 +159,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Phew... that was a gnarly pump.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a17fe078b81dfb4d824e9cd4dd39fa1, type: 2}
@@ -178,7 +169,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Nuh-uh, I bet the kick in my flip that I have more bananas than you!
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -189,7 +179,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - And I bet the grind in my lord they're all plantains, you poser!
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -205,7 +194,6 @@ MonoBehaviour:
     - I got a radical new board for you to gonk on goofy town if you decide to spare
       your winged homie a wing...
     - or hand for you, I guess.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -216,6 +204,5 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Collect 100 bananas in one run.
-    isMission: 1
     isNarrator: 1
     isPlayerCharacter: 0

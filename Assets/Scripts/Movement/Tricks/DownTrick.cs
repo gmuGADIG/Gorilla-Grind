@@ -8,6 +8,7 @@ public class DownTrick : Trick
     Transform gorilla;
     float boardRotationSpeed = 300f;
     Vector3 startingPosition;
+    int stylePointReward = 50;
 
     public DownTrick(Transform skateboard, Transform player)
     {
@@ -24,7 +25,7 @@ public class DownTrick : Trick
     {
         skateboard.localRotation = Quaternion.identity;
         skateboard.localPosition = startingPosition;
-        //Goals_Tracker.instance?.trickTypeExecuted(GetType());
+        RunController.Current.AddStylePoints(stylePointReward);
     }
 
     public override void StartTrick()

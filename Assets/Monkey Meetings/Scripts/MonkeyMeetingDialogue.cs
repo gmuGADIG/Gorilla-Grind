@@ -7,10 +7,13 @@ using System;
 [CreateAssetMenu(menuName = "Monkey Meetings/Dialogue")]
 public class MonkeyMeetingDialogue : ScriptableObject
 {
-    //list of images of whos at the meeting
+    [Header("Associated Mission")]
+    public bool hasMission;
+    public MissionType linkedMissionType;
+    public int missionGoalCount;
+    public MonkeyMeetingDialogue nextMonkeyMeeting;
 
-    //public Mission linkedMission;
-
+    [Header("Meeting Data")]
     public MonkeyMeetingCharacters characterDatabase;
 
     public DialogueFrame[] dialogueFrames;
@@ -41,7 +44,6 @@ public class MonkeyMeetingDialogue : ScriptableObject
         [HideInInspector] public int myIndex;
         [HideInInspector] public List<Emotion> emotions;
         public string[] dialogueLines;
-        public bool isMission;
         public bool isNarrator; // Add this line
         public bool isPlayerCharacter;
     }

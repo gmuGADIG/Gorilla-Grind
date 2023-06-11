@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class BananaMission : Mission
 {
-        private static int[] randomGoals = { 50, 100, 150, 200 };
+    static int minGoal = 50;
+    static int maxGoal = 200;
 
-    public BananaMission() : this(randomGoals[Random.Range(0, randomGoals.Length)])
-    { }
+    public BananaMission() : this (Random.Range(minGoal, maxGoal))
+    {
+        RunController.OnBananaCountChange += UpdateBananaCount;
+    }
 
     public BananaMission(int bananaCount)
     {
@@ -19,5 +22,15 @@ public class BananaMission : Mission
     public override void UpdateProgress()
     {
 
+    }
+
+    void UpdateBananaCount(int count)
+    {
+        currentProgress = count;
+    }
+
+    ~BananaMission()
+    {
+        RunController.OnBananaCountChange -= UpdateBananaCount;
     }
 }

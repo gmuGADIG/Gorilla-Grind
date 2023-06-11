@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c560f868b549d48acca607a9787604, type: 3}
   m_Name: Meeting_5_Kickflips
   m_EditorClassIdentifier: 
+  hasMission: 0
+  linkedMissionType: 0
+  missionGoalCount: 0
+  nextMonkeyMeeting: {fileID: 11400000, guid: ff7d817f2cab6964ab0fab67ba21af35, type: 2}
   characterDatabase: {fileID: 11400000, guid: 5ff5001a917067e499d10df040f92b30, type: 2}
   dialogueFrames:
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -22,7 +26,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Oh, hey! The 'Champion' is back. What, you wipeout again?
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a17fe078b81dfb4d824e9cd4dd39fa1, type: 2}
@@ -34,7 +37,6 @@ MonoBehaviour:
     dialogueLines:
     - Omg, hey, Champ! I bet you shredded it mad nice out there, bro! You get a new
       record? Land any sick Kickflips out there?
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -48,7 +50,6 @@ MonoBehaviour:
     - No goofy-towning around.
     - 'Brother to brother, homie to sapien:'
     - Do you even know what a kickflip is?
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a17fe078b81dfb4d824e9cd4dd39fa1, type: 2}
@@ -60,7 +61,6 @@ MonoBehaviour:
     dialogueLines:
     - Uh... heh, heh... I mean, yeah! Of course, bro. that's like, my name after
       all. I totally Kick it and Flip it.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: bda5b80130d6e514992153881c501f3b, type: 2}
@@ -71,7 +71,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - He spittin' truth! Names never lie!
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -82,7 +81,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Heh, true. Glad you noticed, pipsqueak. I really am the Grind-Lord...
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -94,7 +92,6 @@ MonoBehaviour:
     dialogueLines:
     - Wait, hold on. You aren't even an orangutan, bro. What are you spitting right
       now?
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: bda5b80130d6e514992153881c501f3b, type: 2}
@@ -106,7 +103,6 @@ MonoBehaviour:
     dialogueLines:
     - I just haven't hit primate puberty yet, man. Cut me some slack.
     - I'm still at least 112% Orangutan on my grandma's side.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a17fe078b81dfb4d824e9cd4dd39fa1, type: 2}
@@ -117,7 +113,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - You tell 'em, Ollie! I know you'll be the gnarliest orangutan in no time!
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -128,7 +123,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Tch... Whatever. Can we get back on topic? Kevin, do a single kickflip. Now.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a17fe078b81dfb4d824e9cd4dd39fa1, type: 2}
@@ -139,7 +133,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Heh... um... Only one you say? I mean, I know like, ALL the kickflips.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -150,7 +143,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Prove it then.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a17fe078b81dfb4d824e9cd4dd39fa1, type: 2}
@@ -163,7 +155,6 @@ MonoBehaviour:
     - Uh.. Well, do YOU even know what a kickflip is?
     - I think you're trying to get me to tell you because YOU don't actually know.
     - How 'bout them 'nanas, bro?
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -176,7 +167,6 @@ MonoBehaviour:
     - Dude. I'm the Grind. Lord.
     - One and only.
     - Of course I know what a kickflip is. It came free with my tubular skating skills.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a17fe078b81dfb4d824e9cd4dd39fa1, type: 2}
@@ -187,7 +177,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Yeah. Well bro, I bet the Champ can do a better kickflip than you!
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -198,7 +187,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Ok. First off, that's is totes wrong, and, dare I say, a stupid thing to say.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a17fe078b81dfb4d824e9cd4dd39fa1, type: 2}
@@ -209,7 +197,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Nuh-uh.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -220,7 +207,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Yeah-uh.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a17fe078b81dfb4d824e9cd4dd39fa1, type: 2}
@@ -231,7 +217,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Nuh-uh, Nuh-uh.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -242,7 +227,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Yeah-uh, Yeah-uh.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a17fe078b81dfb4d824e9cd4dd39fa1, type: 2}
@@ -253,7 +237,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Nuh-uh, Nuh-uh, Nuh-uh!
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -265,7 +248,6 @@ MonoBehaviour:
     dialogueLines:
     - Whatever. You're acting like you're on some fruit loops right now.
     - 'Tell me, Mr. Kickflip fantastic: How''d you even learn all your supposed kickflips?'
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a17fe078b81dfb4d824e9cd4dd39fa1, type: 2}
@@ -276,7 +258,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Uh, my buddy taught me! Yeah, that's it!
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -287,7 +268,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - And that "buddy" would be?
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a17fe078b81dfb4d824e9cd4dd39fa1, type: 2}
@@ -299,7 +279,6 @@ MonoBehaviour:
     dialogueLines:
     - Ummmm... Ooh! Gnarly Gnathan! You haven't met him 'cause he goes to another
       jungle! Mhm!
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -311,7 +290,6 @@ MonoBehaviour:
     dialogueLines:
     - You expect me to believe that? You're speaking like you ate more 'nanas than
       Munchies, lil bro.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -322,7 +300,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Ooh, I know Gnarly Gnathan!
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -333,7 +310,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Wait, what? How? He clearly doesn't exist.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: bda5b80130d6e514992153881c501f3b, type: 2}
@@ -344,7 +320,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Oh, really? I meant to say - ooh I have NO idea who Gnarly Gnathan is!
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a17fe078b81dfb4d824e9cd4dd39fa1, type: 2}
@@ -361,7 +336,6 @@ MonoBehaviour:
     - I'll be sure to watch to make sure your form is good!
     - (No other reason.)
     - Aight, see ya, Champ!
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a17fe078b81dfb4d824e9cd4dd39fa1, type: 2}
@@ -372,6 +346,5 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Obtain 300 style points in one run.
-    isMission: 1
     isNarrator: 1
     isPlayerCharacter: 0

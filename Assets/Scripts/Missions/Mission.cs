@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum MissionType
+{
+    Banana, Distance, StylePoint, Hazard
+}
+
 public abstract class Mission
 {
     protected float goal;
@@ -11,6 +16,7 @@ public abstract class Mission
     public float Goal => goal;
     public string Name { get; protected set; }
     public string Description { get; protected set; }
+    public MonkeyMeetingDialogue unlockedMonkeyMeeting;
 
     public static Mission GenerateRandomMission()
     {
@@ -19,7 +25,7 @@ public abstract class Mission
 
     public virtual bool Complete()
     {
-        if (goal >= currentProgress)
+        if (currentProgress >= goal)
         {
             return true;
         }

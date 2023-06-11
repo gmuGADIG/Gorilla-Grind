@@ -94,6 +94,7 @@ public class PlayerMovement : MonoBehaviour
     public float AccelerationMultiplier { get; set; } = 1f;
     public event Action<StateType> OnStateChange;
     public event Action<Type> OnTrickStart;
+    public static event Action OnJumpedOverHazard;
 
     LayerMask currentSkateableLayer;
     Vector2 velocity;
@@ -135,7 +136,6 @@ public class PlayerMovement : MonoBehaviour
     public UnityEvent PlayerOnVine;
     public UnityEvent PlayerOffVine;
 
-    public UnityEvent OnJumpedOverHazard;
 
     public void Murder() {
         print("PlayerMovement.Murder: murdered");
@@ -237,6 +237,11 @@ public class PlayerMovement : MonoBehaviour
             currentState.BeforeExecution();
             OnStateChange?.Invoke(nextState);
         }
+    }
+
+    public void JumpedOverHazard()
+    {
+        OnJumpedOverHazard?.Invoke();
     }
 
     void Jump()
@@ -563,7 +568,7 @@ public class PlayerMovement : MonoBehaviour
 
         public override void BeforeExecution()
         {
-
+            SoundManager.Instance.PlaySoundGlobal(move.jumpSoundID);
         }
 
         public override void PhysicsUpdate()

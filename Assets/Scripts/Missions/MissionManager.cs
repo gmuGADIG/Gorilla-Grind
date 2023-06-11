@@ -6,11 +6,11 @@ public class MissionManager : MonoBehaviour
 {
     public static MissionManager Instance { get; private set; }
 
-
-    public int NumOfCurrentMissions => randomMissions.Count + (monkeyMeetingMission == null ? 0 : 1);
+    public int NumOfCurrentMissions => randomMissions.Count + (StoryMission == null ? 0 : 1);
     public List<Mission> randomMissions = new List<Mission>();
-    public Mission monkeyMeetingMission = null;
+    public Mission StoryMission { get; private set; }
 
+    bool nextMeetingUnlocked = false;
     int numOfRandomMissions = 3;
     int numOfMissionTypes = 5;
 
@@ -24,15 +24,17 @@ public class MissionManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        DontDestroyOnLoad(gameObject);
-        GenerateMissions();
+        if (transform.parent == null)
+        {
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
     public void GenerateMissions()
     {
         randomMissions.Clear();
         List<int> alreadyPickedMissionTypes = new List<int>(); // to prevent duplicate mission creation
-        for (int i = 0; i <= numOfRandomMissions; i++)
+        for (int i = 0; i < numOfRandomMissions; i++)
         {
             Mission newMission = null;
             int missionType;
@@ -48,13 +50,13 @@ public class MissionManager : MonoBehaviour
                     newMission = new DistanceMission();
                     break;
                 case 1:
-                    newMission = new TrickMission(FindObjectOfType<PlayerMovement>());
+                    newMission = new StylePointMission();
                     break;
                 case 2:
                     newMission = new BananaMission();
                     break;
                 case 3:
-                    newMission = new HazardMission(FindObjectOfType<PlayerMovement>());
+                    newMission = new HazardMission();
                     break;
                 case 4:
                     newMission = new SpeedMission();
@@ -64,9 +66,10 @@ public class MissionManager : MonoBehaviour
         }
     }
 
-    public void AddMission(Mission mission)
+    public void SetStoryMission(Mission mission)
     {
-        randomMissions.Add(mission);
+        StoryMission = mission;
+        nextMeetingUnlocked = false;
     }
 
     private void Update()
@@ -78,6 +81,12 @@ public class MissionManager : MonoBehaviour
                 randomMissions[i].UpdateProgress();
             }
         }
-        monkeyMeetingMission?.UpdateProgress();
+        StoryMission?.UpdateProgress();
+        // unlock the next monkey meeting when a story mission is complete.
+        if (!nextMeetingUnlocked && StoryMission != null && StoryMission.Complete())
+        {
+            MonkeyMeetingManager.Instance.currentMeeting = StoryMission.unlockedMonkeyMeeting;
+            nextMeetingUnlocked = true;
+        }
     }
 }
