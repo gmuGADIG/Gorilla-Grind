@@ -33,32 +33,32 @@ public class MissionManager : MonoBehaviour
     public void GenerateMissions()
     {
         randomMissions.Clear();
-        List<int> alreadyPickedMissionTypes = new List<int>(); // to prevent duplicate mission creation
+        List<MissionType> alreadyPickedMissionTypes = new List<MissionType>(); // to prevent duplicate mission creation
         for (int i = 0; i < numOfRandomMissions; i++)
         {
             Mission newMission = null;
-            int missionType;
+            MissionType missionType;
             do
             {
-                missionType = Random.Range(0, numOfMissionTypes);
+                missionType = (MissionType) Random.Range(0, numOfMissionTypes);
             }
             while (alreadyPickedMissionTypes.Contains(missionType));
             alreadyPickedMissionTypes.Add(missionType);
             switch (missionType)
             {
-                case 0:
+                case MissionType.Distance:
                     newMission = new DistanceMission();
                     break;
-                case 1:
+                case MissionType.StylePoint:
                     newMission = new StylePointMission();
                     break;
-                case 2:
+                case MissionType.Banana:
                     newMission = new BananaMission();
                     break;
-                case 3:
+                case MissionType.Hazard:
                     newMission = new HazardMission();
                     break;
-                case 4:
+                case MissionType.Speed:
                     newMission = new SpeedMission();
                     break;
             }

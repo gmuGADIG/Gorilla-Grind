@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum MissionType
 {
-    Banana, Distance, StylePoint, Hazard
+    Banana, Distance, StylePoint, Hazard, Speed
 }
 
 public abstract class Mission
