@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CinematicController : MonoBehaviour
 {
@@ -11,7 +12,9 @@ public class CinematicController : MonoBehaviour
         public float time = 1;
     }
 
+    [SerializeField] float fadeSpeed = 1f;
     [SerializeField] Panel[] panels;
+    [SerializeField] Image blackCover;
 
     private void Start()
     {
@@ -28,7 +31,22 @@ public class CinematicController : MonoBehaviour
         {
             panels[i].panel.SetActive(true);
             yield return new WaitForSeconds(panels[i].time);
-            panels[i].panel.SetActive(false);
+            if (i + 1 != panels.Length)
+            {
+                panels[i].panel.SetActive(false);
+            }
+        }
+        StartCoroutine(FadeToBlack());
+    }
+
+    IEnumerator FadeToBlack()
+    {
+        while (blackCover.color.a < 1)
+        {
+            Color color = blackCover.color;
+            color.a = Mathf.Lerp(color.a, 1, fadeSpeed * Time.deltaTime);
+            blackCover.color = color;
+            yield return null;
         }
     }
 }
