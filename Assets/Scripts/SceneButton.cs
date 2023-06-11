@@ -8,4 +8,8 @@ public class SceneButton : MonoBehaviour
     public void ChangeScene(string name){
         SceneManager.LoadScene(name);
     }
+
+    public void ExitGame(){
+        Application.Quit();
+    }
 }
