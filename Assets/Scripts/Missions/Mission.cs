@@ -9,6 +9,7 @@ public enum MissionType
 
 public abstract class Mission
 {
+    protected int missionType;
     protected float goal;
     protected float currentProgress;
 
@@ -32,5 +33,21 @@ public abstract class Mission
         return false;
     }
 
+    public virtual int GetMissionType()
+    {
+        return missionType;
+    }
+
+    public virtual float GetGoal()
+    {
+        return goal;
+    }
+
+    public virtual float GetProgress()
+    {
+        return currentProgress;
+    }
+
     public abstract void UpdateProgress();
+
 }

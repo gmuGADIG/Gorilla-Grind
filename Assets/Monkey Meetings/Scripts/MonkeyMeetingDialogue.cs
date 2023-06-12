@@ -12,6 +12,7 @@ public class MonkeyMeetingDialogue : ScriptableObject
     public MissionType linkedMissionType;
     public int missionGoalCount;
     public MonkeyMeetingDialogue nextMonkeyMeeting;
+    public int meetingIndex;
 
     [Header("Meeting Data")]
     public MonkeyMeetingCharacters characterDatabase;

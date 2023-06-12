@@ -8,7 +8,7 @@ public class Inventory : MonoBehaviour
 {
     private static Inventory GameInventory;
     private static int BananasInInventory; //Number of bananas in player's inventory; should never go below 0
-    private static HashSet<string> PurchasedItems;
+    private static List<string> PurchasedItems;
     private static string equippedBoard;
     
     void Awake() {
@@ -23,7 +23,7 @@ public class Inventory : MonoBehaviour
         }
 
         BananasInInventory = 500;
-        PurchasedItems = new HashSet<string>();
+        PurchasedItems = new List<string>();
         addItem("All Natural Board"); //Starting board is already in inventory at start of game
         equipBoard("All Natural Board");
     }
@@ -104,5 +104,9 @@ public class Inventory : MonoBehaviour
     ///</summary>
     public static string getEquippedBoard() {
         return equippedBoard;
+    }
+
+    public static List<string> getOwnedBoards() {
+        return PurchasedItems;
     }
 }
