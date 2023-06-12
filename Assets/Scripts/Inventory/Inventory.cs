@@ -109,4 +109,8 @@ public class Inventory : MonoBehaviour
     public static List<string> getOwnedBoards() {
         return PurchasedItems;
     }
+
+    public static void setBananas(int bananas) {
+        BananasInInventory = bananas;
+    }
 }

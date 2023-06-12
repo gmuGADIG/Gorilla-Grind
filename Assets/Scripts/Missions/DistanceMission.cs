@@ -14,6 +14,7 @@ public class DistanceMission : Mission
         goal = distanceGoal;
         Name = "Distance:";
         Description = "Go " + distanceGoal + "m in one run.";
+        missionType = MissionType.Distance;
     }
 
     public override void UpdateProgress()

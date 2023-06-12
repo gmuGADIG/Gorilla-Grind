@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 [System.Serializable]
 public class PlayerData
@@ -7,7 +8,7 @@ public class PlayerData
     [System.Serializable]
     public class MissionData
     {
-        public int type;
+        public MissionType type;
         public float goal;
         public float progress;
 
@@ -17,10 +18,34 @@ public class PlayerData
             goal = m.GetGoal();
             progress = m.GetProgress();
         }
+
+        public void LoadRandomMission(ref Mission m)
+        {
+            switch (type)
+            {
+                case MissionType.Banana:
+                    m = new BananaMission((int)goal);
+                    break;
+                case MissionType.Distance:
+                    m = new DistanceMission(goal);
+                    break;
+                case MissionType.Hazard:
+                    m = new HazardMission((int)goal);
+                    break;
+                case MissionType.Speed:
+                    m = new SpeedMission(goal);
+                    break;
+                case MissionType.StylePoint:
+                    m = new StylePointMission((int)goal);
+                    break;
+            }
+            
+            //m.UpdateProgress(progress);
+        }
     }
 
     [System.Serializable]
-    public class MeetingData
+    public class MeetingData : ScriptableObject
     {
         public int meetingNumber;
 
@@ -40,9 +65,14 @@ public class PlayerData
     // meeting manager
     public MeetingData currentMeeting;
 
-    public static string WriteToJson(PlayerData myData)
+    public string ToJson()
     {
-        return JsonUtility.ToJson(myData);
+        return JsonUtility.ToJson(this);
+    }
+
+    public void LoadFromJson(string a_Json)
+    {
+        JsonUtility.FromJsonOverwrite(a_Json, this);
     }
 
     public static PlayerData CreateFromJSON(string jsonString)
@@ -75,7 +105,24 @@ public class PlayerData
         storyMission = new MissionData(missions.StoryMission);
 
         // meetings
-        //currentMeeting = new MeetingData()
+        int meetIndex = 0;
+        if (meetings.HasMeetingPending) meetIndex = meetings.currentMeeting.meetingIndex;
+        currentMeeting = new MeetingData(meetIndex);
+    }
+
+    public void LoadData(MissionManager missions, MonkeyMeetingManager meetings)
+    {
+        // inventory
+        Inventory.setBananas(bananas);
+        foreach (string item in purchasedItems)
+        {
+            Inventory.addItem(String.Copy(item));
+        }
+        Inventory.equipBoard(String.Copy(equippedBoard));
+
+        // mission manager
+
+
     }
 
 }

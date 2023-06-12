@@ -15,6 +15,7 @@ public class SpeedMission : Mission
         goal = speedGoal;
         Name = "Speed:";
         Description = "Achieve a speed of " + speedGoal + "m/s.";
+        missionType = MissionType.Speed;
     }
 
     public override void UpdateProgress()
