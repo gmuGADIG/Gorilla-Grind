@@ -27,6 +27,14 @@ public class CinematicController : MonoBehaviour
         StartCoroutine(PlayCinematic());
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(mainMenuSceneName);
+        }
+    }
+
     IEnumerator PlayCinematic()
     {
         for (int i = 0; i < panels.Length; i++)
