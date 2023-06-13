@@ -10,7 +10,7 @@ public class MissionManager : MonoBehaviour
     public List<Mission> randomMissions = new List<Mission>();
     public Mission StoryMission { get => storyMission; private set => storyMission = value; }
 
-    Mission storyMission;
+    public Mission storyMission;
 
     bool nextMeetingUnlocked = false;
     int numOfRandomMissions = 3;

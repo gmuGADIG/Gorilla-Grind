@@ -14,10 +14,16 @@ public class DistanceMission : Mission
         goal = distanceGoal;
         Name = "Distance:";
         Description = "Go " + distanceGoal + "m in one run.";
+        missionType = MissionType.Distance;
     }
 
     public override void UpdateProgress()
     {
         currentProgress += PlayerMovement.CurrentHorizontalSpeed * Time.deltaTime;
+    }
+
+    public override void UpdateProgress(float value)
+    {
+        currentProgress = value;
     }
 }

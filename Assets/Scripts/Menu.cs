@@ -88,4 +88,9 @@ public class Menu : MonoBehaviour
         //mission2Text.text = goals.mission2.getDescription() + "\n" + "(" + goals.mission2.GetCurrentCount() + "/" + goals.mission2.goal + ")";
         //mission3Text.text = goals.mission3.getDescription() + "\n" + "(" + goals.mission3.GetCurrentCount() + "/" + goals.mission3.goal + ")";
     }
+
+    public void LoadData()
+    {
+        SaveManager.LoadJsonData();
+    }
 }

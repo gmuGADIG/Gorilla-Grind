@@ -17,6 +17,7 @@ public class StylePointMission : Mission
         Name = "Style Points";
         Description = "Get " + goal + " style points in one run";
         RunController.OnStylePointChange += OnStylePointUpdate;
+        missionType = MissionType.StylePoint;
     }
 
     private void OnStylePointUpdate(int totalPoints)
@@ -27,6 +28,11 @@ public class StylePointMission : Mission
     public override void UpdateProgress()
     {
         // do nothing
+    }
+
+    public override void UpdateProgress(float value)
+    {
+        currentProgress = value;
     }
 
     ~StylePointMission()

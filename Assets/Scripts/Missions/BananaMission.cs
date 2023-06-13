@@ -17,11 +17,17 @@ public class BananaMission : Mission
         goal = bananaCount;
         Name = "Bananas";
         Description = "Get " + goal + " bananas in one run";
+        missionType = MissionType.Banana;
     }
 
     public override void UpdateProgress()
     {
 
+    }
+
+    public override void UpdateProgress(float value)
+    {
+        currentProgress = value;
     }
 
     void UpdateBananaCount(int count)

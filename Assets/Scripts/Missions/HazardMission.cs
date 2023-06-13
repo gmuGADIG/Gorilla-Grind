@@ -14,6 +14,7 @@ public class HazardMission : Mission
         goal = hazardGoal;
         Name = "Hazard";
         Description = "Jump over " + goal + " hazards in one run";
+        missionType = MissionType.Hazard;
 
         PlayerMovement.OnJumpedOverHazard += IncrementProgress;
     }
@@ -23,6 +24,11 @@ public class HazardMission : Mission
     public override void UpdateProgress()
     {
         // nothing
+    }
+
+    public override void UpdateProgress(float value)
+    {
+        currentProgress = value;
     }
 
     ~HazardMission()
