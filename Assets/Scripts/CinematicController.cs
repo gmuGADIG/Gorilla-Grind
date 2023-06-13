@@ -54,7 +54,7 @@ public class CinematicController : MonoBehaviour
         while (blackCover.color.a < .99f)
         {
             Color color = blackCover.color;
-            color.a = Mathf.Lerp(color.a, 1, fadeSpeed * Time.deltaTime);
+            color.a += fadeSpeed * Time.deltaTime;
             blackCover.color = color;
             yield return null;
         }
