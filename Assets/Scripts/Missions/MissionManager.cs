@@ -78,7 +78,14 @@ public class MissionManager : MonoBehaviour
     {
         if (StoryMission != null)
         {
-            StoryMission.ResetProgress();
+            if (StoryMission.Complete())
+            {
+                StoryMission = null;
+            }
+            else
+            {
+                StoryMission.ResetProgress();
+            }
         }
         for (int i = 0; i < randomMissions.Count; i++)
         {
