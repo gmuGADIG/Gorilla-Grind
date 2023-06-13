@@ -11,21 +11,24 @@ public class Inventory : MonoBehaviour
     private static List<string> PurchasedItems;
     private static string equippedBoard;
     
-    void Awake() {
-            if (GameInventory) {
-            Destroy(this);
-            return;
+    void Awake() 
+    {
+        if (GameInventory == null)
+        {
+            GameInventory = this;
+            BananasInInventory = 500;
+            PurchasedItems = new List<string>();
+            addItem("All Natural Board"); //Starting board is already in inventory at start of game
+            equipBoard("All Natural Board");
         }
-        GameInventory = this;
-        if (transform.parent = null)
+        else
+        {
+            Destroy(this);
+        }
+        if (transform.parent == null)
         {
             DontDestroyOnLoad(this);
         }
-
-        BananasInInventory = 500;
-        PurchasedItems = new List<string>();
-        addItem("All Natural Board"); //Starting board is already in inventory at start of game
-        equipBoard("All Natural Board");
     }
 
     void Start()
