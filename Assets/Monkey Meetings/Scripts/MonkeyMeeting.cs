@@ -113,7 +113,7 @@ public class MonkeyMeeting : MonoBehaviour
                 isTextCurrentlyAnimating = false;
             }
         }
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (dialogueStarted && Input.GetKeyDown(KeyCode.Escape))
         {
             EndDialogue();
         }
@@ -128,6 +128,8 @@ public class MonkeyMeeting : MonoBehaviour
 
     void EndDialogue()
     {
+        print("TEST02");
+        dialogueStarted = false;
         OnMonkeyMeetingEnd?.Invoke(meetingDialogue);
         meetingDialogue = null;
         SceneManager.LoadScene(postRunSceneName);
