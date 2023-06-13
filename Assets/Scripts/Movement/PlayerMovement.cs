@@ -95,6 +95,7 @@ public class PlayerMovement : MonoBehaviour
     public event Action<StateType> OnStateChange;
     public event Action<Type> OnTrickStart;
     public static event Action OnJumpedOverHazard;
+    public static event Action OnHitHazard;
 
     LayerMask currentSkateableLayer;
     Vector2 velocity;
@@ -242,6 +243,11 @@ public class PlayerMovement : MonoBehaviour
     public void JumpedOverHazard()
     {
         OnJumpedOverHazard?.Invoke();
+    }
+
+    public void HitHazard()
+    {
+        OnHitHazard?.Invoke();
     }
 
     void Jump()

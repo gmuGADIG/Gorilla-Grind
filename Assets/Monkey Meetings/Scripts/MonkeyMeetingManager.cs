@@ -30,7 +30,6 @@ public class MonkeyMeetingManager : MonoBehaviour
 
     void AtEndOfMeeting(MonkeyMeetingDialogue meeting)
     {
-        print("TEST" + gameObject.name);
         currentMeeting = meeting;
         if (currentMeeting.hasMission)
         {
@@ -50,6 +49,10 @@ public class MonkeyMeetingManager : MonoBehaviour
             else if (currentMeeting.linkedMissionType == MissionType.StylePoint)
             {
                 mission = new StylePointMission(currentMeeting.missionGoalCount);
+            }
+            else if (currentMeeting.linkedMissionType == MissionType.DieToHazard)
+            {
+                mission = new DieToHazardMission();
             }
             mission.unlockedMonkeyMeeting = currentMeeting.nextMonkeyMeeting;
             MissionManager.Instance.SetStoryMission(mission);
