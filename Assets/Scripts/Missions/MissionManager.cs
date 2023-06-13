@@ -72,6 +72,18 @@ public class MissionManager : MonoBehaviour
         nextMeetingUnlocked = false;
     }
 
+    public void ResetAllMissionProgress()
+    {
+        if (StoryMission != null)
+        {
+            StoryMission.ResetProgress();
+        }
+        for (int i = 0; i < randomMissions.Count; i++)
+        {
+            randomMissions[i].ResetProgress();
+        }
+    }
+
     private void Update()
     {
         for (int i = 0; i < randomMissions.Count; i++)
