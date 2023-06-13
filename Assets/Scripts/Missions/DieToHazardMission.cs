@@ -17,6 +17,11 @@ public class DieToHazardMission : Mission
 
     }
 
+    public override void UpdateProgress(float progress)
+    {
+        
+    }
+
     void DeathByHazard()
     {
         currentProgress = 1;

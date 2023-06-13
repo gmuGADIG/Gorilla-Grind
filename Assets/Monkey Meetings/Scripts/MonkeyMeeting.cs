@@ -128,7 +128,6 @@ public class MonkeyMeeting : MonoBehaviour
 
     void EndDialogue()
     {
-        print("TEST02");
         dialogueStarted = false;
         OnMonkeyMeetingEnd?.Invoke(meetingDialogue);
         meetingDialogue = null;
