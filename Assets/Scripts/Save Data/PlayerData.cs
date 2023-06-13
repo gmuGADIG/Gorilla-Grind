@@ -11,13 +11,11 @@ public class PlayerData
     {
         public MissionType type;
         public float goal;
-        public float progress;
 
         public MissionData(Mission m)
         {
             type = m.GetMissionType();
             goal = m.GetGoal();
-            progress = m.GetProgress();
         }
 
         public Mission LoadMission()
@@ -45,14 +43,13 @@ public class PlayerData
                     break;
             }
             
-            m.UpdateProgress(progress);
 
             return m;
         }
     }
 
     [System.Serializable]
-    public class MeetingData : ScriptableObject
+    public class MeetingData
     {
         public int meetingNumber;
 
@@ -60,7 +57,7 @@ public class PlayerData
 
         public MonkeyMeetingDialogue LoadMeeting()
         {
-            return MonkeyMeetingManager.allMeetings.meetings[meetingNumber];
+            return MonkeyMeetingManager.Instance.allMeetings.meetings[meetingNumber];
         }
     }
 
@@ -71,7 +68,7 @@ public class PlayerData
     public string equippedBoard;
 
     // mission manager
-    public MissionData[] randomMissions;
+    // public MissionData[] randomMissions;     < removed because apparently missions are generated every run
     public MissionData storyMission;
 
     // meeting manager
@@ -107,13 +104,15 @@ public class PlayerData
         equippedBoard = Inventory.getEquippedBoard();
 
         // missions
+        // removed because missions are generated every run. but might be changed, who knows!
+        /*
         List<Mission> missionObjects = missions.randomMissions;
         randomMissions = new MissionData[missionObjects.Count];
         for(int i = 0; i < missionObjects.Count; i++)
         {
             Mission m = missionObjects[i];
             randomMissions[i] = new MissionData(missionObjects[i]);
-        }
+        }*/
         storyMission = new MissionData(missions.StoryMission);
 
         // meetings
@@ -133,10 +132,13 @@ public class PlayerData
         Inventory.equipBoard(String.Copy(equippedBoard));
 
         // mission manager
+        /*
         foreach (MissionData mission in randomMissions)
         {
             missions.randomMissions.Add(mission.LoadMission());
         }
+        */
+        // ^ get with the program
 
         missions.SetStoryMission(storyMission.LoadMission());
 

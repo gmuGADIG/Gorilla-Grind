@@ -57,4 +57,9 @@ public abstract class Mission
 
     public abstract void UpdateProgress(float progress);
 
+    public override string ToString()
+    {
+        return "Type of " + missionType + " with goal of " + goal;
+    }
+
 }

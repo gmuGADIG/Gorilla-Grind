@@ -19,8 +19,10 @@ public class SceneButton : MonoBehaviour
     }
 
     public void PrintData(){
-        Debug.Log(Inventory.getBananasInInventory());
-        Debug.Log(Inventory.getOwnedBoards());
-        Debug.Log(Inventory.getEquippedBoard());
+        Debug.Log("Bananas: " + Inventory.getBananasInInventory());
+        Debug.Log("Owned boards: " + string.Join(",",Inventory.getOwnedBoards()));
+        Debug.Log("Equipped board: " + Inventory.getEquippedBoard());
+
+        Debug.Log("Story Mission: " + MissionManager.Instance.storyMission.ToString());
     }
 }
