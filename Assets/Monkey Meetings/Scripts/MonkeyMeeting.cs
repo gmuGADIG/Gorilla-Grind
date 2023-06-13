@@ -113,6 +113,10 @@ public class MonkeyMeeting : MonoBehaviour
                 isTextCurrentlyAnimating = false;
             }
         }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            EndDialogue();
+        }
     }
 
     void PlayNextLine()
