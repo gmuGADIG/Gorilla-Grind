@@ -47,6 +47,11 @@ public abstract class Mission
     {
         return currentProgress;
     }
+    
+    public void ResetProgress()
+    {
+        currentProgress = 0;
+    }
 
     public abstract void UpdateProgress();
 

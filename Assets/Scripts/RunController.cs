@@ -57,6 +57,7 @@ public class RunController : MonoBehaviour
     IEnumerator RunEndDelay()
     {
         yield return new WaitForSeconds(runEndDelay);
+        MissionManager.Instance.ResetAllMissionProgress();
         if (MonkeyMeetingManager.Instance.HasMeetingPending)
         {
             SceneManager.LoadScene(monkeyMeetingScene);

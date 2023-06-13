@@ -8,7 +8,9 @@ public class MissionManager : MonoBehaviour
 
     public int NumOfCurrentMissions => randomMissions.Count + (StoryMission == null ? 0 : 1);
     public List<Mission> randomMissions = new List<Mission>();
-    public Mission StoryMission { get; private set; }
+    public Mission StoryMission { get => storyMission; private set => storyMission = value; }
+
+    Mission storyMission;
 
     bool nextMeetingUnlocked = false;
     int numOfRandomMissions = 3;
@@ -70,6 +72,25 @@ public class MissionManager : MonoBehaviour
     {
         StoryMission = mission;
         nextMeetingUnlocked = false;
+    }
+
+    public void ResetAllMissionProgress()
+    {
+        if (StoryMission != null)
+        {
+            if (StoryMission.Complete())
+            {
+                StoryMission = null;
+            }
+            else
+            {
+                StoryMission.ResetProgress();
+            }
+        }
+        for (int i = 0; i < randomMissions.Count; i++)
+        {
+            randomMissions[i].ResetProgress();
+        }
     }
 
     private void Update()

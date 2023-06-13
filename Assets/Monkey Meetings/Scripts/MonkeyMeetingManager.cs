@@ -32,6 +32,7 @@ public class MonkeyMeetingManager : MonoBehaviour
 
     void AtEndOfMeeting(MonkeyMeetingDialogue meeting)
     {
+        print("TEST" + gameObject.name);
         currentMeeting = meeting;
         if (currentMeeting.hasMission)
         {
@@ -60,5 +61,10 @@ public class MonkeyMeetingManager : MonoBehaviour
         {
             currentMeeting = currentMeeting.nextMonkeyMeeting;
         }
+    }
+
+    private void OnDestroy()
+    {
+        MonkeyMeeting.OnMonkeyMeetingEnd -= AtEndOfMeeting;
     }
 }
