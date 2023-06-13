@@ -25,6 +25,11 @@ public class BananaMission : Mission
 
     }
 
+    public override void UpdateProgress(float value)
+    {
+        currentProgress = value;
+    }
+
     void UpdateBananaCount(int count)
     {
         currentProgress = count;

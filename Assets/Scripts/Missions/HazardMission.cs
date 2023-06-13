@@ -26,6 +26,11 @@ public class HazardMission : Mission
         // nothing
     }
 
+    public override void UpdateProgress(float value)
+    {
+        currentProgress = value;
+    }
+
     ~HazardMission()
     {
         PlayerMovement.OnJumpedOverHazard -= IncrementProgress;

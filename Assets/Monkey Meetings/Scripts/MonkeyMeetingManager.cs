@@ -11,6 +11,8 @@ public class MonkeyMeetingManager : MonoBehaviour
 
     public MonkeyMeetingDialogue currentMeeting;
 
+    public static MonkeyMeetingsList allMeetings;
+
     private void Awake()
     {
         if (Instance == null)

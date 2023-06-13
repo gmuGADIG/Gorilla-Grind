@@ -23,4 +23,9 @@ public class SpeedMission : Mission
         maxSpeed = Mathf.Max(maxSpeed, PlayerMovement.CurrentHorizontalSpeed);
         currentProgress = maxSpeed;
     }
+
+    public override void UpdateProgress(float value)
+    {
+        currentProgress = value;
+    }
 }

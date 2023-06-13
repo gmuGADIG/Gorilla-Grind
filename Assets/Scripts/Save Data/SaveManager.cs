@@ -18,17 +18,19 @@ public class SaveManager : MonoBehaviour
         }
     }
 
-    public static void LoadJsonData(PlayerData data)
+    public static void LoadJsonData()
     {
-        /*
         if (FileManager.LoadFromFile("SaveData01.dat", out var json))
         {
-            SaveData sd = new SaveData();
-            sd.LoadFromJson(json);
-
-            // data.LoadFromSaveData(sd);
+            PlayerData pd = new PlayerData();
+            pd.LoadFromJson(json);
+            pd.LoadData(MissionManager.Instance, MonkeyMeetingManager.Instance);
             
             Debug.Log("Load complete");
-        }*/
+        }
+        else
+        {
+            Debug.Log("shit");
+        }
     }
 }

@@ -30,6 +30,11 @@ public class StylePointMission : Mission
         // do nothing
     }
 
+    public override void UpdateProgress(float value)
+    {
+        currentProgress = value;
+    }
+
     ~StylePointMission()
     {
         RunController.OnStylePointChange -= OnStylePointUpdate;

@@ -5,6 +5,7 @@ using System;
 [System.Serializable]
 public class PlayerData
 {
+
     [System.Serializable]
     public class MissionData
     {
@@ -19,8 +20,9 @@ public class PlayerData
             progress = m.GetProgress();
         }
 
-        public void LoadRandomMission(ref Mission m)
+        public Mission LoadMission()
         {
+            Mission m = null;
             switch (type)
             {
                 case MissionType.Banana:
@@ -38,9 +40,14 @@ public class PlayerData
                 case MissionType.StylePoint:
                     m = new StylePointMission((int)goal);
                     break;
+                default:    // in case all else fails somehow...
+                    m = new BananaMission();
+                    break;
             }
             
-            //m.UpdateProgress(progress);
+            m.UpdateProgress(progress);
+
+            return m;
         }
     }
 
@@ -50,6 +57,11 @@ public class PlayerData
         public int meetingNumber;
 
         public MeetingData(int num) => meetingNumber = num;
+
+        public MonkeyMeetingDialogue LoadMeeting()
+        {
+            return MonkeyMeetingManager.allMeetings.meetings[meetingNumber];
+        }
     }
 
 
@@ -121,8 +133,15 @@ public class PlayerData
         Inventory.equipBoard(String.Copy(equippedBoard));
 
         // mission manager
+        foreach (MissionData mission in randomMissions)
+        {
+            missions.randomMissions.Add(mission.LoadMission());
+        }
 
+        missions.SetStoryMission(storyMission.LoadMission());
 
+        // meeting manager
+        meetings.currentMeeting = currentMeeting.LoadMeeting();
     }
 
 }

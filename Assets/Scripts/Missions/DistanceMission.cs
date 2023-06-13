@@ -21,4 +21,9 @@ public class DistanceMission : Mission
     {
         currentProgress += PlayerMovement.CurrentHorizontalSpeed * Time.deltaTime;
     }
+
+    public override void UpdateProgress(float value)
+    {
+        currentProgress = value;
+    }
 }

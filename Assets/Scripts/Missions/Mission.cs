@@ -50,4 +50,6 @@ public abstract class Mission
 
     public abstract void UpdateProgress();
 
+    public abstract void UpdateProgress(float progress);
+
 }
