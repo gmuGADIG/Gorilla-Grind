@@ -31,17 +31,6 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     ///<summary>
     ///Returns the number of bananas currently stored in the player's inventory.
     ///</summary>
@@ -73,6 +62,25 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public static void UnlockItem(string itemName)
+    {
+        // TODO: print UI message to player
+        print("Board unlocked: " + itemName);
+        addItem(itemName);
+        equipBoard(itemName);
+    }
+
+    public static void LockItem(string itemName)
+    {
+        // TODO: print UI message to player
+        print("Board locked: " + itemName);
+        RemoveItem(itemName);
+        if (equippedBoard == itemName)
+        {
+            equipBoard("Basic Board");
+        }
+    }
+
     ///<summary>
     ///Returns true if the passed in item name is stored in the player's inventory
     ///Returns false otherwise
@@ -92,6 +100,11 @@ public class Inventory : MonoBehaviour
         }
         PurchasedItems.Add(itemName);
         return true;
+    }
+
+    public static void RemoveItem(string itemName)
+    {
+        PurchasedItems.Remove(itemName);
     }
 
     ///<summary>

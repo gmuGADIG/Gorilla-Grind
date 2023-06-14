@@ -128,6 +128,15 @@ public class MonkeyMeeting : MonoBehaviour
 
     void EndDialogue()
     {
+        // lock/unlock boards
+        if (meetingDialogue.unlockedBoard != "")
+        {
+            Inventory.UnlockItem(meetingDialogue.unlockedBoard);
+        }
+        if (meetingDialogue.lockedBoard != "")
+        {
+            Inventory.LockItem(meetingDialogue.lockedBoard);
+        }
         dialogueStarted = false;
         OnMonkeyMeetingEnd?.Invoke(meetingDialogue);
         meetingDialogue = null;
