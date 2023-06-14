@@ -29,6 +29,7 @@ public class Inventory : MonoBehaviour
         {
             DontDestroyOnLoad(this);
         }
+        UnlockItem("Holy Board");
     }
 
     ///<summary>
