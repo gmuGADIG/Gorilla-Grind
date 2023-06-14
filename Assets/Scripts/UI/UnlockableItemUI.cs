@@ -65,6 +65,11 @@ public class UnlockableItemUI : MonoBehaviour
         }
     }
 
+    public void Lock()
+    {
+
+    }
+
     public void Unlock()
     {
         if (Inventory.hasItem(itemName))
