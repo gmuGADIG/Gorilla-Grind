@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c560f868b549d48acca607a9787604, type: 3}
   m_Name: Meeting_Test
   m_EditorClassIdentifier: 
+  hasMission: 0
+  linkedMissionType: 0
+  missionGoalCount: 0
+  nextMonkeyMeeting: {fileID: 0}
+  meetingIndex: 0
   characterDatabase: {fileID: 11400000, guid: 5ff5001a917067e499d10df040f92b30, type: 2}
   dialogueFrames:
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -22,7 +27,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Man, it's so sad that Tony Hawk died of ligma.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a649c9cba84f8d4da596355a2726c19, type: 2}
@@ -33,6 +37,7 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Who's Tony Hawk?
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
+  unlockedBoard: 
+  lockedBoard: 

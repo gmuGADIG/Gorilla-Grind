@@ -10,6 +10,7 @@ public class SceneButton : MonoBehaviour
     }
 
     public void ExitGame(){
+        print("TEST");
         SaveManager.SaveJsonData();
         Application.Quit();
     }
