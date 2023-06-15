@@ -60,14 +60,18 @@ public class GroundEdge : MonoBehaviour
     void Start()
     {
         edgeCollider.enabled = !noCollision;
-        GetComponent<LineRenderer>().enabled = renderingLine;
-        GetComponent<SpriteRenderer>().enabled = renderingSprite;
-
+        GetComponent<LineRenderer>().enabled = false;
+        GetComponent<SpriteRenderer>().enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!GetComponent<LineRenderer>().enabled && !GetComponent<SpriteRenderer>().enabled) {
+            GetComponent<LineRenderer>().enabled = renderingLine;
+            GetComponent<SpriteRenderer>().enabled = renderingSprite;
+        }
+        
         if(renderingLine)
         {
 

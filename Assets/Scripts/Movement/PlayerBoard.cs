@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerBoard : MonoBehaviour
 {
+    [SerializeField] BoardList allBoards;
+    [SerializeField] Transform boardPlacement;
+
     Skateboard currentBoard;
     PlayerMovement movement;
 
@@ -11,6 +14,9 @@ public class PlayerBoard : MonoBehaviour
     {
         movement = GetComponent<PlayerMovement>();
         movement.OnStateChange += UpdateBoardSprite;
+        string equippedBoardName = Inventory.getEquippedBoard();
+        GameObject boardPrefab = allBoards.GetBoardPrefabFromName(equippedBoardName);
+        Instantiate(boardPrefab, boardPlacement.position, boardPlacement.rotation, boardPlacement);
     }
 
     void Start()

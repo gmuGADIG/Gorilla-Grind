@@ -7,12 +7,4 @@ using UnityEditor;
 public class MonkeyMeetingCharacters : ScriptableObject
 {
     public List<CharacterData> characters;
-
-    //private void OnValidate()
-    //{
-    //    for (int i = 0; i < characters.Count; i++)
-    //    {
-    //        characters[i].UpdateValues();
-    //    }
-    //}
 }
