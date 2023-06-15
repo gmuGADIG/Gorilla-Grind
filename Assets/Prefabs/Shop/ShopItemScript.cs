@@ -58,7 +58,10 @@ public class ShopItemScript : MonoBehaviour
         priceText.text = price.ToString();
 
         purchasingSoundId = SoundManager.Instance.GetSoundID("Shop_Purchase_Item");
-        equippingSoundId  = SoundManager.Instance.GetSoundID(equipSoundName);
+        if (equipSoundName != "")
+        {
+            equippingSoundId = SoundManager.Instance.GetSoundID(equipSoundName);
+        }
     }
 
     // Update is called once per frame
