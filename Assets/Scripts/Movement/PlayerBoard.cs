@@ -14,13 +14,13 @@ public class PlayerBoard : MonoBehaviour
     {
         movement = GetComponent<PlayerMovement>();
         movement.OnStateChange += UpdateBoardSprite;
-        string equippedBoardName = Inventory.getEquippedBoard();
-        GameObject boardPrefab = allBoards.GetBoardPrefabFromName(equippedBoardName);
-        Instantiate(boardPrefab, boardPlacement.position, boardPlacement.rotation, boardPlacement);
     }
 
     void Start()
     {
+        string equippedBoardName = Inventory.getEquippedBoard();
+        GameObject boardPrefab = allBoards.GetBoardPrefabFromName(equippedBoardName);
+        Instantiate(boardPrefab, boardPlacement.position, boardPlacement.rotation, boardPlacement);
         Skateboard board = GetComponentInChildren<Skateboard>();
         ChangeCurrentBoard(board);
     }

@@ -29,11 +29,12 @@ public class Inventory : MonoBehaviour
         {
             DontDestroyOnLoad(this);
         }
+        UnlockItem("Holy Board");
+
     }
 
     private void Start()
     {
-        UnlockItem("Holy Board");
     }
 
     ///<summary>
