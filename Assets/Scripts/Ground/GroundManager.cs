@@ -12,7 +12,7 @@ public class GroundManager : MonoBehaviour
     public float spawnOffset; 
     // Limit to how low a spawned ground section can be
     public float bottomSpawnLimit;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -103,8 +103,8 @@ public class GroundManager : MonoBehaviour
                         if (subsection == null) { return false; }
                         foreach (GroundEdge groundEdge in subsection.groundEdges) {
                             foreach (Vector2 point in groundEdge.edgeCollider.points) {
-                                if (point.y + transform.position.y + 
-                                        groundEdge.transform.position.y + subsection.transform.position.y < -bottomSpawnLimit) {
+                                print(activeSections.Last.Value.endPoint);
+                                if (point.y + groundEdge.transform.position.y + activeSections.Last.Value.endPoint.y - groundSection.startPoint.y < -bottomSpawnLimit) {
                                     return false;
                                 }
                             }
