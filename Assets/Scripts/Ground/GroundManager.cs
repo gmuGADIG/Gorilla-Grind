@@ -8,10 +8,11 @@ public class GroundManager : MonoBehaviour
     public GameObject startSection;
     public GameObject[] sectionPrefabs;
     public LinkedList<GroundSection> activeSections;
-    public float spawnOffset;
+    // The how far right must the player be to the end of the latest ground section before we spawn another
+    public float spawnOffset; 
+    // Limit to how low a spawned ground section can be
+    public float bottomSpawnLimit;
 
-    
-    public Vector2 spawnBounds;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,13 +21,6 @@ public class GroundManager : MonoBehaviour
             groundManager = this;
         }
         activeSections = new LinkedList<GroundSection>();
-
-        //Delete after one gadig meeting
-        if(spawnBounds.x == 0)
-        {
-            spawnBounds.x = spawnOffset;
-            spawnBounds.y = spawnOffset;
-        }
 
         if(sectionPrefabs.Length == 0)
         {
@@ -63,7 +57,7 @@ public class GroundManager : MonoBehaviour
     {
         if (activeSections.First != null)
         {
-            if (activeSections.First.Value.endPoint.x < transform.position.x -spawnBounds.x)
+            if (activeSections.First.Value.endPoint.x < transform.position.x -spawnOffset)
             {
                 Destroy(activeSections.First.Value.gameObject);
                 activeSections.RemoveFirst();
@@ -73,7 +67,7 @@ public class GroundManager : MonoBehaviour
     void SpawnCheck()
     {
         
-        if(activeSections.Last == null || activeSections.Last.Value.endPoint.x  < transform.position.x  + spawnBounds.x)
+        if(activeSections.Last == null || activeSections.Last.Value.endPoint.x  < transform.position.x  + spawnOffset)
         {
             GenerateRandomSection();
         }
@@ -100,8 +94,24 @@ public class GroundManager : MonoBehaviour
     {
         //List of groundsections from prefabs
         List<GroundSection> validSections = sectionPrefabs.ToList().Select(gs => gs.GetComponent<GroundSection>()).ToList();
-        //return sections where the height change + last.y is greater than pos - bound but less that pos+bound
-        return validSections.Where(gs => gs != null && System.Math.Abs(activeSections.Last.Value.endPoint.y + gs.heightDiff - transform.position.y) < spawnBounds.y).ToList();
+        // Make sure none of the ground edges dip below the kill box
+        return validSections.Where(
+                groundSection => {
+                    if (groundSection == null) { return false; }
+                    //groundSection = Instantiate(groundSection);
+                    foreach (Subsection subsection in groundSection.subsections) {
+                        if (subsection == null) { return false; }
+                        foreach (GroundEdge groundEdge in subsection.groundEdges) {
+                            foreach (Vector2 point in groundEdge.edgeCollider.points) {
+                                print(activeSections.Last.Value.endPoint);
+                                if (point.y + groundEdge.transform.position.y + activeSections.Last.Value.endPoint.y - groundSection.startPoint.y < -bottomSpawnLimit) {
+                                    return false;
+                                }
+                            }
+                        }
+                    } return true;
+                }
+        ).ToList();
     }
     void CreateNextSection(GameObject sectionPrefab) 
     { 
