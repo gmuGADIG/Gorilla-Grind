@@ -689,7 +689,7 @@ public class PlayerMovement : MonoBehaviour
                 playerRotation += -move.rotationSpeed * Time.deltaTime * move.RotationMultiplier;
             }
 
-            print($"PlayerMovement.cs: playerRotation: {playerRotation}");
+            //print($"PlayerMovement.cs: playerRotation: {playerRotation}");
             // Detect flip
             if (Mathf.Abs(playerRotation) >= 280) { // not 360 because we want to be a bit lenient to the player
                 playerRotation = 0;
