@@ -23,15 +23,15 @@ public class PopupManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            popupText = popup.GetComponentInChildren<TMP_Text>();
+            popup.transform.parent = null;
+            DontDestroyOnLoad(popup);
+            popup.SetActive(false);
         }
         else
         {
             Destroy(this);
         }
-        popupText = popup.GetComponentInChildren<TMP_Text>();
-        popup.transform.parent = null;
-        DontDestroyOnLoad(popup);
-        popup.SetActive(false);
     }
 
     public void SendPopupMessage(string message)

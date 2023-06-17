@@ -103,7 +103,7 @@ public class GroundManager : MonoBehaviour
                         if (subsection == null) { return false; }
                         foreach (GroundEdge groundEdge in subsection.groundEdges) {
                             foreach (Vector2 point in groundEdge.edgeCollider.points) {
-                                print(activeSections.Last.Value.endPoint);
+                                //print(activeSections.Last.Value.endPoint);
                                 if (point.y + groundEdge.transform.position.y + activeSections.Last.Value.endPoint.y - groundSection.startPoint.y < -bottomSpawnLimit) {
                                     return false;
                                 }
