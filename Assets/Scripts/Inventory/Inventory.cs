@@ -18,6 +18,7 @@ public class Inventory : MonoBehaviour
             Instance = this;
             BananasInInventory = 500;
             PurchasedItems = new List<string>();
+            UnlockItem("Holy Board");
             //addItem("All Natural Board"); //Starting board is already in inventory at start of game
             //equipBoard("All Natural Board");
         }
@@ -29,7 +30,6 @@ public class Inventory : MonoBehaviour
         {
             DontDestroyOnLoad(this);
         }
-        UnlockItem("Holy Board");
 
     }
 
