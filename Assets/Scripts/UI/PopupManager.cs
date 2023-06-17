@@ -24,7 +24,7 @@ public class PopupManager : MonoBehaviour
         {
             Instance = this;
             popupText = popup.GetComponentInChildren<TMP_Text>();
-            popup.transform.parent = null;
+            popup.transform.SetParent(null);
             DontDestroyOnLoad(popup);
             popup.SetActive(false);
         }
