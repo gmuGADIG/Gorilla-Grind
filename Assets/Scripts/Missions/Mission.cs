@@ -50,7 +50,10 @@ public abstract class Mission
     
     public void ResetProgress()
     {
-        currentProgress = 0;
+        if (!Complete())
+        {
+            currentProgress = 0;
+        }
     }
 
     public abstract void UpdateProgress();

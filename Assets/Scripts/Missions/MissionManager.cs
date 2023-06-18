@@ -30,9 +30,10 @@ public class MissionManager : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);
         }
+        MonkeyMeeting.OnMonkeyMeetingEnd += GenerateMissions;
     }
 
-    public void GenerateMissions()
+    public void GenerateMissions(MonkeyMeetingDialogue dialogue)
     {
         randomMissions.Clear();
         List<MissionType> alreadyPickedMissionTypes = new List<MissionType>(); // to prevent duplicate mission creation
@@ -109,5 +110,10 @@ public class MissionManager : MonoBehaviour
             MonkeyMeetingManager.Instance.currentMeeting = StoryMission.unlockedMonkeyMeeting;
             nextMeetingUnlocked = true;
         }
+    }
+
+    private void OnDestroy()
+    {
+        MonkeyMeeting.OnMonkeyMeetingEnd -= GenerateMissions;
     }
 }
