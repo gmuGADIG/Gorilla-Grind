@@ -34,7 +34,7 @@ public class SoundManager : MonoBehaviour
 			s.source = gameObject.AddComponent<AudioSource>();
 			s.source.clip = s.GetRandomAudioClip();
 			s.source.loop = s.loop;
-			s.source.outputAudioMixerGroup = mixerGroup;
+			s.source.outputAudioMixerGroup = s.mixerGroup;
 		}
 		Transform positionalSourceParent = new GameObject("Positional Audio Sources").transform;
         for (int i = 0; i < numOfPositionalSources; i++)
