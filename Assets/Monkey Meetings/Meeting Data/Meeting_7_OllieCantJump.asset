@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c560f868b549d48acca607a9787604, type: 3}
   m_Name: Meeting_7_OllieCantJump
   m_EditorClassIdentifier: 
+  hasMission: 1
+  linkedMissionType: 3
+  missionGoalCount: 20
+  nextMonkeyMeeting: {fileID: 11400000, guid: 5331e0b1b6fc7fb4ca1e28d46b43a578, type: 2}
+  meetingIndex: 7
   characterDatabase: {fileID: 11400000, guid: 5ff5001a917067e499d10df040f92b30, type: 2}
   dialogueFrames:
   - speakingCharacter: {fileID: 11400000, guid: bda5b80130d6e514992153881c501f3b, type: 2}
@@ -22,7 +27,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - You notice that Ollie Orangutan is a bit bruised up.
-    isMission: 0
     isNarrator: 1
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -34,7 +38,6 @@ MonoBehaviour:
     dialogueLines:
     - Hey, lil' Homie-sapien. I noticed you peelin' it on the treetop over there.
     - You good, little dude?
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: bda5b80130d6e514992153881c501f3b, type: 2}
@@ -46,7 +49,6 @@ MonoBehaviour:
     dialogueLines:
     - Pfft, yeah, I'm, ow, totally tubular.
     - Just a lil' sore from all the sick hazards I be jumping, you know.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -58,7 +60,6 @@ MonoBehaviour:
     dialogueLines:
     - Because I be jumping.
     - Like an orangutan.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: bda5b80130d6e514992153881c501f3b, type: 2}
@@ -70,7 +71,6 @@ MonoBehaviour:
     dialogueLines:
     - Who are good at jumping.
     - Because they are orangutans.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: bda5b80130d6e514992153881c501f3b, type: 2}
@@ -81,7 +81,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Which I am.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -92,7 +91,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Heh, yeah right, kid. If you're a real orangutan, then I'm a macaque.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: bda5b80130d6e514992153881c501f3b, type: 2}
@@ -103,7 +101,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - What's a macaque?
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -114,7 +111,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Why don't you suck...
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -125,7 +121,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Tony interrupts him.
-    isMission: 0
     isNarrator: 1
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -138,7 +133,6 @@ MonoBehaviour:
     - Listen, little dude. You gotta train your glutes and core before you take on
       those big jumps.
     - Just ask the champ, he knows what's up.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -149,7 +143,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - 'Champ: ...'
-    isMission: 0
     isNarrator: 1
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: bda5b80130d6e514992153881c501f3b, type: 2}
@@ -161,7 +154,6 @@ MonoBehaviour:
     dialogueLines:
     - I don't need to train! I can jump all the gaps I want!
     - Because I'M an orangutan, and us orangutans are Master Jumpers.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -172,7 +164,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Pfft, please. You couldn't even jump 2 feet on a trampoline.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: bda5b80130d6e514992153881c501f3b, type: 2}
@@ -183,7 +174,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Nuh-uh! Watch this!
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: bda5b80130d6e514992153881c501f3b, type: 2}
@@ -194,7 +184,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Ollie falls over.
-    isMission: 0
     isNarrator: 1
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: bda5b80130d6e514992153881c501f3b, type: 2}
@@ -205,7 +194,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Gweh!
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -217,7 +205,6 @@ MonoBehaviour:
     dialogueLines:
     - Just what I thought.
     - See you later, dorks. I got other losers to make fun of.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -228,7 +215,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Gavin leaves.
-    isMission: 0
     isNarrator: 1
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: bda5b80130d6e514992153881c501f3b, type: 2}
@@ -239,7 +225,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Ollie looks very put down.
-    isMission: 0
     isNarrator: 1
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -251,7 +236,6 @@ MonoBehaviour:
     dialogueLines:
     - Hey, Champ. Why don't you help the lil guy out?
     - Show Ollie some sick vine grinds to show 'em how it's done.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -262,7 +246,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Maybe that'll give Ollie the spunk they need to up their gains.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -274,7 +257,6 @@ MonoBehaviour:
     dialogueLines:
     - Also, maybe it'll get Gavin to shut the squawk up.
     - That guy is such a macaque.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -285,6 +267,5 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Jump over 20 hazards in one run.
-    isMission: 1
     isNarrator: 1
     isPlayerCharacter: 0

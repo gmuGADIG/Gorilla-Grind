@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c560f868b549d48acca607a9787604, type: 3}
   m_Name: Meeting_1_Intro
   m_EditorClassIdentifier: 
+  hasMission: 1
+  linkedMissionType: 2
+  missionGoalCount: 200
+  nextMonkeyMeeting: {fileID: 11400000, guid: 1051baed5129a524dab750289c213db7, type: 2}
+  meetingIndex: 1
   characterDatabase: {fileID: 11400000, guid: 5ff5001a917067e499d10df040f92b30, type: 2}
   dialogueFrames:
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -23,7 +28,6 @@ MonoBehaviour:
     dialogueLines:
     - You wake up after wiping out from attempting to shred on the Holy Board.
     - Groggily, you blink your surroundings into focus.
-    isMission: 0
     isNarrator: 1
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a17fe078b81dfb4d824e9cd4dd39fa1, type: 2}
@@ -34,7 +38,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Broooo! That was such a sick dismount! Like I've never seen an...
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 2eb53d6a731620d4db6b4469325d8d06, type: 2}
@@ -45,7 +48,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Kevin gets cut off.
-    isMission: 0
     isNarrator: 1
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -56,7 +58,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - He totally just peeled it, Kevin. Like, ate total dirt, dawg.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a649c9cba84f8d4da596355a2726c19, type: 2}
@@ -67,7 +68,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Fell from higher than Smoop Dawg on a Tuesday.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: bda5b80130d6e514992153881c501f3b, type: 2}
@@ -78,7 +78,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Ollie Orangutan pushes up their helmet, eyes wide in disbelief.
-    isMission: 0
     isNarrator: 1
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: bda5b80130d6e514992153881c501f3b, type: 2}
@@ -89,7 +88,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - How'd he wipe out though? The Holy Board chose 'em!
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -101,7 +99,6 @@ MonoBehaviour:
     dialogueLines:
     - "He\u2019s not worthy of the Holy Board, pipsqueak. If anyone here is worthy,
       obviously it\u2019s Grind-Lord Gavin. Me!"
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a17fe078b81dfb4d824e9cd4dd39fa1, type: 2}
@@ -112,7 +109,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Did you really just come up with that, bro?
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -124,7 +120,6 @@ MonoBehaviour:
     dialogueLines:
     - Oh ho! A rivalry is afoot! Imagine the heated competition!
     - The fire of ambition stroking the determination of the soul...
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a649c9cba84f8d4da596355a2726c19, type: 2}
@@ -139,7 +134,6 @@ MonoBehaviour:
     - rotten branch that ...
     - fell too far from the river, homie-sapien.
     - Mellow out the mad-itude.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -151,7 +145,6 @@ MonoBehaviour:
     dialogueLines:
     - ... It's like you can hear the muscles flexing already, two pugilists warring
       in not just the mind, but the body as well! oh wha...
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: bda5b80130d6e514992153881c501f3b, type: 2}
@@ -163,7 +156,6 @@ MonoBehaviour:
     dialogueLines:
     - Yeah! What you said, Tony! That's, like, mad wise and stuff. What's stoppin'
       us from joining in of the gnarliness?
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -175,7 +167,6 @@ MonoBehaviour:
     dialogueLines:
     - Oh- *Tony cough cough* Heh. I dunno what happened there. Think the pump went
       to my noggin' for a moment. You've got some gain on those bones, yuh.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 60d7538c2bdf1c34d8516323968369a8, type: 2}
@@ -186,7 +177,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Can it, bird-brain. Your claws can't even grip the board.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a17fe078b81dfb4d824e9cd4dd39fa1, type: 2}
@@ -198,7 +188,6 @@ MonoBehaviour:
     dialogueLines:
     - Gavin, bro, you've been talking about the Holy Board nonstop, but it didn't
       choose you. It chose our champ over there, bro! He's the champion! Champ!
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a649c9cba84f8d4da596355a2726c19, type: 2}
@@ -210,7 +199,6 @@ MonoBehaviour:
     dialogueLines:
     - At least you got some pants, Gavin. The rest of us are letting it hand, nature
       style...
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a17fe078b81dfb4d824e9cd4dd39fa1, type: 2}
@@ -221,7 +209,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Kevin turns to you.
-    isMission: 0
     isNarrator: 1
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a17fe078b81dfb4d824e9cd4dd39fa1, type: 2}
@@ -233,7 +220,6 @@ MonoBehaviour:
     dialogueLines:
     - Ignore Gavin. The Holy Board chose you, bro. I know you peeled it the first
       time, but you the GOAT! And I ain't talkin' mountain goat.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -247,7 +233,6 @@ MonoBehaviour:
       might be a tad subpar, amigo, no offense.
     - I think you're gonna have to shred it another way to get those muscles up to
       snuff.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -258,7 +243,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - ...
-    isMission: 0
     isNarrator: 1
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a17fe078b81dfb4d824e9cd4dd39fa1, type: 2}
@@ -272,7 +256,6 @@ MonoBehaviour:
       got mad inspired, heh! Well- it ain\u2019t no Holy Board, and I was gonna take
       it for a spin, but I think you gotta inspire everyone else like you inspired
       me!"
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a17fe078b81dfb4d824e9cd4dd39fa1, type: 2}
@@ -283,6 +266,7 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Obtain 200 style points in one run.
-    isMission: 1
     isNarrator: 0
     isPlayerCharacter: 0
+  unlockedBoard: All Natural Board
+  lockedBoard: Holy Board

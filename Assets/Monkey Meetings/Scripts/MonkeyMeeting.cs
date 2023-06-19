@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class MonkeyMeeting : MonoBehaviour
 {
+    public static event Action<MonkeyMeetingDialogue> OnMonkeyMeetingEnd;
+
     public TMP_Text dialogueText;
     public Image nameImage;
     public Transform charactersParentObject;
@@ -13,7 +17,7 @@ public class MonkeyMeeting : MonoBehaviour
     [SerializeField] MonkeyMeetingDialogue meetingDialogue;
     public float textSpeed = 0.033f;
     public int soundCharChange = 4;
-    //public GameObject background;
+    [SerializeField] string postRunSceneName;
 
     private MonkeyMeetingDialogue.DialogueFrame dialogueFrame;
     private string[] currentDialogueLines;
@@ -25,13 +29,27 @@ public class MonkeyMeeting : MonoBehaviour
 
     private void Start()
     {
-        StartDialogue();
+        if (MonkeyMeetingManager.Instance != null)
+        {
+            meetingDialogue = MonkeyMeetingManager.Instance.currentMeeting;
+            StartDialogue();
+        }
     }
 
     public void StartDialogue()
     {
-        gameObject.SetActive(true);
+        //gameObject.SetActive(true);
         //background.SetActive(true); // Activate the background object
+        // lock/unlock boards
+        if (meetingDialogue.unlockedBoard != "")
+        {
+            Inventory.UnlockItem(meetingDialogue.unlockedBoard);
+        }
+        if (meetingDialogue.lockedBoard != "")
+        {
+            Inventory.LockItem(meetingDialogue.lockedBoard);
+        }
+        print(meetingDialogue.name);
         dialogueText.text = "";
         currentCharacterLineIndex = 0;
         currentDialogueFrameIndex = 0;
@@ -104,6 +122,10 @@ public class MonkeyMeeting : MonoBehaviour
                 isTextCurrentlyAnimating = false;
             }
         }
+        if (dialogueStarted && Input.GetKeyDown(KeyCode.Escape))
+        {
+            EndDialogue();
+        }
     }
 
     void PlayNextLine()
@@ -115,8 +137,10 @@ public class MonkeyMeeting : MonoBehaviour
 
     void EndDialogue()
     {
-        // background.SetActive(false);
-        gameObject.SetActive(false);
+        dialogueStarted = false;
+        OnMonkeyMeetingEnd?.Invoke(meetingDialogue);
+        meetingDialogue = null;
+        SceneManager.LoadScene(postRunSceneName);
     }
 
     private Emotion GetSelectedEmotion(MonkeyMeetingDialogue.DialogueFrame frame)
@@ -136,11 +160,6 @@ public class MonkeyMeeting : MonoBehaviour
         dialogueFrame = meetingDialogue.dialogueFrames[currentDialogueFrameIndex];
         currentDialogueLines = dialogueFrame.dialogueLines;
         currentCharacterLineIndex = 0;
-        if (dialogueFrame.isMission == true)
-        {
-            Debug.Log(currentDialogueLines[currentDialogueLines.Length - 1]);
-            //AddMissionToListFromDescription(currentDialogueLines[currentDialogueLines.Length-1]);
-        }
 
         if (dialogueFrame.isNarrator || dialogueFrame.isPlayerCharacter)
         {

@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c560f868b549d48acca607a9787604, type: 3}
   m_Name: Meeting_13_MunchiesMoment
   m_EditorClassIdentifier: 
+  hasMission: 1
+  linkedMissionType: 1
+  missionGoalCount: 1000
+  nextMonkeyMeeting: {fileID: 11400000, guid: 16f3a009f57d2374683818abfbcd7594, type: 2}
+  meetingIndex: 13
   characterDatabase: {fileID: 11400000, guid: 5ff5001a917067e499d10df040f92b30, type: 2}
   dialogueFrames:
   - speakingCharacter: {fileID: 11400000, guid: 0a649c9cba84f8d4da596355a2726c19, type: 2}
@@ -22,7 +27,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Oh, uh. Hey, Champ. You holding up ok...?
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a649c9cba84f8d4da596355a2726c19, type: 2}
@@ -33,7 +37,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - 'Champ: ...'
-    isMission: 0
     isNarrator: 1
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a649c9cba84f8d4da596355a2726c19, type: 2}
@@ -55,7 +58,6 @@ MonoBehaviour:
     - Hey, listen, Champ. I know it ain't easy.
     - Life is pretty darn good at throwing curveballs your way, I can tell ya that
       for sure.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a649c9cba84f8d4da596355a2726c19, type: 2}
@@ -85,7 +87,6 @@ MonoBehaviour:
     - You wanna know his destiny?
     - Can't say...
     - It'd spoil the next adventure if you catch my drift...
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a649c9cba84f8d4da596355a2726c19, type: 2}
@@ -96,7 +97,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - What was I sayin'?
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a649c9cba84f8d4da596355a2726c19, type: 2}
@@ -111,7 +111,6 @@ MonoBehaviour:
     - But you, you can bring him back.
     - Pull that feller off the cliff's edge and bring peace back to this jungle,
       capiche?
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a649c9cba84f8d4da596355a2726c19, type: 2}
@@ -122,7 +121,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - She pats you on the back with a wide smile.
-    isMission: 0
     isNarrator: 1
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a649c9cba84f8d4da596355a2726c19, type: 2}
@@ -136,7 +134,6 @@ MonoBehaviour:
     - One in a Gorillion!
     - That board didn't choose just anybody.
     - It chose YOU.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a649c9cba84f8d4da596355a2726c19, type: 2}
@@ -152,7 +149,6 @@ MonoBehaviour:
     - I, uh, hadn't used it cause the time never felt right.
     - But now this board's callin' out for its purpose.
     - It's calling out to give you a second chance.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a649c9cba84f8d4da596355a2726c19, type: 2}
@@ -166,7 +162,6 @@ MonoBehaviour:
     - Champ, go out there, set this jungle straight, and save Gavin.
     - May the midday's breeze bring you determination to thrash like you hever have
       before.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a649c9cba84f8d4da596355a2726c19, type: 2}
@@ -177,6 +172,5 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Travel a distance of 1000 in one run.
-    isMission: 1
     isNarrator: 1
     isPlayerCharacter: 0

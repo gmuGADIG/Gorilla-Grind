@@ -93,6 +93,9 @@ public class PlayerMovement : MonoBehaviour
     public float RotationMultiplier { get; set; } = 1f;
     public float AccelerationMultiplier { get; set; } = 1f;
     public event Action<StateType> OnStateChange;
+    public event Action<Type> OnTrickStart;
+    public static event Action OnJumpedOverHazard;
+    public static event Action OnHitHazard;
 
     LayerMask currentSkateableLayer;
     Vector2 velocity;
@@ -123,18 +126,19 @@ public class PlayerMovement : MonoBehaviour
     public bool IsDead { get; private set; } = false;
 
     // Sound IDs
-    int jumpSoundID;
-    int landSoundID;
-    int deathSoundID;
-    int skateboardLoopSoundID;
+    int jumpSoundID = -1;
+    int landSoundID = -1;
+    int deathSoundID = -1;
+    int skateboardLoopSoundID = -1;
     
     // 0 lives mean you dead
     int lives = 1;
 
     public UnityEvent PlayerOnVine;
     public UnityEvent PlayerOffVine;
-    
-    void Murder() {
+
+
+    public void Murder() {
         print("PlayerMovement.Murder: murdered");
         lives -= 1;
         if (lives <= 0)
@@ -236,6 +240,16 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void JumpedOverHazard()
+    {
+        OnJumpedOverHazard?.Invoke();
+    }
+
+    public void HitHazard()
+    {
+        OnHitHazard?.Invoke();
+    }
+
     void Jump()
     {
         if (velocity.y < 0)
@@ -263,6 +277,7 @@ public class PlayerMovement : MonoBehaviour
         {
             currentPlayerTrick = availableTricks[trickType];
             currentPlayerTrick.StartTrick();
+            OnTrickStart?.Invoke(trickType);
         }
     }
 
@@ -285,7 +300,7 @@ public class PlayerMovement : MonoBehaviour
         else return (false, Vector2.zero);
     }
 
-    Vine? GetVine() 
+    Vine GetVine() 
     {
         Vector3 origin = skateboardCenter.position + new Vector3(midPointOffset, 0);
         RaycastHit2D upCast   = Physics2D.Raycast(origin, Vector2.up,   3, currentSkateableLayer);
@@ -460,7 +475,7 @@ public class PlayerMovement : MonoBehaviour
 
             Vector2 groundTangent = (slopeCheckPoint - midPoint).normalized;
 
-            Vine? vine = move.GetVine();
+            Vine vine = move.GetVine();
             OnVine = vine != null;
 
             // adjust velocity based on input. accelerating this way can only go so fast, but speed is never hard capped
@@ -559,7 +574,7 @@ public class PlayerMovement : MonoBehaviour
 
         public override void BeforeExecution()
         {
-
+            SoundManager.Instance.PlaySoundGlobal(move.jumpSoundID);
         }
 
         public override void PhysicsUpdate()

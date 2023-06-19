@@ -5,6 +5,7 @@ using UnityEngine;
 public class LeftTrick : Trick
 {
     Transform skateboard;
+    int stylePointReward = 50;
 
     public LeftTrick(Transform skateboard)
     {
@@ -19,7 +20,7 @@ public class LeftTrick : Trick
     public override void EndTrick()
     {
         skateboard.localRotation = Quaternion.identity;
-        Goals_Tracker.instance?.trickTypeExecuted(GetType());
+        RunController.Current.AddStylePoints(stylePointReward);
     }
 
     public override void StartTrick()

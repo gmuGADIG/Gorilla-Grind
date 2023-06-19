@@ -5,6 +5,7 @@ using UnityEngine;
 public class UpTrick : Trick
 {
     Transform skateboard;
+    int stylePointReward = 50;
 
     public UpTrick(Transform skateboard)
     {
@@ -19,11 +20,12 @@ public class UpTrick : Trick
     public override void DuringTrick()
     {
         skateboard.Rotate(Vector3.forward, 300 * Time.deltaTime);
-        Goals_Tracker.instance?.trickTypeExecuted(GetType());
+        //Goals_Tracker.instance?.trickTypeExecuted(GetType());
     }
 
     public override void EndTrick()
     {
         skateboard.localRotation = Quaternion.identity;
+        RunController.Current.AddStylePoints(stylePointReward);
     }
 }

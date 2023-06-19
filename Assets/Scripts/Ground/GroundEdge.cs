@@ -60,14 +60,18 @@ public class GroundEdge : MonoBehaviour
     void Start()
     {
         edgeCollider.enabled = !noCollision;
-        GetComponent<LineRenderer>().enabled = renderingLine;
-        GetComponent<SpriteRenderer>().enabled = renderingSprite;
-
+        GetComponent<LineRenderer>().enabled = false;
+        GetComponent<SpriteRenderer>().enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!GetComponent<LineRenderer>().enabled && !GetComponent<SpriteRenderer>().enabled) {
+            GetComponent<LineRenderer>().enabled = renderingLine;
+            GetComponent<SpriteRenderer>().enabled = renderingSprite;
+        }
+        
         if(renderingLine)
         {
 
@@ -79,10 +83,13 @@ public class GroundEdge : MonoBehaviour
     public void RenderLine()
     {
         LineRenderer lrender = GetComponent<LineRenderer>();
-        lrender.positionCount = edgeCollider.points.Length;
-        //lrender.material.color = lrender.startColor = lrender.endColor = noCollision ? new Color(1, 1, 1, 0) : Color.yellow;
-        //lrender.startWidth = lrender.endWidth = .25f;
-        lrender.SetPositions(Utils.GetWorldPoints(Utils.Vec2ArrToVec3Arr(edgeCollider.points), edgeCollider.gameObject));
+        if (lrender != null)
+        {
+            lrender.positionCount = edgeCollider.points.Length;
+            //lrender.material.color = lrender.startColor = lrender.endColor = noCollision ? new Color(1, 1, 1, 0) : Color.yellow;
+            //lrender.startWidth = lrender.endWidth = .25f;
+            lrender.SetPositions(Utils.GetWorldPoints(Utils.Vec2ArrToVec3Arr(edgeCollider.points), edgeCollider.gameObject));
+        }
     }
 
     [Obsolete("Trying to replace this with a more modular set of methods")]

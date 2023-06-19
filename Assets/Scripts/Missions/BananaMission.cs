@@ -1,0 +1,42 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class BananaMission : Mission
+{
+    static int minGoal = 50;
+    static int maxGoal = 200;
+
+    public BananaMission() : this (Random.Range(minGoal, maxGoal))
+    {
+        RunController.OnBananaCountChange += UpdateBananaCount;
+    }
+
+    public BananaMission(int bananaCount)
+    {
+        goal = bananaCount;
+        Name = "Bananas";
+        Description = "Get " + goal + " bananas in one run";
+        missionType = MissionType.Banana;
+    }
+
+    public override void UpdateProgress()
+    {
+
+    }
+
+    public override void UpdateProgress(float value)
+    {
+        currentProgress = value;
+    }
+
+    void UpdateBananaCount(int count)
+    {
+        currentProgress = count;
+    }
+
+    ~BananaMission()
+    {
+        RunController.OnBananaCountChange -= UpdateBananaCount;
+    }
+}

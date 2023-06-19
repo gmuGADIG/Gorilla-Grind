@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c560f868b549d48acca607a9787604, type: 3}
   m_Name: Meeting_4_TonyChallenge
   m_EditorClassIdentifier: 
+  hasMission: 1
+  linkedMissionType: 1
+  missionGoalCount: 500
+  nextMonkeyMeeting: {fileID: 11400000, guid: 5bd1bba73edf3d94eb338174b9fb68f0, type: 2}
+  meetingIndex: 4
   characterDatabase: {fileID: 11400000, guid: 5ff5001a917067e499d10df040f92b30, type: 2}
   dialogueFrames:
   - speakingCharacter: {fileID: 11400000, guid: bda5b80130d6e514992153881c501f3b, type: 2}
@@ -22,7 +27,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Woah! You're improvin' so fast, Champ! Mad orangutan vibes!
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a649c9cba84f8d4da596355a2726c19, type: 2}
@@ -33,7 +37,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Baller, homie.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -44,7 +47,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Tony shakes his head.
-    isMission: 0
     isNarrator: 1
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -55,7 +57,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Not really feelin' it man. Not impressed.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: bda5b80130d6e514992153881c501f3b, type: 2}
@@ -66,7 +67,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Ollie stomps the ground.
-    isMission: 0
     isNarrator: 1
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: bda5b80130d6e514992153881c501f3b, type: 2}
@@ -77,7 +77,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Hey! Don't start sounding like Gavin, now! Champ's trying!
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -89,7 +88,6 @@ MonoBehaviour:
     dialogueLines:
     - Oh, my bad homie-sapiens. I just value the power of muscles, ya know?
     - Listen, I just wanna make sure you're up to snuff for the Holy Board.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: bda5b80130d6e514992153881c501f3b, type: 2}
@@ -100,7 +98,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - But the board chose 'em! Give Champ some time, let him cook!!
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -112,7 +109,6 @@ MonoBehaviour:
     dialogueLines:
     - You gotta go through the pain to get the gains, lil' homie. The board ain't
       gonna accept a no-pump-chump.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -123,7 +119,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Tony turns to you.
-    isMission: 0
     isNarrator: 1
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -134,7 +129,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - You gotta put the pump in, Champ.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0a649c9cba84f8d4da596355a2726c19, type: 2}
@@ -145,7 +139,6 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Hehe... Champ... like Chimp... hehe hoohoo.
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -157,7 +150,6 @@ MonoBehaviour:
     dialogueLines:
     - Do you think you got it in ya? Let's go for distance, no breaks. All killer,
       no filler, ya feel?
-    isMission: 0
     isNarrator: 0
     isPlayerCharacter: 0
   - speakingCharacter: {fileID: 11400000, guid: 0b630c1dd0d83dd47bf90c3cf9073278, type: 2}
@@ -168,6 +160,7 @@ MonoBehaviour:
     emotions: []
     dialogueLines:
     - Travel a distance of 500 in one run.
-    isMission: 1
     isNarrator: 1
     isPlayerCharacter: 0
+  unlockedBoard: Banana Board
+  lockedBoard: 

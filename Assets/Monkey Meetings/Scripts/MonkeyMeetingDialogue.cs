@@ -7,11 +7,20 @@ using System;
 [CreateAssetMenu(menuName = "Monkey Meetings/Dialogue")]
 public class MonkeyMeetingDialogue : ScriptableObject
 {
-    //list of images of whos at the meeting
+    [Header("Associated Mission")]
+    public bool hasMission;
+    public MissionType linkedMissionType;
+    public int missionGoalCount;
+    public MonkeyMeetingDialogue nextMonkeyMeeting;
+    public int meetingIndex;
 
+    [Header("Meeting Data")]
     public MonkeyMeetingCharacters characterDatabase;
 
     public DialogueFrame[] dialogueFrames;
+
+    public string unlockedBoard;
+    public string lockedBoard;
 
     /* These are only here for the Dropdown menu attributes in DialogueFrame.
      * The [Dropdown] attribute only accepts the fully qualified name of a variable in string form.
@@ -39,13 +48,7 @@ public class MonkeyMeetingDialogue : ScriptableObject
         [HideInInspector] public int myIndex;
         [HideInInspector] public List<Emotion> emotions;
         public string[] dialogueLines;
-        public bool isMission;
         public bool isNarrator; // Add this line
         public bool isPlayerCharacter;
-    }
-
-    private void OnValidate()
-    {
-        EditorUtility.SetDirty(this);
     }
 }
