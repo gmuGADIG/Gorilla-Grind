@@ -36,7 +36,7 @@ public class CameraZoom : MonoBehaviour
                 
             }
             // adjust zoom
-            float zoom = minZoom + (player.transform.position.y - startingY) * zoomOutSpeed;
+            float zoom = minZoom + (Mathf.Abs(player.transform.position.y - startingY) * zoomOutSpeed);
             zoom = Mathf.Clamp(zoom, mainCam.orthographicSize, maxZoom);
             mainCam.orthographicSize = zoom;
         }
