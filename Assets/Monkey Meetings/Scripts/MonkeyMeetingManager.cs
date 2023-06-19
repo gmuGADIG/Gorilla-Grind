@@ -56,6 +56,10 @@ public class MonkeyMeetingManager : MonoBehaviour
             {
                 mission = new DieToHazardMission();
             }
+            else if (currentMeeting.linkedMissionType == MissionType.Speed)
+            {
+                mission = new SpeedMission(currentMeeting.missionGoalCount);
+            }
             mission.unlockedMonkeyMeeting = currentMeeting.nextMonkeyMeeting;
             MissionManager.Instance.SetStoryMission(mission);
             currentMeeting = null;
