@@ -342,8 +342,7 @@ public class PlayerMovement : MonoBehaviour
 
         // landing check consists of: a circle around the skateboard (casted along the velocity for continuous detection between frames) ...
         bool circleHits =
-            Physics2D.CircleCast(skateboardCenter.position, .5f, velocity.normalized, velocity.magnitude * Time.deltaTime, currentSkateableLayer);
-        
+            Physics2D.CircleCast(skateboardCenter.position, .5f, transform.TransformDirection(-velocity.normalized), velocity.magnitude * Time.deltaTime, currentSkateableLayer);
         // and ensuring the condition for exiting grounded state isn't immediately false
         (bool hit1, Vector2 _) = GroundCast(midPointOffset);
         (bool hit2, Vector2 _) = GroundCast(slopeCheckXOffset);
