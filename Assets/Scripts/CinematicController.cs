@@ -58,6 +58,7 @@ public class CinematicController : MonoBehaviour
             blackCover.color = color;
             yield return null;
         }
+        SaveManager.LoadJsonData();
         SceneManager.LoadScene(mainMenuSceneName);
     }
 }
