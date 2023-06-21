@@ -138,6 +138,7 @@ public class PlayerMovement : MonoBehaviour
     public UnityEvent PlayerOnVine;
     public UnityEvent PlayerOffVine;
 
+    public float GroundYPosition { get; private set; }
 
     public void Murder() {
         print("PlayerMovement.Murder: murdered");
@@ -174,6 +175,11 @@ public class PlayerMovement : MonoBehaviour
     
     void Start()
     {
+        jumpSoundID = SoundManager.Instance.GetSoundID("Player_Jump");
+        landSoundID = SoundManager.Instance.GetSoundID("Player_Land");
+        deathSoundID = SoundManager.Instance.GetSoundID("Player_Death");
+        skateboardLoopSoundID = SoundManager.Instance.GetSoundID("Player_Skateboard_Loop");
+
         currentSkateableLayer = groundLayer;
         currentGravity = baseGravity;
         currentCoyoteTime = coyoteTime;
@@ -200,11 +206,6 @@ public class PlayerMovement : MonoBehaviour
         availableTricks.Add(typeof(LeftTrick), new LeftTrick(skateboardTransform));
         availableTricks.Add(typeof(RightTrick), new RightTrick(skateboardTransform));
         availableTricks.Add(typeof(DownTrick), new DownTrick(skateboardTransform, gorillaTransform));
-
-        jumpSoundID = SoundManager.Instance.GetSoundID("Player_Jump");
-        landSoundID = SoundManager.Instance.GetSoundID("Player_Land");
-        deathSoundID = SoundManager.Instance.GetSoundID("Player_Death");
-        skateboardLoopSoundID = SoundManager.Instance.GetSoundID("Player_Skateboard_Loop");
     }
     
     // Movement uses physics so it must be in FixedUpdate
@@ -216,8 +217,20 @@ public class PlayerMovement : MonoBehaviour
 
         //Temp measures for death from falling shoould probably make something better -Diana
         // Death from falling out of the world
-        if(transform.position.y < -20 && ! IsDead){
+        if(transform.position.y < -20 && !IsDead){
             Murder();
+            Debug.Log("Murdered by kill zone");
+        }
+
+        if (IsGrounded) {
+            GroundYPosition = transform.position.y;
+        } else {
+            // Cast downwards to see what the yPosition is
+            RaycastHit2D result = Physics2D.Raycast(transform.position, new Vector2(0, -1), 1000, currentSkateableLayer);
+            if (result.transform != null) {
+                GroundYPosition = result.transform.position.y;
+                // print($"GroundYPosition C: {result.transform.position}");
+            }
         }
     }
 

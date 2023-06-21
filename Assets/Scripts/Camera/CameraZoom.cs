@@ -26,6 +26,7 @@ public class CameraZoom : MonoBehaviour
 
     void Update()
     {
+        float zoomFromSpeed = Mathf.Max(PlayerMovement.CurrentHorizontalSpeed / 30, 3);
         if (!player.IsGrounded)
         {
             if (recordYPosition)
@@ -36,16 +37,16 @@ public class CameraZoom : MonoBehaviour
                 
             }
             // adjust zoom
-            float zoom = minZoom + (Mathf.Abs(player.transform.position.y - startingY) * zoomOutSpeed);
+            float zoom = minZoom + zoomFromSpeed + (Mathf.Abs(player.transform.position.y - startingY) * zoomOutSpeed);
             zoom = Mathf.Clamp(zoom, mainCam.orthographicSize, maxZoom);
             mainCam.orthographicSize = zoom;
         }
         else
         {
-            mainCameraFollow.yTarget = player.transform.position.y;
+            // mainCameraFollow.yTarget = player.transform.position.y;
             
             recordYPosition = true;
-            mainCam.orthographicSize = Mathf.Lerp(mainCam.orthographicSize, minZoom, zoomInSpeed * Time.deltaTime);
+            mainCam.orthographicSize = Mathf.Lerp(mainCam.orthographicSize, minZoom + zoomFromSpeed, zoomInSpeed * Time.deltaTime);
         }
     }
 
