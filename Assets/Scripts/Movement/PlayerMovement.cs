@@ -138,6 +138,7 @@ public class PlayerMovement : MonoBehaviour
     public UnityEvent PlayerOnVine;
     public UnityEvent PlayerOffVine;
 
+    public float GroundYPosition { get; private set; }
 
     public void Murder() {
         print("PlayerMovement.Murder: murdered");
@@ -218,6 +219,17 @@ public class PlayerMovement : MonoBehaviour
         // Death from falling out of the world
         if(transform.position.y < -20 && ! IsDead){
             Murder();
+        }
+
+        if (IsGrounded) {
+            GroundYPosition = transform.position.y;
+        } else {
+            // Cast downwards to see what the yPosition is
+            RaycastHit2D result = Physics2D.Raycast(transform.position, new Vector2(0, -1), 1000, currentSkateableLayer);
+            if (result.transform != null) {
+                GroundYPosition = result.transform.position.y;
+                print($"GroundYPosition Cast: {result.transform.position}");
+            }
         }
     }
 

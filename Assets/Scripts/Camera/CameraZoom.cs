@@ -42,7 +42,7 @@ public class CameraZoom : MonoBehaviour
         }
         else
         {
-            mainCameraFollow.yTarget = player.transform.position.y;
+            // mainCameraFollow.yTarget = player.transform.position.y;
             
             recordYPosition = true;
             mainCam.orthographicSize = Mathf.Lerp(mainCam.orthographicSize, minZoom, zoomInSpeed * Time.deltaTime);
