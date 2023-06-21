@@ -30,7 +30,7 @@ public class SaveManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("shit");
+            Debug.Log("No data to load");
         }
     }
 }
