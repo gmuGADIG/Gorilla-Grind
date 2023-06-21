@@ -40,6 +40,15 @@ public class MonkeyMeeting : MonoBehaviour
     {
         //gameObject.SetActive(true);
         //background.SetActive(true); // Activate the background object
+        // lock/unlock boards
+        if (meetingDialogue.unlockedBoard != "")
+        {
+            Inventory.UnlockItem(meetingDialogue.unlockedBoard);
+        }
+        if (meetingDialogue.lockedBoard != "")
+        {
+            Inventory.LockItem(meetingDialogue.lockedBoard);
+        }
         print(meetingDialogue.name);
         dialogueText.text = "";
         currentCharacterLineIndex = 0;
@@ -128,7 +137,6 @@ public class MonkeyMeeting : MonoBehaviour
 
     void EndDialogue()
     {
-        print("TEST02");
         dialogueStarted = false;
         OnMonkeyMeetingEnd?.Invoke(meetingDialogue);
         meetingDialogue = null;

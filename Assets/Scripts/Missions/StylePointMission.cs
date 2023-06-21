@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 public class StylePointMission : Mission
 {
-    private static int[] randomGoals = { 10, 15, 20 };
+    private static int[] randomGoals = { 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000 };
 
     public StylePointMission() : this(randomGoals[Random.Range(0, randomGoals.Length)])
     { }

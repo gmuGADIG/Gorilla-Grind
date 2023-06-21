@@ -34,7 +34,8 @@ public class RunController : MonoBehaviour
         }
         player = FindObjectOfType<PlayerMovement>();
         player.OnDeath.AddListener(EndRun);
-        MissionManager.Instance.GenerateMissions();
+        //MissionManager.Instance.GenerateMissions();
+        Time.timeScale = 1;
     }
 
     public void AddBananas(int bananas)

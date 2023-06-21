@@ -30,12 +30,50 @@ public class MissionManager : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);
         }
+        MonkeyMeeting.OnMonkeyMeetingEnd += GenerateMissions;
     }
 
-    public void GenerateMissions()
+    public void GenerateMissions(MonkeyMeetingDialogue dialogue)
     {
+        // generate story mission
+        if (dialogue.hasMission)
+        {
+            Mission mission = null;
+            if (dialogue.linkedMissionType == MissionType.Banana)
+            {
+                mission = new BananaMission(dialogue.missionGoalCount);
+            }
+            else if (dialogue.linkedMissionType == MissionType.Distance)
+            {
+                mission = new DistanceMission(dialogue.missionGoalCount);
+            }
+            else if (dialogue.linkedMissionType == MissionType.Hazard)
+            {
+                mission = new HazardMission(dialogue.missionGoalCount);
+            }
+            else if (dialogue.linkedMissionType == MissionType.StylePoint)
+            {
+                mission = new StylePointMission(dialogue.missionGoalCount);
+            }
+            else if (dialogue.linkedMissionType == MissionType.DieToHazard)
+            {
+                mission = new DieToHazardMission();
+            }
+            else if (dialogue.linkedMissionType == MissionType.Speed)
+            {
+                mission = new SpeedMission(dialogue.missionGoalCount);
+            }
+            mission.unlockedMonkeyMeeting = dialogue.nextMonkeyMeeting;
+            SetStoryMission(mission);
+        }
+        // generate random missions
         randomMissions.Clear();
         List<MissionType> alreadyPickedMissionTypes = new List<MissionType>(); // to prevent duplicate mission creation
+        if (StoryMission != null)
+        {
+            alreadyPickedMissionTypes.Add(StoryMission.GetMissionType());
+            print(StoryMission.GetMissionType());
+        }
         for (int i = 0; i < numOfRandomMissions; i++)
         {
             Mission newMission = null;
@@ -109,5 +147,10 @@ public class MissionManager : MonoBehaviour
             MonkeyMeetingManager.Instance.currentMeeting = StoryMission.unlockedMonkeyMeeting;
             nextMeetingUnlocked = true;
         }
+    }
+
+    private void OnDestroy()
+    {
+        MonkeyMeeting.OnMonkeyMeetingEnd -= GenerateMissions;
     }
 }

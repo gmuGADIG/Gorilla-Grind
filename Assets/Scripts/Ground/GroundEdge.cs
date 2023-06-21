@@ -41,7 +41,7 @@ public class GroundEdge : MonoBehaviour
 
     public bool renderingSprite
     {
-        get => GetComponent<SpriteRenderer>().sprite != null;
+        get => spriteRend.sprite != null;
     }
 
     public bool renderingLine { get => !renderingSprite && !noCollision; }
@@ -54,27 +54,32 @@ public class GroundEdge : MonoBehaviour
     public static Color solidColor = Color.yellow;
     public static Color gapColor = Color.blue;
 
-
+    LineRenderer lineRend;
+    SpriteRenderer spriteRend;
 
     // Start is called before the first frame update
     void Start()
     {
         edgeCollider.enabled = !noCollision;
-        GetComponent<LineRenderer>().enabled = false;
-        GetComponent<SpriteRenderer>().enabled = false;
+        lineRend = GetComponent<LineRenderer>();
+        spriteRend = GetComponent<SpriteRenderer>();
+        if (lineRend)
+        {
+            lineRend.enabled = false;
+        }
+        //spriteRend.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!GetComponent<LineRenderer>().enabled && !GetComponent<SpriteRenderer>().enabled) {
-            GetComponent<LineRenderer>().enabled = renderingLine;
-            GetComponent<SpriteRenderer>().enabled = renderingSprite;
+        if (lineRend && !lineRend.enabled && !spriteRend.enabled) {
+            lineRend.enabled = renderingLine;
+            spriteRend.enabled = renderingSprite;
         }
         
         if(renderingLine)
         {
-
             RenderLine();
         }
     }
@@ -83,10 +88,13 @@ public class GroundEdge : MonoBehaviour
     public void RenderLine()
     {
         LineRenderer lrender = GetComponent<LineRenderer>();
-        lrender.positionCount = edgeCollider.points.Length;
-        //lrender.material.color = lrender.startColor = lrender.endColor = noCollision ? new Color(1, 1, 1, 0) : Color.yellow;
-        //lrender.startWidth = lrender.endWidth = .25f;
-        lrender.SetPositions(Utils.GetWorldPoints(Utils.Vec2ArrToVec3Arr(edgeCollider.points), edgeCollider.gameObject));
+        if (lrender != null)
+        {
+            lrender.positionCount = edgeCollider.points.Length;
+            //lrender.material.color = lrender.startColor = lrender.endColor = noCollision ? new Color(1, 1, 1, 0) : Color.yellow;
+            //lrender.startWidth = lrender.endWidth = .25f;
+            lrender.SetPositions(Utils.GetWorldPoints(Utils.Vec2ArrToVec3Arr(edgeCollider.points), edgeCollider.gameObject));
+        }
     }
 
     [Obsolete("Trying to replace this with a more modular set of methods")]

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HazardMission : Mission
 {
-    private static int[] randomGoals = { 10, 20, 30, 40, 50 };
+    private static int[] randomGoals = { 2, 3, 4, 5, 6 };
 
     public HazardMission() : this(randomGoals[Random.Range(0, randomGoals.Length)])
     { }

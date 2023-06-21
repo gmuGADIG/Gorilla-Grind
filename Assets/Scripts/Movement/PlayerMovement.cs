@@ -1,12 +1,13 @@
 using System;
+using System.Linq;
 using Unity.VisualScripting;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public enum StateType
+public enum StateType // None state type represents no state and does not have a corresponding state class
 {
-    Grounded, InAir, InTrick, Dead, Jump
+    Grounded, InAir, InTrick, Dead, Jump, None
 }
 
 /// <summary>
@@ -95,6 +96,7 @@ public class PlayerMovement : MonoBehaviour
     public event Action<StateType> OnStateChange;
     public event Action<Type> OnTrickStart;
     public static event Action OnJumpedOverHazard;
+    public static event Action OnHitHazard;
 
     LayerMask currentSkateableLayer;
     Vector2 velocity;
@@ -192,7 +194,7 @@ public class PlayerMovement : MonoBehaviour
         };
         defaultState = StateType.Grounded;
         currentState = availableStates[defaultState];
-        currentState.BeforeExecution();
+        currentState.BeforeExecution(StateType.None);
 
         availableTricks.Add(typeof(UpTrick), new UpTrick(skateboardTransform));
         availableTricks.Add(typeof(LeftTrick), new LeftTrick(skateboardTransform));
@@ -203,9 +205,6 @@ public class PlayerMovement : MonoBehaviour
         landSoundID = SoundManager.Instance.GetSoundID("Player_Land");
         deathSoundID = SoundManager.Instance.GetSoundID("Player_Death");
         skateboardLoopSoundID = SoundManager.Instance.GetSoundID("Player_Skateboard_Loop");
-
-        currentState = availableStates[defaultState];
-        currentState.BeforeExecution();
     }
     
     // Movement uses physics so it must be in FixedUpdate
@@ -232,9 +231,12 @@ public class PlayerMovement : MonoBehaviour
         if (returnedState != null)
         {
             StateType nextState = (StateType)returnedState;
-            currentState.AfterExecution();
+            StateType prevState = availableStates.FirstOrDefault(x => x.Value == currentState).Key;
+
+            currentState.AfterExecution(nextState);
             currentState = availableStates[nextState];
-            currentState.BeforeExecution();
+            currentState.BeforeExecution(prevState);
+
             OnStateChange?.Invoke(nextState);
         }
     }
@@ -242,6 +244,11 @@ public class PlayerMovement : MonoBehaviour
     public void JumpedOverHazard()
     {
         OnJumpedOverHazard?.Invoke();
+    }
+
+    public void HitHazard()
+    {
+        OnHitHazard?.Invoke();
     }
 
     void Jump()
@@ -335,8 +342,7 @@ public class PlayerMovement : MonoBehaviour
 
         // landing check consists of: a circle around the skateboard (casted along the velocity for continuous detection between frames) ...
         bool circleHits =
-            Physics2D.CircleCast(skateboardCenter.position, .5f, velocity.normalized, velocity.magnitude * Time.deltaTime, currentSkateableLayer);
-        
+            Physics2D.CircleCast(skateboardCenter.position, .5f, transform.TransformDirection(-velocity.normalized), velocity.magnitude * Time.deltaTime, currentSkateableLayer);
         // and ensuring the condition for exiting grounded state isn't immediately false
         (bool hit1, Vector2 _) = GroundCast(midPointOffset);
         (bool hit2, Vector2 _) = GroundCast(slopeCheckXOffset);
@@ -370,7 +376,8 @@ public class PlayerMovement : MonoBehaviour
         /// <summary>
         /// Called when entering the state. Use for state initialization.
         /// </summary>
-        public abstract void BeforeExecution();
+        public abstract void BeforeExecution(StateType previousState);
+
         /// <summary>
         /// Called every frame in the Update() method when state is active.
         /// </summary>
@@ -382,7 +389,7 @@ public class PlayerMovement : MonoBehaviour
         /// <summary>
         /// Called as the state is transitioning. Invoked before next state's BeforeExecution().
         /// </summary>
-        public abstract void AfterExecution();
+        public abstract void AfterExecution(StateType previousState);
         /// <summary>
         /// Checks if the player needs to transition to another state.
         /// </summary>
@@ -406,7 +413,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        public override void AfterExecution()
+        public override void AfterExecution(StateType _nextState)
         {
             move.lastJumpTime = Time.time;
             move.currentSkateableLayer = move.groundLayer;
@@ -415,7 +422,7 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Exiting grounded state");
         }
 
-        public override void BeforeExecution()
+        public override void BeforeExecution(StateType _prevState)
         {
             print("Entering grounded state");
             move.currentGravity = move.baseGravity;
@@ -561,12 +568,12 @@ public class PlayerMovement : MonoBehaviour
     {
         public JumpState(PlayerMovement move) : base(move) { }
 
-        public override void AfterExecution()
+        public override void AfterExecution(StateType _nextState)
         {
 
         }
 
-        public override void BeforeExecution()
+        public override void BeforeExecution(StateType _prevState)
         {
             SoundManager.Instance.PlaySoundGlobal(move.jumpSoundID);
         }
@@ -616,16 +623,25 @@ public class PlayerMovement : MonoBehaviour
 
     class InAirState : State
     {
-        public InAirState(PlayerMovement move) : base(move) { }
+        float playerRotation = 0;
+        const int flipReward = 200;
 
-        public override void AfterExecution()
+        public InAirState(PlayerMovement move) : base(move) { 
+            
+        }
+
+        public override void AfterExecution(StateType _nextState)
         {
 
         }
 
-        public override void BeforeExecution()
+        public override void BeforeExecution(StateType prevState)
         {
             print("Entering in air state");
+            
+            if (prevState != StateType.InTrick) {
+                playerRotation = 0;
+            }
         }
 
         public override void PhysicsUpdate()
@@ -664,10 +680,20 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKey(KeyCode.A))
             {
                 transform.Rotate(new Vector3(0, 0, 1), move.rotationSpeed * Time.deltaTime * move.RotationMultiplier);
+                playerRotation += move.rotationSpeed * Time.deltaTime * move.RotationMultiplier;
             }
             if (Input.GetKey(KeyCode.D))
             {
                 transform.Rotate(new Vector3(0, 0, 1), -move.rotationSpeed * Time.deltaTime * move.RotationMultiplier);
+                playerRotation += -move.rotationSpeed * Time.deltaTime * move.RotationMultiplier;
+            }
+
+            //print($"PlayerMovement.cs: playerRotation: {playerRotation}");
+            // Detect flip
+            if (Mathf.Abs(playerRotation) >= 280) { // not 360 because we want to be a bit lenient to the player
+                playerRotation = 0;
+                // Player performed a flip!
+                RunController.Current.AddStylePoints(flipReward);
             }
         }
 
@@ -701,7 +727,7 @@ public class PlayerMovement : MonoBehaviour
     {
         public TrickState(PlayerMovement move) : base(move) { }
 
-        public override void AfterExecution()
+        public override void AfterExecution(StateType _nextState)
         {
             move.currentGravity = move.baseGravity;
             if (move.currentPlayerTrick != null)
@@ -714,7 +740,7 @@ public class PlayerMovement : MonoBehaviour
             PostProcessingController.ColorGrading(false);
         }
 
-        public override void BeforeExecution()
+        public override void BeforeExecution(StateType _prevState)
         {
             print("Entering trick state");
             move.currentGravity = move.baseGravity + move.trickGravityOffset;
@@ -783,12 +809,12 @@ public class PlayerMovement : MonoBehaviour
     {
         public DeadState(PlayerMovement move) : base(move) { }
 
-        public override void AfterExecution()
+        public override void AfterExecution(StateType _nextState)
         {
 
         }
 
-        public override void BeforeExecution()
+        public override void BeforeExecution(StateType _prevState)
         {
             print("Entering dead state");
             if (!move.IsDead)

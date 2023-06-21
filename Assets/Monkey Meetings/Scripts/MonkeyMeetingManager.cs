@@ -32,34 +32,15 @@ public class MonkeyMeetingManager : MonoBehaviour
 
     void AtEndOfMeeting(MonkeyMeetingDialogue meeting)
     {
-        print("TEST" + gameObject.name);
         currentMeeting = meeting;
-        if (currentMeeting.hasMission)
+
+        if (!currentMeeting.hasMission)
         {
-            Mission mission = null;
-            if (currentMeeting.linkedMissionType == MissionType.Banana)
-            {
-                mission = new BananaMission(currentMeeting.missionGoalCount);
-            }
-            else if (currentMeeting.linkedMissionType == MissionType.Distance)
-            {
-                mission = new DistanceMission(currentMeeting.missionGoalCount);
-            }
-            else if (currentMeeting.linkedMissionType == MissionType.Hazard)
-            {
-                mission = new HazardMission(currentMeeting.missionGoalCount);
-            }
-            else if (currentMeeting.linkedMissionType == MissionType.StylePoint)
-            {
-                mission = new StylePointMission(currentMeeting.missionGoalCount);
-            }
-            mission.unlockedMonkeyMeeting = currentMeeting.nextMonkeyMeeting;
-            MissionManager.Instance.SetStoryMission(mission);
-            currentMeeting = null;
+            currentMeeting = currentMeeting.nextMonkeyMeeting;
         }
         else
         {
-            currentMeeting = currentMeeting.nextMonkeyMeeting;
+            currentMeeting = null;
         }
     }
 

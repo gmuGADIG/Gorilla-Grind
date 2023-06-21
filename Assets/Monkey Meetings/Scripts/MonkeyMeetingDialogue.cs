@@ -19,6 +19,9 @@ public class MonkeyMeetingDialogue : ScriptableObject
 
     public DialogueFrame[] dialogueFrames;
 
+    public string unlockedBoard;
+    public string lockedBoard;
+
     /* These are only here for the Dropdown menu attributes in DialogueFrame.
      * The [Dropdown] attribute only accepts the fully qualified name of a variable in string form.
      * These properties are the only way of generating them without using string literals. - Joe

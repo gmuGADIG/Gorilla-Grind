@@ -6,37 +6,35 @@ using System;
 
 public class Inventory : MonoBehaviour
 {
-    private static Inventory GameInventory;
+    private static Inventory Instance;
     private static int BananasInInventory; //Number of bananas in player's inventory; should never go below 0
-    private static List<string> PurchasedItems;
+    private List<string> PurchasedItems;
     private static string equippedBoard;
     
-    void Awake() {
-            if (GameInventory) {
-            Destroy(this);
-            return;
+    void Awake() 
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            //BananasInInventory = 50000000;
+            PurchasedItems = new List<string>();
+            UnlockItem("Holy Board");
+            //addItem("All Natural Board"); //Starting board is already in inventory at start of game
+            //equipBoard("All Natural Board");
         }
-        GameInventory = this;
-        if (transform.parent = null)
+        else
+        {
+            Destroy(this);
+        }
+        if (transform.parent == null)
         {
             DontDestroyOnLoad(this);
         }
 
-        BananasInInventory = 500;
-        PurchasedItems = new List<string>();
-        addItem("All Natural Board"); //Starting board is already in inventory at start of game
-        equipBoard("All Natural Board");
     }
 
-    void Start()
+    private void Start()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     ///<summary>
@@ -70,12 +68,31 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public static void UnlockItem(string itemName)
+    {
+        PopupManager.Instance.SendPopupMessage("Board Unlocked: " + itemName);
+        print("Item Unlocked");
+        addItem(itemName);
+        equipBoard(itemName);
+    }
+
+    public static void LockItem(string itemName)
+    {
+        PopupManager.Instance.SendPopupMessage("Board Locked: " + itemName);
+        print("Board locked: " + itemName);
+        RemoveItem(itemName);
+        if (equippedBoard == itemName)
+        {
+            equipBoard("Basic Board");
+        }
+    }
+
     ///<summary>
     ///Returns true if the passed in item name is stored in the player's inventory
     ///Returns false otherwise
     ///</summary>
     public static bool hasItem(string itemName) {
-        return PurchasedItems.Contains(itemName);
+        return Instance.PurchasedItems.Contains(itemName);
     }
 
     ///<summary>
@@ -87,14 +104,20 @@ public class Inventory : MonoBehaviour
         if (hasItem(itemName)) {
             return false;
         }
-        PurchasedItems.Add(itemName);
+        Instance.PurchasedItems.Add(itemName);
         return true;
+    }
+
+    public static void RemoveItem(string itemName)
+    {
+        Instance.PurchasedItems.Remove(itemName);
     }
 
     ///<summary>
     ///Set the equipped board to the passed in board name
     ///</summary>
     public static void equipBoard(string boardName) {
+        PopupManager.Instance.SendPopupMessage("Board Equipped: " + boardName);
         equippedBoard = boardName;
     }
 
@@ -107,7 +130,7 @@ public class Inventory : MonoBehaviour
     }
 
     public static List<string> getOwnedBoards() {
-        return PurchasedItems;
+        return Instance.PurchasedItems;
     }
 
     public static void setBananas(int bananas) {

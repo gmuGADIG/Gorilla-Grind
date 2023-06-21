@@ -6,10 +6,12 @@ using UnityEngine.SceneManagement;
 public class SceneButton : MonoBehaviour
 {
     public void ChangeScene(string name){
+        Time.timeScale = 1f;
         SceneManager.LoadScene(name);
     }
 
     public void ExitGame(){
+        print("TEST");
         SaveManager.SaveJsonData();
         Application.Quit();
     }

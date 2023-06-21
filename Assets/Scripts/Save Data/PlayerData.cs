@@ -14,8 +14,11 @@ public class PlayerData
 
         public MissionData(Mission m)
         {
-            type = m.GetMissionType();
-            goal = m.GetGoal();
+            if (m != null)
+            {
+                type = m.GetMissionType();
+                goal = m.GetGoal();
+            }
         }
 
         public Mission LoadMission()
@@ -37,6 +40,9 @@ public class PlayerData
                     break;
                 case MissionType.StylePoint:
                     m = new StylePointMission((int)goal);
+                    break;
+                case MissionType.DieToHazard:
+                    m = new DieToHazardMission();
                     break;
                 default:    // in case all else fails somehow...
                     m = new BananaMission();

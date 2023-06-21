@@ -10,21 +10,25 @@ using System;
 public class BoardList : ScriptableObject
 {
     [SerializeField]
-    string[] boardNames;
+    BoardEntry[] boards;
 
-    [SerializeField]
-    GameObject[] boardPrefabs;
+    [System.Serializable]
+    class BoardEntry
+    {
+        public string name;
+        public GameObject prefab;
+    }
 
     public GameObject GetBoardPrefabFromName(string name)
     {
-        int index = Array.FindIndex(boardNames, boardName => boardName == name);
-        if (index != -1)
+        for (int i = 0; i < boards.Length; i++)
         {
-            return boardPrefabs[index];
+            if (boards[i].name == name)
+            {
+                return boards[i].prefab;
+            }
         }
-        else
-        {
-            return null;
-        }
+        Debug.LogError("Board With Name:" + name + "Not Found in Board List");
+        return null;
     }
 }

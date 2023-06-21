@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum MissionType
 {
-    Banana, Distance, StylePoint, Hazard, Speed
+    Banana, Distance, StylePoint, Hazard, Speed, DieToHazard
 }
 
 public abstract class Mission
@@ -50,7 +50,10 @@ public abstract class Mission
     
     public void ResetProgress()
     {
-        currentProgress = 0;
+        if (!Complete())
+        {
+            currentProgress = 0;
+        }
     }
 
     public abstract void UpdateProgress();
