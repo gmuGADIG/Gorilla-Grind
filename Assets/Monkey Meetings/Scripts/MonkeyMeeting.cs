@@ -69,6 +69,7 @@ public class MonkeyMeeting : MonoBehaviour
         List<string> characterNames = new List<string>();
         for (int i = 0; i < meetingDialogue.dialogueFrames.Length; i++)
         {
+            if (meetingDialogue.dialogueFrames[i].speakingCharacter == null) print("TEST");
             if (!characterNames.Contains(meetingDialogue.dialogueFrames[i].speakingCharacter.name))
             {
                 characterNames.Add(meetingDialogue.dialogueFrames[i].speakingCharacter.name);
