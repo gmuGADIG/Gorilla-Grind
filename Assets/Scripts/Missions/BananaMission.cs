@@ -8,8 +8,9 @@ public class BananaMission : Mission
 
     public BananaMission() : this (randomGoals[Random.Range(0, randomGoals.Length)])
     {
-        RunController.OnBananaCountChange += UpdateBananaCount;
+    
     }
+
 
     public BananaMission(int bananaCount)
     {
@@ -17,6 +18,7 @@ public class BananaMission : Mission
         Name = "Bananas";
         Description = "Get " + goal + " bananas in one run";
         missionType = MissionType.Banana;
+        RunController.OnBananaCountChange += UpdateBananaCount;
     }
 
     public override void UpdateProgress()
