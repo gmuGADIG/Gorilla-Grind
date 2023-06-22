@@ -10,6 +10,9 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] float xOffset;
     [SerializeField] float yOffset;
 
+    [Tooltip("Sets the Y value the camera will never go below.")]
+    [SerializeField] float absoluteMinY;
+
     Transform playerTransform;
 
     PlayerMovement player;
@@ -23,6 +26,7 @@ public class CameraFollow : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 target = new Vector3(xOffset, player.GroundYPosition + yOffset, -10);
+        target.y = Mathf.Max(target.y, absoluteMinY + Camera.main.orthographicSize);
 
         // print($"CameraFollow target: {target.y}");
 

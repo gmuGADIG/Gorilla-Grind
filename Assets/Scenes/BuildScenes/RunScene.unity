@@ -146,6 +146,10 @@ PrefabInstance:
       propertyPath: smoothSpeed
       value: 0.75
       objectReference: {fileID: 0}
+    - target: {fileID: 169580231600982008, guid: 61248cb4b0675b54c8cb787e28a03217, type: 3}
+      propertyPath: absoluteMinY
+      value: -20
+      objectReference: {fileID: 0}
     - target: {fileID: 169580231600982011, guid: 61248cb4b0675b54c8cb787e28a03217, type: 3}
       propertyPath: m_RootOrder
       value: 15
@@ -1878,7 +1882,7 @@ PrefabInstance:
     - target: {fileID: 366281049616157467, guid: c5a2a52c7d7ee3a4fb02cb77a3680ff5, type: 3}
       propertyPath: startSection
       value: 
-      objectReference: {fileID: 4249860833469330622, guid: 0ba2994710c1f144a8be79cdadac2bcd, type: 3}
+      objectReference: {fileID: 2123429810999311220, guid: d2a6eb3aee5cf3345beb9bc6ec105d23, type: 3}
     - target: {fileID: 366281049616157467, guid: c5a2a52c7d7ee3a4fb02cb77a3680ff5, type: 3}
       propertyPath: bottomSpawnLimit
       value: 18
@@ -5094,6 +5098,9 @@ MonoBehaviour:
   smoothSpeed: 5
   xOffset: 12
   yOffset: 0
+  yTarget: 7
+  yTolerance: 0.95
+  absoluteMinY: 0
 --- !u!4 &1896300734
 Transform:
   m_ObjectHideFlags: 0

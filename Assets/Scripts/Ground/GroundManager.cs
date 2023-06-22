@@ -134,7 +134,7 @@ public class GroundManager : MonoBehaviour
         PlayerMovement player = (PlayerMovement)FindObjectOfType(typeof(PlayerMovement));
         if (player)
         {
-            Vector3 dest = player.transform.position + new Vector3(-3, -3);
+            Vector3 dest = player.transform.position + new Vector3(-3, -8);
             instance.transform.position += dest - (Vector3)instance.GetComponent<GroundSection>().startPoint;
         }
         activeSections.AddLast(instance.GetComponent<GroundSection>());

@@ -217,7 +217,7 @@ public class PlayerMovement : MonoBehaviour
 
         //Temp measures for death from falling shoould probably make something better -Diana
         // Death from falling out of the world
-        if(transform.position.y < -20 && !IsDead){
+        if(transform.position.y < -22 && ! IsDead){
             Murder();
             Debug.Log("Murdered by kill zone");
         }
