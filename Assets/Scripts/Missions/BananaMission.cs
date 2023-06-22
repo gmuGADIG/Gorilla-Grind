@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class BananaMission : Mission
 {
-    static int minGoal = 50;
-    static int maxGoal = 200;
+    private static int[] randomGoals = { 50, 100, 150, 200, 250 };
 
-    public BananaMission() : this (Random.Range(minGoal, maxGoal))
+    public BananaMission() : this (randomGoals[Random.Range(0, randomGoals.Length)])
     {
         RunController.OnBananaCountChange += UpdateBananaCount;
     }

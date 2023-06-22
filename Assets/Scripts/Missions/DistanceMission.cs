@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DistanceMission : Mission
 {
-    private static int[] randomGoals = { 100, 200, 300, 400, 500 };
+    private static int[] randomGoals = { 100, 200, 300, 400, 500, 1000, 2000 };
 
     public DistanceMission() : this(randomGoals[Random.Range(0, randomGoals.Length)])
     { }
