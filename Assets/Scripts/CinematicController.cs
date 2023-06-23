@@ -31,6 +31,7 @@ public class CinematicController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            SaveManager.LoadJsonData();
             SceneManager.LoadScene(mainMenuSceneName);
         }
     }
