@@ -18,7 +18,7 @@ public class BackgroundObjectScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(transform.position.x<=-40){
+        if(transform.position.x<=-80){
             newBackground.Invoke(Background);
             transform.position= new Vector3(100,-10,0);
             Destroy(gameObject);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
+using UnityEngine.Audio;
 
 public class RunController : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class RunController : MonoBehaviour
     public static event Action<int> OnBananaCountChange;
     public static event Action<int> OnStylePointChange;
 
+    [SerializeField] AudioMixer mixer;
     [SerializeField] float runEndDelay = 3f;
     [SerializeField] string postRunMenuScene;
     [SerializeField] string monkeyMeetingScene;
@@ -20,6 +22,7 @@ public class RunController : MonoBehaviour
 
     int bananasCollected;
     int stylePointsCollected;
+    float distanceTraveled;
     PlayerMovement player;
 
     private void Awake()
@@ -50,13 +53,20 @@ public class RunController : MonoBehaviour
         OnStylePointChange?.Invoke(stylePointsCollected);
     }
 
+    void Update()
+    {
+        distanceTraveled += PlayerMovement.CurrentHorizontalSpeed * Time.deltaTime;
+    }
+
     void EndRun()
     {
+        StartCoroutine(MusicPitchDown());
         StartCoroutine(RunEndDelay());
     }
 
     IEnumerator RunEndDelay()
     {
+        PostRunScoreDisplay.currentDistance = distanceTraveled;
         yield return new WaitForSeconds(runEndDelay);
         MissionManager.Instance.ResetAllMissionProgress();
         if (MonkeyMeetingManager.Instance.HasMeetingPending)
@@ -67,6 +77,25 @@ public class RunController : MonoBehaviour
         {
             SceneManager.LoadScene(postRunMenuScene);
         }
+
+        yield return new WaitForEndOfFrame();
+        ResetMusicPitch();
+    }
+
+    IEnumerator MusicPitchDown()
+    {
+        var deltaTime = 0f;
+        while (deltaTime < 1)
+        {
+            mixer.SetFloat("MusicPitch", 1f - deltaTime);
+            deltaTime += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
+    void ResetMusicPitch()
+    {
+        mixer.SetFloat("MusicPitch", 1);
     }
 
     // called at the end of the run. Stores any bananas that were collected during the run in the player's inventory.

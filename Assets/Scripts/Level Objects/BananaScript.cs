@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BananaScript : MonoBehaviour
 {
     public BoxCollider2D bananaCollider;
     public CapsuleCollider2D playerCollider;
+    public ParticleSystem collectionParticles;
 
     int BananaSoundID;
 
@@ -32,6 +34,8 @@ public class BananaScript : MonoBehaviour
         {
             SoundManager.Instance.PlaySoundGlobal(BananaSoundID);
             RunController.Current.AddBananas(1);
+            var particles = Instantiate(collectionParticles, transform.parent);
+            particles.transform.position = this.transform.position;
             Destroy(gameObject);
         }
     }
