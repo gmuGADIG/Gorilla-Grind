@@ -19,6 +19,7 @@ public class RunController : MonoBehaviour
 
     public int BananasCollected => bananasCollected;
     public int StylePointsCollected => stylePointsCollected;
+    public float DistanceTravelled => distanceTraveled;
 
     int bananasCollected;
     int stylePointsCollected;
