@@ -8,16 +8,16 @@ public class DownTrick : Trick
     Transform gorilla;
     float boardRotationSpeed = 300f;
     Vector3 startingPosition;
-    int stylePointReward = 50;
 
     public DownTrick(Transform skateboard, Transform player)
     {
         this.skateboard = skateboard;
-        this.gorilla = player;
+        gorilla = player;
     }
 
     public override void DuringTrick()
     {
+        base.DuringTrick();
         skateboard.RotateAround(gorilla.position, Vector3.forward, boardRotationSpeed * Time.deltaTime);
     }
 
@@ -25,11 +25,11 @@ public class DownTrick : Trick
     {
         skateboard.localRotation = Quaternion.identity;
         skateboard.localPosition = startingPosition;
-        RunController.Current.AddStylePoints(stylePointReward);
     }
 
     public override void StartTrick()
     {
+        base.StartTrick();
         startingPosition = skateboard.localPosition;
     }
 }
