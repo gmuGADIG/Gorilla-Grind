@@ -107,6 +107,7 @@ public class PlayerMovement : MonoBehaviour
     bool jumping; // true = player is in the air due to a jump. false = in air from falling
 
     public bool IsGrounded => currentState.GetType() == typeof(GroundedState);
+
     // Dictionary used to store and retrieve states.
     Dictionary<StateType, State> availableStates;
     // The default starting state the player will start in.
@@ -122,9 +123,9 @@ public class PlayerMovement : MonoBehaviour
     float lastJumpTime = 0f;
     
     // death
+    public static bool IsDead { get; private set; }
     public UnityEvent OnDeath;
     public UnityEvent OnRessurection;
-    public bool IsDead { get; private set; } = false;
 
     // Sound IDs
     int jumpSoundID = -1;
@@ -175,6 +176,8 @@ public class PlayerMovement : MonoBehaviour
     
     void Start()
     {
+        IsDead = false;
+        
         jumpSoundID = SoundManager.Instance.GetSoundID("Player_Jump");
         landSoundID = SoundManager.Instance.GetSoundID("Player_Land");
         deathSoundID = SoundManager.Instance.GetSoundID("Player_Death");
@@ -455,7 +458,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (move.IsLandingAngleInvalid(move.deathLandingAngleThreshold) && move.isMortal)
             {
-                if (move.IsDead) return;
+                if (IsDead) return;
                 move.Murder();
             }
 
@@ -554,7 +557,7 @@ public class PlayerMovement : MonoBehaviour
 
         public override StateType? CheckForTransitions()
         {
-            if (move.IsDead)
+            if (IsDead)
             {
                 return StateType.Dead;
             }
@@ -620,7 +623,7 @@ public class PlayerMovement : MonoBehaviour
         public override StateType? CheckForTransitions()
         {
             //Added for temp death check -Diana
-            if (move.IsDead)
+            if (IsDead)
             {
                 return StateType.Dead;
             }
@@ -719,7 +722,7 @@ public class PlayerMovement : MonoBehaviour
         public override StateType? CheckForTransitions()
         {
             //Added for temp death check -Diana
-            if (move.IsDead)
+            if (IsDead)
             {
                 return StateType.Dead;
             }
@@ -806,7 +809,7 @@ public class PlayerMovement : MonoBehaviour
         public override StateType? CheckForTransitions()
         {
             //Added for temp death check -Diana
-            if (move.IsDead)
+            if (IsDead)
             {
                 return StateType.Dead;
             }
@@ -836,7 +839,7 @@ public class PlayerMovement : MonoBehaviour
         public override void BeforeExecution(StateType _prevState)
         {
             print("Entering dead state");
-            if (!move.IsDead)
+            if (!IsDead)
                 Debug.LogWarning("In DeadState when move.Dead is false");
 
             move.OnDeath.Invoke();

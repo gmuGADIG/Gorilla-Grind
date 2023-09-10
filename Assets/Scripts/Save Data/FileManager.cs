@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using System.Threading.Tasks;
 using UnityEngine;
 
 
@@ -39,6 +38,21 @@ public static class FileManager
             Debug.LogError($"Failed to read from {fullPath} with exception {e}");
             result = "";
             return false;
+        }
+    }
+
+    public static void DeleteFile(string fileName)
+    {
+        var fullPath = Path.Combine(Application.persistentDataPath, fileName);
+
+        try
+        {
+            File.Delete(fullPath);
+            Debug.Log("Deleted save file");
+        }
+        catch (Exception e)
+        {
+            Debug.Log("Failed to delete save file!");
         }
     }
 }

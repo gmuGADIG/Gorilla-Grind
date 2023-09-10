@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using UnityEngine.Serialization;
 
 [System.Serializable]
 public class PlayerData
@@ -11,6 +12,7 @@ public class PlayerData
     {
         public MissionType type;
         public float goal;
+        public int unlockedMeetingIndex;
 
         public MissionData(Mission m)
         {
@@ -18,6 +20,10 @@ public class PlayerData
             {
                 type = m.GetMissionType();
                 goal = m.GetGoal();
+                if (m.unlockedMonkeyMeeting != null)
+                    unlockedMeetingIndex = m.unlockedMonkeyMeeting.meetingIndex;
+                else
+                    unlockedMeetingIndex = 0;
             }
         }
 
@@ -44,12 +50,9 @@ public class PlayerData
                 case MissionType.DieToHazard:
                     m = new DieToHazardMission();
                     break;
-                default:    // in case all else fails somehow...
-                    m = new BananaMission();
-                    break;
             }
-            
 
+            if (m != null) m.unlockedMonkeyMeeting = MonkeyMeetingManager.Instance.allMeetings.meetings[unlockedMeetingIndex];
             return m;
         }
     }
@@ -77,17 +80,30 @@ public class PlayerData
     // public MissionData[] randomMissions;     < removed because apparently missions are generated every run
     public MissionData storyMission;
 
+    public MissionData[] randomMissions = {};
+
     // meeting manager
     public MeetingData currentMeeting;
 
     public string ToJson()
     {
-        return JsonUtility.ToJson(this);
+        if (storyMission == null)
+        {
+            Debug.Log("Story mission = null!");
+        }
+        var json = JsonUtility.ToJson(this);
+        Debug.Log(json);
+        return json;
     }
 
     public void LoadFromJson(string a_Json)
     {
         JsonUtility.FromJsonOverwrite(a_Json, this);
+        
+        // ok so ToJson turns nulls into default values, so we have to check for such values and replace them with nulls
+        // i hate it too
+        if (storyMission.goal == 0) storyMission = null;
+        if (currentMeeting.meetingNumber == 0) currentMeeting = null;
     }
 
     public static PlayerData CreateFromJSON(string jsonString)
@@ -110,21 +126,34 @@ public class PlayerData
         equippedBoard = Inventory.getEquippedBoard();
 
         // missions
-        // removed because missions are generated every run. but might be changed, who knows!
-        /*
         List<Mission> missionObjects = missions.randomMissions;
         randomMissions = new MissionData[missionObjects.Count];
         for(int i = 0; i < missionObjects.Count; i++)
         {
             Mission m = missionObjects[i];
             randomMissions[i] = new MissionData(missionObjects[i]);
-        }*/
-        storyMission = new MissionData(missions.StoryMission);
+        }
+        
+        // story mission and monkey meeting
+        if (missions.StoryMission != null)
+        {
+            storyMission = new MissionData(missions.StoryMission);
+            currentMeeting = null;
+        }
+        else
+        {
+            storyMission = null;
+            
+            // set current meeting
+            int meetIndex;
+            if (missions.StoryMission != null && missions.storyMission.unlockedMonkeyMeeting != null)
+                meetIndex = missions.StoryMission.unlockedMonkeyMeeting.meetingIndex;
+            else if (meetings.currentMeeting != null) meetIndex = meetings.currentMeeting.meetingIndex;
+            else meetIndex = 0;
 
-        // meetings
-        int meetIndex = 0;
-        if (meetings.HasMeetingPending) meetIndex = meetings.currentMeeting.meetingIndex;
-        currentMeeting = new MeetingData(meetIndex);
+            if (meetIndex == 0) currentMeeting = null;
+            else currentMeeting = new MeetingData(meetIndex);
+        }
     }
 
     public void LoadData(MissionManager missions, MonkeyMeetingManager meetings)
@@ -135,21 +164,24 @@ public class PlayerData
         {
             Inventory.addItem(String.Copy(item));
         }
-        Inventory.equipBoard(String.Copy(equippedBoard));
+        Inventory.equipBoard(String.Copy(equippedBoard), false);
 
         // mission manager
-        /*
-        foreach (MissionData mission in randomMissions)
+        foreach (MissionData mission in this.randomMissions)
         {
             missions.randomMissions.Add(mission.LoadMission());
         }
-        */
-        // ^ get with the program
 
-        missions.SetStoryMission(storyMission.LoadMission());
-
-        // meeting manager
-        meetings.currentMeeting = currentMeeting.LoadMeeting();
+        if (storyMission != null)
+        {
+            missions.SetStoryMission(storyMission.LoadMission());
+            meetings.currentMeeting = null;
+        }
+        else
+        {
+            missions.SetStoryMission(null);
+            meetings.currentMeeting = currentMeeting?.LoadMeeting();
+        }
     }
 
 }

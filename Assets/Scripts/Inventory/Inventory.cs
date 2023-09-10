@@ -18,7 +18,6 @@ public class Inventory : MonoBehaviour
             Instance = this;
             //BananasInInventory = 50000000;
             PurchasedItems = new List<string>();
-            UnlockItem("Holy Board");
             //addItem("All Natural Board"); //Starting board is already in inventory at start of game
             //equipBoard("All Natural Board");
         }
@@ -35,6 +34,7 @@ public class Inventory : MonoBehaviour
 
     private void Start()
     {
+        UnlockItem("Holy Board", false);
     }
 
     ///<summary>
@@ -68,17 +68,19 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public static void UnlockItem(string itemName)
+    public static void UnlockItem(string itemName, bool displayPopUp = true)
     {
-        PopupManager.Instance.SendPopupMessage("Board Unlocked: " + itemName);
+        print(PopupManager.Instance);
+        print(itemName);
+        if (displayPopUp) PopupManager.Instance.SendPopupMessage("Board Unlocked: " + itemName);
         print("Item Unlocked");
         addItem(itemName);
-        equipBoard(itemName);
+        equipBoard(itemName, displayPopUp);
     }
 
-    public static void LockItem(string itemName)
+    public static void LockItem(string itemName, bool displayPopUp = true)
     {
-        PopupManager.Instance.SendPopupMessage("Board Locked: " + itemName);
+        if (displayPopUp) PopupManager.Instance.SendPopupMessage("Board Locked: " + itemName);
         print("Board locked: " + itemName);
         RemoveItem(itemName);
         if (equippedBoard == itemName)
@@ -116,8 +118,8 @@ public class Inventory : MonoBehaviour
     ///<summary>
     ///Set the equipped board to the passed in board name
     ///</summary>
-    public static void equipBoard(string boardName) {
-        PopupManager.Instance.SendPopupMessage("Board Equipped: " + boardName);
+    public static void equipBoard(string boardName, bool displayPopUp = true) {
+        if (displayPopUp) PopupManager.Instance.SendPopupMessage("Board Equipped: " + boardName);
         equippedBoard = boardName;
     }
 

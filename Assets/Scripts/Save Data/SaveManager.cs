@@ -14,7 +14,7 @@ public class SaveManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("shit");
+            Debug.LogError("Save failed!");
         }
     }
 

@@ -16,6 +16,7 @@ public class PauseMenuUI : MonoBehaviour
 
     private void Update()
     {
+        if (PlayerMovement.IsDead) return;
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (gameIsPaused)

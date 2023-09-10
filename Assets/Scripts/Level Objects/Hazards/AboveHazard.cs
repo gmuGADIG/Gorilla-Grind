@@ -14,7 +14,7 @@ public class AboveHazard : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             var player = other.GetComponent<PlayerMovement>();
-            if (player.IsDead) return;
+            if (PlayerMovement.IsDead) return;
             
             player.JumpedOverHazard();
         }

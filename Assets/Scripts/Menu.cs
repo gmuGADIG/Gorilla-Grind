@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.Windows;
+using Input = UnityEngine.Input;
 
 public class Menu : MonoBehaviour
 {
@@ -37,6 +39,14 @@ public class Menu : MonoBehaviour
             {
                 PauseGame(false);
             }
+        }
+        
+        // TEMP
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            Debug.Log(MonkeyMeetingManager.Instance.currentMeeting);
+            Debug.Log(MissionManager.Instance.StoryMission);
+            Debug.Log(MissionManager.Instance.StoryMission.unlockedMonkeyMeeting);
         }
     }
     
@@ -89,8 +99,11 @@ public class Menu : MonoBehaviour
         //mission3Text.text = goals.mission3.getDescription() + "\n" + "(" + goals.mission3.GetCurrentCount() + "/" + goals.mission3.goal + ")";
     }
 
-    public void LoadData()
+    public void ResetData()
     {
-        SaveManager.LoadJsonData();
+        PlayerPrefs.DeleteAll();
+        FileManager.DeleteFile("SaveData01.dat");
+        PersistentManager.ResetManagers();
+        // Application.Quit();
     }
 }

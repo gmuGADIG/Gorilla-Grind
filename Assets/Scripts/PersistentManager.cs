@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PersistentManager : MonoBehaviour
 {
+    [SerializeField] PersistentManager prefab;
     static PersistentManager instance;
 
     void Awake()
@@ -17,5 +18,14 @@ public class PersistentManager : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
+    }
+
+    public static void ResetManagers()
+    {
+        if (instance == null) return;
+        
+        var prefab = instance.prefab;
+        Destroy(instance.gameObject);
+        instance = Instantiate(prefab);
     }
 }
