@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.Text;
+using UnityEngine.UI;
 
 public class MissionUI : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class MissionUI : MonoBehaviour
 
     private void Start()
     {
+
         completeSoundID = SoundManager.Instance.GetSoundID("Mission_Complete");
         stringBuilders = new StringBuilder[missionPanels.Length];
         // setup monkey meeting mission
@@ -48,7 +50,8 @@ public class MissionUI : MonoBehaviour
 
     private void Update()
     {
-        if (MissionManager.Instance.StoryMission != null)
+        var storyMission = MissionManager.Instance.StoryMission;
+        if (storyMission != null)
         {
             if (stringBuilders[0] == null)
             {
@@ -84,6 +87,10 @@ public class MissionUI : MonoBehaviour
                 missionPanels[i].markedAsComplete = true;
                 SoundManager.Instance.PlaySoundGlobal(completeSoundID);
             }
+        }
+        if(storyMission == null && MissionManager.Instance.randomMissions.Count <= 0)
+        {
+            GetComponentInChildren<Image>().enabled = false;
         }
     }
 }

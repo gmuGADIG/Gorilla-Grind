@@ -36,7 +36,7 @@ public class PopupManager : MonoBehaviour
 
     public void SendPopupMessage(string message)
     {
-        Debug.LogError("adgjkha");
+        //Debug.LogError("adgjkha");
         messageQueue.Enqueue(message);
         if (!popupActive)
         {
